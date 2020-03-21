@@ -8,10 +8,11 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello, world!");
+        System.out.println("Hello,   world!");
 
         try {
             testFile();
+
         }
         catch (IOException exc) {
             exc.printStackTrace();
@@ -22,11 +23,11 @@ public class Main {
         File fout = new File("testfile.txt");
         fout.createNewFile();
 
-        FileWriter fileWriter = new FileWriter(fout);
-        fileWriter.write("Hello, ");
-        fileWriter.flush();
+        FileWriter fileW = new FileWriter(fout);
+        fileW.write("Hello, ");
+        fileW.flush();
 
-        BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+        BufferedWriter bufWriter = new BufferedWriter(fileW);
         bufWriter.write("world!");
         bufWriter.flush();
     }
