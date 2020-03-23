@@ -9,14 +9,14 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello, world!");
-/*
+
+        CGameController gameController = CGameController.getInstance();
+        gameController.gameLoop();
+
         try {
-            testFile();
         }
-        catch (IOException exc) {
-            exc.printStackTrace();
+        catch (Exception exc) {
         }
- */
     }
 
     protected static void testFile(String fileName) throws IOException {
