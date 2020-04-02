@@ -1,20 +1,20 @@
 package Structures;
 
 public class SpaceDock extends Structure {
-    private boolean Blockaded_;
-    private int ProductValue_;
+    private boolean blockaded;
+    private int productValue;
 
     public boolean isBlockaded() {
-        return Blockaded_;
+        return blockaded;
     }
     public int getValue() {
-        return ProductValue_;
+        return productValue;
     }
 
     public void setBlockaded(boolean isBlockaded) {
-        Blockaded_ = isBlockaded;
+        blockaded = isBlockaded;
     }
     public void setProductValue(int value) {
-        ProductValue_ = value;
+        productValue = value;
     }
 }

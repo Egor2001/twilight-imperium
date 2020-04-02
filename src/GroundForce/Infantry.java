@@ -1,20 +1,20 @@
 package GroundForce;
 
 public class Infantry extends GroundForce {
-    private int CombatValue_;
-    private int Cost_;
+    private int combatValue;
+    private int cost;
 
     public int getCost() {
-        return Cost_;
+        return cost;
     }
-    public boolean canHit(int DiceValue) {
-        return DiceValue >= CombatValue_;
+    public boolean canHit(int diceValue) {
+        return diceValue >= combatValue;
     }
 
-    public void setCombatValue(int CombatValue) {
-        CombatValue_ = CombatValue;
+    public void setCombatValue(int newCombatValue) {
+        combatValue = newCombatValue;
     }
-    public void setCost(int Cost) {
-        Cost_ = Cost;
+    public void setCost(int newCost) {
+        cost = newCost;
     }
 }

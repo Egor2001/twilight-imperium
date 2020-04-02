@@ -7,7 +7,7 @@ import Structures.Structure;
 import java.util.*;
 
 public class Army {
-    Vector<Ship> Ships;
-    Vector<Structure> Structures;
-    Vector<GroundForce> GroundForces;
+    Vector<Ship> ships;
+    Vector<Structure> structures;
+    Vector<GroundForce> groundForces;
 }

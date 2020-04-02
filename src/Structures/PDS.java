@@ -1,24 +1,24 @@
 package Structures;
 
 public class PDS extends Structure {
-    private int[] SpaceCannon_ = new int[2];
-    private boolean PlanetaryShield_;
+    private int[] spaceCannon_ = new int[2];
+    private boolean planetaryShield;
 
     public int getNumberOfDicesForSpaceCannon() {
-        return SpaceCannon_[1];
+        return spaceCannon_[1];
     }
-    public boolean canHitFromSpaceCannon(int DiceValue) {
-        return DiceValue >= SpaceCannon_[0];
+    public boolean canHitFromSpaceCannon(int diceValue) {
+        return diceValue >= spaceCannon_[0];
     }
-    public void setSpaceCannon(int DiceValue, int NumDices) {
-        SpaceCannon_[0] = DiceValue;
-        SpaceCannon_[1] = NumDices;
+    public void setSpaceCannon(int diceValue, int numDices) {
+        spaceCannon_[0] = diceValue;
+        spaceCannon_[1] = numDices;
     }
 
     public void setPlanetaryShield(boolean isPlanetaryShield) {
-        PlanetaryShield_ = isPlanetaryShield;
+        planetaryShield = isPlanetaryShield;
     }
     public boolean getPlanetaryShield() {
-        return PlanetaryShield_;
+        return planetaryShield;
     }
 }

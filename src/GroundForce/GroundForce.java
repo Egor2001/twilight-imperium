@@ -12,7 +12,7 @@ public abstract class GroundForce implements Unit, Updatable {
     }
 
     @Override
-    public void Update() {
+    public void update() {
 
     }
 }

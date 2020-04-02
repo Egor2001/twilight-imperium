@@ -4,93 +4,93 @@ import base.Unit;
 import base.Updatable;
 
 public abstract class Ship implements Unit, Updatable {
-    private int MoveValue_;
-    private int CapacityValue_;
-    private int CombatValue_;
-    private int Cost_;
+    private int moveValue;
+    private int capacityValue;
+    private int combatValue;
+    private int cost;
 
-    private boolean CanSustainDamaged_ = false;
-    private boolean Damaged_;
+    private boolean canSustainDamaged = false;
+    private boolean damaged;
 
-    private int[] SpaceCannon_ = new int[2];
-    private int[] Bombardment_ = new int[2];
-    private int[] AntiFighterBarrage_ = new int[2];
+    private int[] spaceCannon = new int[2];
+    private int[] bombardment = new int[2];
+    private int[] antiFighterBarrage = new int[2];
 
     public int getMoveValue() {
-        return MoveValue_;
+        return moveValue;
     }
     public int getCapacityValue() {
-        return CapacityValue_;
+        return capacityValue;
     }
     public int getCost() {
-        return Cost_;
+        return cost;
     }
 
-    public boolean canHit(int DiceValue) {
-        return DiceValue >= CombatValue_;
+    public boolean canHit(int diceValue) {
+        return diceValue >= combatValue;
     }
 
     public boolean isDamaged() {
-        return Damaged_;
+        return damaged;
     }
     public boolean canSustainDamaged() {
-        return CanSustainDamaged_;
+        return canSustainDamaged;
     }
     public void takeDamaged() {
-        Damaged_ = true;
+        damaged = true;
     }
 
     public int getNumberOfDicesForSpaceCannon() {
-        return SpaceCannon_[1];
+        return spaceCannon[1];
     }
-    public boolean canHitFromSpaceCannon(int DiceValue) {
-        return DiceValue >= SpaceCannon_[0];
+    public boolean canHitFromSpaceCannon(int diceValue) {
+        return diceValue >= spaceCannon[0];
     }
 
     public int getNumberOfDicesForBombardment() {
-        return Bombardment_[1];
+        return bombardment[1];
     }
-    public boolean canHitFromBombardment(int DiceValue) {
-        return DiceValue >= Bombardment_[0];
+    public boolean canHitFromBombardment(int diceValue) {
+        return diceValue >= bombardment[0];
     }
 
     public int getNumberOfDicesForAntiFighterBarrage() {
-        return AntiFighterBarrage_[1];
+        return antiFighterBarrage[1];
     }
-    public boolean canHitFromAntiFighterBarrage(int DiceValue) {
-        return DiceValue >= AntiFighterBarrage_[0];
+    public boolean canHitFromAntiFighterBarrage(int diceValue) {
+        return diceValue >= antiFighterBarrage[0];
     }
 
     @Override
-    public void Update() {}
+    public void update() {}
 
-    public void setMoveValue(int MoveValue) {
-        MoveValue_ = MoveValue;
+    public void setMoveValue(int newMoveValue) {
+        moveValue = newMoveValue;
     }
-    public void setCapacityValue(int CapacityValue) {
-        CapacityValue_ = CapacityValue;
+    public void setCapacityValue(int newCapacityValue) {
+        capacityValue = newCapacityValue;
     }
-    public void setCombatValue(int CombatValue) {
-        CombatValue_ = CombatValue;
+    public void setCombatValue(int newCombatValue) {
+        combatValue = newCombatValue;
     }
-    public void setCost(int Cost) {
-        Cost_ = Cost;
-    }
-
-    public void setCanSustainDamaged(boolean CanDamaged) {
-        CanSustainDamaged_ = CanDamaged;
+    public void setCost(int newCost) {
+        cost = newCost;
     }
 
-    public void setSpaceCannon(int DiceValue, int NumDices) {
-        SpaceCannon_[0] = DiceValue;
-        SpaceCannon_[1] = NumDices;
+    public void setCanSustainDamaged(boolean canDamaged) {
+        canSustainDamaged = canDamaged;
     }
-    public void setBombardment(int DiceValue, int NumDices) {
-        Bombardment_[0] = DiceValue;
-        Bombardment_[1] = NumDices;
+
+    public void setSpaceCannon(int diceValue, int numDices) {
+        spaceCannon[0] = diceValue;
+        spaceCannon[1] = numDices;
     }
-    public void setAntiFighterBarrage(int DiceValue, int NumDices) {
-        AntiFighterBarrage_[0] = DiceValue;
-        AntiFighterBarrage_[1] = NumDices;
+    public void setBombardment(int diceValue, int numDices) {
+        bombardment[0] = diceValue;
+        bombardment[1] = numDices;
+    }
+    public void setAntiFighterBarrage(int diceValue, int numDices) {
+        antiFighterBarrage[0] = diceValue;
+        antiFighterBarrage[1] = numDices;
     }
 }
