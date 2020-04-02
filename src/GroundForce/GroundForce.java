@@ -1,7 +1,7 @@
 package GroundForce;
 
-import com.twilight.Unit;
-import com.twilight.Updatable;
+import base.Unit;
+import base.Updatable;
 
 public abstract class GroundForce implements Unit, Updatable {
     private int CombatValue;

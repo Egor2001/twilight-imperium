@@ -1,7 +1,7 @@
 package Ships;
 
-import com.twilight.Unit;
-import com.twilight.Updatable;
+import base.Unit;
+import base.Updatable;
 
 public abstract class Ship implements Unit, Updatable {
     private int MoveValue_;

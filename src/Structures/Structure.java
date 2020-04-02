@@ -1,7 +1,7 @@
 package Structures;
 
-import com.twilight.Unit;
-import com.twilight.Updatable;
+import base.Unit;
+import base.Updatable;
 
 public abstract class Structure implements Unit, Updatable {
     @Override
