@@ -1,12 +1,12 @@
 package base;
 
-public class CArmy implements IUpdatable {
+public class Army implements Updatable {
 
     //private ArrayList<IShip> ships;
     //private ArrayList<IGroundForce> groundForces;
     //private ArrayList<IStructure> structures;
 
-    public CArmy() {
+    public Army() {
 
     }
 

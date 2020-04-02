@@ -1,30 +1,30 @@
 package base;
 
-public class CGameController {
+public class GameController {
 
-    private static CGameController instance;
+    private static GameController instance;
 
-    private CUserInterface userInterface;
-    private CGameState gameState;
+    private UserInterface userInterface;
+    private GameState gameState;
 
-    public static CGameController getInstance() {
+    public static GameController getInstance() {
         if (instance == null) {
-            instance = new CGameController();
+            instance = new GameController();
         }
 
         return instance;
     }
 
-    private CGameController() {
-        this.userInterface = new CUserInterface();
-        this.gameState = new CGameState();
+    private GameController() {
+        this.userInterface = new UserInterface();
+        this.gameState = new GameState();
     }
 
-    public CUserInterface getUserInterface() {
+    public UserInterface getUserInterface() {
         return userInterface;
     }
 
-    public CGameState getGameState() {
+    public GameState getGameState() {
         return gameState;
     }
 
@@ -32,7 +32,7 @@ public class CGameController {
         Integer playersCnt = gameState.getPlayers().size();
 
         for (Integer playerIdx = 0; !playerIdx.equals(playersCnt); ++playerIdx) {
-            CPlayer newPlayer = userInterface.requestNewPlayer();
+            Player newPlayer = userInterface.requestNewPlayer();
 
             if (newPlayer != null) {
                 gameState.getPlayers().set(playerIdx, newPlayer);
@@ -43,23 +43,23 @@ public class CGameController {
     }
 
     public Boolean gameLoop() {
-        for (CPlayer player : gameState.getPlayers()) {
+        for (Player player : gameState.getPlayers()) {
             strategyPhase(player);
         }
 
-        for (CPlayer player : gameState.getPlayers()) {
+        for (Player player : gameState.getPlayers()) {
             actionPhase(player);
         }
 
-        for (CPlayer player : gameState.getPlayers()) {
+        for (Player player : gameState.getPlayers()) {
             statusPhase(player);
         }
 
         return true;
     }
 
-    protected Boolean strategyPhase(CPlayer player) {
-        CUserInterface.IPlayerStrategyCommand command =
+    protected Boolean strategyPhase(Player player) {
+        UserInterface.IPlayerStrategyCommand command =
                 userInterface.requestStrategy(player);
 
         if (command == null) {
@@ -71,8 +71,8 @@ public class CGameController {
         return true;
     }
 
-    protected Boolean actionPhase(CPlayer player) {
-        CUserInterface.IPlayerActionCommand command =
+    protected Boolean actionPhase(Player player) {
+        UserInterface.IPlayerActionCommand command =
                 userInterface.requestAction(player);
 
         if (command == null) {
@@ -85,8 +85,8 @@ public class CGameController {
         return true;
     }
 
-    protected Boolean statusPhase(CPlayer player) {
-        CUserInterface.IPlayerStatusCommand command =
+    protected Boolean statusPhase(Player player) {
+        UserInterface.IPlayerStatusCommand command =
                 userInterface.requestStatus(player);
 
         if (command == null) {

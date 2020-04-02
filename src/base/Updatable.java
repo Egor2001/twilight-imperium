@@ -1,6 +1,6 @@
 package base;
 
-public interface IUpdatable {
+public interface Updatable {
 
     void update();
 }

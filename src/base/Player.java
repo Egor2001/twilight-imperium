@@ -1,12 +1,12 @@
 package base;
 
 //TODO: to implement IUpdatable
-public class CPlayer implements IUpdatable {
+public class Player implements Updatable {
 
     private String name;
-    private CArmy army;
+    private Army army;
 
-    public CPlayer(String name, CArmy army) {
+    public Player(String name, Army army) {
         this.name = name;
         this.army = army;
     }
@@ -15,7 +15,7 @@ public class CPlayer implements IUpdatable {
         return name;
     }
 
-    public final CArmy getArmy() {
+    public final Army getArmy() {
         return army;
     }
 

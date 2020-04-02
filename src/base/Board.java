@@ -1,10 +1,10 @@
 package base;
 
-public class CBoard implements IUpdatable {
+public class Board implements Updatable {
 
     //private ArrayList<CTile> tiles;
 
-    public CBoard() {
+    public Board() {
 
     }
 

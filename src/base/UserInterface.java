@@ -4,23 +4,23 @@ import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class CUserInterface {
+public class UserInterface {
 
     private final InputStream inputStream = System.in;
     private final PrintStream printStream = System.out;
     private final Scanner inputScanner = new Scanner(inputStream);
 
-    public CUserInterface() {
+    public UserInterface() {
     }
 
-    public CPlayer requestNewPlayer() {
+    public Player requestNewPlayer() {
         printStream.println("Welcome! insert your name:");
         String name = inputScanner.nextLine();
 
-        return new CPlayer(name, new CArmy());
+        return new Player(name, new Army());
     }
 
-    public IPlayerStrategyCommand requestStrategy(final CPlayer player) {
+    public IPlayerStrategyCommand requestStrategy(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("STRATEGY phase, player: ");
@@ -35,7 +35,7 @@ public class CUserInterface {
         return command;
     }
 
-    public IPlayerActionCommand requestAction(final CPlayer player) {
+    public IPlayerActionCommand requestAction(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("ACTION phase, player: ");
@@ -50,7 +50,7 @@ public class CUserInterface {
         return command;
     }
 
-    public IPlayerStatusCommand requestStatus(final CPlayer player) {
+    public IPlayerStatusCommand requestStatus(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("STATUS phase, player: ");
@@ -65,7 +65,7 @@ public class CUserInterface {
         return command;
     }
 
-    public Boolean refresh(final CGameState gameState) {
+    public Boolean refresh(final GameState gameState) {
         return true;
     }
 
