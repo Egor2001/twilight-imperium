@@ -1,12 +1,15 @@
-package com.twilight;
+package Ships;
 
-public class Ship implements Unit, Updatable {
+import com.twilight.Unit;
+import com.twilight.Updatable;
+
+public abstract class Ship implements Unit, Updatable {
     private int MoveValue_;
     private int CapacityValue_;
     private int CombatValue_;
     private int Cost_;
 
-    private boolean CanDamaged_ = false;
+    private boolean CanSustainDamaged_ = false;
     private boolean Damaged_;
 
     private int[] SpaceCannon_ = new int[2];
@@ -30,8 +33,8 @@ public class Ship implements Unit, Updatable {
     public boolean isDamaged() {
         return Damaged_;
     }
-    public boolean canDamaged() {
-        return CanDamaged_;
+    public boolean canSustainDamaged() {
+        return CanSustainDamaged_;
     }
     public void takeDamaged() {
         Damaged_ = true;
@@ -60,8 +63,6 @@ public class Ship implements Unit, Updatable {
 
     @Override
     public void Update() {}
-    @Override
-    public void Upgrade() {}
 
     public void setMoveValue(int MoveValue) {
         MoveValue_ = MoveValue;
@@ -76,8 +77,8 @@ public class Ship implements Unit, Updatable {
         Cost_ = Cost;
     }
 
-    public void setCanDamaged(boolean CanDamaged) {
-        CanDamaged_ = CanDamaged;
+    public void setCanSustainDamaged(boolean CanDamaged) {
+        CanSustainDamaged_ = CanDamaged;
     }
 
     public void setSpaceCannon(int DiceValue, int NumDices) {
