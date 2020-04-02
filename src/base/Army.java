@@ -6,8 +6,15 @@ import Structures.Structure;
 
 import java.util.*;
 
-public class Army {
+public class Army implements Updatable {
     Vector<Ship> ships;
     Vector<Structure> structures;
     Vector<GroundForce> groundForces;
+  
+    public Army() {
+
+    }
+
+    @Override
+    public void update() {}
 }
