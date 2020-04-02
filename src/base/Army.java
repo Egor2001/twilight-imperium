@@ -1,29 +1,20 @@
 package base;
 
+import GroundForce.GroundForce;
+import Ships.Ship;
+import Structures.Structure;
+
+import java.util.*;
+
 public class Army implements Updatable {
-
-    //private ArrayList<IShip> ships;
-    //private ArrayList<IGroundForce> groundForces;
-    //private ArrayList<IStructure> structures;
-
+    Vector<Ship> ships;
+    Vector<Structure> structures;
+    Vector<GroundForce> groundForces;
+  
     public Army() {
 
     }
 
     @Override
-    public void update() {
-        /*
-        for (IUpdatable unit : ships) {
-            unit.update();
-        }
-
-        for (IUpdatable unit : groundForces) {
-            unit.update();
-        }
-
-        for (IUpdatable unit : structures) {
-            unit.update();
-        }
-        */
-    }
+    public void update() {}
 }
