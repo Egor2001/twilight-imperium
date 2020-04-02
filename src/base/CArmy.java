@@ -2,6 +2,10 @@ package base;
 
 public class CArmy implements IUpdatable {
 
+    //private ArrayList<IShip> ships;
+    //private ArrayList<IGroundForce> groundForces;
+    //private ArrayList<IStructure> structures;
+
     public CArmy() {
 
     }
@@ -22,8 +26,4 @@ public class CArmy implements IUpdatable {
         }
         */
     }
-
-    //private ArrayList<IShip> ships;
-    //private ArrayList<IGroundForce> groundForces;
-    //private ArrayList<IStructure> structures;
 }

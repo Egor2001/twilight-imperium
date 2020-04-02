@@ -3,6 +3,9 @@ package base;
 //TODO: to implement IUpdatable
 public class CPlayer implements IUpdatable {
 
+    private String name;
+    private CArmy army;
+
     public CPlayer(String name, CArmy army) {
         this.name = name;
         this.army = army;
@@ -20,7 +23,4 @@ public class CPlayer implements IUpdatable {
     public void update() {
         army.update();
     }
-
-    private String name;
-    private CArmy army;
 }

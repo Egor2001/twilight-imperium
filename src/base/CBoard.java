@@ -2,6 +2,8 @@ package base;
 
 public class CBoard implements IUpdatable {
 
+    //private ArrayList<CTile> tiles;
+
     public CBoard() {
 
     }
@@ -10,6 +12,4 @@ public class CBoard implements IUpdatable {
     public void update() {
 
     }
-
-    //private ArrayList<CTile> tiles;
 }

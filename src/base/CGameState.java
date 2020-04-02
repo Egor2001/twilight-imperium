@@ -6,6 +6,9 @@ public class CGameState implements IUpdatable {
 
     public final Integer PLAYERS_CNT = 2;
 
+    private CBoard board;
+    private ArrayList<CPlayer> players;
+
     public CGameState() {
         this.board = new CBoard();
         this.players = new ArrayList<CPlayer>(6);
@@ -31,6 +34,23 @@ public class CGameState implements IUpdatable {
         }
     }
 
-    private CBoard board;
-    private ArrayList<CPlayer> players;
+    public Boolean handleStrategyCommand(CPlayer player, CUserInterface.IPlayerStrategyCommand command) {
+        return handleCommand(player, command);
+    }
+
+    public Boolean handleActionCommand(CPlayer player, CUserInterface.IPlayerActionCommand command) {
+        return handleCommand(player, command);
+    }
+
+    public Boolean handleStatusCommand(CPlayer player, CUserInterface.IPlayerStatusCommand command) {
+        return handleCommand(player, command);
+    }
+
+    protected Boolean handleCommand(CPlayer player, CUserInterface.IPlayerCommand command) {
+        assert (command != null) : "command is null";
+
+        command.procCommand();
+
+        return true;
+    }
 }

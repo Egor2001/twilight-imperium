@@ -20,13 +20,43 @@ public class CUserInterface {
         return new CPlayer(name, new CArmy());
     }
 
-    public IPlayerCommand requestAction(final CPlayer player) {
+    public IPlayerStrategyCommand requestStrategy(final CPlayer player) {
         assert (player != null) : "player is null";
 
-        printStream.print("Action phase, player: ");
+        printStream.print("STRATEGY phase, player: ");
         printStream.println(player.getName());
 
-        IPlayerCommand command = new CPlayerActionMove();
+        IPlayerStrategyCommand command = new CPlayerStrategyPick();
+        while (!command.inputCommand()) {
+            printStream.println("Invalid input. Try again.");
+            printStream.flush();
+        }
+
+        return command;
+    }
+
+    public IPlayerActionCommand requestAction(final CPlayer player) {
+        assert (player != null) : "player is null";
+
+        printStream.print("ACTION phase, player: ");
+        printStream.println(player.getName());
+
+        IPlayerActionCommand command = new CPlayerActionMove();
+        while (!command.inputCommand()) {
+            printStream.println("Invalid input. Try again.");
+            printStream.flush();
+        }
+
+        return command;
+    }
+
+    public IPlayerStatusCommand requestStatus(final CPlayer player) {
+        assert (player != null) : "player is null";
+
+        printStream.print("STATUS phase, player: ");
+        printStream.println(player.getName());
+
+        IPlayerStatusCommand command = new CPlayerStatusCompleteMission();
         while (!command.inputCommand()) {
             printStream.println("Invalid input. Try again.");
             printStream.flush();
@@ -44,7 +74,19 @@ public class CUserInterface {
         void procCommand();
     }
 
-    public class CPlayerActionMove implements IPlayerCommand {
+    public interface IPlayerStrategyCommand extends IPlayerCommand {
+    }
+
+    public interface IPlayerActionCommand extends IPlayerCommand {
+    }
+
+    public interface IPlayerStatusCommand extends IPlayerCommand {
+    }
+
+    public class CPlayerActionMove implements IPlayerActionCommand {
+
+        public Integer shipIdx = 0;
+        public Integer spaceIdx = 0;
 
         public CPlayerActionMove() {
             this.shipIdx = 0;
@@ -73,10 +115,69 @@ public class CUserInterface {
 
         @Override
         public void procCommand() {
-            printStream.println("processing command");
+            printStream.println("processing ACTION command: MOVE");
+        }
+    }
+
+    public class CPlayerStrategyPick implements IPlayerStrategyCommand {
+
+        public Integer strategyIdx = 0;
+
+        public CPlayerStrategyPick() {
+            this.strategyIdx = 0;
         }
 
-        public Integer shipIdx = 0;
-        public Integer spaceIdx = 0;
+        public CPlayerStrategyPick(Integer strategyIdx) {
+            this.strategyIdx = strategyIdx;
+        }
+
+        @Override
+        public Boolean inputCommand() {
+            try {
+                printStream.println("enter strategy number:");
+                strategyIdx = inputScanner.nextInt();
+            } catch (InputMismatchException exception) {
+                printStream.flush();
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public void procCommand() {
+            printStream.println("processing STRATEGY command: PICK");
+        }
+    }
+
+    public class CPlayerStatusCompleteMission implements IPlayerStatusCommand {
+
+        public Integer missionIdx = 0;
+
+        public CPlayerStatusCompleteMission() {
+            this.missionIdx = 0;
+        }
+
+        public CPlayerStatusCompleteMission(Integer missionIdx) {
+            this.missionIdx = missionIdx;
+        }
+
+        @Override
+        public Boolean inputCommand() {
+            try {
+                printStream.println("enter mission number:");
+                missionIdx = inputScanner.nextInt();
+            } catch (InputMismatchException exception) {
+                printStream.flush();
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public void procCommand() {
+            printStream.println("processing STATUS command: PICK");
+        }
     }
 }
