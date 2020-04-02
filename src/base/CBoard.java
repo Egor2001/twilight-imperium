@@ -1,6 +1,4 @@
-package com.twilight;
-
-import java.util.ArrayList;
+package base;
 
 public class CBoard implements IUpdatable {
 

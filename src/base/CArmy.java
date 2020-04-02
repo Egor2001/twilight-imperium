@@ -1,6 +1,4 @@
-package com.twilight;
-
-import java.util.ArrayList;
+package base;
 
 public class CArmy implements IUpdatable {
 

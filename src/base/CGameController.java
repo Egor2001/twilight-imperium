@@ -1,8 +1,7 @@
-package com.twilight;
+package base;
 
 public class CGameController {
 
-    public static final Integer PLAYER_CNT = 6;
     private static CGameController instance;
 
     public static CGameController getInstance() {
@@ -14,7 +13,6 @@ public class CGameController {
     }
 
     private CGameController() {
-        this.currentPlayerIdx = 0;
         this.userInterface = new CUserInterface();
         this.gameState = new CGameState();
     }
@@ -27,23 +25,37 @@ public class CGameController {
         return gameState;
     }
 
-    public Boolean gameLoop() {
-        if (processActionCommand(currentPlayerIdx)) {
-            currentPlayerIdx = (currentPlayerIdx + 1)%6;
+    public Boolean gameInit() {
+        Integer playersCnt = gameState.getPlayers().size();
+
+        for (Integer playerIdx = 0; !playerIdx.equals(playersCnt); ++playerIdx) {
+            gameState.getPlayers().set(playerIdx, userInterface.requestNewPlayer());
         }
 
-        return false;
+        return true;
     }
 
-    protected Boolean processActionCommand(Integer playerIdx) {
-        CPlayer player = gameState.getPlayers().get(0);
-        CUserInterface.IPlayerActionCommand actionCommand =
+    public Boolean gameLoop() {
+        for (CPlayer player : gameState.getPlayers()) {
+            processActionCommand(player);
+        }
+
+        return true;
+    }
+
+    protected Boolean processActionCommand(CPlayer player) {
+        CUserInterface.IPlayerCommand command =
                 userInterface.requestAction(player);
 
-        return (actionCommand != null);
+        if (command == null) {
+            return false;
+        }
+
+        command.procCommand();
+
+        return true;
     }
 
-    private Integer currentPlayerIdx;
     private CUserInterface userInterface;
     private CGameState gameState;
 }

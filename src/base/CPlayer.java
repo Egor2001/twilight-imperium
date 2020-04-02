@@ -1,6 +1,4 @@
-package com.twilight;
-
-import java.util.LinkedList;
+package base;
 
 //TODO: to implement IUpdatable
 public class CPlayer implements IUpdatable {
