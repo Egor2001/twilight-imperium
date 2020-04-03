@@ -1,7 +1,7 @@
-package RaceFactories;
+package ArmyUnits.RaceFactories;
 
-import Ships.Fighter;
-import Ships.Flagship;
+import ArmyUnits.Ships.Fighter;
+import ArmyUnits.Ships.Flagship;
 
 public class ShipFactoryRace1 implements ShipFactory {
     @Override

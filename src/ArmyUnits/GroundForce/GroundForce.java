@@ -1,4 +1,4 @@
-package GroundForce;
+package ArmyUnits.GroundForce;
 
 import base.Unit;
 import base.Updatable;

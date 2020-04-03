@@ -1,5 +1,7 @@
 package base;
 
+import ArmyUnits.Army;
+
 import java.util.ArrayList;
 
 public class GameState implements Updatable {

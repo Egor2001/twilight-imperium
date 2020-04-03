@@ -1,5 +1,7 @@
 package base;
 
+import ArmyUnits.Army;
+
 //TODO: to implement IUpdatable
 public class Player implements Updatable {
 

@@ -1,11 +1,11 @@
-package base;
+package ArmyUnits;
 
-import GroundForce.GroundForce;
-import Ships.Ship;
-import Structures.Structure;
+import ArmyUnits.GroundForce.GroundForce;
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Structures.Structure;
+import base.Updatable;
+
 import java.util.ArrayList;
-
-import java.util.*;
 
 public class Army implements Updatable {
     ArrayList<Ship> ships;

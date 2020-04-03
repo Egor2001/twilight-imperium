@@ -1,4 +1,4 @@
-package Ships;
+package ArmyUnits.Ships;
 
 public class Flagship extends Ship {
 }

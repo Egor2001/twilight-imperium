@@ -1,4 +1,4 @@
-package Structures;
+package ArmyUnits.Structures;
 
 public class PDS extends Structure {
     private int spaceCannonDiceValue = 10;

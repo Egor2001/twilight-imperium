@@ -1,16 +1,16 @@
-package Ships;
+package ArmyUnits.Ships;
 
 import base.Unit;
 import base.Updatable;
 
 public abstract class Ship implements Unit, Updatable {
-    private int moveValue;
-    private int capacityValue;
+    private int moveValue = 0;
+    private int capacityValue = 0;
     private int combatValue;
     private int cost;
 
     private boolean canSustainDamaged = false;
-    private boolean damaged;
+    private boolean damaged = false;
 
     private int spaceCannonDiceValue = 10;
     private int spaceCannonNumDices = 0;
