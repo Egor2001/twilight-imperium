@@ -1,8 +1,9 @@
-package base;
+package base.model;
 
 import GroundForce.GroundForce;
 import Ships.Ship;
 import Structures.Structure;
+import base.Updatable;
 
 import java.util.*;
 

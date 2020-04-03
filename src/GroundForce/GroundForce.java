@@ -1,6 +1,6 @@
 package GroundForce;
 
-import base.Unit;
+import base.model.Unit;
 import base.Updatable;
 
 public abstract class GroundForce implements Unit, Updatable {

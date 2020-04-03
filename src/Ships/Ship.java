@@ -1,6 +1,6 @@
 package Ships;
 
-import base.Unit;
+import base.model.Unit;
 import base.Updatable;
 
 public abstract class Ship implements Unit, Updatable {
