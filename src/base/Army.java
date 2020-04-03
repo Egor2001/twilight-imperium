@@ -3,13 +3,14 @@ package base;
 import GroundForce.GroundForce;
 import Ships.Ship;
 import Structures.Structure;
+import java.util.ArrayList;
 
 import java.util.*;
 
 public class Army implements Updatable {
-    Vector<Ship> ships;
-    Vector<Structure> structures;
-    Vector<GroundForce> groundForces;
+    ArrayList<Ship> ships;
+    ArrayList<Structure> structures;
+    ArrayList<GroundForce> groundForces;
   
     public Army() {
 

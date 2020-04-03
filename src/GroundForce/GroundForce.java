@@ -4,11 +4,21 @@ import base.Unit;
 import base.Updatable;
 
 public abstract class GroundForce implements Unit, Updatable {
-    private int CombatValue;
-    private int Cost;
+    private int combatValue;
+    private int cost;
 
-    public boolean CanHit(int DiceValue) {
-        return DiceValue >= CombatValue;
+    public int getCost() {
+        return cost;
+    }
+    public boolean canHit(int diceValue) {
+        return diceValue >= combatValue;
+    }
+
+    public void setCombatValue(int newCombatValue) {
+        combatValue = newCombatValue;
+    }
+    public void setCost(int newCost) {
+        cost = newCost;
     }
 
     @Override
