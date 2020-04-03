@@ -25,4 +25,12 @@ public class TileArmyController {
     TileObject GetTileObject(Army army) {
         return getKey(dictionary, army);
     }
+
+    void Connect(TileObject tileObject, Army army) {
+        dictionary.put(tileObject, army);
+    }
+
+    void Disconnect(TileObject tileObject, Army army) {
+        dictionary.remove(tileObject);
+    }
 }
