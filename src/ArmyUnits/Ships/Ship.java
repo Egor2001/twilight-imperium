@@ -3,7 +3,9 @@ package ArmyUnits.Ships;
 import base.Unit;
 import base.Updatable;
 
-public abstract class Ship implements Unit, Updatable {
+import java.io.Serializable;
+
+public abstract class Ship implements Unit, Updatable, Serializable {
     private int moveValue = 0;
     private int capacityValue = 0;
     private int combatValue;
