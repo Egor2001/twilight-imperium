@@ -1,8 +1,8 @@
 package base.model;
 
-import GroundForce.GroundForce;
-import Ships.Ship;
-import Structures.Structure;
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Structures.Structure;
+import ArmyUnits.GroundForce.GroundForce;
 import base.Updatable;
 
 import java.util.*;

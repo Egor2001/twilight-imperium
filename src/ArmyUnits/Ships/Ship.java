@@ -1,20 +1,25 @@
-package Ships;
+package ArmyUnits.Ships;
 
 import base.model.Unit;
 import base.Updatable;
 
-public abstract class Ship implements Unit, Updatable {
-    private int moveValue;
-    private int capacityValue;
+import java.io.Serializable;
+
+public abstract class Ship implements Unit, Updatable, Serializable {
+    private int moveValue = 0;
+    private int capacityValue = 0;
     private int combatValue;
     private int cost;
 
     private boolean canSustainDamaged = false;
-    private boolean damaged;
+    private boolean damaged = false;
 
-    private int[] spaceCannon = new int[2];
-    private int[] bombardment = new int[2];
-    private int[] antiFighterBarrage = new int[2];
+    private int spaceCannonDiceValue = 10;
+    private int spaceCannonNumDices = 0;
+    private int bombardmentDiceValue = 10;
+    private int bombardmentNumDices = 0;
+    private int antiFighterBarrageDiceValue = 10;
+    private int antiFighterBarrageNumDices = 0;
 
     public int getMoveValue() {
         return moveValue;
@@ -41,24 +46,24 @@ public abstract class Ship implements Unit, Updatable {
     }
 
     public int getNumberOfDicesForSpaceCannon() {
-        return spaceCannon[1];
+        return spaceCannonNumDices;
     }
     public boolean canHitFromSpaceCannon(int diceValue) {
-        return diceValue >= spaceCannon[0];
+        return diceValue >= spaceCannonDiceValue;
     }
 
     public int getNumberOfDicesForBombardment() {
-        return bombardment[1];
+        return bombardmentNumDices;
     }
     public boolean canHitFromBombardment(int diceValue) {
-        return diceValue >= bombardment[0];
+        return diceValue >= bombardmentDiceValue;
     }
 
     public int getNumberOfDicesForAntiFighterBarrage() {
-        return antiFighterBarrage[1];
+        return antiFighterBarrageDiceValue;
     }
     public boolean canHitFromAntiFighterBarrage(int diceValue) {
-        return diceValue >= antiFighterBarrage[0];
+        return diceValue >= antiFighterBarrageNumDices;
     }
 
     @Override
@@ -82,15 +87,15 @@ public abstract class Ship implements Unit, Updatable {
     }
 
     public void setSpaceCannon(int diceValue, int numDices) {
-        spaceCannon[0] = diceValue;
-        spaceCannon[1] = numDices;
+        spaceCannonDiceValue = diceValue;
+        spaceCannonNumDices = numDices;
     }
     public void setBombardment(int diceValue, int numDices) {
-        bombardment[0] = diceValue;
-        bombardment[1] = numDices;
+        bombardmentDiceValue = diceValue;
+        bombardmentNumDices = numDices;
     }
     public void setAntiFighterBarrage(int diceValue, int numDices) {
-        antiFighterBarrage[0] = diceValue;
-        antiFighterBarrage[1] = numDices;
+        antiFighterBarrageDiceValue = diceValue;
+        antiFighterBarrageNumDices = numDices;
     }
 }

@@ -3,6 +3,8 @@ package base.model;
 import base.*;
 import base.controller.PhaseController;
 
+import ArmyUnits.ArmyPlanet;
+
 import java.util.ArrayList;
 
 public class GameState implements Updatable {
