@@ -1,16 +1,40 @@
 package ArmyUnits.RaceFactories;
 
-import ArmyUnits.Ships.Fighter;
-import ArmyUnits.Ships.Flagship;
+import ArmyUnits.Ships.*;
 
-public class ShipFactoryRace2 implements ShipFactory {
+public class ShipFactoryRace2 implements ShipAbstractFactory {
     @Override
-    public Flagship CreateFlagship() {
+    public Carrier createCarrier() {
         return null;
     }
 
     @Override
-    public Fighter CreateFighter() {
+    public Cruiser createCruiser() {
+        return null;
+    }
+
+    @Override
+    public Destroyer createDestroyer() {
+        return null;
+    }
+
+    @Override
+    public Dreadnought createDreadnought() {
+        return null;
+    }
+
+    @Override
+    public Fighter createFighter() {
+        return null;
+    }
+
+    @Override
+    public Flagship createFlagship() {
+        return null;
+    }
+
+    @Override
+    public WarSun createWarSum() {
         return null;
     }
 }

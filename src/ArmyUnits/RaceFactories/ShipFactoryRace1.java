@@ -1,11 +1,10 @@
 package ArmyUnits.RaceFactories;
 
-import ArmyUnits.Ships.Fighter;
-import ArmyUnits.Ships.Flagship;
+import ArmyUnits.Ships.*;
 
-public class ShipFactoryRace1 implements ShipFactory {
+public class ShipFactoryRace1 implements ShipAbstractFactory {
     @Override
-    public Flagship CreateFlagship() {
+    public Flagship createFlagship() {
         Flagship create = new Flagship();//видимо FlagshipRace1
 
         //считываем из файла
@@ -23,7 +22,32 @@ public class ShipFactoryRace1 implements ShipFactory {
     }
 
     @Override
-    public Fighter CreateFighter() {
+    public WarSun createWarSum() {
+        return null;
+    }
+
+    @Override
+    public Carrier createCarrier() {
+        return null;
+    }
+
+    @Override
+    public Cruiser createCruiser() {
+        return null;
+    }
+
+    @Override
+    public Destroyer createDestroyer() {
+        return null;
+    }
+
+    @Override
+    public Dreadnought createDreadnought() {
+        return null;
+    }
+
+    @Override
+    public Fighter createFighter() {
         return new Fighter();
     }
 }
