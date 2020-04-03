@@ -25,7 +25,7 @@ public class UserInterface {
         return new Player(name, new Army());
     }
 
-    public HierarchyController.PlayerCommand requestCommand() {
+    public HierarchyController.GameObjectTarget requestCommand() {
         return null;
     }
 

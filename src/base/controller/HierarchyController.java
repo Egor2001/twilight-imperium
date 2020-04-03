@@ -1,8 +1,11 @@
 package base.controller;
 
 import java.io.OutputStream;
+import java.util.HashMap;
 
 public class HierarchyController {
+
+    HashMap<String, GameObjectTarget> targetMap;
 
     public HierarchyController() {
     }
@@ -12,24 +15,24 @@ public class HierarchyController {
     }
 
     public interface UserAcceptable {
-        Viewable getView(UserAcceptable parent, PlayerCommand command);
-        Object getObject(PlayerCommand command);
+        Viewable getView(UserAcceptable parent, GameObjectTarget target);
+        Object getObject(GameObjectTarget target);
     }
 
-    public static abstract class PlayerCommand {
+    public static abstract class GameObjectTarget {
 
-        private PlayerCommand parent;
+        private GameObjectTarget next;
 
-        public PlayerCommand() {
-            this.parent = null;
+        public GameObjectTarget() {
+            this.next = null;
         }
 
-        public PlayerCommand(PlayerCommand parent) {
-            this.parent = parent;
+        public GameObjectTarget(GameObjectTarget next) {
+            this.next = next;
         }
 
-        public PlayerCommand getParent() {
-            return parent;
+        public GameObjectTarget getNext() {
+            return next;
         }
     }
 }
