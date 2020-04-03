@@ -1,5 +1,7 @@
 package base;
 
+import ArmyUnits.ArmyPlanet;
+
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,7 +19,7 @@ public class UserInterface {
         printStream.println("Welcome! insert your name:");
         String name = inputScanner.nextLine();
 
-        return new Player(name, new Army());
+        return new Player(name, new ArmyPlanet());
     }
 
     public IPlayerStrategyCommand requestStrategy(final Player player) {

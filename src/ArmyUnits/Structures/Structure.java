@@ -1,4 +1,4 @@
-package Structures;
+package ArmyUnits.Structures;
 
 import base.Unit;
 import base.Updatable;
