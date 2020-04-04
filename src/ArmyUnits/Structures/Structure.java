@@ -1,6 +1,6 @@
-package Structures;
+package ArmyUnits.Structures;
 
-import base.Unit;
+import base.model.Unit;
 import base.Updatable;
 
 public abstract class Structure implements Unit, Updatable {

@@ -1,4 +1,6 @@
-package base;
+package base.model;
+
+import base.Updatable;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable {

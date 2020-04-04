@@ -1,4 +1,6 @@
-package base;
+package base.model;
+
+import base.Updatable;
 
 public class Board implements Updatable {
 

@@ -1,6 +1,9 @@
-package GroundForce;
+package ArmyUnits.GroundForce;
 
-public class Infantry extends GroundForce {
+import base.model.Unit;
+import base.Updatable;
+
+public abstract class GroundForce implements Unit, Updatable {
     private int combatValue;
     private int cost;
 
@@ -16,5 +19,10 @@ public class Infantry extends GroundForce {
     }
     public void setCost(int newCost) {
         cost = newCost;
+    }
+
+    @Override
+    public void update() {
+
     }
 }

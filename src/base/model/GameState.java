@@ -1,4 +1,9 @@
-package base;
+package base.model;
+
+import base.*;
+import base.controller.PhaseController;
+
+import ArmyUnits.ArmyPlanet;
 
 import java.util.ArrayList;
 
@@ -34,19 +39,19 @@ public class GameState implements Updatable {
         }
     }
 
-    public Boolean handleStrategyCommand(Player player, UserInterface.IPlayerStrategyCommand command) {
+    public Boolean handleStrategyCommand(Player player, PhaseController.PlayerStrategyCommand command) {
         return handleCommand(player, command);
     }
 
-    public Boolean handleActionCommand(Player player, UserInterface.IPlayerActionCommand command) {
+    public Boolean handleActionCommand(Player player, PhaseController.PlayerActionCommand command) {
         return handleCommand(player, command);
     }
 
-    public Boolean handleStatusCommand(Player player, UserInterface.IPlayerStatusCommand command) {
+    public Boolean handleStatusCommand(Player player, PhaseController.PlayerStatusCommand command) {
         return handleCommand(player, command);
     }
 
-    protected Boolean handleCommand(Player player, UserInterface.IPlayerCommand command) {
+    protected Boolean handleCommand(Player player, PhaseController.PlayerCommand command) {
         assert (command != null) : "command is null";
 
         command.procCommand();

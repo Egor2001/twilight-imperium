@@ -1,4 +1,4 @@
-package Structures;
+package ArmyUnits.Structures;
 
 public class SpaceDock extends Structure {
     private boolean blockaded;
