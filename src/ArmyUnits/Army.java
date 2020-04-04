@@ -7,11 +7,12 @@ import base.Updatable;
 
 import java.util.ArrayList;
 
-public class ArmyPlanet implements Updatable {
+public class Army implements Updatable {
+    ArrayList<Ship> ships;
     ArrayList<Structure> structures;
     ArrayList<GroundForce> groundForces;
 
-    public ArmyPlanet() {
+    public Army() {
 
     }
 

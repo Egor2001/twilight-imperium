@@ -1,14 +1,14 @@
 package base;
 
-import ArmyUnits.ArmyPlanet;
+import ArmyUnits.Army;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable {
 
     private String name;
-    private ArmyPlanet army;
+    private Army army;
 
-    public Player(String name, ArmyPlanet army) {
+    public Player(String name, Army army) {
         this.name = name;
         this.army = army;
     }
@@ -17,7 +17,7 @@ public class Player implements Updatable {
         return name;
     }
 
-    public final ArmyPlanet getArmy() {
+    public final Army getArmy() {
         return army;
     }
 

@@ -1,6 +1,6 @@
 package base;
 
-import ArmyUnits.ArmyPlanet;
+import ArmyUnits.Army;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class GameState implements Updatable {
         this.players = new ArrayList<Player>(6);
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
-            players.add(new Player("", new ArmyPlanet()));
+            players.add(new Player("", new Army()));
         }
     }
 

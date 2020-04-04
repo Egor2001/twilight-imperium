@@ -2,27 +2,19 @@ package ArmyUnits.RaceFactories;
 
 import ArmyUnits.Ships.*;
 
+
 public class ShipFactoryRace1 implements ShipAbstractFactory {
+    String race = "Race1";
     @Override
     public Flagship createFlagship() {
-        Flagship create = new Flagship();//видимо FlagshipRace1
-
-        //считываем из файла
-        create.setCost(0);
-        create.setCombatValue(0);
-        create.setMoveValue(0);
-        create.setCapacityValue(0);
-
-        create.setCanSustainDamaged(false);
-        create.setSpaceCannon(0, 0);
-        create.setBombardment(0, 0);
-        create.setAntiFighterBarrage(0, 0);
+        Flagship create = new Flagship();
+        create.setAllFromJSONFile(race);
 
         return create;
     }
 
     @Override
-    public WarSun createWarSum() {
+    public WarSun createWarSun() {
         return null;
     }
 

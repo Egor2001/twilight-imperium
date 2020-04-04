@@ -1,9 +1,12 @@
 package ArmyUnits.Structures;
 
-import base.Unit;
+import ArmyUnits.LoaderFromJSON;
 import base.Updatable;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-public abstract class Structure implements Unit, Updatable {
-    @Override
-    public void update() {}
+import java.io.FileReader;
+
+public interface Structure extends Updatable, LoaderFromJSON {
+
 }

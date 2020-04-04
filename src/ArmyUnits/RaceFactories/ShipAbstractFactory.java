@@ -2,6 +2,8 @@ package ArmyUnits.RaceFactories;
 
 import ArmyUnits.Ships.*;
 
+import java.io.FileNotFoundException;
+
 public interface ShipAbstractFactory {
     Carrier createCarrier();
     Cruiser createCruiser();
@@ -9,5 +11,5 @@ public interface ShipAbstractFactory {
     Dreadnought createDreadnought();
     Fighter createFighter();
     Flagship createFlagship();
-    WarSun createWarSum();
+    WarSun createWarSun();
 }

@@ -34,7 +34,7 @@ public class ShipFactoryRace2 implements ShipAbstractFactory {
     }
 
     @Override
-    public WarSun createWarSum() {
+    public WarSun createWarSun() {
         return null;
     }
 }

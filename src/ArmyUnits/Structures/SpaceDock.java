@@ -1,7 +1,9 @@
 package ArmyUnits.Structures;
 
-public class SpaceDock extends Structure {
-    private boolean blockaded;
+import org.json.JSONObject;
+
+public class SpaceDock implements Structure {
+    private boolean blockaded = false;
     private int productValue;
 
     public boolean isBlockaded() {
@@ -16,5 +18,16 @@ public class SpaceDock extends Structure {
     }
     public void setProductValue(int value) {
         productValue = value;
+    }
+
+    @Override
+    public void setAllFromJSON(JSONObject object) {
+        blockaded = (boolean) object.get("blockaded");
+        productValue = (int) object.get("productValue");
+    }
+
+    @Override
+    public void update() {
+
     }
 }
