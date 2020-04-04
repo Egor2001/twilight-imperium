@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ArmyUnits</OriginalElement>
+  <nodes>
+    <node x="623.0" y="1907.0">ArmyUnits.GroundForceFactories.GroundForceAbstractFactory</node>
+    <node x="907.0" y="1094.0">ArmyUnits.Ships.Carrier</node>
+    <node x="1189.139705882353" y="1417.0">ArmyUnits.ShipFactories.ShipFactoryRace1</node>
+    <node x="311.1397058823529" y="1477.0">base.UserInterface.IPlayerCommand</node>
+    <node x="910.1397058823529" y="1429.5">ArmyUnits.ShipFactories.ShipFactoryRace2</node>
+    <node x="1990.0" y="209.5">base.Player</node>
+    <node x="1523.389705882353" y="1168.0">com.company.TileObject</node>
+    <node x="1875.139705882353" y="1168.0">base.GameController</node>
+    <node x="748.0" y="2012.0">ArmyUnits.GroundForceFactories.GroundForceFactoryRace1</node>
+    <node x="247.0" y="2048.5">ArmyUnits.StructureFactories.StructureFactoryRace2</node>
+    <node x="926.0" y="259.5">ArmyUnits.Structures.Structure</node>
+    <node x="0.0" y="2036.0">ArmyUnits.StructureFactories.StructureFactoryRace1</node>
+    <node x="519.0" y="2012.0">ArmyUnits.GroundForceFactories.GroundForceFactoryRace2</node>
+    <node x="123.5" y="1907.0">ArmyUnits.StructureFactories.StructureAbstractFactory</node>
+    <node x="1596.139705882353" y="1394.0">com.company.Planet</node>
+    <node x="375.3897058823529" y="1606.0">base.UserInterface.IPlayerStatusCommand</node>
+    <node x="942.2633928571429" y="641.0">ArmyUnits.Structures.PDS</node>
+    <node x="0.0" y="1697.0">base.UserInterface.CPlayerStrategyPick</node>
+    <node x="410.2633928571429" y="449.0">ArmyUnits.Ships.Ship</node>
+    <node x="280.0" y="1094.0">ArmyUnits.Ships.Cruiser</node>
+    <node x="797.0" y="1094.0">ArmyUnits.Ships.WarSun</node>
+    <node x="673.0" y="1094.0">ArmyUnits.Ships.Flagship</node>
+    <node x="1049.639705882353" y="1168.0">ArmyUnits.ShipFactories.ShipAbstractFactory</node>
+    <node x="583.3897058823529" y="1606.0">base.UserInterface.IPlayerActionCommand</node>
+    <node x="397.0" y="1094.0">ArmyUnits.Ships.Destroyer</node>
+    <node x="243.99999999999994" y="1697.0">base.UserInterface.CPlayerStatusCompleteMission</node>
+    <node x="0.0" y="665.5">ArmyUnits.GroundForce.GroundForce</node>
+    <node x="313.25625" y="222.0">ArmyUnits.Unit</node>
+    <node x="528.0" y="1094.0">ArmyUnits.Ships.Dreadnought</node>
+    <node x="1002.0" y="1907.0">com.company.Tile</node>
+    <node x="39.0" y="1094.0">ArmyUnits.GroundForce.Infantry</node>
+    <node x="594.1397058823529" y="1685.0">base.UserInterface.CPlayerActionMove</node>
+    <node x="740.2633928571429" y="665.5">ArmyUnits.Structures.SpaceDock</node>
+    <node x="163.0" y="1094.0">ArmyUnits.Ships.Fighter</node>
+    <node x="1246.25" y="12.0">base.Updatable</node>
+    <node x="534.50625" y="0.0">ArmyUnits.LoaderFromJSON</node>
+    <node x="1359.0" y="234.0">base.Board</node>
+    <node x="1493.139705882353" y="1407.0">com.company.Space</node>
+    <node x="1057.0" y="197.5">ArmyUnits.Army</node>
+    <node x="238.63970588235279" y="1168.0">base.UserInterface</node>
+    <node x="1508.0" y="149.0">base.GameState</node>
+    <node x="66.74999999999994" y="1606.0">base.UserInterface.IPlayerStrategyCommand</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ArmyUnits.GroundForce.GroundForce" target="ArmyUnits.Unit">
+      <point x="0.0" y="-76.0" />
+      <point x="91.0" y="424.0" />
+      <point x="354.25625" y="424.0" />
+      <point x="-41.0" y="52.0" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerStrategyPick" target="base.UserInterface">
+      <point x="-56.0" y="-76.5" />
+      <point x="56.25" y="1437.0" />
+      <point x="263.56827731092426" y="1437.0" />
+      <point x="-149.57142857142856" y="124.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.WarSun" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="842.0" y="1064.0" />
+      <point x="653.8348214285716" y="1064.0" />
+      <point x="88.57142857142867" y="292.5" />
+    </edge>
+    <edge source="ArmyUnits.Structures.SpaceDock" target="ArmyUnits.Structures.Structure">
+      <point x="0.0" y="-76.0" />
+      <point x="831.2633928571429" y="424.0" />
+      <point x="953.75" y="424.0" />
+      <point x="-27.75" y="14.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Cruiser" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="328.5" y="1064.0" />
+      <point x="476.69196428571433" y="1064.0" />
+      <point x="-88.57142857142856" y="292.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerActionCommand" target="base.UserInterface.IPlayerCommand">
+      <point x="-47.0" y="-14.5" />
+      <point x="630.3897058823529" y="1576.0" />
+      <point x="481.1397058823529" y="1576.0" />
+      <point x="68.0" y="39.5" />
+    </edge>
+    <edge source="base.Player" target="base.Updatable">
+      <point x="0.0" y="-64.5" />
+      <point x="2075.5" y="109.0" />
+      <point x="1364.5" y="109.0" />
+      <point x="53.75" y="27.5" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerStrategyPick" target="base.UserInterface.IPlayerStrategyCommand">
+      <point x="56.0" y="-76.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ArmyUnits.GroundForceFactories.GroundForceFactoryRace1" target="ArmyUnits.GroundForceFactories.GroundForceAbstractFactory">
+      <point x="0.0" y="-27.5" />
+      <point x="852.5" y="1987.0" />
+      <point x="795.5" y="1987.0" />
+      <point x="57.5" y="27.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerStatusCommand" target="base.UserInterface.IPlayerCommand">
+      <point x="-47.0" y="-14.5" />
+      <point x="422.3897058823529" y="1586.0" />
+      <point x="413.1397058823529" y="1586.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="ArmyUnits.Structures.Structure" target="base.Updatable">
+      <point x="27.75" y="-14.5" />
+      <point x="1009.25" y="119.0" />
+      <point x="1278.5" y="119.0" />
+      <point x="-32.25" y="27.5" />
+    </edge>
+    <edge source="ArmyUnits.ShipFactories.ShipFactoryRace1" target="ArmyUnits.ShipFactories.ShipAbstractFactory">
+      <point x="0.0" y="-112.0" />
+      <point x="1318.639705882353" y="1392.0" />
+      <point x="1243.889705882353" y="1392.0" />
+      <point x="64.75" y="99.5" />
+    </edge>
+    <edge source="ArmyUnits.Structures.PDS" target="ArmyUnits.Structures.Structure">
+      <point x="0.0" y="-100.5" />
+      <point x="1081.263392857143" y="424.0" />
+      <point x="1009.25" y="424.0" />
+      <point x="27.75" y="14.5" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerActionMove" target="base.UserInterface.IPlayerActionCommand">
+      <point x="-67.75" y="-88.5" />
+      <point x="661.8897058823529" y="1660.0" />
+      <point x="677.3897058823529" y="1660.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Dreadnought" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="590.5" y="1074.0" />
+      <point x="565.2633928571429" y="1074.0" />
+      <point x="0.0" y="292.5" />
+    </edge>
+    <edge source="ArmyUnits.StructureFactories.StructureFactoryRace1" target="ArmyUnits.StructureFactories.StructureAbstractFactory">
+      <point x="0.0" y="-52.0" />
+      <point x="113.5" y="2011.0" />
+      <point x="180.25" y="2011.0" />
+      <point x="-56.75" y="39.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Flagship" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="725.0" y="1074.0" />
+      <point x="609.5491071428572" y="1074.0" />
+      <point x="44.285714285714334" y="292.5" />
+    </edge>
+    <edge source="ArmyUnits.GroundForce.Infantry" target="ArmyUnits.GroundForce.GroundForce">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="76.0" />
+    </edge>
+    <edge source="ArmyUnits.Structures.Structure" target="ArmyUnits.LoaderFromJSON">
+      <point x="-27.75" y="-14.5" />
+      <point x="953.75" y="99.0" />
+      <point x="671.00625" y="99.0" />
+      <point x="45.5" y="39.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Fighter" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="211.5" y="1054.0" />
+      <point x="432.40625" y="1054.0" />
+      <point x="-132.8571428571429" y="292.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerCommand" target="base.UserInterface">
+      <point x="-5.6843418860808015E-14" y="-39.5" />
+      <point x="5.6843418860808015E-14" y="124.5" />
+    </edge>
+    <edge source="ArmyUnits.GroundForceFactories.GroundForceFactoryRace2" target="ArmyUnits.GroundForceFactories.GroundForceAbstractFactory">
+      <point x="0.0" y="-27.5" />
+      <point x="623.5" y="1987.0" />
+      <point x="680.5" y="1987.0" />
+      <point x="-57.5" y="27.5" />
+    </edge>
+    <edge source="com.company.Space" target="com.company.TileObject">
+      <point x="0.0" y="-14.5" />
+      <point x="1534.639705882353" y="1369.0" />
+      <point x="1573.639705882353" y="1369.0" />
+      <point x="-50.25" y="88.0" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerStatusCompleteMission" target="base.UserInterface">
+      <point x="-72.75" y="-76.5" />
+      <point x="316.74999999999994" y="1660.0" />
+      <point x="300.6397058823529" y="1660.0" />
+      <point x="300.6397058823529" y="1457.0" />
+      <point x="363.2825630252099" y="1457.0" />
+      <point x="-49.85714285714283" y="124.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Destroyer" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="452.5" y="1074.0" />
+      <point x="520.9776785714287" y="1074.0" />
+      <point x="-44.28571428571422" y="292.5" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerActionMove" target="base.UserInterface">
+      <point x="67.75" y="-88.5" />
+      <point x="797.3897058823529" y="1660.0" />
+      <point x="781.8897058823529" y="1660.0" />
+      <point x="781.8897058823529" y="1437.0" />
+      <point x="562.7111344537814" y="1437.0" />
+      <point x="149.5714285714286" y="124.5" />
+    </edge>
+    <edge source="ArmyUnits.Army" target="base.Updatable">
+      <point x="0.0" y="-76.5" />
+      <point x="1198.0" y="129.0" />
+      <point x="1300.0" y="129.0" />
+      <point x="-10.75" y="27.5" />
+    </edge>
+    <edge source="ArmyUnits.Unit" target="ArmyUnits.LoaderFromJSON">
+      <point x="-41.0" y="-52.0" />
+      <point x="354.25625" y="99.0" />
+      <point x="580.00625" y="99.0" />
+      <point x="-45.5" y="39.5" />
+    </edge>
+    <edge source="ArmyUnits.Unit" target="base.Updatable">
+      <point x="41.0" y="-52.0" />
+      <point x="436.25625" y="109.0" />
+      <point x="1257.0" y="109.0" />
+      <point x="-53.75" y="27.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerStrategyCommand" target="base.UserInterface.IPlayerCommand">
+      <point x="50.49999999999994" y="-14.5" />
+      <point x="218.2499999999999" y="1586.0" />
+      <point x="345.1397058823529" y="1586.0" />
+      <point x="-68.0" y="39.5" />
+    </edge>
+    <edge source="ArmyUnits.ShipFactories.ShipFactoryRace2" target="ArmyUnits.ShipFactories.ShipAbstractFactory">
+      <point x="0.0" y="-99.5" />
+      <point x="1039.639705882353" y="1392.0" />
+      <point x="1114.389705882353" y="1392.0" />
+      <point x="-64.75" y="99.5" />
+    </edge>
+    <edge source="com.company.Planet" target="com.company.TileObject">
+      <point x="0.0" y="-27.5" />
+      <point x="1713.139705882353" y="1369.0" />
+      <point x="1674.139705882353" y="1369.0" />
+      <point x="50.25" y="88.0" />
+    </edge>
+    <edge source="base.UserInterface.CPlayerStatusCompleteMission" target="base.UserInterface.IPlayerStatusCommand">
+      <point x="72.75" y="-76.5" />
+      <point x="462.24999999999994" y="1660.0" />
+      <point x="469.3897058823529" y="1660.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Carrier" target="ArmyUnits.Ships.Ship">
+      <point x="0.0" y="-14.5" />
+      <point x="955.5" y="1054.0" />
+      <point x="698.1205357142858" y="1054.0" />
+      <point x="132.8571428571429" y="292.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerStrategyCommand" target="base.UserInterface">
+      <point x="-50.50000000000006" y="-14.5" />
+      <point x="117.24999999999989" y="1447.0" />
+      <point x="313.42542016806703" y="1447.0" />
+      <point x="-99.71428571428572" y="124.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerStatusCommand" target="base.UserInterface">
+      <point x="47.0" y="-14.5" />
+      <point x="516.3897058823529" y="1586.0" />
+      <point x="525.6397058823529" y="1586.0" />
+      <point x="525.6397058823529" y="1457.0" />
+      <point x="462.9968487394957" y="1457.0" />
+      <point x="49.85714285714289" y="124.5" />
+    </edge>
+    <edge source="base.Board" target="base.Updatable">
+      <point x="0.0" y="-40.0" />
+      <point x="1423.5" y="129.0" />
+      <point x="1321.5" y="129.0" />
+      <point x="10.75" y="27.5" />
+    </edge>
+    <edge source="base.UserInterface.IPlayerActionCommand" target="base.UserInterface">
+      <point x="47.0" y="-14.5" />
+      <point x="724.3897058823529" y="1447.0" />
+      <point x="512.8539915966385" y="1447.0" />
+      <point x="99.71428571428572" y="124.5" />
+    </edge>
+    <edge source="base.GameState" target="base.Updatable">
+      <point x="0.0" y="-125.0" />
+      <point x="1739.0" y="119.0" />
+      <point x="1343.0" y="119.0" />
+      <point x="32.25" y="27.5" />
+    </edge>
+    <edge source="ArmyUnits.Ships.Ship" target="ArmyUnits.Unit">
+      <point x="0.0" y="-292.5" />
+      <point x="565.2633928571429" y="424.0" />
+      <point x="436.25625" y="424.0" />
+      <point x="41.0" y="52.0" />
+    </edge>
+    <edge source="ArmyUnits.StructureFactories.StructureFactoryRace2" target="ArmyUnits.StructureFactories.StructureAbstractFactory">
+      <point x="0.0" y="-39.5" />
+      <point x="360.5" y="2011.0" />
+      <point x="293.75" y="2011.0" />
+      <point x="56.75" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.41435185185185186" x="1054.0" y="1070.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
