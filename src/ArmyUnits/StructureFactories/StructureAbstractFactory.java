@@ -1,4 +1,4 @@
-package ArmyUnits.RaceFactories;
+package ArmyUnits.StructureFactories;
 
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;

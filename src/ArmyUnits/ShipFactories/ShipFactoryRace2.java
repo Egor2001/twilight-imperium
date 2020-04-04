@@ -1,4 +1,4 @@
-package ArmyUnits.RaceFactories;
+package ArmyUnits.ShipFactories;
 
 import ArmyUnits.Ships.*;
 

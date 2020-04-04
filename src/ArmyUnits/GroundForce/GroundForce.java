@@ -4,7 +4,7 @@ import ArmyUnits.Unit;
 import base.Updatable;
 import org.json.JSONObject;
 
-public abstract class GroundForce implements Unit, Updatable {
+public abstract class GroundForce implements Unit {
     private int combatValue;
     private int cost;
 

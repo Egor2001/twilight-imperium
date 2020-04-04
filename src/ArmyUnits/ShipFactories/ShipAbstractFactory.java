@@ -1,8 +1,6 @@
-package ArmyUnits.RaceFactories;
+package ArmyUnits.ShipFactories;
 
 import ArmyUnits.Ships.*;
-
-import java.io.FileNotFoundException;
 
 public interface ShipAbstractFactory {
     Carrier createCarrier();

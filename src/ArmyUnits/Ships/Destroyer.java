@@ -1,4 +1,4 @@
 package ArmyUnits.Ships;
 
-public class Destroyer {
+public class Destroyer extends Ship {
 }
