@@ -1,6 +1,8 @@
 package base.controller;
 
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.util.HashMap;
 
 public class HierarchyController {
@@ -11,10 +13,11 @@ public class HierarchyController {
     }
 
     public interface Viewable {
-        void display(OutputStream stream);
+        void display(Writer writer) throws IOException;
     }
 
     public interface UserAcceptable {
+        Viewable getView(UserAcceptable parent);
         Viewable getView(UserAcceptable parent, GameObjectTarget target);
         Object getObject(GameObjectTarget target);
     }
