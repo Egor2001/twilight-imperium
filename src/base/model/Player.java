@@ -1,6 +1,7 @@
 package base.model;
 
 import base.Updatable;
+import base.model.Army;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable {

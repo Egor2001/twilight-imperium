@@ -3,7 +3,7 @@ package base.model;
 import base.*;
 import base.controller.PhaseController;
 
-import ArmyUnits.ArmyPlanet;
+import ArmyUnits.Army;
 
 import java.util.ArrayList;
 

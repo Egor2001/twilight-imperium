@@ -1,9 +1,8 @@
 package ArmyUnits.Structures;
 
-import base.model.Unit;
+import ArmyUnits.LoaderFromJSON;
 import base.Updatable;
 
-public abstract class Structure implements Unit, Updatable {
-    @Override
-    public void update() {}
+public interface Structure extends Updatable, LoaderFromJSON {
+
 }

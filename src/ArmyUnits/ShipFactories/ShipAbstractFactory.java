@@ -1,4 +1,4 @@
-package ArmyUnits.RaceFactories;
+package ArmyUnits.ShipFactories;
 
 import ArmyUnits.Ships.*;
 
@@ -9,5 +9,5 @@ public interface ShipAbstractFactory {
     Dreadnought createDreadnought();
     Fighter createFighter();
     Flagship createFlagship();
-    WarSun createWarSum();
+    WarSun createWarSun();
 }

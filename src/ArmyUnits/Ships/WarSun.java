@@ -1,4 +1,4 @@
 package ArmyUnits.Ships;
 
-public class WarSun {
+public class WarSun extends Ship {
 }

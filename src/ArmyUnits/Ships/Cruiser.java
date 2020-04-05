@@ -1,4 +1,4 @@
 package ArmyUnits.Ships;
 
-public class Cruiser {
+public class Cruiser extends Ship {
 }

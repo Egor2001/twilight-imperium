@@ -2,10 +2,9 @@ package ArmyUnits.Ships;
 
 import base.model.Unit;
 import base.Updatable;
+import org.json.*;
 
-import java.io.Serializable;
-
-public abstract class Ship implements Unit, Updatable, Serializable {
+public abstract class Ship implements Unit {
     private int moveValue = 0;
     private int capacityValue = 0;
     private int combatValue;
@@ -27,10 +26,12 @@ public abstract class Ship implements Unit, Updatable, Serializable {
     public int getCapacityValue() {
         return capacityValue;
     }
+    @Override
     public int getCost() {
         return cost;
     }
 
+    @Override
     public boolean canHit(int diceValue) {
         return diceValue >= combatValue;
     }
@@ -75,9 +76,11 @@ public abstract class Ship implements Unit, Updatable, Serializable {
     public void setCapacityValue(int newCapacityValue) {
         capacityValue = newCapacityValue;
     }
+    @Override
     public void setCombatValue(int newCombatValue) {
         combatValue = newCombatValue;
     }
+    @Override
     public void setCost(int newCost) {
         cost = newCost;
     }
@@ -97,5 +100,23 @@ public abstract class Ship implements Unit, Updatable, Serializable {
     public void setAntiFighterBarrage(int diceValue, int numDices) {
         antiFighterBarrageDiceValue = diceValue;
         antiFighterBarrageNumDices = numDices;
+    }
+
+    @Override
+    public void setAllFromJSON(JSONObject object) {
+        moveValue = (int) object.get("moveValue");
+        capacityValue = (int) object.get("capacityValue");
+        combatValue = (int) object.get("combatValue");
+        cost = (int) object.get("cost");
+
+        canSustainDamaged = (boolean) object.get("canSustainDamaged");
+        damaged = (boolean) object.get("damaged");
+
+        spaceCannonDiceValue = (int) object.get("spaceCannonDiceValue");
+        spaceCannonNumDices = (int) object.get("spaceCannonNumDices");
+        bombardmentDiceValue = (int) object.get("bombardmentDiceValue");
+        bombardmentNumDices = (int) object.get("bombardmentNumDices");
+        antiFighterBarrageDiceValue = (int) object.get("antiFighterBarrageDiceValue");
+        antiFighterBarrageNumDices = (int) object.get("antiFighterBarrageNumDices");
     }
 }

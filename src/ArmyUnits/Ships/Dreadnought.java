@@ -1,4 +1,4 @@
 package ArmyUnits.Ships;
 
-public class Dreadnought {
+public class Dreadnought extends Ship {
 }
