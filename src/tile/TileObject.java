@@ -1,30 +1,19 @@
-package com.company;
+package tile;
+import base.Army;
+import base.Player;
 
-class Unit{};
-class Troop{};
+import java.util.ArrayList;
 
 public class TileObject {
     public void Invade() {}
 
     public void Allowed_to_invade() {}
 
-    public Object[] My_neighbours() {
-        return new Object[0];
+    public ArrayList<TileObject> My_neighbours() {
+        return my_tile.Object_neighbours(this);
     }
 
     Player owner_;
-    Troop troop_;
-    Tile my_tile;
-}
-
-class Planet extends TileObject {
-    ResourceStore resource_store_;
-}
-
-class ResourceStore {
-
-}
-
-class Space extends TileObject{
-
+    private Tile my_tile;
+    private ArrayList<TileObject> neighbours_;
 }
