@@ -1,7 +1,6 @@
 package ArmyUnits.Ships;
 
-import base.model.Unit;
-import base.Updatable;
+import ArmyUnits.Unit;
 import org.json.*;
 
 public abstract class Ship implements Unit {

@@ -1,6 +1,5 @@
 package base;
 
-import ArmyUnits.ArmyPlanet;
 import base.model.Army;
 import base.model.GameState;
 import base.model.Player;

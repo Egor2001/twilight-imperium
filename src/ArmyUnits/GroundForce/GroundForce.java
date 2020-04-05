@@ -1,8 +1,7 @@
 package ArmyUnits.GroundForce;
 
-import base.model.Unit;
+import ArmyUnits.Unit;
 
-import base.Updatable;
 import org.json.JSONObject;
 
 public abstract class GroundForce implements Unit {
