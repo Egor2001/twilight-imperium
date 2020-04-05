@@ -1,6 +1,6 @@
 package base;
 
-import ArmyUnits.RaceFactories.ShipFactoryRace1;
+import ArmyUnits.ShipFactories.ShipFactoryRace1;
 import ArmyUnits.Ships.Flagship;
 
 public class Main {
