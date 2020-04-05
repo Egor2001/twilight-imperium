@@ -1,6 +1,6 @@
 package tile;
-import base.Army;
-import base.Player;
+import base.model.Army;
+import base.model.Player;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,5 @@
 package tile;
-import base.Army;
+import base.model.Army;
 
 import java.util.ArrayList;
 import java.util.HashMap;
