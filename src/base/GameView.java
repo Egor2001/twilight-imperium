@@ -24,12 +24,12 @@ public class GameView {
         public abstract Boolean isMatch(String commandStr);
         public abstract Boolean canProc(Composite composite);
     }
-
+/*
     public interface Viewable extends Composite {
         void view(Viewable parent);
         void view(Viewable parent, CompositeCommand command);
     }
-
+*/
     public GameView(GameState gameState, PrintStream printStream) {
         this.gameState = gameState;
         this.printStream = printStream;

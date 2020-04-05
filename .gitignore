@@ -1,5 +1,7 @@
 # Twilight Imperium
-out/
+.idea/*
+out/*
+*.iml
 
 # Compiled class file
 *.class
