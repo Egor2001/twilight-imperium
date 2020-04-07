@@ -1,3 +1,9 @@
+#Twilight Imperium
+.idea/
+out/
+PythonGenerateUnitsJSON/.idea/
+venv/
+
 # Compiled class file
 *.class
 

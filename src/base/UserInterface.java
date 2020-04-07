@@ -1,5 +1,9 @@
 package base;
 
+import base.model.Army;
+import base.model.GameState;
+import base.model.Player;
+
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
