@@ -3,8 +3,8 @@ package base;
 import ArmyUnits.ShipFactories.ShipFactoryRace1;
 import ArmyUnits.Ships.Flagship;
 import base.controller.GameController;
-import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
+import base.model.Player;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,8 +72,7 @@ public class Main {
             if (target instanceof Target) {
                 if (target.getNext() == null) {
                     return this;
-                }
-                else {
+                } else {
                     return child.getObject(target.getNext());
                 }
             }
@@ -154,8 +153,13 @@ public class Main {
         writer.flush();
     }
 
+    public static void testArmy() {
+        Player player = new Player("Biba", "Race1");
+    }
+
     public static void main(String[] args) {
-        demo();
+        testArmy();
+        /*demo();
 
         ShipFactoryRace1 F1 = new ShipFactoryRace1();
         Flagship Flagship1 = F1.createFlagship();
@@ -163,6 +167,6 @@ public class Main {
 
         GameController gameController = GameController.getInstance();
         gameController.gameInit();
-        gameController.gameLoop();
+        gameController.gameLoop();*/
     }
 }
