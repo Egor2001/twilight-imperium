@@ -1,6 +1,7 @@
 package ArmyUnits.Ships;
 
 import ArmyUnits.Unit;
+import base.controller.HierarchyController;
 import org.json.*;
 
 public abstract class Ship implements Unit {
@@ -25,12 +26,10 @@ public abstract class Ship implements Unit {
     public int getCapacityValue() {
         return capacityValue;
     }
-    @Override
     public int getCost() {
         return cost;
     }
 
-    @Override
     public boolean canHit(int diceValue) {
         return diceValue >= combatValue;
     }
@@ -75,11 +74,9 @@ public abstract class Ship implements Unit {
     public void setCapacityValue(int newCapacityValue) {
         capacityValue = newCapacityValue;
     }
-    @Override
     public void setCombatValue(int newCombatValue) {
         combatValue = newCombatValue;
     }
-    @Override
     public void setCost(int newCost) {
         cost = newCost;
     }
@@ -117,5 +114,14 @@ public abstract class Ship implements Unit {
         bombardmentNumDices = (int) object.get("bombardmentNumDices");
         antiFighterBarrageDiceValue = (int) object.get("antiFighterBarrageDiceValue");
         antiFighterBarrageNumDices = (int) object.get("antiFighterBarrageNumDices");
+    }
+
+    public class Target extends HierarchyController.GameObjectTarget {
+        Target() {
+            super();
+        }
+        Target(int index) {
+            super(index);
+        }
     }
 }

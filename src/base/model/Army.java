@@ -1,12 +1,9 @@
 package base.model;
 
-import ArmyUnits.GroundForceFactories.GroundForceAbstractFactory;
-import ArmyUnits.ShipFactories.ShipAbstractFactory;
 import ArmyUnits.Ships.Ship;
-import ArmyUnits.StructureFactories.StructureAbstractFactory;
-import ArmyUnits.Structures.Structure;
+import ArmyUnits.Structures.PDS;
+import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.GroundForce.GroundForce;
-import ArmyUnits.Unit;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
@@ -15,31 +12,35 @@ import java.io.Writer;
 import java.util.*;
 
 public class Army implements Updatable, UserAcceptable {
-    private ArrayList<Ship> ships;
-    private ArrayList<GroundForce> groundForces;
-    private ArrayList<Structure> structures;
-    private ShipAbstractFactory shipFactory;
-    private GroundForceAbstractFactory groundForceFactory;
-    private StructureAbstractFactory structureFactory;
+    private ArrayList<Ship> shipsList;
+    private ArrayList<GroundForce> groundForcesList;
+    private ArrayList<PDS> pdsList;
+    private ArrayList<SpaceDock> spaceDocksList;
 
     public void addShip(Ship ship) {
-        ships.add(ship);
+        shipsList.add(ship);
     }
     public void addGroundForce(GroundForce groundForce) {
-        groundForces.add(groundForce);
+        groundForcesList.add(groundForce);
     }
-    public void addStructure(Structure structure) {
-        structures.add(structure);
+    public void addPDS(PDS pds) {
+        pdsList.add(pds);
+    }
+    public void addSpaceDock(SpaceDock spaceDock) {
+        spaceDocksList.add(spaceDock);
     }
 
     public void delShip(Ship ship) {
-        ships.remove(ship);
+        shipsList.remove(ship);
     }
     public void delGroundForce(GroundForce groundForce) {
-        groundForces.remove(groundForce);
+        groundForcesList.remove(groundForce);
     }
-    public void delStructure(Structure structure) {
-        structures.remove(structure);
+    public void delPDS(PDS pds) {
+        pdsList.remove(pds);
+    }
+    public void delSpaceDock(SpaceDock spaceDock) {
+        spaceDocksList.remove(spaceDock);
     }
 
     public static class Target extends GameObjectTarget {
@@ -47,21 +48,25 @@ public class Army implements Updatable, UserAcceptable {
             super();
         }
 
-        Target(Unit.Target unitTarget) {
-            super(unitTarget);
+        Target(Ship.Target shipTarget) {
+            super(shipTarget);
         }
-        Target(Structure.Target structureTarget) {
-            super(structureTarget);
+        Target(GroundForce.Target groundForceTarget) {
+            super(groundForceTarget);
+        }
+        Target(PDS.Target pdsTarget) {
+            super(pdsTarget);
+        }
+        Target(SpaceDock.Target spaceDockTarget) {
+            super(spaceDockTarget);
         }
     }
 
     public static class View implements Viewable {
         ArrayList<Viewable> unitsView;
-        ArrayList<Viewable> structuresView;
         
-        View(ArrayList<Viewable> unitsView, ArrayList<Viewable> structuresView) {
+        View(ArrayList<Viewable> unitsView) {
             this.unitsView = unitsView;
-            this.structuresView = structuresView;
         }
 
         @Override
@@ -72,31 +77,27 @@ public class Army implements Updatable, UserAcceptable {
                 writer.write(i + ": ");
                 unitsView.get(i).display(writer);
             }
-
-            writer.write("\nList army (" + this.toString() + ") structures:\n");
-            for (int i = 0; i < structuresView.size(); ++i) {
-                writer.write(i + ": ");
-                structuresView.get(i).display(writer);
-            }
         }
     }
 
     @Override
     public Viewable getView(UserAcceptable parent) {
-        ArrayList<Viewable> unitsView = new ArrayList<Viewable>();
-        ArrayList<Viewable> structuresView = new ArrayList<Viewable>();
+        ArrayList<Viewable> unitsView = new ArrayList<>();
 
-        for (Ship ship: ships) {
+        for (Ship ship: shipsList) {
             unitsView.add(ship.getView(this));
         }
-        for (GroundForce groundForce: groundForces) {
+        for (GroundForce groundForce: groundForcesList) {
             unitsView.add(groundForce.getView(this));
         }
-        for (Structure structure: structures) {
-            structuresView.add(structure.getView(this));
+        for (PDS pds: pdsList) {
+            unitsView.add(pds.getView(this));
+        }
+        for (SpaceDock spaceDock: spaceDocksList) {
+            unitsView.add(spaceDock.getView(this));
         }
 
-        return new View(unitsView, structuresView);
+        return new View(unitsView);
     }
 
     @Override
@@ -105,15 +106,21 @@ public class Army implements Updatable, UserAcceptable {
             return getView(parent);
         }
 
-        if (target instanceof Unit.Target) {
-            if (target.getIndex() < ships.size()) {
-                return ships.get(target.getIndex()).getView(this, target.getNext());
-            } else if (target.getIndex() < ships.size() + groundForces.size()) {
-                return groundForces.get(target.getIndex() - ships.size()).getView(this, target.getNext());
+        if (target instanceof Ship.Target) {
+            if (target.getIndex() < shipsList.size()) {
+                return shipsList.get(target.getIndex()).getView(this, target.getNext());
             }
-        } else if (target instanceof Structure.Target) {
-            if (target.getIndex() < structures.size()) {
-                return structures.get(target.getIndex()).getView(this, target.getNext());
+        } else if (target instanceof GroundForce.Target) {
+            if (target.getIndex() < groundForcesList.size()) {
+                return groundForcesList.get(target.getIndex()).getView(this, target.getNext());
+            }
+        } else if (target instanceof PDS.Target) {
+            if (target.getIndex() < pdsList.size()) {
+                return pdsList.get(target.getIndex()).getView(this, target.getNext());
+            }
+        } else if (target instanceof SpaceDock.Target) {
+            if (target.getIndex() < spaceDocksList.size()) {
+                return spaceDocksList.get(target.getIndex()).getView(this, target.getNext());
             }
         }
 
@@ -126,26 +133,32 @@ public class Army implements Updatable, UserAcceptable {
             return this;
         }
 
-        if (target instanceof Unit.Target) {
-            if (target.getIndex() < ships.size()) {
-                return ships.get(target.getIndex()).getObject(target.getNext());
-            } else if (target.getIndex() < ships.size() + groundForces.size()) {
-                return groundForces.get(target.getIndex() - ships.size()).getObject(target.getNext());
+        if (target instanceof Ship.Target) {
+            if (target.getIndex() < shipsList.size()) {
+                return shipsList.get(target.getIndex()).getObject(target.getNext());
             }
-        } else if (target instanceof Structure.Target) {
-            if (target.getIndex() < structures.size()) {
-                return structures.get(target.getIndex()).getObject(target.getNext());
+        } else if (target instanceof GroundForce.Target) {
+            if (target.getIndex() < groundForcesList.size()) {
+                return groundForcesList.get(target.getIndex()).getObject(target.getNext());
+            }
+        } else if (target instanceof PDS.Target) {
+            if (target.getIndex() < pdsList.size()) {
+                return pdsList.get(target.getIndex()).getObject(target.getNext());
+            }
+        } else if (target instanceof SpaceDock.Target) {
+            if (target.getIndex() < spaceDocksList.size()) {
+                return spaceDocksList.get(target.getIndex()).getObject(target.getNext());
             }
         }
 
         return null;
     }
   
-    public Army(String raceName) {
-        ships = new ArrayList<Ship>();
-        groundForces = new ArrayList<GroundForce>();
-        structures = new ArrayList<Structure>();
-
+    public Army() {
+        shipsList = new ArrayList<>();
+        groundForcesList = new ArrayList<>();
+        pdsList = new ArrayList<>();
+        spaceDocksList = new ArrayList<>();
     }
 
     @Override

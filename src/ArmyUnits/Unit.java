@@ -7,21 +7,6 @@ import java.io.IOException;
 import java.io.Writer;
 
 public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
-    int getCost();
-    boolean canHit(int diceValue);
-
-    void setCombatValue(int newCombatValue);
-    void setCost(int newCost);
-
-    class Target extends GameObjectTarget {
-        Target() {
-            super();
-        }
-        Target(int index) {
-            super(index);
-        }
-    }
-
     class View implements Viewable {
         View() {}
 
@@ -36,7 +21,6 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
     default Viewable getView(UserAcceptable parent) {
         return new View();
     }
-
     @Override
     default Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {

@@ -9,25 +9,19 @@ import java.io.Writer;
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
     private String name;
-    private String raceName;
     private Army army;
 
-    public Player(String name, String raceName, Army army) {
+    public Player(String name, Army army) {
         this.name = name;
-        this.raceName = raceName;
         this.army = army;
     }
-    public Player(String name, String raceName) {
+    public Player(String name) {
         this.name = name;
-        this.raceName = raceName;
-        this.army = new Army(raceName);
+        this.army = new Army();
     }
 
     public final String getName() {
         return name;
-    }
-    public final String getRaceName() {
-        return raceName;
     }
 
     public final Army getArmy() {

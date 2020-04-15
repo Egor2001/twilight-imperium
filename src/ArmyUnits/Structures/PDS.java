@@ -1,5 +1,7 @@
 package ArmyUnits.Structures;
 
+import ArmyUnits.Unit;
+import base.controller.HierarchyController;
 import org.json.JSONObject;
 
 public class PDS implements Structure {
@@ -35,5 +37,14 @@ public class PDS implements Structure {
     @Override
     public void update() {
 
+    }
+
+    public class Target extends HierarchyController.GameObjectTarget {
+        Target() {
+            super();
+        }
+        Target(int index) {
+            super(index);
+        }
     }
 }
