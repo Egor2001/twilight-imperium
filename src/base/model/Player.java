@@ -1,25 +1,59 @@
 package base.model;
 
 import ArmyUnits.FactoryUnit;
+import ArmyUnits.GroundForce.GroundForce;
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Structures.PDS;
+import ArmyUnits.Structures.SpaceDock;
+import ArmyUnits.Unit;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
-    private FactoryUnit race;
+    private FactoryUnit raceFactory;
 
     public Player(String name, Army army) {
         this.name = name;
         this.army = army;
+        this.raceFactory = new FactoryUnit("");
     }
-    public Player(String name) {
+    public Player(String name, String race) {
         this.name = name;
         this.army = new Army();
+        this.raceFactory = new FactoryUnit(race);
+    }
+    public Unit addUnit(String name) {
+        switch (name) {
+            case "PDS":
+                PDS pds = raceFactory.createPDS();
+                army.addPDS(pds);
+                return pds;
+            case "SpaceDock":
+                SpaceDock spaceDock = raceFactory.createSpaceDock();
+                army.addSpaceDock(spaceDock);
+                return spaceDock;
+            case "Infantry":
+                GroundForce groundForce = raceFactory.createInfantry();
+                army.addGroundForce(groundForce);
+                return groundForce;
+            default:
+                try {
+                    java.lang.reflect.Method method = raceFactory.getClass().getMethod("create" + name);
+                    Ship ship = (Ship) method.invoke(raceFactory);
+                    army.addShip(ship);
+                    return ship;
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+                return null;
+        }
     }
 
     public final String getName() {

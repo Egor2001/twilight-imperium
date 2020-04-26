@@ -15,23 +15,23 @@ ship_names = {1: 'Carrier', 2: 'Cruiser', 3: 'Destroyer', 4: 'Dreadnought',
               5: 'Fighter', 6: 'Flagship', 7: 'WarSun'}
 
 race_name = race_names[2]
-ship_name = ship_names[4]
+ship_name = ship_names[5]
 
-d['moveValue'] = 1
-d['capacityValue'] = 1
-d['combatValue'] = 5
-d['cost'] = 4
+d['moveValue'] = 2
+d['capacityValue'] = 0
+d['combatValue'] = 8
+d['cost'] = 1
 
-d['canSustainDamaged'] = True
+d['canSustainDamaged'] = False
 d['damaged'] = False
 
 d['spaceCannonDiceValue'] = 10
 d['spaceCannonNumDices'] = 0
-d['bombardmentDiceValue'] = 5
-d['bombardmentNumDices'] = 1
+d['bombardmentDiceValue'] = 10
+d['bombardmentNumDices'] = 0
 d['antiFighterBarrageDiceValue'] = 10
 d['antiFighterBarrageNumDices'] = 0
 
 for race_name in race_names.values():
-    with open('baseUnits/' + ship_name + race_name + '.json', "w") as file:
+    with open('baseUnits/' + ship_name + "II" + race_name + '.json', "w") as file:
         json.dump(d, file, indent=4)
