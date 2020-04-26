@@ -89,6 +89,10 @@ public class Main {
             public Target() {
                 super();
             }
+
+            public Target(GameObjectTarget next) {
+                super(next);
+            }
         }
 
         public class View implements Viewable {
@@ -127,8 +131,8 @@ public class Main {
     }
 
     public static void demo() {
-        GameObjectTarget simpleTarget = new Parent.Target();
-        GameObjectTarget complexTarget = new Parent.Target(new Child.Target());
+        GameObjectTarget simpleTarget = HierarchyController.parseTarget("parent");
+        GameObjectTarget complexTarget = HierarchyController.parseTarget("parent.child");
 
         Parent hierarchy = new Parent(new Child());
 
@@ -154,8 +158,13 @@ public class Main {
         writer.flush();
     }
 
+    public static void parse() {
+        GameObjectTarget target = HierarchyController.parseTarget("parent.child");
+    }
+
     public static void main(String[] args) {
         demo();
+        parse();
 
         ShipFactoryRace1 F1 = new ShipFactoryRace1();
         Flagship Flagship1 = F1.createFlagship();
