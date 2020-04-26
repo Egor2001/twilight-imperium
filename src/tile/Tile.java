@@ -75,7 +75,12 @@ public class Tile implements HierarchyController.UserAcceptable {
                 return planets_.get(((Planet.Target) target).getIndex()).getObject(target.getNext());
             } else
             {
-                throw new Exception("Wrong target request");
+                if (target instanceof Space.Target)
+                {
+                    return planets_.get(((Space.Target) target).getIndex()).getObject(target.getNext());
+                } else{
+                    throw new Exception("Wrong target request");
+                }
             }
         }
     }
