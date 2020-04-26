@@ -75,7 +75,7 @@ public class Tile implements HierarchyController.UserAcceptable {
             {
                 if (target instanceof Space.Target)
                 {
-                    return space_.getObject(target.getNext());
+                    return space_;
                 } else{
                     throw new Exception("Wrong target request");
                 }
