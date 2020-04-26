@@ -5,8 +5,7 @@ import ArmyUnits.Unit;
 import java.util.ArrayList;
 
 public class TileArmyController {
-    public TileArmyController()
-    {
+    public TileArmyController()  {
         unitList = new ArrayList<Unit>();
         tileObjectsList = new ArrayList<TileObject>();
     }
@@ -36,26 +35,34 @@ public class TileArmyController {
         tileObjectsList.add(tileObject);
     }
 
-    boolean move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+    void move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+        if (way.size() < 2) {
+            throw new IllegalArgumentException("In move: way length is less then 2\n");
+        }
         way.add(0, getTileObject(ship));
 
         int sizeWay = way.size();
-        if (ship.getMoveValue() < sizeWay - 1 || ship.getCapacityValue() < units.size()) {
-            return false;
+
+        if (ship.getMoveValue() < sizeWay - 1) {
+            throw new IllegalArgumentException("In move: way is too long\n");
+        }
+
+        if (ship.getCapacityValue() < units.size()) {
+            throw new IllegalArgumentException("In move: ship can't carry all this units\n");
         }
 
         if (!checkWay(way)) {
-            return false;
+            throw new IllegalArgumentException("In move: way is discontinuous\n");
         }
 
-        for (int i = 0; i < sizeWay - 1; ++i) {
+        for (int i = 1; i < sizeWay - 1; ++i) {
             if (!((Space)way.get(i)).could_fly_throw(ship)) {
-                return false;
+                throw new IllegalArgumentException("In move: ship couldn't fly throw all this spaces\n");
             }
         }
 
         if (!((Space)way.get(sizeWay - 1)).could_end_flight_in(ship)) {
-            return false;
+            throw new IllegalArgumentException("In move: ship can't enter final destination\n");
         }
 
         remove(ship);
@@ -64,12 +71,10 @@ public class TileArmyController {
             remove(unit);
             add(unit, way.get(sizeWay));
         }
-
-        return true;
     }
 
-    boolean move(Ship ship, ArrayList<TileObject> way) {
-        return move(ship, new ArrayList<>(), way);
+    void move(Ship ship, ArrayList<TileObject> way) {
+        move(ship, new ArrayList<>(), way);
     }
 
     void remove(Unit unit) {
