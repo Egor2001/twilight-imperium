@@ -2,26 +2,26 @@ package ArmyUnits.GroundForce;
 
 import ArmyUnits.Unit;
 
+import base.controller.HierarchyController;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.Writer;
 
 public abstract class GroundForce implements Unit {
     private int combatValue;
     private int cost;
 
-    @Override
     public int getCost() {
         return cost;
     }
-    @Override
     public boolean canHit(int diceValue) {
         return diceValue >= combatValue;
     }
 
-    @Override
     public void setCombatValue(int newCombatValue) {
         combatValue = newCombatValue;
     }
-    @Override
     public void setCost(int newCost) {
         cost = newCost;
     }
@@ -36,5 +36,20 @@ public abstract class GroundForce implements Unit {
     @Override
     public void update() {
 
+    }
+
+    public class Target extends HierarchyController.GameObjectTarget {
+        Target() {
+            super();
+        }
+        Target(int index) {
+            super(index);
+        }
+    }
+
+    @Override
+    public void printInfo(Writer writer) throws IOException {
+        writer.write("Cost: " + cost + "\n");
+        writer.write("Combat: " + combatValue + "\n");
     }
 }

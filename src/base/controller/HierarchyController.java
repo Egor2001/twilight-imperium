@@ -9,8 +9,7 @@ public class HierarchyController {
 
     HashMap<String, GameObjectTarget> targetMap;
 
-    public HierarchyController() {
-    }
+    public HierarchyController() {}
 
     public interface Viewable {
         void display(Writer writer) throws IOException;
@@ -25,17 +24,32 @@ public class HierarchyController {
     public static abstract class GameObjectTarget {
 
         private GameObjectTarget next;
+        int index;
 
         public GameObjectTarget() {
             this.next = null;
+            this.index = 0;
         }
-
         public GameObjectTarget(GameObjectTarget next) {
             this.next = next;
+            this.index = 0;
+        }
+
+        public GameObjectTarget(int index) {
+            this.next = null;
+            this.index = index;
+        }
+        public GameObjectTarget(GameObjectTarget next, int index) {
+            this.next = next;
+            this.index = index;
         }
 
         public GameObjectTarget getNext() {
             return next;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 }
