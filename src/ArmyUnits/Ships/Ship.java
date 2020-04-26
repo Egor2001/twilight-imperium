@@ -4,6 +4,9 @@ import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.*;
 
+import java.io.IOException;
+import java.io.Writer;
+
 public abstract class Ship implements Unit {
     private int moveValue = 0;
     private int capacityValue = 0;
@@ -122,6 +125,32 @@ public abstract class Ship implements Unit {
         }
         Target(int index) {
             super(index);
+        }
+    }
+
+    @Override
+    public void printInfo(Writer writer) throws IOException {
+        writer.write("Cost: " + cost + "\n");
+        writer.write("Combat: " + combatValue + "\n");
+        writer.write("Move: " + moveValue + "\n");
+        if (capacityValue > 0) {
+            writer.write("Capacity: " + capacityValue + "\n");
+        }
+        if (canSustainDamaged) {
+            writer.write("It can sustain damage and now it is");
+            if (!damaged) {
+                writer.write("n't");
+            }
+            writer.write(" damaged\n");
+        }
+        if (bombardmentNumDices > 0) {
+            writer.write("Bombardment: " + bombardmentNumDices + "(x" + bombardmentNumDices + ")\n");
+        }
+        if (spaceCannonNumDices > 0) {
+            writer.write("Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n");
+        }
+        if (antiFighterBarrageNumDices > 0) {
+            writer.write("Anti-fighter barrage: " + antiFighterBarrageDiceValue + "(x" + antiFighterBarrageNumDices + ")\n");
         }
     }
 }

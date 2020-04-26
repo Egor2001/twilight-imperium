@@ -4,6 +4,9 @@ import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.Writer;
+
 public class SpaceDock implements Structure {
     private boolean blockaded = false;
     private int productValue;
@@ -39,6 +42,15 @@ public class SpaceDock implements Structure {
         }
         Target(int index) {
             super(index);
+        }
+    }
+
+    @Override
+    public void printInfo(Writer writer) throws IOException {
+        writer.write("Product value: " + productValue + "\n");
+
+        if (blockaded) {
+            writer.write("Blockaded\n");
         }
     }
 }

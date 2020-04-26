@@ -5,6 +5,9 @@ import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.Writer;
+
 public abstract class GroundForce implements Unit {
     private int combatValue;
     private int cost;
@@ -42,5 +45,11 @@ public abstract class GroundForce implements Unit {
         Target(int index) {
             super(index);
         }
+    }
+
+    @Override
+    public void printInfo(Writer writer) throws IOException {
+        writer.write("Cost: " + cost + "\n");
+        writer.write("Combat: " + combatValue + "\n");
     }
 }

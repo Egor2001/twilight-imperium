@@ -1,10 +1,8 @@
 package base;
 
-import ArmyUnits.ShipFactories.ShipFactoryRace1;
-import ArmyUnits.Ships.Flagship;
-import base.controller.GameController;
+import ArmyUnits.FactoryUnit;
 import base.controller.HierarchyController.*;
-import base.model.Player;
+import base.model.Army;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -154,7 +152,21 @@ public class Main {
     }
 
     public static void testArmy() {
-        Player player = new Player("Biba", "Race1");
+        Army arm = new Army();
+        FactoryUnit SFR = new FactoryUnit("Race1");
+        PrintWriter writer = new PrintWriter(System.out);
+
+        arm.addShip(SFR.createFlagship());
+        arm.addShip(SFR.createFlagship());
+        arm.addPDS(SFR.createPDS());
+        try {
+            arm.getView(null).display(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            writer.write("biba");
+        }
+
+        writer.flush();
     }
 
     public static void main(String[] args) {

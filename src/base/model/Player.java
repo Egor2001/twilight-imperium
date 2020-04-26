@@ -1,5 +1,6 @@
 package base.model;
 
+import ArmyUnits.FactoryUnit;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
@@ -10,6 +11,7 @@ import java.io.Writer;
 public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
+    private FactoryUnit race;
 
     public Player(String name, Army army) {
         this.name = name;

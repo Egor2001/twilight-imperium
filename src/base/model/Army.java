@@ -5,6 +5,7 @@ import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.GroundForce.GroundForce;
 import base.Updatable;
+import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
@@ -63,41 +64,57 @@ public class Army implements Updatable, UserAcceptable {
     }
 
     public static class View implements Viewable {
-        ArrayList<Viewable> unitsView;
+        ArrayList<Viewable> shipsView;
+        ArrayList<Viewable> groundForcesView;
+        ArrayList<Viewable> pdsView;
+        ArrayList<Viewable> spaceDocksView;
         
-        View(ArrayList<Viewable> unitsView) {
-            this.unitsView = unitsView;
+        View(ArrayList<Viewable> shipsView, ArrayList<Viewable> groundForcesView, ArrayList<Viewable> pdsView, ArrayList<Viewable> spaceDocksView) {
+            this.shipsView = shipsView;
+            this.groundForcesView = groundForcesView;
+            this.pdsView = pdsView;
+            this.spaceDocksView = spaceDocksView;
         }
 
         @Override
         public void display(Writer writer) throws IOException {
             writer.write("List army (" + this.toString() + ") units:\n");
 
-            for (int i = 0; i < unitsView.size(); ++i) {
-                writer.write(i + ": ");
-                unitsView.get(i).display(writer);
+            Print(writer, shipsView);
+            Print(writer, groundForcesView);
+            Print(writer, pdsView);
+            Print(writer, spaceDocksView);
+        }
+
+        private void Print(Writer writer, ArrayList<Viewable> unitView) throws IOException {
+            for (int i = 0; i < unitView.size(); ++i) {
+                unitView.get(i).display(writer);
+                writer.write("." + i + "\n");
             }
         }
     }
 
     @Override
     public Viewable getView(UserAcceptable parent) {
-        ArrayList<Viewable> unitsView = new ArrayList<>();
+        ArrayList<Viewable> shipsView = new ArrayList<>();
+        ArrayList<Viewable> groundForcesView = new ArrayList<>();
+        ArrayList<Viewable> pdsView = new ArrayList<>();
+        ArrayList<Viewable> spaceDocksView = new ArrayList<>();
 
         for (Ship ship: shipsList) {
-            unitsView.add(ship.getView(this));
+            shipsView.add(ship.getView(this));
         }
         for (GroundForce groundForce: groundForcesList) {
-            unitsView.add(groundForce.getView(this));
+            groundForcesView.add(groundForce.getView(this));
         }
         for (PDS pds: pdsList) {
-            unitsView.add(pds.getView(this));
+            pdsView.add(pds.getView(this));
         }
         for (SpaceDock spaceDock: spaceDocksList) {
-            unitsView.add(spaceDock.getView(this));
+            spaceDocksView.add(spaceDock.getView(this));
         }
 
-        return new View(unitsView);
+        return new View(shipsView, groundForcesView, pdsView, spaceDocksView);
     }
 
     @Override

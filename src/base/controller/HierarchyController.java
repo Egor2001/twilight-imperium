@@ -9,8 +9,7 @@ public class HierarchyController {
 
     HashMap<String, GameObjectTarget> targetMap;
 
-    public HierarchyController() {
-    }
+    public HierarchyController() {}
 
     public interface Viewable {
         void display(Writer writer) throws IOException;
