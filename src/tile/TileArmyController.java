@@ -2,12 +2,16 @@ package tile;
 import ArmyUnits.Ships.Ship;
 import ArmyUnits.Unit;
 
-import java.util.ArrayList;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.Map;
+
+class Unit{
+
+}
 
 public class TileArmyController {
     private ArrayList<Unit> unitList;
@@ -72,5 +76,45 @@ public class TileArmyController {
             }
         }
         return true;
+    }
+
+    ArrayList<ArrayList<Object>> ListTileObjectUnit;
+
+    TileObject GetTileObject(Unit unit) {
+        for (ArrayList<Object> i: ListTileObjectUnit)  {
+            if ((Unit)i.get(1) == unit) {
+                return (TileObject)(i.get(0));
+            }
+        }
+
+        return null;
+    }
+
+    ArrayList<Unit> GetUnitsList(TileObject tile_object) {
+        ArrayList<Unit> answer = new ArrayList<Unit>();
+
+        for (ArrayList<Object> i: ListTileObjectUnit)  {
+            if ((TileObject)i.get(0) == tile_object) {
+                answer.add((Unit)(i.get(1)));
+            }
+        }
+
+        return answer;
+    }
+
+    void Connect(TileObject tileObject, Unit unit) {
+        ArrayList<Object> answer = new ArrayList<Object>();
+        answer.add(tileObject);
+        answer.add(unit);
+
+        ListTileObjectUnit.add(answer);
+    }
+
+    void Disconnect(TileObject tileObject, Unit unit) {
+        for (ArrayList<Object> i: ListTileObjectUnit)  {
+            if ((TileObject)i.get(0) == tileObject && (Unit)i.get(1) == unit) {
+                ListTileObjectUnit.remove(i);
+            }
+        }
     }
 }

@@ -75,7 +75,7 @@ public class HierarchyController {
     public interface UserAcceptable {
         Viewable getView(UserAcceptable parent);
         Viewable getView(UserAcceptable parent, GameObjectTarget target);
-        Object getObject(GameObjectTarget target);
+        Object getObject(GameObjectTarget target) throws Exception;
     }
 
     public static abstract class GameObjectTarget {
