@@ -14,12 +14,12 @@ public class TileArmyController {
     private ArrayList<Unit> unitList;
     private ArrayList<TileObject> tileObjectsList;
 
-    TileObject getTileObject(Unit unit) {
+    public TileObject getTileObject(Unit unit) {
         return tileObjectsList.get(unitList.indexOf(unit));
 
     }
 
-    ArrayList<Unit> getUnit(TileObject tileObject) {
+    public ArrayList<Unit> getUnit(TileObject tileObject) {
         ArrayList<Unit> units = new ArrayList<>();
 
         for (int i = 0; i < tileObjectsList.size(); ++i) {
@@ -31,12 +31,12 @@ public class TileArmyController {
         return units;
     }
 
-    void add(Unit unit, TileObject tileObject) {
+    public void add(Unit unit, TileObject tileObject) {
         unitList.add(unit);
         tileObjectsList.add(tileObject);
     }
 
-    boolean move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+    public boolean move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
         way.add(0, getTileObject(ship));
 
         int sizeWay = way.size();
@@ -48,7 +48,7 @@ public class TileArmyController {
             return false;
         }
 
-        for (int i = 0; i < sizeWay - 1; ++i) {
+        for (int i = 1; i < sizeWay - 1; ++i) {
             if (!((Space)way.get(i)).could_fly_throw(ship)) {
                 return false;
             }
@@ -68,17 +68,17 @@ public class TileArmyController {
         return true;
     }
 
-    boolean move(Ship ship, ArrayList<TileObject> way) {
+    public boolean move(Ship ship, ArrayList<TileObject> way) {
         return move(ship, new ArrayList<>(), way);
     }
 
-    void remove(Unit unit) {
+    public void remove(Unit unit) {
         int i = unitList.indexOf(unit);
         tileObjectsList.remove(i);
         unitList.remove(i);
     }
 
-    boolean checkWay(ArrayList<TileObject> way) {
+    public boolean checkWay(ArrayList<TileObject> way) {
         for (int i = 0; i < way.size() - 1; ++i) {
             if (!way.get(i).My_neighbours().contains(way.get(i + 1))) {
                 return false;
