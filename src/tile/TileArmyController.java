@@ -13,11 +13,11 @@ public class TileArmyController {
     private ArrayList<Unit> unitList;
     private ArrayList<TileObject> tileObjectsList;
 
-    TileObject getTileObject(Unit unit) {
+    public TileObject getTileObject(Unit unit) {
         return tileObjectsList.get(unitList.indexOf(unit));
     }
 
-    ArrayList<Unit> getUnit(TileObject tileObject) {
+    public ArrayList<Unit> getUnit(TileObject tileObject) {
         ArrayList<Unit> units = new ArrayList<>();
 
         for (int i = 0; i < tileObjectsList.size(); ++i) {
@@ -72,17 +72,18 @@ public class TileArmyController {
         }
     }
 
-    void move(Ship ship, ArrayList<TileObject> way) {
+
+    public void move(Ship ship, ArrayList<TileObject> way) {
         move(ship, new ArrayList<>(), way);
     }
 
-    void remove(Unit unit) {
+    public void remove(Unit unit) {
         int i = unitList.indexOf(unit);
         tileObjectsList.remove(i);
         unitList.remove(i);
     }
 
-    boolean checkWay(ArrayList<TileObject> way) {
+    public boolean checkWay(ArrayList<TileObject> way) {
         for (int i = 0; i < way.size() - 1; ++i) {
             if (!way.get(i).My_neighbours().contains(way.get(i + 1))) {
                 return false;
