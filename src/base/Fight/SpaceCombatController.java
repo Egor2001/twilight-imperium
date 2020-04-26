@@ -1,15 +1,24 @@
 package base.Fight;
 
 import ArmyUnits.Unit;
+import tile.Tile;
+import tile.TileArmyController;
 
 import java.util.ArrayList;
 
 public class SpaceCombatController {
-    public SpaceCombatController(ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units) {
+    private boolean first_player_announce_retreat;
+    private boolean second_player_announce_retreat;
+    private Tile tileFight;
+    private TileArmyController tileArmyController;
+    private ArrayList<Unit> first_army_units_;
+    private ArrayList<Unit> second_army_units_;
+
+    public SpaceCombatController(Tile tile, TileArmyController tileArmyController) {
         first_player_announce_retreat = false;
         second_player_announce_retreat = false;
-        first_army_units_ = first_army_units;
-        second_army_units_ = second_army_units;
+        tileFight = tile;
+        this.tileArmyController = tileArmyController;
     }
 
     public void anti_fighter_barrage(/*ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units*/) {
@@ -51,9 +60,4 @@ public class SpaceCombatController {
         }
 
     }
-
-    private boolean first_player_announce_retreat;
-    private boolean second_player_announce_retreat;
-    private ArrayList<Unit> first_army_units_;
-    private ArrayList<Unit> second_army_units_;
 }
