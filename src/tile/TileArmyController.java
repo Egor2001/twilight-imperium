@@ -1,10 +1,12 @@
 package tile;
 import base.model.Army;
 
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.Map;
 
 class Unit{
@@ -12,7 +14,6 @@ class Unit{
 }
 
 public class TileArmyController {
-    /*
     private <K, V> K getKey(Map<K, V> map, V value) {
 
         for (Map.Entry<K, V> entry : map.entrySet()) {
@@ -42,7 +43,7 @@ public class TileArmyController {
 
     void Disconnect(TileObject tileObject, Army army) {
         dictionary.remove(tileObject);
-    }*/
+    }
 
     ArrayList<ArrayList<Object>> ListTileObjectUnit;
 
