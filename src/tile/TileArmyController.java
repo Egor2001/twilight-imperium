@@ -15,7 +15,6 @@ public class TileArmyController {
 
     TileObject getTileObject(Unit unit) {
         return tileObjectsList.get(unitList.indexOf(unit));
-
     }
 
     ArrayList<Unit> getUnit(TileObject tileObject) {
@@ -30,12 +29,12 @@ public class TileArmyController {
         return units;
     }
 
-    void add(Unit unit, TileObject tileObject) {
+    public void add(Unit unit, TileObject tileObject) {
         unitList.add(unit);
         tileObjectsList.add(tileObject);
     }
 
-    void move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+    public void move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
         if (way.size() < 2) {
             throw new IllegalArgumentException("In move: way length is less then 2\n");
         }
