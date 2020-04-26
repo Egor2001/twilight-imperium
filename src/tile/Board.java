@@ -5,6 +5,17 @@ import base.controller.HierarchyController;
 import java.util.ArrayList;
 
 public class Board implements HierarchyController.UserAcceptable {
+    public Board(ArrayList<Integer> board_tiles)
+    {
+        tiles_ = new ArrayList<Tile>();
+        bonds_ = new ArrayList<ArrayList<Integer>>();
+
+        for (int index: board_tiles) {
+            tiles_.add(new Tile(index));
+            bonds_.add(tiles_.get(tiles_.size() - 1).LoadTile(index));
+        }
+    }
+
     public Board()
     {
         tiles_ = new ArrayList<Tile>();
@@ -23,8 +34,12 @@ public class Board implements HierarchyController.UserAcceptable {
         bonds_.get(j).add(i);
     }
 
-    private ArrayList<Tile> tiles_;
-    private ArrayList<ArrayList<Integer>> bonds_;
+    public ArrayList<Tile> tiles_;
+    public ArrayList<ArrayList<Integer>> bonds_;
+
+    void print() {
+
+    }
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {

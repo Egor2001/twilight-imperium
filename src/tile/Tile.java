@@ -1,14 +1,25 @@
 package tile;
 
 import base.controller.HierarchyController;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import javax.print.DocFlavor;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
-    public Tile()  {
+    public Tile(int num)  {
         planets_ = new ArrayList<>();
         space_ = new Space();
+        num_ = num;
     }
+
+    public Tile()  {
+        new Tile(-1);
+    }
+
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
         space_ = new Space();
@@ -49,6 +60,29 @@ public class Tile implements HierarchyController.UserAcceptable {
     private ArrayList<Planet> planets_;
     private Space space_;
     private ArrayList<Tile> neighbours_;
+    private int num_;
+
+    public ArrayList<Integer> LoadTile(int num)  {
+        try (FileReader reader = new FileReader("Board/" + (num) + ".json")) {
+            JSONTokener token = new JSONTokener(reader);
+            JSONObject object = new JSONObject(token);
+
+            num_ = (int)object.get("index");
+            int sz = (int)object.get("neighbours_num");
+            ArrayList<Integer> list = new ArrayList<Integer>();
+
+            for (int i = 0; i < sz; i++) {
+                list.add((int)object.get("neighbour" + i));
+            }
+            //list = (ArrayList<Integer>)object.get("neighbour");
+            return list;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
@@ -71,14 +105,11 @@ public class Tile implements HierarchyController.UserAcceptable {
             if (target instanceof Planet.Target)
             {
                 return planets_.get(((Planet.Target) target).getIndex()).getObject(target.getNext());
-            } else
+            } else if (target instanceof Space.Target)
             {
-                if (target instanceof Space.Target)
-                {
-                    return space_.getObject(target.getNext());
-                } else{
-                    throw new Exception("Wrong target request");
-                }
+                return space_.getObject(target.getNext());
+            } else{
+                throw new Exception("Wrong target request");
             }
         }
     }

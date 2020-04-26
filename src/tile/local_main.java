@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class local_main {
     public static void main(String[] args) throws Exception {
-        Tile tile1 = new Tile(new ArrayList<String>(Arrays.asList("Abyz", "Arinam", "Arnor")));
+        /*Tile tile1 = new Tile(new ArrayList<String>(Arrays.asList("Abyz", "Arinam", "Arnor")));
         Tile tile2 = new Tile(new ArrayList<String>(Arrays.asList("Lodor", "Meer")));
 
         Board board = new Board();
@@ -26,7 +26,13 @@ public class local_main {
         board.AddBond(0, 1);
         Board.Target tg = new Board.Target(new Tile.Target(new Planet.Target(1), 1));
 
-        ((Planet) board.getObject(tg.getNext())).print();
+        ((Planet) board.getObject(tg.getNext())).print();*/
+        ArrayList<Integer> x = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+
+        Board board = new Board(x);
+
+        System.out.println(board.tiles_.size());
+        System.out.println(board.bonds_.size());
 
     }
 }
