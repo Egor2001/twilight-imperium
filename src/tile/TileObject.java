@@ -17,6 +17,8 @@ public class TileObject implements HierarchyController.UserAcceptable{
         return my_tile.Object_neighbours(this);
     }
 
+    public Tile GetTile() { return my_tile; }
+
     Player owner_;
     private Tile my_tile;
     private ArrayList<TileObject> neighbours_;
