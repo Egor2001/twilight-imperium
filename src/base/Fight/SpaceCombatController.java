@@ -5,33 +5,30 @@ import ArmyUnits.Unit;
 import java.util.ArrayList;
 
 public class SpaceCombatController {
-    public SpaceCombatController() {
+    public SpaceCombatController(ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units) {
         first_player_announce_retreat = false;
         second_player_announce_retreat = false;
+        first_army_units_ = first_army_units;
+        second_army_units_ = second_army_units;
     }
 
-    public void anti_fighter_barrage(/*ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units*/)
-    {
-
-    }
-
-    public void make_combat_rolls()
-    {
+    public void anti_fighter_barrage(/*ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units*/) {
 
     }
 
-    public void assign_hits()
-    {
+    public void make_combat_rolls() {
 
     }
 
-    public void announce_retreat()
-    {
+    public void assign_hits() {
 
     }
 
-    public void retreat()
-    {
+    public void announce_retreat() {
+
+    }
+
+    public void retreat() {
 
     }
 
@@ -57,4 +54,6 @@ public class SpaceCombatController {
 
     private boolean first_player_announce_retreat;
     private boolean second_player_announce_retreat;
+    private ArrayList<Unit> first_army_units_;
+    private ArrayList<Unit> second_army_units_;
 }
