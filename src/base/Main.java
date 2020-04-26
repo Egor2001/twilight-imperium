@@ -1,10 +1,11 @@
 package base;
 
-import ArmyUnits.ShipFactories.ShipFactoryRace1;
+import ArmyUnits.FactoryUnit;
 import ArmyUnits.Ships.Flagship;
 import base.controller.GameController;
 import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
+import base.model.Army;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,8 +73,7 @@ public class Main {
             if (target instanceof Target) {
                 if (target.getNext() == null) {
                     return this;
-                }
-                else {
+                } else {
                     return child.getObject(target.getNext());
                 }
             }
@@ -88,6 +88,10 @@ public class Main {
 
             public Target() {
                 super();
+            }
+
+            public Target(GameObjectTarget next) {
+                super(next);
             }
         }
 
@@ -126,9 +130,9 @@ public class Main {
         }
     }
 
-    public static void demo() {
-        GameObjectTarget simpleTarget = new Parent.Target();
-        GameObjectTarget complexTarget = new Parent.Target(new Child.Target());
+    public static void testTarget() {
+        GameObjectTarget simpleTarget = HierarchyController.parseTarget("parent");
+        GameObjectTarget complexTarget = HierarchyController.parseTarget("parent.child");
 
         Parent hierarchy = new Parent(new Child());
 
@@ -154,13 +158,34 @@ public class Main {
         writer.flush();
     }
 
-    public static void main(String[] args) {
-        demo();
+    public static void testArmy() {
+        GameObjectTarget target = new Army.Target(new Flagship.Target(1));
 
+        Army arm = new Army();
+        FactoryUnit SFR = new FactoryUnit("Race1");
+        PrintWriter writer = new PrintWriter(System.out);
+
+        arm.addShip(SFR.createFlagship());
+        arm.addShip(SFR.createFlagship());
+        arm.addPDS(SFR.createPDS());
+        try {
+            arm.getView(null, target.getNext()).display(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+            writer.write("biba");
+        }
+
+        writer.flush();
+    }
+
+    public static void main(String[] args) {
+        testArmy();
+        testTarget();
+/*
         ShipFactoryRace1 F1 = new ShipFactoryRace1();
         Flagship Flagship1 = F1.createFlagship();
         System.out.print(Flagship1.getCost());
-
+*/
         GameController gameController = GameController.getInstance();
         gameController.gameInit();
         gameController.gameLoop();

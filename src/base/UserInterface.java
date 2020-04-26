@@ -1,5 +1,6 @@
 package base;
 
+import base.controller.HierarchyController;
 import base.model.Army;
 import base.model.GameState;
 import base.model.Player;
