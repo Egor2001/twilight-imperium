@@ -5,6 +5,12 @@ import ArmyUnits.Unit;
 import java.util.ArrayList;
 
 public class TileArmyController {
+    public TileArmyController()
+    {
+        unitList = new ArrayList<Unit>();
+        tileObjectsList = new ArrayList<TileObject>();
+    }
+
     private ArrayList<Unit> unitList;
     private ArrayList<TileObject> tileObjectsList;
 
@@ -39,6 +45,16 @@ public class TileArmyController {
         }
 
         if (!checkWay(way)) {
+            return false;
+        }
+
+        for (int i = 0; i < sizeWay - 1; ++i) {
+            if (!((Space)way.get(i)).could_fly_throw(ship)) {
+                return false;
+            }
+        }
+
+        if (!((Space)way.get(sizeWay - 1)).could_end_flight_in(ship)) {
             return false;
         }
 

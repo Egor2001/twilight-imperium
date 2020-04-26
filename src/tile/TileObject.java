@@ -6,6 +6,10 @@ import base.model.Player;
 import java.util.ArrayList;
 
 public class TileObject implements HierarchyController.UserAcceptable{
+    TileObject () {
+
+    }
+
     public void Invade() {}
 
     public void Allowed_to_invade() {}
