@@ -11,6 +11,7 @@ import java.io.Writer;
 public abstract class GroundForce implements Unit {
     private int combatValue;
     private int cost;
+    private boolean canFightSpace;
 
     public int getCost() {
         return cost;
@@ -30,8 +31,13 @@ public abstract class GroundForce implements Unit {
     public void setAllFromJSON(JSONObject object) {
         combatValue = (int) object.get("combatValue");
         cost = (int) object.get("cost");
+        canFightSpace = (boolean) object.get("canFlightSpace");
     }
 
+    @Override
+    public boolean canFightInSpace() {
+        return canFightSpace;
+    }
 
     @Override
     public void update() {
