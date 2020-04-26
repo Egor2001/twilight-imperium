@@ -1,0 +1,14 @@
+{
+    "moveValue": 2,
+    "capacityValue": 0,
+    "combatValue": 7,
+    "cost": 2,
+    "canSustainDamaged": false,
+    "damaged": false,
+    "spaceCannonDiceValue": 10,
+    "spaceCannonNumDices": 0,
+    "bombardmentDiceValue": 10,
+    "bombardmentNumDices": 0,
+    "antiFighterBarrageDiceValue": 10,
+    "antiFighterBarrageNumDices": 0
+}
