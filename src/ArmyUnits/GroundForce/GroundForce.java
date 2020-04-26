@@ -38,7 +38,7 @@ public abstract class GroundForce implements Unit {
 
     }
 
-    public class Target extends HierarchyController.GameObjectTarget {
+    public static class Target extends HierarchyController.GameObjectTarget {
         Target() {
             super();
         }

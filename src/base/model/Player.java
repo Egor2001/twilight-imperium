@@ -1,25 +1,50 @@
 package base.model;
 
 import ArmyUnits.FactoryUnit;
+import ArmyUnits.Ships.Ship;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
-    private FactoryUnit race;
+    private FactoryUnit raceFactory;
 
     public Player(String name, Army army) {
         this.name = name;
         this.army = army;
+        this.raceFactory = new FactoryUnit("");
     }
-    public Player(String name) {
+    public Player(String name, String race) {
         this.name = name;
         this.army = new Army();
+        this.raceFactory = new FactoryUnit(race);
+    }
+    public void addUnit(String name) {
+        switch (name) {
+            case "PDS":
+                army.addPDS(raceFactory.createPDS());
+                break;
+            case "SpaceDock":
+                army.addSpaceDock(raceFactory.createSpaceDock());
+                break;
+            case "Infantry":
+                army.addGroundForce(raceFactory.createInfantry());
+                break;
+            default:
+                try {
+                    java.lang.reflect.Method method = raceFactory.getClass().getMethod("create" + name);
+                    army.addShip((Ship) method.invoke(raceFactory));
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     public final String getName() {

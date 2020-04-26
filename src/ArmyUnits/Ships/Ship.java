@@ -119,7 +119,7 @@ public abstract class Ship implements Unit {
         antiFighterBarrageNumDices = (int) object.get("antiFighterBarrageNumDices");
     }
 
-    public class Target extends HierarchyController.GameObjectTarget {
+    public static class Target extends HierarchyController.GameObjectTarget {
         Target() {
             super();
         }
