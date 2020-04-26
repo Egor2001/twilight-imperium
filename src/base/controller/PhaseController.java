@@ -1,6 +1,7 @@
 package base.controller;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class PhaseController {
 
         actionCommandHashMap = new HashMap<>();
         actionCommandHashMap.put("move", new PlayerActionMove());
+        actionCommandHashMap.put("add-ship", new PlayerActionAddShip());
 
         statusCommandHashMap = new HashMap<>();
         statusCommandHashMap.put("complete-mission", new CPlayerStatusCompleteMission());
@@ -48,28 +50,70 @@ public class PhaseController {
     public interface PlayerStatusCommand extends PlayerCommand {
     }
 
-    public static class PlayerActionMove implements PlayerActionCommand {
+    public static class PlayerActionAddShip implements PlayerActionCommand {
 
-        public Integer shipIdx = 0;
-        public Integer spaceIdx = 0;
+        public String shipName = null;
+        public HierarchyController.GameObjectTarget spaceTarget = null;
 
-        public PlayerActionMove() {
-            this.shipIdx = 0;
-            this.spaceIdx = 0;
+        public PlayerActionAddShip() {
+            this.shipName = null;
+            this.spaceTarget = null;
         }
 
-        public PlayerActionMove(Integer shipIdx, Integer spaceIdx) {
-            this.shipIdx = shipIdx;
-            this.spaceIdx = spaceIdx;
+        public PlayerActionAddShip(String shipName,
+                                   HierarchyController.GameObjectTarget spaceTarget) {
+            this.shipName = shipName;
+            this.spaceTarget = spaceTarget;
         }
 
         @Override
         public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
             try {
-                printStream.println("enter ship number:");
-                shipIdx = inputScanner.nextInt();
-                printStream.println("enter destination space number:");
-                spaceIdx = inputScanner.nextInt();
+                printStream.println("enter ship name:");
+                shipName = inputScanner.next();
+                printStream.println("enter destination space target:");
+                spaceTarget = HierarchyController.parseTarget(inputScanner.next());
+            } catch (InputMismatchException exception) {
+                printStream.flush();
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public void procCommand() {
+            System.out.println("processing ACTION command: ADD_SHIP");
+        }
+    }
+
+    public static class PlayerActionMove implements PlayerActionCommand {
+
+        public HierarchyController.GameObjectTarget shipTarget = null;
+        public ArrayList<HierarchyController.GameObjectTarget> spaceTargetList = null;
+
+        public PlayerActionMove() {
+            this.shipTarget = null;
+            this.spaceTargetList = new ArrayList<>();
+        }
+
+        public PlayerActionMove(HierarchyController.GameObjectTarget shipTarget,
+                                ArrayList<HierarchyController.GameObjectTarget> spaceTargetList) {
+            this.shipTarget = shipTarget;
+            this.spaceTargetList = spaceTargetList;
+        }
+
+        @Override
+        public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
+            try {
+                printStream.println("enter ship target:");
+                shipTarget = HierarchyController.parseTarget(inputScanner.next());
+                printStream.println("enter path length:");
+                int pathLength = inputScanner.nextInt();
+                while (pathLength-- > 0) {
+                    printStream.println("enter next space target:");
+                    spaceTargetList.add(HierarchyController.parseTarget(inputScanner.next()));
+                }
             } catch (InputMismatchException exception) {
                 printStream.flush();
                 return false;
