@@ -5,13 +5,11 @@ import base.controller.HierarchyController;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
-    public Tile()
-    {
+    public Tile()  {
         planets_ = new ArrayList<>();
         space_ = new Space();
     }
-    public Tile(ArrayList<String> planet_names)
-    {
+    public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
         space_ = new Space();
 
@@ -19,7 +17,6 @@ public class Tile implements HierarchyController.UserAcceptable {
             planets_.add(new Planet(name));
         }
     }
-
 
     ArrayList<Tile> Tile_neighbours() {
         return neighbours_;

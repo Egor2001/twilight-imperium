@@ -1,9 +1,18 @@
 package tile;
 
+import ArmyUnits.Ships.Ship;
 import base.controller.HierarchyController;
 
 class Space extends TileObject{
     Space(){};
+
+    boolean could_fly_throw(Ship ship) {
+        return true;
+    }
+
+    boolean could_end_flight_in(Ship ship)  {
+        return true;
+    }
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
