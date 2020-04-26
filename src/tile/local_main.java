@@ -1,6 +1,5 @@
 package tile;
 
-//import ArmyUnits.ShipFactories.ShipFactoryRace1;
 import ArmyUnits.Ships.Flagship;
 import base.controller.GameController;
 import base.controller.HierarchyController;
@@ -28,5 +27,6 @@ public class local_main {
         Board.Target tg = new Board.Target(new Tile.Target(new Planet.Target(1), 1));
 
         ((Planet) board.getObject(tg.getNext())).print();
+
     }
 }

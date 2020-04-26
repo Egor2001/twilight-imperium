@@ -22,9 +22,9 @@ xl = pd.ExcelFile(file)
 print(xl.sheet_names)
 df1 = xl.parse('Planets')
 
-
 for i in range(1, 34):
     make_file(df1['Planets'][i], df1['Unnamed: 1'][i], df1['Unnamed: 2'][i], df1['Unnamed: 3'][i], df1['Unnamed: 4'][i])
 
 for i in range(1, 34):
     make_file(df1['Unnamed: 6'][i], df1['Unnamed: 7'][i], df1['Unnamed: 8'][i], df1['Unnamed: 9'][i], df1['Unnamed: 10'][i])
+

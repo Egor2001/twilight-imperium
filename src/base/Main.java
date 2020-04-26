@@ -6,6 +6,7 @@ import base.controller.GameController;
 import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
 import base.model.Army;
+import base.model.Player;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -173,6 +174,17 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
             writer.write("biba");
+        }
+
+        Player user = new Player("Boba", "Race1");
+        user.addUnit("Flagship");
+        user.addUnit("PDS");
+        user.addUnit("Flagship");
+
+        try {
+            user.getView(null).display(writer);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         writer.flush();
