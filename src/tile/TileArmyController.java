@@ -31,8 +31,10 @@ public class TileArmyController {
     }
 
     boolean move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+        way.add(0, getTileObject(ship));
+
         int sizeWay = way.size();
-        if (ship.getMoveValue() < sizeWay || ship.getCapacityValue() < units.size()) {
+        if (ship.getMoveValue() < sizeWay - 1 || ship.getCapacityValue() < units.size()) {
             return false;
         }
 
