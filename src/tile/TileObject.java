@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class TileObject implements HierarchyController.UserAcceptable{
     TileObject () {
-
     }
 
     public void Invade() {}
