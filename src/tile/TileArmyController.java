@@ -1,86 +1,76 @@
 package tile;
-import base.model.Army;
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Unit;
 
+import java.util.ArrayList;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Unit{
-
-}
-
 public class TileArmyController {
-    /*
-    private <K, V> K getKey(Map<K, V> map, V value) {
+    private ArrayList<Unit> unitList;
+    private ArrayList<TileObject> tileObjectsList;
 
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
-                return entry.getKey();
+    TileObject getTileObject(Unit unit) {
+        return tileObjectsList.get(unitList.indexOf(unit));
+
+    }
+
+    ArrayList<Unit> getUnit(TileObject tileObject) {
+        ArrayList<Unit> units = new ArrayList<>();
+
+        for (int i = 0; i < tileObjectsList.size(); ++i) {
+            if (tileObject == tileObjectsList.get(i)) {
+                units.add(unitList.get(i));
             }
         }
 
-        return null;
+        return units;
     }
 
-    private Map<TileObject, Army> dictionary; //= new HashMap<TileObject,Army>();
-
-    Army GetArmy(TileObject tile_object) {
-        return dictionary.get(tile_object);
+    void add(Unit unit, TileObject tileObject) {
+        unitList.add(unit);
+        tileObjectsList.add(tileObject);
     }
 
-    TileObject GetTileObject(Army army) {
-        return getKey(dictionary, army);
-    }
-
-
-
-    void Connect(TileObject tileObject, Army army) {
-        dictionary.put(tileObject, army);
-    }
-
-    void Disconnect(TileObject tileObject, Army army) {
-        dictionary.remove(tileObject);
-    }*/
-
-    ArrayList<ArrayList<Object>> ListTileObjectUnit;
-
-    TileObject GetTileObject(Unit unit) {
-        for (ArrayList<Object> i: ListTileObjectUnit)  {
-            if ((Unit)i.get(1) == unit) {
-                return (TileObject)(i.get(0));
-            }
+    boolean move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+        int sizeWay = way.size();
+        if (ship.getMoveValue() < sizeWay || ship.getCapacityValue() < units.size()) {
+            return false;
         }
 
-        return null;
-    }
-
-    ArrayList<Unit> GetUnitsList(TileObject tile_object) {
-        ArrayList<Unit> answer = new ArrayList<Unit>();
-
-        for (ArrayList<Object> i: ListTileObjectUnit)  {
-            if ((TileObject)i.get(0) == tile_object) {
-                answer.add((Unit)(i.get(1)));
-            }
+        if (!checkWay(way)) {
+            return false;
         }
 
-        return answer;
+        remove(ship);
+        add(ship, way.get(sizeWay - 1));
+        for (Unit unit: units) {
+            remove(unit);
+            add(unit, way.get(sizeWay));
+        }
+
+        return true;
     }
 
-    void Connect(TileObject tileObject, Unit unit) {
-        ArrayList<Object> answer = new ArrayList<Object>();
-        answer.add(tileObject);
-        answer.add(unit);
-
-        ListTileObjectUnit.add(answer);
+    boolean move(Ship ship, ArrayList<TileObject> way) {
+        return move(ship, new ArrayList<>(), way);
     }
 
-    void Disconnect(TileObject tileObject, Unit unit) {
-        for (ArrayList<Object> i: ListTileObjectUnit)  {
-            if ((TileObject)i.get(0) == tileObject && (Unit)i.get(1) == unit) {
-                ListTileObjectUnit.remove(i);
+    void remove(Unit unit) {
+        int i = unitList.indexOf(unit);
+        tileObjectsList.remove(i);
+        unitList.remove(i);
+    }
+
+    boolean checkWay(ArrayList<TileObject> way) {
+        for (int i = 0; i < way.size() - 1; ++i) {
+            if (!way.get(i).My_neighbours().contains(way.get(i + 1))) {
+                return false;
             }
         }
+        return true;
     }
 }
