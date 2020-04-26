@@ -2,7 +2,7 @@ package tile;
 
 import base.controller.HierarchyController;
 
-class Space extends TileObject{
+public class Space extends TileObject{
     Space(){};
 
     @Override

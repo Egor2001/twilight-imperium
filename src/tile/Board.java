@@ -5,26 +5,27 @@ import base.controller.HierarchyController;
 import java.util.ArrayList;
 
 public class Board implements HierarchyController.UserAcceptable {
-    Board()
+
+    private ArrayList<Tile> tiles_;
+    private ArrayList<ArrayList<Integer>> bonds_;
+
+    public Board()
     {
         tiles_ = new ArrayList<Tile>();
         bonds_ = new ArrayList<ArrayList<Integer>>();
     }
 
-    void AddTile(Tile tile)
+    public void AddTile(Tile tile)
     {
         tiles_.add(tile);
         bonds_.add(new ArrayList<Integer>());
     }
 
-    void AddBond(int i, int j)
+    public void AddBond(int i, int j)
     {
         bonds_.get(i).add(j);
         bonds_.get(j).add(i);
     }
-
-    private ArrayList<Tile> tiles_;
-    private ArrayList<ArrayList<Integer>> bonds_;
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {

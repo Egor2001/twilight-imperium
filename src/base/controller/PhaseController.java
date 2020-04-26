@@ -1,5 +1,13 @@
 package base.controller;
 
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Unit;
+import base.model.GameState;
+import base.model.Player;
+import tile.Board;
+import tile.Space;
+import tile.TileObject;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +46,7 @@ public class PhaseController {
 
     public interface PlayerCommand {
         Boolean inputCommand(PrintStream printStream, Scanner inputScanner);
-        void procCommand();
+        boolean procCommand(GameState gameState, Player player);
     }
 
     public interface PlayerStrategyCommand extends PlayerCommand {
@@ -82,8 +90,22 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing ACTION command: ADD_SHIP");
+
+            try {
+                Space space = (Space) gameState.getBoard().getObject(spaceTarget);
+                Unit newUnit = player.addUnit(shipName);
+
+                //TODO: to handle by controller
+                //gameState.getTileArmyController();
+            }
+            catch (Exception exception) {
+                System.out.println(exception.getMessage());
+                return false;
+            }
+
+            return true;
         }
     }
 
@@ -123,8 +145,27 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing ACTION command: MOVE");
+
+            try {
+                Unit ship = (Unit) player.getObject(shipTarget);
+                ArrayList<TileObject> tileObjectList = new ArrayList<>();
+
+                Board board = gameState.getBoard();
+                for (HierarchyController.GameObjectTarget tileObjectTarget : spaceTargetList) {
+                    tileObjectList.add((TileObject) board.getObject(tileObjectTarget));
+                }
+
+                //TODO: to handle by controller
+                //gameState.getTileArmyController();
+            }
+            catch (Exception exception) {
+                System.out.println(exception.getMessage());
+                return false;
+            }
+
+            return true;
         }
     }
 
@@ -154,8 +195,9 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing STRATEGY command: PICK");
+            return true;
         }
     }
 
@@ -185,8 +227,9 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing STATUS command: COMPLETE-MISSION");
+            return true;
         }
     }
 }
