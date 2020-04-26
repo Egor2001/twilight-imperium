@@ -43,6 +43,9 @@ public class Tile implements HierarchyController.UserAcceptable {
         return null;
     }
 
+    public Space GetSpace(){ return space_;}
+    public ArrayList<Planet> GetPlanets(){ return planets_;}
+
     private ArrayList<Planet> planets_;
     private Space space_;
     private ArrayList<Tile> neighbours_;
@@ -72,7 +75,7 @@ public class Tile implements HierarchyController.UserAcceptable {
             {
                 if (target instanceof Space.Target)
                 {
-                    return planets_.get(((Space.Target) target).getIndex()).getObject(target.getNext());
+                    return space_.getObject(target.getNext());
                 } else{
                     throw new Exception("Wrong target request");
                 }

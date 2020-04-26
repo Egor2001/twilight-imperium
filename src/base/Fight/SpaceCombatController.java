@@ -11,14 +11,14 @@ public class SpaceCombatController {
     private boolean second_player_announce_retreat;
     private Tile tileFight;
     private TileArmyController tileArmyController;
-    private ArrayList<Unit> spaceUnit;
+    private ArrayList<Unit> first_army_units_;
+    private ArrayList<Unit> second_army_units_;
 
     public SpaceCombatController(Tile tile, TileArmyController tileArmyController) {
         first_player_announce_retreat = false;
         second_player_announce_retreat = false;
         tileFight = tile;
         this.tileArmyController = tileArmyController;
-        units = tileArmyController.getUnit(tile.getSpace());
     }
 
     public void anti_fighter_barrage(/*ArrayList<Unit> first_army_units, ArrayList<Unit> second_army_units*/) {
