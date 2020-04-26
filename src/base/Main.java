@@ -160,7 +160,7 @@ public class Main {
     }
 
     public static void testArmy() {
-        GameObjectTarget target = new Army.Target(new Flagship.Target(1));
+        GameObjectTarget target = HierarchyController.parseTarget("Army.Ship.1");
 
         Army arm = new Army();
         FactoryUnit SFR = new FactoryUnit("Race1");
@@ -171,7 +171,8 @@ public class Main {
         arm.addPDS(SFR.createPDS());
         try {
             arm.getView(null, target.getNext()).display(writer);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             writer.write("biba");
         }

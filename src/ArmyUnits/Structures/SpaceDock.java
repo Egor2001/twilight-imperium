@@ -37,11 +37,17 @@ public class SpaceDock implements Structure {
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
-        Target() {
+        public Target() {
             super();
         }
-        Target(int index) {
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
+        }
+        public Target(int index) {
             super(index);
+        }
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next, index);
         }
     }
 

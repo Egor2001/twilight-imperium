@@ -1,6 +1,14 @@
 package base.controller;
 
+import ArmyUnits.GroundForce.GroundForce;
+import ArmyUnits.GroundForce.Infantry;
+import ArmyUnits.Ships.Carrier;
+import ArmyUnits.Ships.Cruiser;
+import ArmyUnits.Ships.Flagship;
 import ArmyUnits.Ships.Ship;
+import ArmyUnits.Structures.PDS;
+import ArmyUnits.Structures.SpaceDock;
+import base.model.Army;
 import base.model.Player;
 
 import java.io.IOException;
@@ -18,6 +26,12 @@ public class HierarchyController {
 
         targetMap.put("parent", base.Main.Parent.Target.class);
         targetMap.put("child", base.Main.Child.Target.class);
+
+        targetMap.put("Army", Army.Target.class);
+        targetMap.put("Ship", Ship.Target.class);
+        targetMap.put("GroundForce", GroundForce.Target.class);
+        targetMap.put("PDS", PDS.Target.class);
+        targetMap.put("SpaceDock", SpaceDock.Target.class);
     }
 
     public static GameObjectTarget parseTarget(String inputStr) throws IllegalArgumentException {

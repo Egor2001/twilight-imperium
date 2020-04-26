@@ -120,11 +120,11 @@ public abstract class Ship implements Unit {
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
-        Target() {
+        public Target() {
             super();
         }
-        public Target(int index) {
-            super(index);
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next, index);
         }
     }
 
