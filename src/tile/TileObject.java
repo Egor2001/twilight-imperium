@@ -6,6 +6,9 @@ import base.model.Player;
 import java.util.ArrayList;
 
 public class TileObject implements HierarchyController.UserAcceptable{
+    TileObject () {
+    }
+
     public void Invade() {}
 
     public void Allowed_to_invade() {}
@@ -13,6 +16,8 @@ public class TileObject implements HierarchyController.UserAcceptable{
     public ArrayList<TileObject> My_neighbours() {
         return my_tile.Object_neighbours(this);
     }
+
+    public Tile GetTile() { return my_tile; }
 
     Player owner_;
     private Tile my_tile;

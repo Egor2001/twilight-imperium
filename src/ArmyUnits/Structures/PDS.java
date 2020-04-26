@@ -38,6 +38,11 @@ public class PDS implements Structure {
     }
 
     @Override
+    public boolean canFightInSpace() {
+        return false;
+    }
+
+    @Override
     public void update() {
 
     }

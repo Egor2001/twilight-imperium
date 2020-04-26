@@ -10,6 +10,7 @@ import java.io.Writer;
 public class SpaceDock implements Structure {
     private boolean blockaded = false;
     private int productValue;
+    private boolean canFightSpace;
 
     public boolean isBlockaded() {
         return blockaded;
@@ -29,6 +30,12 @@ public class SpaceDock implements Structure {
     public void setAllFromJSON(JSONObject object) {
         blockaded = (boolean) object.get("blockaded");
         productValue = (int) object.get("productValue");
+        canFightSpace = (boolean) object.get("canFightSpace");
+    }
+
+    @Override
+    public boolean canFightInSpace() {
+        return canFightSpace;
     }
 
     @Override

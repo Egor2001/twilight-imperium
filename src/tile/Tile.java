@@ -5,13 +5,11 @@ import base.controller.HierarchyController;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
-    public Tile()
-    {
+    public Tile()  {
         planets_ = new ArrayList<>();
         space_ = new Space();
     }
-    public Tile(ArrayList<String> planet_names)
-    {
+    public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
         space_ = new Space();
 
@@ -19,7 +17,6 @@ public class Tile implements HierarchyController.UserAcceptable {
             planets_.add(new Planet(name));
         }
     }
-
 
     ArrayList<Tile> Tile_neighbours() {
         return neighbours_;
@@ -45,6 +42,9 @@ public class Tile implements HierarchyController.UserAcceptable {
 
         return null;
     }
+
+    public Space GetSpace(){ return space_;}
+    public ArrayList<Planet> GetPlanets(){ return planets_;}
 
     private ArrayList<Planet> planets_;
     private Space space_;
@@ -75,7 +75,7 @@ public class Tile implements HierarchyController.UserAcceptable {
             {
                 if (target instanceof Space.Target)
                 {
-                    return planets_.get(((Space.Target) target).getIndex()).getObject(target.getNext());
+                    return space_.getObject(target.getNext());
                 } else{
                     throw new Exception("Wrong target request");
                 }

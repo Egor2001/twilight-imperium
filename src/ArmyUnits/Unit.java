@@ -43,4 +43,6 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
     }
 
     void printInfo(Writer writer) throws IOException;
+
+    boolean canFightInSpace();
 }

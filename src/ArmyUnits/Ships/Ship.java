@@ -53,6 +53,9 @@ public abstract class Ship implements Unit {
     public boolean canHitFromSpaceCannon(int diceValue) {
         return diceValue >= spaceCannonDiceValue;
     }
+    public boolean hasSpaceCannon() {
+        return spaceCannonNumDices > 0;
+    }
 
     public int getNumberOfDicesForBombardment() {
         return bombardmentNumDices;
@@ -60,12 +63,23 @@ public abstract class Ship implements Unit {
     public boolean canHitFromBombardment(int diceValue) {
         return diceValue >= bombardmentDiceValue;
     }
+    public boolean hasBombardment() {
+        return bombardmentNumDices > 0;
+    }
 
     public int getNumberOfDicesForAntiFighterBarrage() {
         return antiFighterBarrageDiceValue;
     }
     public boolean canHitFromAntiFighterBarrage(int diceValue) {
         return diceValue >= antiFighterBarrageNumDices;
+    }
+    public boolean hasAntiFighterBarrage() {
+        return antiFighterBarrageNumDices > 0;
+    }
+
+    @Override
+    public boolean canFightInSpace() {
+        return true;
     }
 
     @Override
