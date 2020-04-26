@@ -43,6 +43,9 @@ public class Tile implements HierarchyController.UserAcceptable {
         return null;
     }
 
+    public Space GetSpace(){ return space_;}
+    public ArrayList<Planet> GetPlanets(){ return planets_;}
+
     private ArrayList<Planet> planets_;
     private Space space_;
     private ArrayList<Tile> neighbours_;

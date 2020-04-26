@@ -15,7 +15,6 @@ public class TileArmyController {
 
     public TileObject getTileObject(Unit unit) {
         return tileObjectsList.get(unitList.indexOf(unit));
-
     }
 
     public ArrayList<Unit> getUnit(TileObject tileObject) {
