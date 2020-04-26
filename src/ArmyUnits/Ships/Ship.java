@@ -123,7 +123,7 @@ public abstract class Ship implements Unit {
         Target() {
             super();
         }
-        Target(int index) {
+        public Target(int index) {
             super(index);
         }
     }

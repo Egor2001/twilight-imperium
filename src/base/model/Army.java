@@ -49,7 +49,7 @@ public class Army implements Updatable, UserAcceptable {
             super();
         }
 
-        Target(Ship.Target shipTarget) {
+        public Target(Ship.Target shipTarget) {
             super(shipTarget);
         }
         Target(GroundForce.Target groundForceTarget) {
