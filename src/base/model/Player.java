@@ -1,7 +1,11 @@
 package base.model;
 
 import ArmyUnits.FactoryUnit;
+import ArmyUnits.GroundForce.GroundForce;
 import ArmyUnits.Ships.Ship;
+import ArmyUnits.Structures.PDS;
+import ArmyUnits.Structures.SpaceDock;
+import ArmyUnits.Unit;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
@@ -25,25 +29,30 @@ public class Player implements Updatable, UserAcceptable {
         this.army = new Army();
         this.raceFactory = new FactoryUnit(race);
     }
-    public void addUnit(String name) {
+    public Unit addUnit(String name) {
         switch (name) {
             case "PDS":
-                army.addPDS(raceFactory.createPDS());
-                break;
+                PDS pds = raceFactory.createPDS();
+                army.addPDS(pds);
+                return pds;
             case "SpaceDock":
-                army.addSpaceDock(raceFactory.createSpaceDock());
-                break;
+                SpaceDock spaceDock = raceFactory.createSpaceDock();
+                army.addSpaceDock(spaceDock);
+                return spaceDock;
             case "Infantry":
-                army.addGroundForce(raceFactory.createInfantry());
-                break;
+                GroundForce groundForce = raceFactory.createInfantry();
+                army.addGroundForce(groundForce);
+                return groundForce;
             default:
                 try {
                     java.lang.reflect.Method method = raceFactory.getClass().getMethod("create" + name);
-                    army.addShip((Ship) method.invoke(raceFactory));
+                    Ship ship = (Ship) method.invoke(raceFactory);
+                    army.addShip(ship);
+                    return ship;
                 } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
-                break;
+                return null;
         }
     }
 
