@@ -22,7 +22,7 @@ public class Player implements Updatable, UserAcceptable {
     public Player(String name, Army army) {
         this.name = name;
         this.army = army;
-        this.raceFactory = new FactoryUnit("");
+        this.raceFactory = new FactoryUnit("Race1");
     }
     public Player(String name, String race) {
         this.name = name;
@@ -65,12 +65,20 @@ public class Player implements Updatable, UserAcceptable {
     }
 
     public static class Target extends GameObjectTarget {
-        Target() {
+        public Target() {
             super();
         }
 
-        Target(Army.Target ArmyTarget) {
-            super(ArmyTarget);
+        public Target(int index) {
+            super(index);
+        }
+
+        public Target(GameObjectTarget next) {
+            super(next);
+        }
+
+        public Target(GameObjectTarget next, int index) {
+            super(next, index);
         }
     }
 

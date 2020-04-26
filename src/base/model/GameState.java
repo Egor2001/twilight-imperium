@@ -18,10 +18,10 @@ public class GameState implements Updatable {
     public GameState() {
         this.board = new Board();
         this.players = new ArrayList<Player>(6);
-        this.tileArmyController = null;
+        this.tileArmyController = new TileArmyController();
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
-            players.add(new Player("", new Army()));
+            players.add(new Player("", "Race1"));
         }
     }
 
