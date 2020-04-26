@@ -1,4 +1,72 @@
 package tile;
 
-public class Board {
+import base.controller.HierarchyController;
+
+import java.util.ArrayList;
+
+public class Board implements HierarchyController.UserAcceptable {
+    Board()
+    {
+        tiles_ = new ArrayList<Tile>();
+        bonds_ = new ArrayList<ArrayList<Integer>>();
+    }
+
+    void AddTile(Tile tile)
+    {
+        tiles_.add(tile);
+        bonds_.add(new ArrayList<Integer>());
+    }
+
+    void AddBond(int i, int j)
+    {
+        bonds_.get(i).add(j);
+        bonds_.get(j).add(i);
+    }
+
+    private ArrayList<Tile> tiles_;
+    private ArrayList<ArrayList<Integer>> bonds_;
+
+    @Override
+    public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
+        return null;
+    }
+
+    @Override
+    public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
+        return null;
+    }
+
+    @Override
+    public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
+        if (target == null)
+        {
+            return this;
+        }
+        else
+        {
+            if (target instanceof Tile.Target)
+            {
+                return tiles_.get(((Tile.Target) target).getIndex()).getObject(target.getNext());
+            } else
+            {
+                throw new Exception("Wrong target request");
+            }
+        }
+    }
+
+    static class Target extends HierarchyController.GameObjectTarget{
+        private HierarchyController.GameObjectTarget next;
+
+        public Target() {
+            this.next = null;
+        }
+
+        public Target(HierarchyController.GameObjectTarget next) {
+            this.next = next;
+        }
+
+        public HierarchyController.GameObjectTarget getNext() {
+            return next;
+        }
+    }
 }
