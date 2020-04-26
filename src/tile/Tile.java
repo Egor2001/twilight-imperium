@@ -85,22 +85,27 @@ public class Tile implements HierarchyController.UserAcceptable {
         }
     }
 
-    static class Target extends HierarchyController.GameObjectTarget {
-        private HierarchyController.GameObjectTarget next;
+    public static class Target extends HierarchyController.GameObjectTarget {
         private int index_;
 
         public Target() {
-            this.next = null;
+            super();
         }
 
-        public Target(HierarchyController.GameObjectTarget next, int index) {
-            this.next = next;
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
+        }
+
+        public Target(int index) {
+            super();
             index_ = index;
         }
 
-        public HierarchyController.GameObjectTarget getNext() {
-            return next;
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next);
+            index_ = index;
         }
+
         public int getIndex() {
             return index_;
         }

@@ -64,17 +64,25 @@ class Planet extends TileObject{
         }
     }
 
-    static class Target extends HierarchyController.GameObjectTarget{
-        private HierarchyController.GameObjectTarget next;
-        public Target(HierarchyController.GameObjectTarget next_tar, int index) {
-            next = next_tar;
+    public static class Target extends HierarchyController.GameObjectTarget{
+        private int index_;
+
+        public Target() {
+            super();
+        }
+
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
+        }
+
+        public Target(int index) {
+            super();
             index_ = index;
         }
 
-        private final int index_;
-
-        public HierarchyController.GameObjectTarget getNext() {
-            return null;
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next);
+            index_ = index;
         }
 
         public int getIndex() {

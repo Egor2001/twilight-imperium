@@ -28,12 +28,13 @@ class Space extends TileObject{
     }
 
 
-    static class Target extends HierarchyController.GameObjectTarget{
-        public Target(HierarchyController.GameObjectTarget next_tar) {
+    public static class Target extends HierarchyController.GameObjectTarget{
+        public Target() {
+            super();
         }
 
-        public HierarchyController.GameObjectTarget getNext() {
-            return null;
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
         }
     }
 };

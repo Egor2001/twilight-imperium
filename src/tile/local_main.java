@@ -25,8 +25,8 @@ public class local_main {
         board.AddTile(tile2);
 
         board.AddBond(0, 1);
-        Board.Target tg = new Board.Target(new Tile.Target(new Space.Target(), 1));
+        Board.Target tg = new Board.Target(new Tile.Target(new Planet.Target(1), 1));
 
-        ((Tile) board.getObject(tg.getNext())).print();
+        ((Planet) board.getObject(tg.getNext())).print();
     }
 }

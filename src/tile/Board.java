@@ -54,19 +54,13 @@ public class Board implements HierarchyController.UserAcceptable {
         }
     }
 
-    static class Target extends HierarchyController.GameObjectTarget{
-        private HierarchyController.GameObjectTarget next;
-
+    public static class Target extends HierarchyController.GameObjectTarget{
         public Target() {
-            this.next = null;
+            super();
         }
 
-        public Target(HierarchyController.GameObjectTarget next) {
-            this.next = next;
-        }
-
-        public HierarchyController.GameObjectTarget getNext() {
-            return next;
+        public Target(HierarchyController.GameObjectTarget next_) {
+            super(next_);
         }
     }
 }
