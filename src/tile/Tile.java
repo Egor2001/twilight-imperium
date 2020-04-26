@@ -2,19 +2,17 @@ package tile;
 
 import base.controller.HierarchyController;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Tile implements HierarchyController.UserAcceptable {
     public Tile()
     {
-        planets_ = new ArrayList<Planet>();
+        planets_ = new ArrayList<>();
         space_ = new Space();
     }
     public Tile(ArrayList<String> planet_names)
     {
-        planets_ = new ArrayList<Planet>();
+        planets_ = new ArrayList<>();
         space_ = new Space();
 
         for (String name: planet_names) {
@@ -29,7 +27,7 @@ public class Tile implements HierarchyController.UserAcceptable {
 
     ArrayList<TileObject> Object_neighbours(TileObject object) {
         if (object instanceof Space) {
-            ArrayList<TileObject> answer = new ArrayList<TileObject>();
+            ArrayList<TileObject> answer = new ArrayList<>();
 
             answer.addAll(0, planets_);
 
@@ -40,7 +38,7 @@ public class Tile implements HierarchyController.UserAcceptable {
             return answer;
         }
         else if (object instanceof Planet) {
-            ArrayList<TileObject> answer = new ArrayList<TileObject>();
+            ArrayList<TileObject> answer = new ArrayList<>();
             answer.add((TileObject)space_);
             return answer;
         }
