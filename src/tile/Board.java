@@ -1,42 +1,92 @@
 package tile;
 
 import base.controller.HierarchyController;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Board implements HierarchyController.UserAcceptable {
+    public Board(boolean r) {
+        ArrayList<Integer> tile_list = new ArrayList<Integer>();
 
-    private ArrayList<Tile> tiles_;
-    private ArrayList<ArrayList<Integer>> bonds_;
+        try (FileReader reader = new FileReader("BoardStructure/6players.json")) {
+            JSONTokener token = new JSONTokener(reader);
+            JSONObject object = new JSONObject(token);
 
-    public Board()
-    {
+            for (int i = 0; i < 37; i++) {
+                tile_list.add((int)object.get("tile" + i));
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        tiles_ = new ArrayList<Tile>();
+        bonds_ = new ArrayList<ArrayList<Integer>>();
+
+        for (int i = 0; i < tile_list.size(); ++i) {
+            tiles_.add(new Tile(tile_list.get(i), i, this));
+        }
+
+        for (int k = 0; k < 37; ++k) {
+            try (FileReader reader = new FileReader("Board/" + (k) + ".json")) {
+                JSONTokener token = new JSONTokener(reader);
+                JSONObject object = new JSONObject(token);
+
+                int sz = (int)object.get("neighbours_num");
+                ArrayList<Integer> list = new ArrayList<Integer>();
+
+                for (int i = 0; i < sz; i++) {
+                    list.add((int)object.get("neighbour" + i));
+                }
+                //list = (ArrayList<Integer>)object.get("neighbour");
+                bonds_.add(list);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    public Board() {
         tiles_ = new ArrayList<Tile>();
         bonds_ = new ArrayList<ArrayList<Integer>>();
     }
 
-    public void AddTile(Tile tile)
-    {
+    public void AddTile(Tile tile) {
         tiles_.add(tile);
         bonds_.add(new ArrayList<Integer>());
     }
 
-    public void AddBond(int i, int j)
-    {
+    public void AddBond(int i, int j) {
         bonds_.get(i).add(j);
         bonds_.get(j).add(i);
     }
+  
+    public ArrayList<Tile> tiles_;
+    public ArrayList<ArrayList<Integer>> bonds_;
 
+    void print() {
+
+    }
+    public ArrayList<Tile> MyNeighbours(int tile_index) {
+        ArrayList<Tile> answer = new ArrayList<Tile>();
+        for (int i: bonds_.get(tile_index)) {
+            answer.add(tiles_.get(i));
+        }
+
+        return answer;
+    }
+  
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
         return null;
     }
-
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
         return null;
     }
-
     @Override
     public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
         if (target == null)
