@@ -161,7 +161,6 @@ public class PhaseController {
             catch (Exception exception) {
                 System.out.print("ERROR OCCURED: ");
                 System.out.println(exception.getMessage());
-                exception.printStackTrace();
                 return false;
             }
 
