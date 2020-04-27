@@ -34,7 +34,7 @@ public class GameController {
         return gameState;
     }
 
-    public Boolean gameInit() {
+    public boolean gameInit() {
         Integer playersCnt = gameState.getPlayers().size();
 
         for (Integer playerIdx = 0; !playerIdx.equals(playersCnt); ++playerIdx) {
@@ -48,7 +48,7 @@ public class GameController {
         return true;
     }
 
-    public Boolean gameLoop() {
+    public boolean gameLoop() {
         for (Player player : gameState.getPlayers()) {
             strategyPhase(player);
         }
@@ -64,43 +64,30 @@ public class GameController {
         return true;
     }
 
-    protected Boolean strategyPhase(Player player) {
-        PlayerStrategyCommand command =
-                userInterface.requestStrategy(player);
-
+    protected boolean strategyPhase(Player player) {
+        PlayerStrategyCommand command = userInterface.requestStrategy(player);
         if (command == null) {
             return false;
         }
 
-        gameState.handleStrategyCommand(player, command);
-
-        return true;
+        return gameState.handleCommand(player, command);
     }
 
-    protected Boolean actionPhase(Player player) {
-        PlayerActionCommand command =
-                userInterface.requestAction(player);
-
+    protected boolean actionPhase(Player player) {
+        PlayerActionCommand command = userInterface.requestAction(player);
         if (command == null) {
             return false;
         }
 
-        //command.procCommand();
-        gameState.handleActionCommand(player, command);
-
-        return true;
+        return gameState.handleCommand(player, command);
     }
 
-    protected Boolean statusPhase(Player player) {
-        PlayerStatusCommand command =
-                userInterface.requestStatus(player);
-
+    protected boolean statusPhase(Player player) {
+        PlayerStatusCommand command = userInterface.requestStatus(player);
         if (command == null) {
             return false;
         }
 
-        gameState.handleStatusCommand(player, command);
-
-        return true;
+        return gameState.handleCommand(player, command);
     }
 }

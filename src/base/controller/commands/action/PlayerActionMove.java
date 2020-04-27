@@ -29,7 +29,7 @@ public class PlayerActionMove implements PlayerActionCommand {
     }
 
     @Override
-    public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
+    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
         try {
             printStream.println("enter ship target:");
             shipTarget = HierarchyController.parseTarget(inputScanner.next());

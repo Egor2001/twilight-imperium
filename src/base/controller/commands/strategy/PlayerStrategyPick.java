@@ -20,7 +20,7 @@ public class PlayerStrategyPick implements PlayerStrategyCommand {
     }
 
     @Override
-    public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
+    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
         try {
             printStream.println("enter strategy number:");
             strategyIdx = inputScanner.nextInt();

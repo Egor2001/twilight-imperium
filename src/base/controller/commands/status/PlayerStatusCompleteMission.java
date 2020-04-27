@@ -1,6 +1,5 @@
 package base.controller.commands.status;
 
-import base.controller.commands.status.PlayerStatusCommand;
 import base.model.GameState;
 import base.model.Player;
 
@@ -21,7 +20,7 @@ public class PlayerStatusCompleteMission implements PlayerStatusCommand {
     }
 
     @Override
-    public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
+    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
         try {
             printStream.println("enter mission number:");
             missionIdx = inputScanner.nextInt();

@@ -27,7 +27,7 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
     }
 
     @Override
-    public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
+    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
         try {
             printStream.println("enter ship name:");
             unitName = inputScanner.next();

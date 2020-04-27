@@ -26,7 +26,7 @@ public class local_main {
         ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
         list.add(HierarchyController.parseTarget("Tile.0.Space"));
 
-        gm.getGameState().handleActionCommand(players.get(0), new PlayerActionMove(tr, list));
+        gm.getGameState().handleCommand(players.get(0), new PlayerActionMove(tr, list));
         System.out.println(board.getView(null));
     }
 }

@@ -49,23 +49,8 @@ public class GameState implements Updatable {
         }
     }
 
-    public Boolean handleStrategyCommand(Player player, PlayerStrategyCommand command) {
-        return handleCommand(player, command);
-    }
-
-    public Boolean handleActionCommand(Player player, PlayerActionCommand command) {
-        return handleCommand(player, command);
-    }
-
-    public Boolean handleStatusCommand(Player player, PlayerStatusCommand command) {
-        return handleCommand(player, command);
-    }
-
-    protected Boolean handleCommand(Player player, PlayerCommand command) {
+    public boolean handleCommand(Player player, PlayerCommand command) {
         assert (command != null) : "command is null";
-
-        command.procCommand(this, player);
-
-        return true;
+        return command.procCommand(this, player);
     }
 }
