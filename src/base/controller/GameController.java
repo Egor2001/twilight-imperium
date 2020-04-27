@@ -1,5 +1,8 @@
 package base.controller;
 
+import base.controller.commands.action.PlayerActionCommand;
+import base.controller.commands.status.PlayerStatusCommand;
+import base.controller.commands.strategy.PlayerStrategyCommand;
 import base.model.Player;
 import base.model.GameState;
 
@@ -62,7 +65,7 @@ public class GameController {
     }
 
     protected Boolean strategyPhase(Player player) {
-        PhaseController.PlayerStrategyCommand command =
+        PlayerStrategyCommand command =
                 userInterface.requestStrategy(player);
 
         if (command == null) {
@@ -75,7 +78,7 @@ public class GameController {
     }
 
     protected Boolean actionPhase(Player player) {
-        PhaseController.PlayerActionCommand command =
+        PlayerActionCommand command =
                 userInterface.requestAction(player);
 
         if (command == null) {
@@ -89,7 +92,7 @@ public class GameController {
     }
 
     protected Boolean statusPhase(Player player) {
-        PhaseController.PlayerStatusCommand command =
+        PlayerStatusCommand command =
                 userInterface.requestStatus(player);
 
         if (command == null) {

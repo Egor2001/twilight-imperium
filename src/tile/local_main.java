@@ -1,23 +1,12 @@
 package tile;
 
-import ArmyUnits.FactoryUnit;
-import ArmyUnits.Ships.Flagship;
-import Races.Arborec;
-import Races.Race;
 import base.controller.GameController;
 import base.controller.HierarchyController;
 
-import base.controller.PhaseController;
-import base.model.GameState;
+import base.controller.commands.action.PlayerActionMove;
 import base.model.Player;
-import tile.Tile;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.security.spec.ECField;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class local_main {
     public static void main(String[] args) throws Exception {
@@ -37,7 +26,7 @@ public class local_main {
         ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
         list.add(HierarchyController.parseTarget("Tile.0.Space"));
 
-        gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
+        gm.getGameState().handleActionCommand(players.get(0), new PlayerActionMove(tr, list));
         System.out.println(board.getView(null));
     }
 }

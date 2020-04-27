@@ -1,6 +1,8 @@
 package base.controller;
 
-import base.model.Army;
+import base.controller.commands.action.PlayerActionCommand;
+import base.controller.commands.status.PlayerStatusCommand;
+import base.controller.commands.strategy.PlayerStrategyCommand;
 import base.model.Player;
 
 import java.io.*;
@@ -31,14 +33,14 @@ public class UserInterface {
         return null;
     }
 
-    public PhaseController.PlayerStrategyCommand requestStrategy(final Player player) {
+    public PlayerStrategyCommand requestStrategy(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("STRATEGY phase, player: ");
         printStream.println(player.getName());
 
         String cmdName = inputScanner.next();
-        PhaseController.PlayerStrategyCommand command = phaseController.getStrategyCommand(cmdName);
+        PlayerStrategyCommand command = phaseController.getStrategyCommand(cmdName);
         while (command == null) {
             printStream.println("Invalid strategy type. Try again.");
             cmdName = inputScanner.next();
@@ -53,14 +55,14 @@ public class UserInterface {
         return command;
     }
 
-    public PhaseController.PlayerActionCommand requestAction(final Player player) {
+    public PlayerActionCommand requestAction(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("ACTION phase, player: ");
         printStream.println(player.getName());
 
         String cmdName = inputScanner.next();
-        PhaseController.PlayerActionCommand command = phaseController.getActionCommand(cmdName);
+        PlayerActionCommand command = phaseController.getActionCommand(cmdName);
         while (command == null) {
             printStream.println("Invalid action type. Try again.");
             cmdName = inputScanner.next();
@@ -75,14 +77,14 @@ public class UserInterface {
         return command;
     }
 
-    public PhaseController.PlayerStatusCommand requestStatus(final Player player) {
+    public PlayerStatusCommand requestStatus(final Player player) {
         assert (player != null) : "player is null";
 
         printStream.print("STATUS phase, player: ");
         printStream.println(player.getName());
 
         String cmdName = inputScanner.next();
-        PhaseController.PlayerStatusCommand command = phaseController.getStatusCommand(cmdName);
+        PlayerStatusCommand command = phaseController.getStatusCommand(cmdName);
         while (command == null) {
             printStream.println("Invalid status type. Try again.");
             cmdName = inputScanner.next();

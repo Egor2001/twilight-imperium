@@ -1,7 +1,10 @@
 package base.model;
 
 import base.*;
-import base.controller.PhaseController;
+import base.controller.commands.action.PlayerActionCommand;
+import base.controller.commands.PlayerCommand;
+import base.controller.commands.status.PlayerStatusCommand;
+import base.controller.commands.strategy.PlayerStrategyCommand;
 import tile.Board;
 import tile.TileArmyController;
 
@@ -46,19 +49,19 @@ public class GameState implements Updatable {
         }
     }
 
-    public Boolean handleStrategyCommand(Player player, PhaseController.PlayerStrategyCommand command) {
+    public Boolean handleStrategyCommand(Player player, PlayerStrategyCommand command) {
         return handleCommand(player, command);
     }
 
-    public Boolean handleActionCommand(Player player, PhaseController.PlayerActionCommand command) {
+    public Boolean handleActionCommand(Player player, PlayerActionCommand command) {
         return handleCommand(player, command);
     }
 
-    public Boolean handleStatusCommand(Player player, PhaseController.PlayerStatusCommand command) {
+    public Boolean handleStatusCommand(Player player, PlayerStatusCommand command) {
         return handleCommand(player, command);
     }
 
-    protected Boolean handleCommand(Player player, PhaseController.PlayerCommand command) {
+    protected Boolean handleCommand(Player player, PlayerCommand command) {
         assert (command != null) : "command is null";
 
         command.procCommand(this, player);
