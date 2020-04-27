@@ -3,7 +3,7 @@ package tile;
 import base.controller.GameController;
 import base.controller.HierarchyController;
 
-import base.controller.commands.action.PlayerActionMove;
+import base.controller.phase.PlayerActionMove;
 import base.model.Player;
 
 import java.util.ArrayList;

@@ -1,10 +1,7 @@
 package base.model;
 
 import base.*;
-import base.controller.commands.action.PlayerActionCommand;
-import base.controller.commands.PlayerCommand;
-import base.controller.commands.status.PlayerStatusCommand;
-import base.controller.commands.strategy.PlayerStrategyCommand;
+import base.controller.PlayerCommand;
 import tile.Board;
 import tile.TileArmyController;
 
@@ -51,6 +48,6 @@ public class GameState implements Updatable {
 
     public boolean handleCommand(Player player, PlayerCommand command) {
         assert (command != null) : "command is null";
-        return command.procCommand(this, player);
+        return command.execute(this, player);
     }
 }

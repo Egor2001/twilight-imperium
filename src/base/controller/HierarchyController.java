@@ -1,10 +1,6 @@
 package base.controller;
 
 import ArmyUnits.GroundForce.GroundForce;
-import ArmyUnits.GroundForce.Infantry;
-import ArmyUnits.Ships.Carrier;
-import ArmyUnits.Ships.Cruiser;
-import ArmyUnits.Ships.Flagship;
 import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
@@ -13,7 +9,6 @@ import base.model.Player;
 import tile.*;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Writer;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;

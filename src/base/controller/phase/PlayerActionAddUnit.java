@@ -1,14 +1,11 @@
-package base.controller.commands.action;
+package base.controller.phase;
 
 import ArmyUnits.Unit;
 import base.controller.HierarchyController;
+import base.controller.CommandRequestable;
 import base.model.GameState;
 import base.model.Player;
 import tile.TileObject;
-
-import java.io.PrintStream;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class PlayerActionAddUnit implements PlayerActionCommand {
 
@@ -27,22 +24,15 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
     }
 
     @Override
-    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
-        try {
-            printStream.println("enter ship name:");
-            unitName = inputScanner.next();
-            printStream.println("enter destination space target:");
-            tileObjectTarget = HierarchyController.parseTarget(inputScanner.next());
-        } catch (InputMismatchException exception) {
-            printStream.flush();
-            return false;
-        }
+    public boolean inputCommand(CommandRequestable userInterface) {
+        unitName = userInterface.requestName("unit");
+        tileObjectTarget = userInterface.requestTarget("tile object");
 
         return true;
     }
 
     @Override
-    public boolean procCommand(GameState gameState, Player player) {
+    public boolean execute(GameState gameState, Player player) {
         System.out.println("processing ACTION command: ADD_SHIP");
 
         try {

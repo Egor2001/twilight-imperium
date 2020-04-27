@@ -1,4 +1,4 @@
-package base.controller.commands;
+package base.controller;
 
 import base.controller.HierarchyController.GameObjectTarget;
 

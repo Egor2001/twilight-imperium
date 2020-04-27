@@ -1,16 +1,14 @@
-package base.controller.commands.action;
+package base.controller.phase;
 
 import ArmyUnits.Ships.Ship;
 import base.controller.HierarchyController;
+import base.controller.CommandRequestable;
 import base.model.GameState;
 import base.model.Player;
 import tile.Board;
 import tile.TileObject;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class PlayerActionMove implements PlayerActionCommand {
 
@@ -29,26 +27,19 @@ public class PlayerActionMove implements PlayerActionCommand {
     }
 
     @Override
-    public boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
-        try {
-            printStream.println("enter ship target:");
-            shipTarget = HierarchyController.parseTarget(inputScanner.next());
-            printStream.println("enter path length:");
-            int pathLength = inputScanner.nextInt();
-            while (pathLength-- > 0) {
-                printStream.println("enter next space target:");
-                spaceTargetList.add(HierarchyController.parseTarget(inputScanner.next()));
-            }
-        } catch (InputMismatchException exception) {
-            printStream.flush();
-            return false;
+    public boolean inputCommand(CommandRequestable userInterface) {
+        shipTarget = userInterface.requestTarget("ship");
+        int pathLength = userInterface.requestNumber("path length");
+        while (pathLength-- > 0) {
+            HierarchyController.GameObjectTarget nextTarget = userInterface.requestTarget("next");
+            spaceTargetList.add(nextTarget);
         }
 
         return true;
     }
 
     @Override
-    public boolean procCommand(GameState gameState, Player player) {
+    public boolean execute(GameState gameState, Player player) {
         System.out.println("processing ACTION command: MOVE");
 
         try {

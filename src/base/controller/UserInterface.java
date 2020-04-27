@@ -1,101 +1,65 @@
 package base.controller;
 
-import base.controller.commands.action.PlayerActionCommand;
-import base.controller.commands.status.PlayerStatusCommand;
-import base.controller.commands.strategy.PlayerStrategyCommand;
-import base.model.Player;
-
 import java.io.*;
 import java.util.Scanner;
 
-public class UserInterface {
+public class UserInterface implements CommandRequestable {
 
-    private final InputStream inputStream = System.in;
-    private final PrintStream printStream = System.out;
-    private final Scanner inputScanner = new Scanner(inputStream);
+    private InputStream inputStream;
+    private PrintStream printStream;
+    private Scanner inputScanner;
 
-    private final PhaseController phaseController = new PhaseController();
-    private final HierarchyController hierarchyController = new HierarchyController();
-
-    public UserInterface() {
+    public UserInterface(InputStream inputStream, PrintStream printStream) {
+        this.inputStream = inputStream;
+        this.printStream = printStream;
+        this.inputScanner = new Scanner(this.inputStream);
     }
 
-    public Player requestNewPlayer() {
-        printStream.println("Welcome! insert your name and race:");
-        String name = inputScanner.nextLine();
-        printStream.println("insert your race:");
-        String race = inputScanner.nextLine();
+    @Override
+    public int requestNumber(String purpose) {
+        printStream.println("Input " + purpose + " number");
+        String input = inputScanner.next();
 
-        return new Player(name, race);
+        boolean isNumber = input.matches("\\d+");
+        while (!isNumber) {
+            printStream.println("Error: \"" + input + "\" is not a valid number");
+            input = inputScanner.next();
+            isNumber = input.matches("\\d+");
+        }
+
+        return Integer.decode(input);
     }
 
-    public HierarchyController.GameObjectTarget requestCommand() {
-        return null;
+    @Override
+    public String requestName(String purpose) {
+        printStream.println("Input " + purpose + " name");
+        String input = inputScanner.next();
+
+        boolean isName = input.matches("[-\\w]+");
+        while (!isName) {
+            printStream.println("Error: \"" + input + "\" is not a valid name");
+            input = inputScanner.next();
+            isName = input.matches("[-\\w]+");
+        }
+
+        return input;
     }
 
-    public PlayerStrategyCommand requestStrategy(final Player player) {
-        assert (player != null) : "player is null";
+    @Override
+    public HierarchyController.GameObjectTarget requestTarget(String purpose) {
+        printStream.println("Input " + purpose + " target");
+        String input = inputScanner.next();
 
-        printStream.print("STRATEGY phase, player: ");
-        printStream.println(player.getName());
-
-        String cmdName = inputScanner.next();
-        PlayerStrategyCommand command = phaseController.getStrategyCommand(cmdName);
-        while (command == null) {
-            printStream.println("Invalid strategy type. Try again.");
-            cmdName = inputScanner.next();
-            command = phaseController.getStrategyCommand(cmdName);
+        HierarchyController.GameObjectTarget target = null;
+        while (target == null) {
+            try {
+                target = HierarchyController.parseTarget(input);
+            } catch (IllegalArgumentException exception) {
+                printStream.println("Error: \"" + input + "\" is not a valid target");
+                target = null;
+            }
         }
 
-        while (!command.inputCommand(printStream, inputScanner)) {
-            printStream.println("Invalid input. Try again.");
-            printStream.flush();
-        }
-
-        return command;
-    }
-
-    public PlayerActionCommand requestAction(final Player player) {
-        assert (player != null) : "player is null";
-
-        printStream.print("ACTION phase, player: ");
-        printStream.println(player.getName());
-
-        String cmdName = inputScanner.next();
-        PlayerActionCommand command = phaseController.getActionCommand(cmdName);
-        while (command == null) {
-            printStream.println("Invalid action type. Try again.");
-            cmdName = inputScanner.next();
-            command = phaseController.getActionCommand(cmdName);
-        }
-
-        while (!command.inputCommand(printStream, inputScanner)) {
-            printStream.println("Invalid input. Try again.");
-            printStream.flush();
-        }
-
-        return command;
-    }
-
-    public PlayerStatusCommand requestStatus(final Player player) {
-        assert (player != null) : "player is null";
-
-        printStream.print("STATUS phase, player: ");
-        printStream.println(player.getName());
-
-        String cmdName = inputScanner.next();
-        PlayerStatusCommand command = phaseController.getStatusCommand(cmdName);
-        while (command == null) {
-            printStream.println("Invalid status type. Try again.");
-            cmdName = inputScanner.next();
-            command = phaseController.getStatusCommand(cmdName);
-        }
-
-        while (!command.inputCommand(printStream, inputScanner)) {
-            printStream.println("Invalid input. Try again.");
-            printStream.flush();
-        }
-
-        return command;
+        return target;
     }
 }
