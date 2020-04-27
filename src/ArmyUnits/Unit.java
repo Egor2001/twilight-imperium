@@ -49,6 +49,10 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
         return null;
     }
 
+    public Race getRace() {
+        return race;
+    }
+
     public abstract void printInfo(Writer writer) throws IOException;
 
     public abstract boolean canFightInSpace();
