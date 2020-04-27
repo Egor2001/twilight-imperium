@@ -46,18 +46,19 @@ public class GameController {
     }
 
     public Boolean gameLoop() {
+/*
         for (Player player : gameState.getPlayers()) {
             strategyPhase(player);
         }
-
+*/
         for (Player player : gameState.getPlayers()) {
             actionPhase(player);
         }
-
+/*
         for (Player player : gameState.getPlayers()) {
             statusPhase(player);
         }
-
+*/
         return true;
     }
 
