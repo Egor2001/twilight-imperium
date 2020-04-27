@@ -3,6 +3,9 @@ package tile;
 import ArmyUnits.Ships.Ship;
 import base.controller.HierarchyController;
 
+import java.io.IOException;
+import java.io.Writer;
+
 public class Space extends TileObject{
     public Space(Tile my_tile) {
         super(my_tile);
@@ -18,7 +21,7 @@ public class Space extends TileObject{
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
-        return null;
+        return this.new View();
     }
 
     @Override
@@ -37,6 +40,29 @@ public class Space extends TileObject{
             throw new Exception("Space has no child");
         }
     }
+
+    public class View implements HierarchyController.Viewable{
+        View(){};
+        @Override
+        public String toString() {
+            return new String(toString(""));
+        }
+
+        public String toString(String string) {
+            return new String(string + "space{}");
+        }
+
+        //@Override
+        public String to_String(String start) {
+            return new String(start + toString());
+        }
+
+        @Override
+        public void display(Writer writer) throws IOException {
+
+        }
+    };
+
 
 
     public static class Target extends HierarchyController.GameObjectTarget{

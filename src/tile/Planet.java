@@ -36,7 +36,6 @@ public class Planet extends TileObject {
     public void print() {
         print("");
     }
-
     public void print(String s) {
         System.out.println(s + "planet{" + Name + " " + Type + " " + Resource + " " + Influence + " " + Tech + "}");
     }
@@ -44,14 +43,12 @@ public class Planet extends TileObject {
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
-        return null;
+        return this.new View();
     }
-
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
         return null;
     }
-
     @Override
     public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
         if (target == null)
@@ -63,6 +60,24 @@ public class Planet extends TileObject {
             throw new Exception("Planet has no child");
         }
     }
+
+    public class View implements HierarchyController.Viewable{
+        View(){};
+        @Override
+        public String toString() {
+            return new String("planet{" + Name + " " + Type + " " + Resource + " " + Influence + " " + Tech + "}");
+        }
+
+        //@Override
+        public String to_String(String start) {
+            return new String(start + toString());
+        }
+
+        @Override
+        public void display(Writer writer) throws IOException {
+
+        }
+    };
 
     public static class Target extends HierarchyController.GameObjectTarget{
         private int index_;
@@ -90,10 +105,10 @@ public class Planet extends TileObject {
         }
     }
 
-    class View implements HierarchyController.Viewable {
+    /*class View implements HierarchyController.Viewable {
         @Override
         public void display(Writer writer) throws IOException {
             //print();
         }
-    }
+    }*/
 }
