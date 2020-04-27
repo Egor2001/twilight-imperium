@@ -10,7 +10,8 @@ import java.io.Writer;
 import base.controller.HierarchyController;
 
 public class Planet extends TileObject {
-    public Planet(String planet_name) {
+    public Planet(String planet_name, Tile my_tile) {
+        super(my_tile);
         try (FileReader reader = new FileReader("basePlanets/" + planet_name + ".json")) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);

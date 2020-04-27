@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Tile implements HierarchyController.UserAcceptable {
     public Tile(int num, int game_num, Board board)  {
         planets_ = new ArrayList<>();
-        space_ = new Space();
+        space_ = new Space(this);
         LoadTile(num);
         num_ = game_num;
         board_ = board;
@@ -20,10 +20,10 @@ public class Tile implements HierarchyController.UserAcceptable {
 
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
-        space_ = new Space();
+        space_ = new Space(this);
 
         for (String name: planet_names) {
-            planets_.add(new Planet(name));
+            planets_.add(new Planet(name, this));
         }
     }
 
@@ -58,7 +58,7 @@ public class Tile implements HierarchyController.UserAcceptable {
     public ArrayList<Planet> GetPlanets(){ return planets_;}
 
     private ArrayList<Planet> planets_;
-    private Space space_;
+    public Space space_;
     private int num_;
     private Board board_;
 
@@ -71,7 +71,7 @@ public class Tile implements HierarchyController.UserAcceptable {
             ArrayList<Integer> list = new ArrayList<Integer>();
 
             for (int i = 0; i < sz; i++) {
-                planets_.add(new Planet((String) object.get("planet" + i)));
+                planets_.add(new Planet((String) object.get("planet" + i), this));
             }
 
         } catch (Exception ex) {
