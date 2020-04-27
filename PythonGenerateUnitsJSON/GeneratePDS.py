@@ -2,16 +2,22 @@ import json
 
 d = dict()
 
-race_names = {1: 'Race1', 2: 'Race2', 3: 'Race3', 4: 'Race4', 5: 'Race5',
-              6: 'Race1', 7: 'Race2', 8: 'Race3', 9: 'Race4', 10: 'Race5',
-              11: 'Race1', 12: 'Race2', 13: 'Race3', 14: 'Race4', 15: 'Race5',
-              16: 'Race1', 17: 'Race2', 18: 'Race3', 19: 'Race4', 20: 'Race5'}
+race_names = {1: 'Arborec', 2: 'Naalu_Collective',
+              3: 'Barony_of_Letnev', 4: 'Nekro_Virus',
+              5: 'Clan_of_Saar', 6: "Sardakk_N'orr",
+              7: 'Embers_of_Muaat', 8: 'Universities_of_Jol-Nar',
+              9: 'Emirates_of_Hacan', 10: 'Winnu',
+              11: 'Federation_of_Sol', 12: 'Xxcha_Kingdom',
+              13: 'Ghosts_of_Creuss', 14: 'Yin_Brotherhood',
+              15: 'L1Z1X_Mindnet', 16: 'Yssaril_Tribes',
+              17: 'Mentak_Coalition'}
 
 race_name = race_names[1]
 
-d['spaceCannonDiceValue'] = 7
-d['spaceCannonNumDices'] = 3
+d['spaceCannonDiceValue'] = 6
+d['spaceCannonNumDices'] = 1
 d['planetaryShield'] = False
 
-with open('baseUnits/' + 'PDS' + race_name + '.json', "w") as file:
-    json.dump(d, file, indent=4)
+for race_name in race_names.values():
+    with open('baseUnits/' + 'PDS' + race_name + '.json', "w") as file:
+        json.dump(d, file, indent=4)

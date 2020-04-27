@@ -1,36 +1,94 @@
 package tile;
-import base.model.Army;
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Unit;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TileArmyController {
-    private <K, V> K getKey(Map<K, V> map, V value) {
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (entry.getValue().equals(value)) {
-                return entry.getKey();
+    public TileArmyController()  {
+        unitList = new ArrayList<Unit>();
+        tileObjectsList = new ArrayList<TileObject>();
+    }
+
+    private ArrayList<Unit> unitList;
+    private ArrayList<TileObject> tileObjectsList;
+
+    public TileObject getTileObject(Unit unit) {
+        return tileObjectsList.get(unitList.indexOf(unit));
+    }
+
+    public ArrayList<Unit> getUnit(TileObject tileObject) {
+        ArrayList<Unit> units = new ArrayList<>();
+
+        for (int i = 0; i < tileObjectsList.size(); ++i) {
+            if (tileObject == tileObjectsList.get(i)) {
+                units.add(unitList.get(i));
             }
         }
 
-        return null;
+        return units;
     }
 
-    private Map<TileObject, Army> dictionary; //= new HashMap<TileObject,Army>();
-
-    Army GetArmy(TileObject tile_object) {
-        return dictionary.get(tile_object);
+    public void add(Unit unit, TileObject tileObject) {
+        unitList.add(unit);
+        tileObjectsList.add(tileObject);
     }
 
-    TileObject GetTileObject(Army army) {
-        return getKey(dictionary, army);
+    public void move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+        if (way.size() < 2) {
+            throw new IllegalArgumentException("In move: way length is less then 2\n");
+        }
+        way.add(0, getTileObject(ship));
+
+        int sizeWay = way.size();
+
+        if (ship.getMoveValue() < sizeWay - 1) {
+            throw new IllegalArgumentException("In move: way is too long\n");
+        }
+
+        if (ship.getCapacityValue() < units.size()) {
+            throw new IllegalArgumentException("In move: ship can't carry all this units\n");
+        }
+
+        if (!checkWay(way)) {
+            throw new IllegalArgumentException("In move: way is discontinuous\n");
+        }
+
+        for (int i = 1; i < sizeWay - 1; ++i) {
+            if (!((Space)way.get(i)).could_fly_throw(ship)) {
+                throw new IllegalArgumentException("In move: ship couldn't fly throw all this spaces\n");
+            }
+        }
+
+        if (!((Space)way.get(sizeWay - 1)).could_end_flight_in(ship)) {
+            throw new IllegalArgumentException("In move: ship can't enter final destination\n");
+        }
+
+        remove(ship);
+        add(ship, way.get(sizeWay - 1));
+        for (Unit unit: units) {
+            remove(unit);
+            add(unit, way.get(sizeWay));
+        }
     }
 
-    void Connect(TileObject tileObject, Army army) {
-        dictionary.put(tileObject, army);
+
+    public void move(Ship ship, ArrayList<TileObject> way) {
+        move(ship, new ArrayList<>(), way);
     }
 
-    void Disconnect(TileObject tileObject, Army army) {
-        dictionary.remove(tileObject);
+    public void remove(Unit unit) {
+        int i = unitList.indexOf(unit);
+        tileObjectsList.remove(i);
+        unitList.remove(i);
+    }
+
+    public boolean checkWay(ArrayList<TileObject> way) {
+        for (int i = 0; i < way.size() - 1; ++i) {
+            if (!way.get(i).My_neighbours().contains(way.get(i + 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

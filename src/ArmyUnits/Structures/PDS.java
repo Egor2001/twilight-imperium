@@ -1,6 +1,11 @@
 package ArmyUnits.Structures;
 
+import ArmyUnits.Unit;
+import base.controller.HierarchyController;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.Writer;
 
 public class PDS implements Structure {
     private int spaceCannonDiceValue = 10;
@@ -33,7 +38,40 @@ public class PDS implements Structure {
     }
 
     @Override
+    public boolean canFightInSpace() {
+        return false;
+    }
+
+    @Override
     public void update() {
 
+    }
+
+    public static class Target extends HierarchyController.GameObjectTarget {
+        public Target() {
+            super();
+        }
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
+        }
+        public Target(int index) {
+            super(index);
+        }
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next, index);
+        }
+    }
+
+    @Override
+    public void printInfo(Writer writer) throws IOException {
+        if (spaceCannonNumDices > 0) {
+            writer.write("Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n");
+        }
+        writer.write("Planetary Shield ");
+        if (planetaryShield) {
+            writer.write("on\n");
+        } else {
+            writer.write("off\n");
+        }
     }
 }
