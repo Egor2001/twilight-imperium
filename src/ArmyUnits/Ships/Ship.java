@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.io.Writer;
 
 public abstract class Ship extends Unit {
-    private int moveValue = 0;
-    private int capacityValue = 0;
+    private int moveValue;
+    private int capacityValue;
     private int combatValue;
+    private int combatNumDices = 1;
     private int cost;
+    private int costNumUnits = 1;
 
     private boolean canSustainDamaged = false;
     private boolean damaged = false;
@@ -33,9 +35,15 @@ public abstract class Ship extends Unit {
     public int getCost() {
         return cost;
     }
+    public int getCostNumUnits() {
+        return costNumUnits;
+    }
 
     public boolean canHit(int diceValue) {
         return diceValue >= combatValue;
+    }
+    public int getCombatNumDices() {
+        return combatNumDices;
     }
 
     public boolean isDamaged() {
@@ -99,8 +107,14 @@ public abstract class Ship extends Unit {
     public void setCombatValue(int newCombatValue) {
         combatValue = newCombatValue;
     }
+    public void setCombatNumDices(int newCombatNumDices) {
+        combatNumDices = newCombatNumDices;
+    }
     public void setCost(int newCost) {
         cost = newCost;
+    }
+    public void setCostNumUnits(int newCostNumUnits) {
+        costNumUnits = newCostNumUnits;
     }
 
     public void setCanSustainDamaged(boolean canDamaged) {
@@ -125,7 +139,9 @@ public abstract class Ship extends Unit {
         moveValue = (int) object.get("moveValue");
         capacityValue = (int) object.get("capacityValue");
         combatValue = (int) object.get("combatValue");
+        combatNumDices = (int) object.get("combatNumDices");
         cost = (int) object.get("cost");
+        costNumUnits = (int) object.get("costNumUnits");
 
         canSustainDamaged = (boolean) object.get("canSustainDamaged");
         damaged = (boolean) object.get("damaged");
@@ -149,8 +165,19 @@ public abstract class Ship extends Unit {
 
     @Override
     public String getInfo(String start) {
-        StringBuilder result = new StringBuilder(start + "Cost: " + cost + "\n" +
-                start + "Combat: " + combatValue + "\n" + start + "Move: " + moveValue + "\n");
+        StringBuilder result = new StringBuilder(start + "Cost: " + cost);
+        if (costNumUnits > 1) {
+            result.append(" (x").append(costNumUnits).append(")");
+        }
+        result.append("\n");
+
+        result.append(start).append("Combat: ").append(combatValue);
+        if (combatNumDices > 1) {
+            result.append(" (x").append(combatNumDices).append(")");
+        }
+        result.append("\n");
+
+        result.append(start).append("Move: ").append(moveValue).append("\n");
 
         if (capacityValue > 0) {
             result.append(start).append("Capacity: ").append(capacityValue).append("\n");
