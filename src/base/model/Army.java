@@ -63,7 +63,7 @@ public class Army implements Updatable, UserAcceptable {
         }
     }
 
-    public static class View implements Viewable {
+    public class View implements Viewable {
         ArrayList<Viewable> shipsView;
         ArrayList<Viewable> groundForcesView;
         ArrayList<Viewable> pdsView;
@@ -78,24 +78,34 @@ public class Army implements Updatable, UserAcceptable {
 
         @Override
         public void display(Writer writer) throws IOException {
-            writer.write("List army (" + this.toString() + ") units:\n");
-
-            Print(writer, shipsView);
-            Print(writer, groundForcesView);
-            Print(writer, pdsView);
-            Print(writer, spaceDocksView);
+            writer.write(toString());
         }
 
-        @Override
-        public String toString(String s) {
-            return null;
+        public String toString(String start) {
+            String[] className = this.getClass().getName().split("\\.");
+            StringBuilder result = new StringBuilder(
+                    start + "List army (" + className[className.length - 2] + "." + className[className.length - 1] + ") have" +
+                    (shipsView.size() + groundForcesView.size() + pdsView.size() + spaceDocksView.size()) + "units:\n");
+
+            result.append(print(shipsView, start));
+            result.append(print(groundForcesView, start));
+            result.append(print(pdsView, start));
+            result.append(print(spaceDocksView, start));
+            result.deleteCharAt(result.length() - 1);
+
+            return result.toString();
+        }
+        public String toString() {
+            return toString("");
         }
 
-        private void Print(Writer writer, ArrayList<Viewable> unitView) throws IOException {
+        private String print(ArrayList<Viewable> unitView, String start) {
+            StringBuilder result = new StringBuilder();
             for (int i = 0; i < unitView.size(); ++i) {
-                unitView.get(i).display(writer);
-                writer.write("." + i + "\n");
+                result.append(unitView.get(i).toString(start + "    ")).append(".").append(i).append("\n");
             }
+
+            return result.toString();
         }
     }
 

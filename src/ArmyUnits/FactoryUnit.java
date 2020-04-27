@@ -4,64 +4,65 @@ import ArmyUnits.GroundForce.Infantry;
 import ArmyUnits.Ships.*;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
+import Races.Race;
 
 public class FactoryUnit {
-    String race;
+    String nameRace;
 
     public FactoryUnit(String race) {
-        this.race = race;
+        this.nameRace = race;
     }
 
-    public Flagship createFlagship() {
-        Flagship create = new Flagship();
-        create.setAllFromJSONFile(race);
+    public Flagship createFlagship(Race race) {
+        Flagship create = new Flagship(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public WarSun createWarSun() {
-        WarSun create = new WarSun();
-        create.setAllFromJSONFile(race);
+    public WarSun createWarSun(Race race) {
+        WarSun create = new WarSun(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public Carrier createCarrier() {
-        Carrier create = new Carrier();
-        create.setAllFromJSONFile(race);
+    public Carrier createCarrier(Race race) {
+        Carrier create = new Carrier(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public Cruiser createCruiser() {
-        Cruiser create = new Cruiser();
-        create.setAllFromJSONFile(race);
+    public Cruiser createCruiser(Race race) {
+        Cruiser create = new Cruiser(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public Destroyer createDestroyer() {
-        Destroyer create = new Destroyer();
-        create.setAllFromJSONFile(race);
+    public Destroyer createDestroyer(Race race) {
+        Destroyer create = new Destroyer(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public Dreadnought createDreadnought() {
-        Dreadnought create = new Dreadnought();
-        create.setAllFromJSONFile(race);
+    public Dreadnought createDreadnought(Race race) {
+        Dreadnought create = new Dreadnought(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public Fighter createFighter() {
-        Fighter create = new Fighter();
-        create.setAllFromJSONFile(race);
-        return create;
-    }
-
-    public Infantry createInfantry() {
-        Infantry create = new Infantry();
-        create.setAllFromJSONFile(race);
+    public Fighter createFighter(Race race) {
+        Fighter create = new Fighter(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
 
-    public PDS createPDS() {
-        PDS create = new PDS();
-        create.setAllFromJSONFile(race);
+    public Infantry createInfantry(Race race) {
+        Infantry create = new Infantry(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
-    public SpaceDock createSpaceDock() {
-        SpaceDock create = new SpaceDock();
-        create.setAllFromJSONFile(race);
+
+    public PDS createPDS(Race race) {
+        PDS create = new PDS(race);
+        create.setAllFromJSONFile(nameRace);
+        return create;
+    }
+    public SpaceDock createSpaceDock(Race race) {
+        SpaceDock create = new SpaceDock(race);
+        create.setAllFromJSONFile(nameRace);
         return create;
     }
 }

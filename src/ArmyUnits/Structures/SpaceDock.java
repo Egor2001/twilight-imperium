@@ -1,13 +1,14 @@
 package ArmyUnits.Structures;
 
 import ArmyUnits.Unit;
+import Races.Race;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class SpaceDock implements Structure {
+public class SpaceDock extends Structure {
     private boolean blockaded = false;
     private int productValue;
     private boolean canFightSpace;
@@ -41,6 +42,10 @@ public class SpaceDock implements Structure {
     @Override
     public void update() {
 
+    }
+
+    public SpaceDock(Race race) {
+        super(race);
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {

@@ -181,9 +181,6 @@ public class Main {
         FactoryUnit SFR = new FactoryUnit("Race1");
         PrintWriter writer = new PrintWriter(System.out);
 
-        arm.addShip(SFR.createFlagship());
-        arm.addShip(SFR.createFlagship());
-        arm.addPDS(SFR.createPDS());
         try {
             arm.getView(null, target.getNext()).display(writer);
         }
@@ -207,7 +204,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        testArmy();
+        //testArmy();
         testTarget();
 
         GameController gameController = GameController.getInstance();

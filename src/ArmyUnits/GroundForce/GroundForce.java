@@ -2,13 +2,14 @@ package ArmyUnits.GroundForce;
 
 import ArmyUnits.Unit;
 
+import Races.Race;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public abstract class GroundForce implements Unit {
+public abstract class GroundForce extends Unit {
     private int combatValue;
     private int cost;
     private boolean canFightSpace;
@@ -42,6 +43,10 @@ public abstract class GroundForce implements Unit {
     @Override
     public void update() {
 
+    }
+
+    public GroundForce(Race race) {
+        super(race);
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {

@@ -16,6 +16,7 @@ race_name = race_names[1]
 
 d['blockaded'] = False
 d['productValue'] = 0
+d['canFightSpace'] = False
 
 for race_name in race_names.values():
     with open('baseUnits/' + 'SpaceDock' + race_name + '.json', "w") as file:

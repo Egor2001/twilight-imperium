@@ -51,12 +51,11 @@ public class Space extends TileObject{
             StringBuilder answer = new StringBuilder(string + "space{\n");
 
             ArrayList<Unit> units = GetObjectUnits();
-
             answer.append(string).append("    ").append(units.size()).append("\n");
 
-            //for (Unit unit: units) {
-            //    answer.append(unit.getView(null).toString(string + "    "));
-            //}
+            for (Unit unit: units) {
+                answer.append(unit.getView(null).toString(string + "    ")).append("\n");
+            }
 
             answer.append(string).append("}");
             return answer.toString();
@@ -69,7 +68,7 @@ public class Space extends TileObject{
         public void display(Writer writer) throws IOException {
 
         }
-    };
+    }
 
     public static class Target extends HierarchyController.GameObjectTarget{
         public Target() {
@@ -80,4 +79,4 @@ public class Space extends TileObject{
             super(next);
         }
     }
-};
+}
