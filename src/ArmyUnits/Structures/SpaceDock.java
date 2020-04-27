@@ -64,11 +64,13 @@ public class SpaceDock extends Structure {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Product value: " + productValue + "\n");
+    public String getInfo(String start) {
+        String result = start + "Product value: " + productValue;
 
         if (blockaded) {
-            writer.write("Blockaded\n");
+            result += ", but blockaded";
         }
+
+        return result;
     }
 }

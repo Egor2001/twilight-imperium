@@ -65,8 +65,12 @@ public abstract class GroundForce extends Unit {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Cost: " + cost + "\n");
-        writer.write("Combat: " + combatValue + "\n");
+    public String getInfo(String start) {
+        String result = "";
+
+        result += start + "Cost: " + cost + "\n";
+        result += start + "Combat: " + combatValue;
+
+        return result;
     }
 }
