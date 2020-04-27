@@ -1,5 +1,13 @@
 package base.controller;
 
+import ArmyUnits.Ships.Ship;
+import ArmyUnits.Unit;
+import base.model.GameState;
+import base.model.Player;
+import tile.Board;
+import tile.Space;
+import tile.TileObject;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +26,7 @@ public class PhaseController {
 
         actionCommandHashMap = new HashMap<>();
         actionCommandHashMap.put("move", new PlayerActionMove());
-        actionCommandHashMap.put("add-ship", new PlayerActionAddShip());
+        actionCommandHashMap.put("add-unit", new PlayerActionAddUnit());
 
         statusCommandHashMap = new HashMap<>();
         statusCommandHashMap.put("complete-mission", new CPlayerStatusCompleteMission());
@@ -38,7 +46,7 @@ public class PhaseController {
 
     public interface PlayerCommand {
         Boolean inputCommand(PrintStream printStream, Scanner inputScanner);
-        void procCommand();
+        boolean procCommand(GameState gameState, Player player);
     }
 
     public interface PlayerStrategyCommand extends PlayerCommand {
@@ -50,29 +58,29 @@ public class PhaseController {
     public interface PlayerStatusCommand extends PlayerCommand {
     }
 
-    public static class PlayerActionAddShip implements PlayerActionCommand {
+    public static class PlayerActionAddUnit implements PlayerActionCommand {
 
-        public String shipName = null;
-        public HierarchyController.GameObjectTarget spaceTarget = null;
+        public String unitName = null;
+        public HierarchyController.GameObjectTarget tileObjectTarget = null;
 
-        public PlayerActionAddShip() {
-            this.shipName = null;
-            this.spaceTarget = null;
+        public PlayerActionAddUnit() {
+            this.unitName = null;
+            this.tileObjectTarget = null;
         }
 
-        public PlayerActionAddShip(String shipName,
-                                   HierarchyController.GameObjectTarget spaceTarget) {
-            this.shipName = shipName;
-            this.spaceTarget = spaceTarget;
+        public PlayerActionAddUnit(String unitName,
+                                   HierarchyController.GameObjectTarget tileObjectTarget) {
+            this.unitName = unitName;
+            this.tileObjectTarget = tileObjectTarget;
         }
 
         @Override
         public Boolean inputCommand(PrintStream printStream, Scanner inputScanner) {
             try {
                 printStream.println("enter ship name:");
-                shipName = inputScanner.next();
+                unitName = inputScanner.next();
                 printStream.println("enter destination space target:");
-                spaceTarget = HierarchyController.parseTarget(inputScanner.next());
+                tileObjectTarget = HierarchyController.parseTarget(inputScanner.next());
             } catch (InputMismatchException exception) {
                 printStream.flush();
                 return false;
@@ -82,8 +90,21 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing ACTION command: ADD_SHIP");
+
+            try {
+                TileObject tileObject = (TileObject) gameState.getBoard().getObject(tileObjectTarget);
+                Unit unit = player.addUnit(unitName);
+
+                gameState.getTileArmyController().add(unit, tileObject);
+            }
+            catch (Exception exception) {
+                System.out.println(exception.getMessage());
+                return false;
+            }
+
+            return true;
         }
     }
 
@@ -123,8 +144,26 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing ACTION command: MOVE");
+
+            try {
+                Ship ship = (Ship) player.getObject(shipTarget);
+                ArrayList<TileObject> tileObjectList = new ArrayList<>();
+
+                Board board = gameState.getBoard();
+                for (HierarchyController.GameObjectTarget tileObjectTarget : spaceTargetList) {
+                    tileObjectList.add((TileObject) board.getObject(tileObjectTarget));
+                }
+
+                gameState.getTileArmyController().move(ship, tileObjectList);
+            }
+            catch (Exception exception) {
+                System.out.println(exception.getMessage());
+                return false;
+            }
+
+            return true;
         }
     }
 
@@ -145,7 +184,8 @@ public class PhaseController {
             try {
                 printStream.println("enter strategy number:");
                 strategyIdx = inputScanner.nextInt();
-            } catch (InputMismatchException exception) {
+            }
+            catch (InputMismatchException exception) {
                 printStream.flush();
                 return false;
             }
@@ -154,8 +194,9 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing STRATEGY command: PICK");
+            return true;
         }
     }
 
@@ -176,7 +217,8 @@ public class PhaseController {
             try {
                 printStream.println("enter mission number:");
                 missionIdx = inputScanner.nextInt();
-            } catch (InputMismatchException exception) {
+            }
+            catch (InputMismatchException exception) {
                 printStream.flush();
                 return false;
             }
@@ -185,8 +227,9 @@ public class PhaseController {
         }
 
         @Override
-        public void procCommand() {
+        public boolean procCommand(GameState gameState, Player player) {
             System.out.println("processing STATUS command: COMPLETE-MISSION");
+            return true;
         }
     }
 }

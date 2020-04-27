@@ -19,10 +19,12 @@ public class UserInterface {
     }
 
     public Player requestNewPlayer() {
-        printStream.println("Welcome! insert your name:");
+        printStream.println("Welcome! insert your name and race:");
         String name = inputScanner.nextLine();
+        printStream.println("insert your race:");
+        String race = inputScanner.nextLine();
 
-        return new Player(name, new Army());
+        return new Player(name, race);
     }
 
     public HierarchyController.GameObjectTarget requestCommand() {

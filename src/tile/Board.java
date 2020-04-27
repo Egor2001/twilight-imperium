@@ -64,7 +64,7 @@ public class Board implements HierarchyController.UserAcceptable {
         bonds_.get(i).add(j);
         bonds_.get(j).add(i);
     }
-
+  
     public ArrayList<Tile> tiles_;
     public ArrayList<ArrayList<Integer>> bonds_;
 
@@ -79,7 +79,7 @@ public class Board implements HierarchyController.UserAcceptable {
 
         return answer;
     }
-
+  
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
         return null;
