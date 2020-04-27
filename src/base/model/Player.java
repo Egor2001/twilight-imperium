@@ -33,18 +33,22 @@ public class Player implements Updatable, UserAcceptable {
             case "PDS":
                 PDS pds = race.addPDS();
                 army.addPDS(pds);
+                pds.setArmy(army);
                 return pds;
             case "SpaceDock":
                 SpaceDock spaceDock = race.addSpaceDock();
                 army.addSpaceDock(spaceDock);
+                spaceDock.setArmy(army);
                 return spaceDock;
             case "Infantry":
                 GroundForce groundForce = race.addInfantry();
                 army.addGroundForce(groundForce);
+                groundForce.setArmy(army);
                 return groundForce;
             default:
                 Ship ship = race.addShip(name);
                 army.addShip(ship);
+                ship.setArmy(army);
                 return ship;
         }
     }

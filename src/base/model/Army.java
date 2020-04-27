@@ -4,8 +4,8 @@ import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.GroundForce.GroundForce;
+import ArmyUnits.Unit;
 import base.Updatable;
-import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
@@ -131,7 +131,6 @@ public class Army implements Updatable, UserAcceptable {
 
         return new View(shipsView, groundForcesView, pdsView, spaceDocksView);
     }
-
     @Override
     public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
@@ -191,6 +190,19 @@ public class Army implements Updatable, UserAcceptable {
         groundForcesList = new ArrayList<>();
         pdsList = new ArrayList<>();
         spaceDocksList = new ArrayList<>();
+    }
+    public int getIndexUnit(Unit unit) {
+        if (unit instanceof Ship) {
+            return shipsList.indexOf(unit);
+        } else if (unit instanceof GroundForce) {
+            return groundForcesList.indexOf(unit);
+        } else if (unit instanceof PDS) {
+            return pdsList.indexOf(unit);
+        } else if (unit instanceof SpaceDock) {
+            return spaceDocksList.indexOf(unit);
+        } else {
+            return -1;
+        }
     }
 
     @Override
