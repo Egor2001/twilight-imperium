@@ -13,7 +13,7 @@ public class Tile implements HierarchyController.UserAcceptable {
     public Tile(int num)  {
         planets_ = new ArrayList<>();
         space_ = new Space();
-        num_ = num;
+        LoadTile(num);
     }
 
     public Tile()  {
@@ -62,26 +62,22 @@ public class Tile implements HierarchyController.UserAcceptable {
     private ArrayList<Tile> neighbours_;
     private int num_;
 
-    public ArrayList<Integer> LoadTile(int num)  {
-        try (FileReader reader = new FileReader("Board/" + (num) + ".json")) {
+    public void LoadTile(int num)  {
+        try (FileReader reader = new FileReader("baseTiles/tile" + (num) + ".json")) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 
-            num_ = (int)object.get("index");
-            int sz = (int)object.get("neighbours_num");
+            num_ = num;
+            int sz = (int)object.get("planets_num");
             ArrayList<Integer> list = new ArrayList<Integer>();
 
             for (int i = 0; i < sz; i++) {
-                list.add((int)object.get("neighbour" + i));
+                planets_.add(new Planet((String) object.get("planet" + i)));
             }
-            //list = (ArrayList<Integer>)object.get("neighbour");
-            return list;
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        return null;
     }
 
     @Override

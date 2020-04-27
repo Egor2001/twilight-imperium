@@ -27,9 +27,9 @@ public class local_main {
         Board.Target tg = new Board.Target(new Tile.Target(new Planet.Target(1), 1));
 
         ((Planet) board.getObject(tg.getNext())).print();*/
-        ArrayList<Integer> x = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+        ArrayList<Integer> x = new ArrayList<Integer>(Arrays.asList(2, 7, 4, 5));
 
-        Board board = new Board(x);
+        Board board = new Board(true);
 
         System.out.println(board.tiles_.size());
         System.out.println(board.bonds_.size());
