@@ -41,9 +41,12 @@ public class Board implements HierarchyController.UserAcceptable {
                 ArrayList<Integer> list = new ArrayList<Integer>();
 
                 for (int i = 0; i < sz; i++) {
-                    list.add((int)object.get("neighbour" + i));
+                    int x = (int)object.get("neighbour" + i);
+                    if (x < size_)
+                        list.add(x);
                 }
                 //list = (ArrayList<Integer>)object.get("neighbour");
+
                 bonds_.add(list);
 
             } catch (Exception ex) {
