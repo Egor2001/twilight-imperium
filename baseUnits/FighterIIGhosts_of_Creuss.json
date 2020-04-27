@@ -1,14 +1,16 @@
 {
+    "cost": 1,
+    "costNumUnits": 2,
+    "combatValue": 8,
+    "combatNumDices": 1,
     "moveValue": 2,
     "capacityValue": 0,
-    "combatValue": 8,
-    "cost": 1,
     "canSustainDamaged": false,
     "damaged": false,
-    "spaceCannonDiceValue": 10,
+    "spaceCannonDiceValue": 11,
     "spaceCannonNumDices": 0,
-    "bombardmentDiceValue": 10,
+    "bombardmentDiceValue": 11,
     "bombardmentNumDices": 0,
-    "antiFighterBarrageDiceValue": 10,
+    "antiFighterBarrageDiceValue": 11,
     "antiFighterBarrageNumDices": 0
 }
