@@ -33,7 +33,7 @@ public class Main {
                 super();
             }
 
-            public Target(Child.Target childTarget) {
+            public Target(GameObjectTarget childTarget) {
                 super(childTarget);
             }
         }

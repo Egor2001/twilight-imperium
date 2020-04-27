@@ -61,23 +61,20 @@ public class HierarchyController {
                     throw new IllegalArgumentException("no game object named " + strArr[i]);
                 }
 
-                Constructor<?>[] constructorsArr = newTargetClass.getConstructors();
-                for (Constructor<?> constructor : constructorsArr) {
-                    try {
-                        if (index != null) {
-                            target = (GameObjectTarget) constructor.newInstance(target, index);
-                        }
-                        else {
-                            target = (GameObjectTarget) constructor.newInstance(target);
-                        }
-                    } catch (Exception error) {
-                        continue;
-                    }
-
-                    break;
+                Constructor<? extends GameObjectTarget> constructor = null;
+                try {
+                    constructor = (index == null ?
+                            newTargetClass.getConstructor(GameObjectTarget.class) :
+                            newTargetClass.getConstructor(GameObjectTarget.class, int.class));
+                } catch (Exception error) {
+                    throw new IllegalArgumentException("no specified constructor for " + strArr[i]);
                 }
 
-                if (target == null) {
+                try {
+                    target = (GameObjectTarget) (index == null ?
+                            constructor.newInstance(target) :
+                            constructor.newInstance(target, index));
+                } catch (Exception error) {
                     throw new IllegalArgumentException("can' t create specified target for " + strArr[i]);
                 }
 

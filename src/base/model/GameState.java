@@ -21,7 +21,7 @@ public class GameState implements Updatable {
         this.tileArmyController = new TileArmyController();
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
-            players.add(new Player("", "Race1"));
+            players.add(null);
         }
     }
 
