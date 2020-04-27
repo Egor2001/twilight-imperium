@@ -27,7 +27,9 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
 
         public String toString(String start) {
             String[] className = this.unit.getClass().getName().split("\\.");
-            return start + "My name is " + className[className.length - 2] + "." + className[className.length - 1];
+            String[] classNameRace = this.unit.getRace().getClass().getName().split("\\.");
+            return start + className[className.length - 2] + "." + className[className.length - 1] + " (" +
+                    classNameRace[classNameRace.length - 1] + ")";
         }
         public String toString() {
             return toString("");

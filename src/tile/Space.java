@@ -52,8 +52,6 @@ public class Space extends TileObject{
 
             ArrayList<Unit> units = GetObjectUnits();
 
-            answer.append(string).append("    ").append(units.size()).append("\n");
-
             for (Unit unit: units) {
                 answer.append(unit.getView(null).toString(string + "    ")).append("\n");
             }
