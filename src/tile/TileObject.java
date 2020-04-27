@@ -6,7 +6,8 @@ import base.model.Player;
 import java.util.ArrayList;
 
 public class TileObject implements HierarchyController.UserAcceptable{
-    TileObject () {
+    TileObject (Tile my_tile_) {
+        my_tile = my_tile_;
     }
 
     public void Invade() {}
@@ -45,10 +46,22 @@ public class TileObject implements HierarchyController.UserAcceptable{
         }
     }
 
-    static class Target extends HierarchyController.GameObjectTarget{
+    public static class Target extends HierarchyController.GameObjectTarget{
 
-        public HierarchyController.GameObjectTarget getNext() {
-            return null;
+        public Target() {
+            super();
+        }
+
+        public Target(int index) {
+            super(index);
+        }
+
+        public Target(HierarchyController.GameObjectTarget next) {
+            super(next);
+        }
+
+        public Target(HierarchyController.GameObjectTarget next, int index) {
+            super(next, index);
         }
     }
 }

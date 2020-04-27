@@ -1,25 +1,34 @@
 package tile;
 
 import base.controller.HierarchyController;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import javax.print.DocFlavor;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
-    public Tile()  {
+    public Tile(int num, int game_num, Board board)  {
         planets_ = new ArrayList<>();
-        space_ = new Space();
+        space_ = new Space(this);
+        LoadTile(num);
+        num_ = game_num;
+        board_ = board;
     }
+
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
-        space_ = new Space();
+        space_ = new Space(this);
 
         for (String name: planet_names) {
-            planets_.add(new Planet(name));
+            planets_.add(new Planet(name, this));
         }
     }
 
     ArrayList<Tile> Tile_neighbours() {
-        return neighbours_;
+        return board_.MyNeighbours(num_);
     }
 
     ArrayList<TileObject> Object_neighbours(TileObject object) {
@@ -27,6 +36,8 @@ public class Tile implements HierarchyController.UserAcceptable {
             ArrayList<TileObject> answer = new ArrayList<>();
 
             answer.addAll(0, planets_);
+
+            ArrayList<Tile> neighbours_ = Tile_neighbours();
 
             for (int i = 0; i < neighbours_.size(); ++i)  {
                 answer.add((TileObject)((neighbours_.get(i)).space_));
@@ -47,8 +58,26 @@ public class Tile implements HierarchyController.UserAcceptable {
     public ArrayList<Planet> GetPlanets(){ return planets_;}
 
     private ArrayList<Planet> planets_;
-    private Space space_;
-    private ArrayList<Tile> neighbours_;
+    public Space space_;
+    private int num_;
+    private Board board_;
+
+    public void LoadTile(int num)  {
+        try (FileReader reader = new FileReader("baseTiles/tile" + (num) + ".json")) {
+            JSONTokener token = new JSONTokener(reader);
+            JSONObject object = new JSONObject(token);
+
+            int sz = (int)object.get("planets_num");
+            ArrayList<Integer> list = new ArrayList<Integer>();
+
+            for (int i = 0; i < sz; i++) {
+                planets_.add(new Planet((String) object.get("planet" + i), this));
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
@@ -71,16 +100,13 @@ public class Tile implements HierarchyController.UserAcceptable {
             if (target instanceof Planet.Target)
             {
                 return planets_.get(((Planet.Target) target).getIndex()).getObject(target.getNext());
-            } else
+            } else if (target instanceof Space.Target)
             {
-                if (target instanceof Space.Target)
-                {
-                    return space_.getObject(target.getNext());
-                } else{
-                    throw new Exception("Wrong target request");
-                }
+                return space_;
             }
         }
+
+        return null;
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
@@ -114,8 +140,7 @@ public class Tile implements HierarchyController.UserAcceptable {
         print("");
     }
 
-    public void print(String spaces)
-    {
+    public void print(String spaces) {
         System.out.println(spaces + "tile {");
 
         for (Planet planet: planets_)

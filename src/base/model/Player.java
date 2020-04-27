@@ -5,7 +5,7 @@ import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.Unit;
-import Races.Race;
+import Races.*;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
@@ -22,7 +22,7 @@ public class Player implements Updatable, UserAcceptable {
         this.name = name;
         this.army = new Army();
         try {
-            this.race = (Race) Class.forName(race).getConstructor().newInstance();
+            this.race = (Race) Class.forName("Races." + race).getConstructor().newInstance();
         } catch (Exception e) {
             throw new IllegalArgumentException("Race invalid: " + race);
         }
@@ -57,36 +57,53 @@ public class Player implements Updatable, UserAcceptable {
         return army;
     }
 
+    public final Race getRace() {
+        return race;
+    }
+
     public static class Target extends GameObjectTarget {
-        Target() {
+        public Target() {
             super();
         }
 
-        Target(Army.Target ArmyTarget) {
-            super(ArmyTarget);
+        public Target(int index) {
+            super(index);
+        }
+
+        public Target(GameObjectTarget next) {
+            super(next);
+        }
+
+        public Target(GameObjectTarget next, int index) {
+            super(next, index);
         }
     }
 
-    public static class View implements Viewable {
-        Viewable armyView;
-        String name;
+    public class View implements Viewable {
+        Player player;
 
-        View(Viewable armyView, String name) {
-            this.armyView = armyView;
+        View(Player player) {
+            this.player = player;
         }
 
         @Override
         public void display(Writer writer) throws IOException {
-            writer.write("My name is " + name + " and I have army:\n");
-            if (armyView != null) {
-                armyView.display(writer);
-            }
+            writer.write(toString());
+        }
+
+        public String toString() {
+            String result = "My name is " + name + "\n";
+
+            result += player.getRace().getView(player).toString() + "\n";
+            result += player.getArmy().getView(player).toString();
+
+            return result;
         }
     }
 
     @Override
     public Viewable getView(UserAcceptable parent) {
-        return new View(army.getView(this), name);
+        return new View(this);
     }
 
     @Override

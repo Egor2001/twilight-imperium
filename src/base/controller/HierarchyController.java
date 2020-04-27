@@ -10,6 +10,7 @@ import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import base.model.Army;
 import base.model.Player;
+import tile.*;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -27,6 +28,13 @@ public class HierarchyController {
         targetMap.put("parent", base.Main.Parent.Target.class);
         targetMap.put("child", base.Main.Child.Target.class);
 
+        targetMap.put("Board", Board.Target.class);
+        targetMap.put("Tile", Tile.Target.class);
+        targetMap.put("TileObject", TileObject.Target.class);
+        targetMap.put("Space", Space.Target.class);
+        targetMap.put("Planet", Planet.Target.class);
+
+        targetMap.put("Player", Player.Target.class);
         targetMap.put("Army", Army.Target.class);
         targetMap.put("Ship", Ship.Target.class);
         targetMap.put("GroundForce", GroundForce.Target.class);

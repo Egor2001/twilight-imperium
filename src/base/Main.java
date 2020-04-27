@@ -7,10 +7,15 @@ import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
 import base.model.Army;
 import base.model.Player;
+import tile.Board;
+import tile.Planet;
+import tile.Tile;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -191,13 +196,11 @@ public class Main {
     public static void main(String[] args) {
         //testArmy();
         testTarget();
-/*
-        ShipFactoryRace1 F1 = new ShipFactoryRace1();
-        Flagship Flagship1 = F1.createFlagship();
-        System.out.print(Flagship1.getCost());
-*/
+
         GameController gameController = GameController.getInstance();
+
         gameController.gameInit();
+        gameController.gameLoop();
         gameController.gameLoop();
     }
 }

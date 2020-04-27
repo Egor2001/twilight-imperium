@@ -14,7 +14,7 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
         this.race = race;
     }
 
-    class View implements Viewable {
+    public class View implements Viewable {
         Unit unit;
         View(Unit unit) {
             this.unit = unit;
@@ -22,8 +22,15 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
 
         @Override
         public void display(Writer writer) throws IOException {
+            writer.write(toString());
+        }
+
+        public String toString(String start) {
             String[] className = this.unit.getClass().getName().split("\\.");
-            writer.write("My name is " + className[className.length - 2] + "." + className[className.length - 1]);
+            return start + "My name is " + className[className.length - 2] + "." + className[className.length - 1];
+        }
+        public String toString() {
+            return toString("");
         }
     }
 

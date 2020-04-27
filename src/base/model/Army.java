@@ -63,7 +63,7 @@ public class Army implements Updatable, UserAcceptable {
         }
     }
 
-    public static class View implements Viewable {
+    public class View implements Viewable {
         ArrayList<Viewable> shipsView;
         ArrayList<Viewable> groundForcesView;
         ArrayList<Viewable> pdsView;
@@ -78,19 +78,32 @@ public class Army implements Updatable, UserAcceptable {
 
         @Override
         public void display(Writer writer) throws IOException {
-            writer.write("List army (" + this.toString() + ") units:\n");
-
-            Print(writer, shipsView);
-            Print(writer, groundForcesView);
-            Print(writer, pdsView);
-            Print(writer, spaceDocksView);
+            writer.write(toString());
         }
 
-        private void Print(Writer writer, ArrayList<Viewable> unitView) throws IOException {
+        public String toString(String start) {
+            String[] className = this.getClass().getName().split("\\.");
+            StringBuilder result = new StringBuilder(
+                    "List army (" + className[className.length - 2] + "." + className[className.length - 1] + ") have" +
+                    (shipsView.size() + groundForcesView.size() + pdsView.size() + spaceDocksView.size()) + "units:\n");
+
+            result.append(print(shipsView));
+            result.append(print(groundForcesView));
+            result.append(print(pdsView));
+            result.append(print(spaceDocksView));
+            result.deleteCharAt(result.)
+
+            return result.toString();
+        }
+
+        private String print(ArrayList<Viewable> unitView, String start) {
+            StringBuilder result = new StringBuilder();
+
             for (int i = 0; i < unitView.size(); ++i) {
-                unitView.get(i).display(writer);
-                writer.write("." + i + "\n");
+                result.append(unitView.get(i).toString()).append(".").append(i).append("\n");
             }
+
+            return result.toString();
         }
     }
 
