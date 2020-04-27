@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class Board implements HierarchyController.UserAcceptable {
@@ -77,7 +79,7 @@ public class Board implements HierarchyController.UserAcceptable {
   
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
-        return null;
+        return this.new View();
     }
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
@@ -100,6 +102,31 @@ public class Board implements HierarchyController.UserAcceptable {
             }
         }
     }
+
+    public class View implements HierarchyController.Viewable{
+        @Override
+        public String toString() {
+            return toString("");
+            //return new String("planet{" + Name + " " + Type + " " + Resource + " " + Influence + " " + Tech + "}");
+        }
+
+        public String toString(String start) {
+            StringBuilder answer = new StringBuilder(new String(start + "Board {\n"));
+
+            for (Tile tile: tiles_)
+                answer.append(tile.new View().toString(start + "    ")).append("\n");
+
+            answer.append(start).append("}");
+
+            return answer.toString();
+        }
+
+        @Override
+        public void display(Writer writer) throws IOException {
+
+        }
+    };
+
 
     public static class Target extends HierarchyController.GameObjectTarget{
         public Target() {
