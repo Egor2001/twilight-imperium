@@ -18,10 +18,6 @@ public class Tile implements HierarchyController.UserAcceptable {
         board_ = board;
     }
 
-    //public Tile()  {
-    //    new Tile(-1);
-    //}
-
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
         space_ = new Space();
@@ -106,14 +102,11 @@ public class Tile implements HierarchyController.UserAcceptable {
                 return planets_.get(((Planet.Target) target).getIndex()).getObject(target.getNext());
             } else if (target instanceof Space.Target)
             {
-                if (target instanceof Space.Target)
-                {
-                    return space_;
-                } else{
-                    throw new Exception("Wrong target request");
-                }
+                return space_;
             }
         }
+
+        return null;
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
