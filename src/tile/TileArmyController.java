@@ -35,10 +35,10 @@ public class TileArmyController {
     }
 
     public void move(Ship ship, ArrayList<Unit> units, ArrayList<TileObject> way) {
+        way.add(0, getTileObject(ship));
         if (way.size() < 2) {
             throw new IllegalArgumentException("In move: way length is less then 2\n");
         }
-        way.add(0, getTileObject(ship));
 
         int sizeWay = way.size();
 

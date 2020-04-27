@@ -202,14 +202,6 @@ public class Main {
 
         GameController gameController = GameController.getInstance();
 
-        Tile tile1 = new Tile(new ArrayList<String>(Arrays.asList("Abyz", "Arinam", "Arnor")));
-        Tile tile2 = new Tile(new ArrayList<String>(Arrays.asList("Lodor", "Meer")));
-
-        //gameController.getGameState().getBoard().AddTile(tile1);
-        //gameController.getGameState().getBoard().AddTile(tile2);
-
-        //gameController.getGameState().getBoard().AddBond(0, 1);
-
         gameController.gameInit();
         gameController.gameLoop();
         gameController.gameLoop();
