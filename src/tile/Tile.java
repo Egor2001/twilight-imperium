@@ -146,7 +146,7 @@ public class Tile implements HierarchyController.UserAcceptable {
         }
 
         public String toString(String start) {
-            StringBuilder answer = new StringBuilder(new String(start + "Tile: {\n" + start + "    num = " + num_ + ";  pl_n = " + planets_.size() + "\n"));
+            StringBuilder answer = new StringBuilder(new String(start + "Tile: " + num_ + " {\n"));
 
             for (Planet plane: planets_)
                 answer.append(plane.new View().to_String(start + "    ")).append("\n");
