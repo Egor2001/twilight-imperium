@@ -67,8 +67,8 @@ class SimpleMove extends TestCase {
             ArrayList<Player> players = gm.getGameState().getPlayers();
             players.add(new Player("Igor", "Arborec"));
 
-            controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(2).space_);
-            controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(1).space_);
+            controller.add(players.get(0).addUnit("Destroyer"), board.tiles_.get(2).space_);
+            controller.add(players.get(0).addUnit("Destroyer"), board.tiles_.get(1).space_);
             controller.add(players.get(0).addUnit("Destroyer"), board.tiles_.get(1).space_);
 
             //System.out.println(board.getView(null));
