@@ -21,8 +21,10 @@ public class UserInterface {
     public Player requestNewPlayer() {
         printStream.println("Welcome! insert your name:");
         String name = inputScanner.nextLine();
+        printStream.println("insert your race:");
+        String race = inputScanner.nextLine();
 
-        return new Player(name, new Army());
+        return new Player(name, race);
     }
 
     public IPlayerStrategyCommand requestStrategy(final Player player) {

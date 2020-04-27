@@ -19,11 +19,6 @@ public class Player implements Updatable, UserAcceptable {
     private Army army;
     private FactoryUnit raceFactory;
 
-    public Player(String name, Army army) {
-        this.name = name;
-        this.army = army;
-        this.raceFactory = new FactoryUnit("Race1");
-    }
     public Player(String name, String race) {
         this.name = name;
         this.army = new Army();
