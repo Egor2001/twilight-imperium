@@ -26,7 +26,7 @@ public class local_main {
         TileArmyController controller = gm.getGameState().getController();
         Board board = gm.getGameState().getBoard();
         ArrayList<Player> players = gm.getGameState().getPlayers();
-        players.add(new Player("Igor", "Arborec"));
+        players.add(new Player("Igor", "Winnu"));
 
         controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(2).space_);
         controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(1).space_);
