@@ -45,10 +45,12 @@ public class Planet extends TileObject {
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
         return this.new View();
     }
+
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
         return null;
     }
+
     @Override
     public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
         if (target == null)
