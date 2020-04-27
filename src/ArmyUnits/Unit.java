@@ -3,15 +3,32 @@ package ArmyUnits;
 import Races.Race;
 import base.Updatable;
 import base.controller.HierarchyController.*;
+import base.model.Army;
 
 import java.io.IOException;
 import java.io.Writer;
 
 public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable {
     private Race race;
+    private Army army;
 
     public Unit(Race race) {
         this.race = race;
+        this.army = null;
+    }
+
+    public void setArmy(Army army) {
+        this.army = army;
+    }
+    public Army getArmy() {
+        return army;
+    }
+
+    public int getIndex() {
+        return army.getIndexUnit(this);
+    }
+    public Race getRace() {
+        return race;
     }
 
     public class View implements Viewable {
@@ -28,8 +45,13 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
         public String toString(String start) {
             String[] className = this.unit.getClass().getName().split("\\.");
             String[] classNameRace = this.unit.getRace().getClass().getName().split("\\.");
-            return start + className[className.length - 2] + "." + className[className.length - 1] + " (" +
-                    classNameRace[classNameRace.length - 1] + ")";
+
+            String result = start + className[className.length - 1] + " (" + classNameRace[classNameRace.length - 1] + ")";
+            if (army != null) {
+                result += " #" + getIndex();
+            }
+
+            return result;
         }
         public String toString() {
             return toString("");
@@ -56,10 +78,6 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
         }
 
         return null;
-    }
-
-    public Race getRace() {
-        return race;
     }
 
     public abstract void printInfo(Writer writer) throws IOException;
