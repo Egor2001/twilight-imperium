@@ -148,28 +148,37 @@ public abstract class Ship extends Unit {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Cost: " + cost + "\n");
-        writer.write("Combat: " + combatValue + "\n");
-        writer.write("Move: " + moveValue + "\n");
+    public String getInfo(String start) {
+        StringBuilder result = new StringBuilder(start + "Cost: " + cost + "\n" +
+                start + "Combat: " + combatValue + "\n" + start + "Move: " + moveValue + "\n");
+
         if (capacityValue > 0) {
-            writer.write("Capacity: " + capacityValue + "\n");
+            result.append(start).append("Capacity: ").append(capacityValue).append("\n");
         }
+
         if (canSustainDamaged) {
-            writer.write("It can sustain damage and now it is");
+            result.append(start).append("It can sustain damage and now it is");
             if (!damaged) {
-                writer.write("n't");
+                result.append("n't");
             }
-            writer.write(" damaged\n");
+            result.append(" damaged\n");
         }
+
         if (bombardmentNumDices > 0) {
-            writer.write("Bombardment: " + bombardmentNumDices + "(x" + bombardmentNumDices + ")\n");
+            result.append(start).append("Bombardment: ").append(bombardmentNumDices).append("(x").append(bombardmentNumDices).append(")\n");
         }
+
         if (spaceCannonNumDices > 0) {
-            writer.write("Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n");
+            result.append(start).append("Space Cannon: ").append(spaceCannonDiceValue).append("(x").append(spaceCannonNumDices).append(")\n");
         }
+
         if (antiFighterBarrageNumDices > 0) {
-            writer.write("Anti-fighter barrage: " + antiFighterBarrageDiceValue + "(x" + antiFighterBarrageNumDices + ")\n");
+            result.append(start).append("Anti-fighter barrage: ").append(antiFighterBarrageDiceValue).
+                    append("(x").append(antiFighterBarrageNumDices).append(")\n");
         }
+
+        result.deleteCharAt(result.length() - 1);
+
+        return result.toString();
     }
 }
