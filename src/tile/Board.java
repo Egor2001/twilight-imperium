@@ -26,8 +26,8 @@ public class Board implements HierarchyController.UserAcceptable {
         tiles_ = new ArrayList<Tile>();
         bonds_ = new ArrayList<ArrayList<Integer>>();
 
-        for (int index: tile_list) {
-            tiles_.add(new Tile(index));
+        for (int i = 0; i < tile_list.size(); ++i) {
+            tiles_.add(new Tile(tile_list.get(i), i, this));
         }
 
         for (int k = 0; k < 37; ++k) {
@@ -50,20 +50,17 @@ public class Board implements HierarchyController.UserAcceptable {
         }
     }
 
-    public Board()
-    {
+    public Board() {
         tiles_ = new ArrayList<Tile>();
         bonds_ = new ArrayList<ArrayList<Integer>>();
     }
 
-    public void AddTile(Tile tile)
-    {
+    public void AddTile(Tile tile) {
         tiles_.add(tile);
         bonds_.add(new ArrayList<Integer>());
     }
 
-    public void AddBond(int i, int j)
-    {
+    public void AddBond(int i, int j) {
         bonds_.get(i).add(j);
         bonds_.get(j).add(i);
     }
@@ -73,6 +70,14 @@ public class Board implements HierarchyController.UserAcceptable {
 
     void print() {
 
+    }
+    public ArrayList<Tile> MyNeighbours(int tile_index) {
+        ArrayList<Tile> answer = new ArrayList<Tile>();
+        for (int i: bonds_.get(tile_index)) {
+            answer.add(tiles_.get(i));
+        }
+
+        return answer;
     }
 
     @Override

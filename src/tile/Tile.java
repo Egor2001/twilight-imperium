@@ -10,15 +10,17 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
-    public Tile(int num)  {
+    public Tile(int num, int game_num, Board board)  {
         planets_ = new ArrayList<>();
         space_ = new Space();
         LoadTile(num);
+        num_ = game_num;
+        board_ = board;
     }
 
-    public Tile()  {
-        new Tile(-1);
-    }
+    //public Tile()  {
+    //    new Tile(-1);
+    //}
 
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
@@ -30,7 +32,7 @@ public class Tile implements HierarchyController.UserAcceptable {
     }
 
     ArrayList<Tile> Tile_neighbours() {
-        return neighbours_;
+        return board_.MyNeighbours(num_);
     }
 
     ArrayList<TileObject> Object_neighbours(TileObject object) {
@@ -38,6 +40,8 @@ public class Tile implements HierarchyController.UserAcceptable {
             ArrayList<TileObject> answer = new ArrayList<>();
 
             answer.addAll(0, planets_);
+
+            ArrayList<Tile> neighbours_ = Tile_neighbours();
 
             for (int i = 0; i < neighbours_.size(); ++i)  {
                 answer.add((TileObject)((neighbours_.get(i)).space_));
@@ -59,15 +63,14 @@ public class Tile implements HierarchyController.UserAcceptable {
 
     private ArrayList<Planet> planets_;
     private Space space_;
-    private ArrayList<Tile> neighbours_;
     private int num_;
+    private Board board_;
 
     public void LoadTile(int num)  {
         try (FileReader reader = new FileReader("baseTiles/tile" + (num) + ".json")) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 
-            num_ = num;
             int sz = (int)object.get("planets_num");
             ArrayList<Integer> list = new ArrayList<Integer>();
 
@@ -141,8 +144,7 @@ public class Tile implements HierarchyController.UserAcceptable {
         print("");
     }
 
-    public void print(String spaces)
-    {
+    public void print(String spaces) {
         System.out.println(spaces + "tile {");
 
         for (Planet planet: planets_)
