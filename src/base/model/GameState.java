@@ -16,9 +16,9 @@ public class GameState implements Updatable {
     private TileArmyController tileArmyController;
 
     public GameState() {
-        this.board = new Board(true);
         this.players = new ArrayList<Player>(6);
         this.tileArmyController = new TileArmyController();
+        this.board = new Board(this.tileArmyController);
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
             players.add(new Player("", "Race1"));

@@ -84,23 +84,25 @@ public class Army implements Updatable, UserAcceptable {
         public String toString(String start) {
             String[] className = this.getClass().getName().split("\\.");
             StringBuilder result = new StringBuilder(
-                    "List army (" + className[className.length - 2] + "." + className[className.length - 1] + ") have" +
+                    start + "List army (" + className[className.length - 2] + "." + className[className.length - 1] + ") have" +
                     (shipsView.size() + groundForcesView.size() + pdsView.size() + spaceDocksView.size()) + "units:\n");
 
-            result.append(print(shipsView));
-            result.append(print(groundForcesView));
-            result.append(print(pdsView));
-            result.append(print(spaceDocksView));
-            result.deleteCharAt(result.)
+            result.append(print(shipsView, start));
+            result.append(print(groundForcesView, start));
+            result.append(print(pdsView, start));
+            result.append(print(spaceDocksView, start));
+            result.deleteCharAt(result.length() - 1);
 
             return result.toString();
+        }
+        public String toString() {
+            return toString("");
         }
 
         private String print(ArrayList<Viewable> unitView, String start) {
             StringBuilder result = new StringBuilder();
-
             for (int i = 0; i < unitView.size(); ++i) {
-                result.append(unitView.get(i).toString()).append(".").append(i).append("\n");
+                result.append(unitView.get(i).toString(start + "    ")).append(".").append(i).append("\n");
             }
 
             return result.toString();

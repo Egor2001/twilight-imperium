@@ -52,11 +52,9 @@ public class Player implements Updatable, UserAcceptable {
     public final String getName() {
         return name;
     }
-
     public final Army getArmy() {
         return army;
     }
-
     public final Race getRace() {
         return race;
     }
@@ -91,13 +89,17 @@ public class Player implements Updatable, UserAcceptable {
             writer.write(toString());
         }
 
-        public String toString() {
-            String result = "My name is " + name + "\n";
+        @Override
+        public String toString(String start) {
+            String result = start + "My name is " + name + "\n";
 
-            result += player.getRace().getView(player).toString() + "\n";
-            result += player.getArmy().getView(player).toString();
+            result += player.getRace().getView(player).toString(start + "    ") + "\n";
+            result += player.getArmy().getView(player).toString(start + "    ");
 
             return result;
+        }
+        public String toString() {
+            return toString("");
         }
     }
 

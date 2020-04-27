@@ -53,6 +53,11 @@ public class Main {
                 }
             }
 
+            @Override
+            public String toString(String s) {
+                return null;
+            }
+
             Viewable childView;
         }
 
@@ -109,6 +114,11 @@ public class Main {
             @Override
             public void display(Writer writer) throws IOException {
                 writer.write("Hello from child " + Child.this.toString() + "!\n");
+            }
+
+            @Override
+            public String toString(String s) {
+                return null;
             }
         }
 

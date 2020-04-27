@@ -1,5 +1,6 @@
 package tile;
 
+import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -7,6 +8,8 @@ import org.json.JSONTokener;
 
 import javax.print.DocFlavor;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class Tile implements HierarchyController.UserAcceptable {
@@ -17,7 +20,6 @@ public class Tile implements HierarchyController.UserAcceptable {
         num_ = game_num;
         board_ = board;
     }
-
     public Tile(ArrayList<String> planet_names) {
         planets_ = new ArrayList<>();
         space_ = new Space(this);
@@ -30,7 +32,6 @@ public class Tile implements HierarchyController.UserAcceptable {
     ArrayList<Tile> Tile_neighbours() {
         return board_.MyNeighbours(num_);
     }
-
     ArrayList<TileObject> Object_neighbours(TileObject object) {
         if (object instanceof Space) {
             ArrayList<TileObject> answer = new ArrayList<>();
@@ -78,10 +79,13 @@ public class Tile implements HierarchyController.UserAcceptable {
             ex.printStackTrace();
         }
     }
+    public ArrayList<Unit> GetObjectUnits(TileObject object) {
+        return board_.GetObjectUnits(object);
+    }
 
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
-        return null;
+        return this.new View();
     }
 
     @Override
@@ -134,6 +138,30 @@ public class Tile implements HierarchyController.UserAcceptable {
             return index_;
         }
     }
+
+    public class View implements HierarchyController.Viewable{
+        @Override
+        public String toString() {
+            return toString("");
+        }
+
+        public String toString(String start) {
+            StringBuilder answer = new StringBuilder(new String(start + "Tile: {\n" + start + "    num = " + num_ + ";  pl_n = " + planets_.size() + "\n"));
+
+            for (Planet plane: planets_)
+                answer.append(plane.new View().to_String(start + "    ")).append("\n");
+
+            answer.append(space_.new View().toString(start + "    ")).append("\n");
+            answer.append(start).append("}");
+
+            return answer.toString();
+        }
+
+        @Override
+        public void display(Writer writer) throws IOException {
+
+        }
+    };
 
     public void print()
     {

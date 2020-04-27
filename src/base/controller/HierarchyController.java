@@ -92,6 +92,9 @@ public class HierarchyController {
 
     public interface Viewable {
         void display(Writer writer) throws IOException;
+
+        String toString();
+        String toString(String s);
     }
 
     public interface UserAcceptable {
