@@ -28,6 +28,7 @@ public class GameState implements Updatable {
     public Board getBoard() {
         return board;
     }
+    public TileArmyController getController() { return tileArmyController; }
 
     public ArrayList<Player> getPlayers() {
         return players;
