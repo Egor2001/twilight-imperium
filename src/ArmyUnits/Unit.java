@@ -80,7 +80,13 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
         return null;
     }
 
-    public abstract void printInfo(Writer writer) throws IOException;
+    public void printInfo(Writer writer) throws IOException {
+        writer.write(getInfo(""));
+    }
+    public String getInfo() {
+        return getInfo("");
+    }
+    public abstract String getInfo(String start);
 
     public abstract boolean canFightInSpace();
 }

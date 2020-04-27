@@ -68,15 +68,20 @@ public class PDS extends Structure {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
+    public String getInfo(String start)  {
+        String result = "";
+
         if (spaceCannonNumDices > 0) {
-            writer.write("Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n");
+            result += start + "Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n";
         }
-        writer.write("Planetary Shield ");
+
+        result += start + "Planetary Shield ";
         if (planetaryShield) {
-            writer.write("on\n");
+            result += "on";
         } else {
-            writer.write("off\n");
+            result += "off";
         }
+
+        return result;
     }
 }

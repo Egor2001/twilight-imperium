@@ -2,6 +2,7 @@ package tile;
 
 import ArmyUnits.FactoryUnit;
 import ArmyUnits.Ships.Flagship;
+import ArmyUnits.Unit;
 import Races.Arborec;
 import Races.Race;
 import base.controller.GameController;
@@ -25,7 +26,7 @@ public class local_main {
         TileArmyController controller = gm.getGameState().getController();
         Board board = gm.getGameState().getBoard();
         ArrayList<Player> players = gm.getGameState().getPlayers();
-        players.set(0, new Player("Igor", "Arborec"));
+        players.add(new Player("Igor", "Arborec"));
 
         controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(2).space_);
         controller.add(players.get(0).addUnit("Carrier"), board.tiles_.get(1).space_);
@@ -39,5 +40,8 @@ public class local_main {
 
         gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
         System.out.println(board.getView(null));
+
+        HierarchyController.GameObjectTarget tr2 = HierarchyController.parseTarget("Army.Ship.2");
+        System.out.println(((Unit) players.get(0).getObject(tr2)).getInfo());
     }
 }
