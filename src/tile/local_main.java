@@ -1,5 +1,6 @@
 package tile;
 
+import ArmyUnits.FactoryUnit;
 import ArmyUnits.Ships.Flagship;
 import base.controller.GameController;
 import base.controller.HierarchyController;
@@ -15,7 +16,13 @@ import java.util.Arrays;
 
 public class local_main {
     public static void main(String[] args) throws Exception {
-        Board board = new Board(null);
+        FactoryUnit factory = new FactoryUnit("Arborec");
+        TileArmyController controller = new TileArmyController();
+        Board board = new Board(controller);
+
+        controller.add(factory.createCarrier(), board.tiles_.get(2).space_);
+        controller.add(factory.createCarrier(), board.tiles_.get(1).space_);
+        controller.add(factory.createDestroyer(), board.tiles_.get(1).space_);
 
         System.out.println(board.tiles_.size());
         for (int i = 0; i < 4; ++i)

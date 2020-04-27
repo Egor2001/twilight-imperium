@@ -50,13 +50,15 @@ public class Space extends TileObject{
         public String toString(String string) {
             StringBuilder answer = new StringBuilder(string + "space{\n");
 
-            //ArrayList<Unit> units = GetObjectUnits();
+            ArrayList<Unit> units = GetObjectUnits();
+
+            answer.append(string).append("    ").append(units.size()).append("\n");
 
             //for (Unit unit: units) {
-                //answer.append(unit.getView(null).toString(string + "    "));
+            //    answer.append(unit.getView(null).toString(string + "    "));
             //}
-            //
-            answer.append(string + "}");
+
+            answer.append(string).append("}");
             return answer.toString();
         }
         public String to_String(String start) {
