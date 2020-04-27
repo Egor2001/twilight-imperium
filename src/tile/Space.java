@@ -3,7 +3,7 @@ package tile;
 import ArmyUnits.Ships.Ship;
 import base.controller.HierarchyController;
 
-class Space extends TileObject{
+public class Space extends TileObject{
     public Space(){};
 
     public boolean could_fly_throw(Ship ship) {

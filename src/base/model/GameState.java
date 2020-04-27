@@ -2,6 +2,8 @@ package base.model;
 
 import base.*;
 import base.controller.PhaseController;
+import tile.Board;
+import tile.TileArmyController;
 
 import java.util.ArrayList;
 
@@ -11,13 +13,15 @@ public class GameState implements Updatable {
 
     private Board board;
     private ArrayList<Player> players;
+    private TileArmyController tileArmyController;
 
     public GameState() {
         this.board = new Board();
         this.players = new ArrayList<Player>(6);
+        this.tileArmyController = new TileArmyController();
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
-            players.add(new Player("", new Army()));
+            players.add(new Player("", "Race1"));
         }
     }
 
@@ -29,9 +33,13 @@ public class GameState implements Updatable {
         return players;
     }
 
+    public TileArmyController getTileArmyController() {
+        return tileArmyController;
+    }
+
     @Override
     public void update() {
-        board.update();
+        //board.update();
         for (Player player : players) {
             player.update();
         }
@@ -52,7 +60,7 @@ public class GameState implements Updatable {
     protected Boolean handleCommand(Player player, PhaseController.PlayerCommand command) {
         assert (command != null) : "command is null";
 
-        command.procCommand();
+        command.procCommand(this, player);
 
         return true;
     }
