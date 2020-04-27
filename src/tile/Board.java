@@ -15,7 +15,9 @@ public class Board implements HierarchyController.UserAcceptable {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 
-            for (int i = 0; i < 37; i++) {
+            size_ = (int)object.get("size");
+
+            for (int i = 0; i < size_; i++) {
                 tile_list.add((int)object.get("tile" + i));
             }
 
@@ -30,7 +32,7 @@ public class Board implements HierarchyController.UserAcceptable {
             tiles_.add(new Tile(tile_list.get(i), i, this));
         }
 
-        for (int k = 0; k < 37; ++k) {
+        for (int k = 0; k < size_; ++k) {
             try (FileReader reader = new FileReader("Board/" + (k) + ".json")) {
                 JSONTokener token = new JSONTokener(reader);
                 JSONObject object = new JSONObject(token);
@@ -53,19 +55,10 @@ public class Board implements HierarchyController.UserAcceptable {
         tiles_ = new ArrayList<Tile>();
         bonds_ = new ArrayList<ArrayList<Integer>>();
     }
-
-    public void AddTile(Tile tile) {
-        tiles_.add(tile);
-        bonds_.add(new ArrayList<Integer>());
-    }
-
-    public void AddBond(int i, int j) {
-        bonds_.get(i).add(j);
-        bonds_.get(j).add(i);
-    }
   
     public ArrayList<Tile> tiles_;
     public ArrayList<ArrayList<Integer>> bonds_;
+    public int size_;
 
     void print() {
 
