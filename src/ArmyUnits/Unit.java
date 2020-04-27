@@ -1,12 +1,19 @@
 package ArmyUnits;
 
+import Races.Race;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
+public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable {
+    private Race race;
+
+    public Unit(Race race) {
+        this.race = race;
+    }
+
     class View implements Viewable {
         Unit unit;
         View(Unit unit) {
@@ -21,11 +28,11 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
     }
 
     @Override
-    default Viewable getView(UserAcceptable parent) {
+    public Viewable getView(UserAcceptable parent) {
         return new View(this);
     }
     @Override
-    default Viewable getView(UserAcceptable parent, GameObjectTarget target) {
+    public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
             return new View(this);
         }
@@ -34,7 +41,7 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
     }
 
     @Override
-    default Object getObject(GameObjectTarget target) {
+    public Object getObject(GameObjectTarget target) {
         if (target == null) {
             return this;
         }
@@ -42,7 +49,7 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
         return null;
     }
 
-    void printInfo(Writer writer) throws IOException;
+    public abstract void printInfo(Writer writer) throws IOException;
 
-    boolean canFightInSpace();
+    public abstract boolean canFightInSpace();
 }

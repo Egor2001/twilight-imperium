@@ -16,6 +16,7 @@ race_name = race_names[1]
 
 d['combatValue'] = 7
 d['cost'] = 1
+d['canFightSpace'] = False
 
 for race_name in race_names.values():
     with open('baseUnits/' + 'InfantryII' + race_name + '.json', "w") as file:

@@ -1,13 +1,14 @@
 package ArmyUnits.Ships;
 
 import ArmyUnits.Unit;
+import Races.Race;
 import base.controller.HierarchyController;
 import org.json.*;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public abstract class Ship implements Unit {
+public abstract class Ship extends Unit {
     private int moveValue = 0;
     private int capacityValue = 0;
     private int combatValue;
@@ -84,6 +85,10 @@ public abstract class Ship implements Unit {
 
     @Override
     public void update() {}
+
+    public Ship(Race race) {
+        super(race);
+    }
 
     public void setMoveValue(int newMoveValue) {
         moveValue = newMoveValue;

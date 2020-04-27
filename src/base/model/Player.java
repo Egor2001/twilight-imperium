@@ -6,6 +6,7 @@ import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.Unit;
+import Races.Race;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
@@ -17,42 +18,36 @@ import java.lang.reflect.InvocationTargetException;
 public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
-    private FactoryUnit raceFactory;
+    private Race race;
 
-    public Player(String name, Army army) {
-        this.name = name;
-        this.army = army;
-        this.raceFactory = new FactoryUnit("");
-    }
-    public Player(String name, String race) {
+    public Player(String name, String race) throws IllegalArgumentException {
         this.name = name;
         this.army = new Army();
-        this.raceFactory = new FactoryUnit(race);
+        try {
+            this.race = (Race) Class.forName(race).getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Race invalid: " + race);
+        }
     }
+
     public Unit addUnit(String name) {
         switch (name) {
             case "PDS":
-                PDS pds = raceFactory.createPDS();
+                PDS pds = race.addPDS();
                 army.addPDS(pds);
                 return pds;
             case "SpaceDock":
-                SpaceDock spaceDock = raceFactory.createSpaceDock();
+                SpaceDock spaceDock = race.addSpaceDock();
                 army.addSpaceDock(spaceDock);
                 return spaceDock;
             case "Infantry":
-                GroundForce groundForce = raceFactory.createInfantry();
+                GroundForce groundForce = race.addInfantry();
                 army.addGroundForce(groundForce);
                 return groundForce;
             default:
-                try {
-                    java.lang.reflect.Method method = raceFactory.getClass().getMethod("create" + name);
-                    Ship ship = (Ship) method.invoke(raceFactory);
-                    army.addShip(ship);
-                    return ship;
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-                return null;
+                Ship ship = race.addShip(name);
+                army.addShip(ship);
+                return ship;
         }
     }
 

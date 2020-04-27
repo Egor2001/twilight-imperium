@@ -1,16 +1,17 @@
 package ArmyUnits.Structures;
 
 import ArmyUnits.Unit;
+import Races.Race;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class PDS implements Structure {
-    private int spaceCannonDiceValue = 10;
-    private int spaceCannonNumDices = 0;
-    private boolean planetaryShield = false;
+public class PDS extends Structure {
+    private int spaceCannonDiceValue;
+    private int spaceCannonNumDices;
+    private boolean planetaryShield;
 
     public int getNumberOfDicesForSpaceCannon() {
         return spaceCannonNumDices;
@@ -45,6 +46,10 @@ public class PDS implements Structure {
     @Override
     public void update() {
 
+    }
+
+    public PDS(Race race) {
+        super(race);
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
