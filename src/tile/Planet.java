@@ -70,6 +70,11 @@ public class Planet extends TileObject {
             return new String("planet{" + Name + " " + Type + " " + Resource + " " + Influence + " " + Tech + "}");
         }
 
+        @Override
+        public String toString(String s) {
+            return to_String(s);
+        }
+
         //@Override
         public String to_String(String start) {
             return new String(start + toString());

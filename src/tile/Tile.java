@@ -1,5 +1,6 @@
 package tile;
 
+import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -77,6 +78,9 @@ public class Tile implements HierarchyController.UserAcceptable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    public ArrayList<Unit> GetObjectUnits(TileObject object) {
+        return board_.GetObjectUnits(object);
     }
 
     @Override

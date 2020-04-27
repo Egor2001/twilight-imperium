@@ -92,6 +92,11 @@ public class Player implements Updatable, UserAcceptable {
                 armyView.display(writer);
             }
         }
+
+        @Override
+        public String toString(String s) {
+            return null;
+        }
     }
 
     @Override

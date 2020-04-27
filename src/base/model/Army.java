@@ -86,6 +86,11 @@ public class Army implements Updatable, UserAcceptable {
             Print(writer, spaceDocksView);
         }
 
+        @Override
+        public String toString(String s) {
+            return null;
+        }
+
         private void Print(Writer writer, ArrayList<Viewable> unitView) throws IOException {
             for (int i = 0; i < unitView.size(); ++i) {
                 unitView.get(i).display(writer);

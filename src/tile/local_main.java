@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class local_main {
     public static void main(String[] args) throws Exception {
-        Board board = new Board(true);
+        Board board = new Board(null);
 
         System.out.println(board.tiles_.size());
         for (int i = 0; i < 4; ++i)

@@ -18,6 +18,11 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
             String[] className = this.unit.getClass().getName().split("\\.");
             writer.write("My name is " + className[className.length - 2] + "." + className[className.length - 1]);
         }
+
+        @Override
+        public String toString(String s) {
+            return null;
+        }
     }
 
     @Override

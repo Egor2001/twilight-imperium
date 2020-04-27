@@ -1,5 +1,6 @@
 package tile;
 
+import ArmyUnits.Unit;
 import base.controller.HierarchyController;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -10,7 +11,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class Board implements HierarchyController.UserAcceptable {
-    public Board(boolean r) {
+    public Board(TileArmyController controller) {
+        ta_controller = controller;
         ArrayList<Integer> tile_list = new ArrayList<Integer>();
 
         try (FileReader reader = new FileReader("BoardStructure/6players.json")) {
@@ -64,6 +66,7 @@ public class Board implements HierarchyController.UserAcceptable {
     public ArrayList<Tile> tiles_;
     public ArrayList<ArrayList<Integer>> bonds_;
     public int size_;
+    public TileArmyController ta_controller;
 
     void print() {
 
@@ -76,17 +79,19 @@ public class Board implements HierarchyController.UserAcceptable {
 
         return answer;
     }
+
+    public ArrayList<Unit> GetObjectUnits(TileObject object) {
+        return ta_controller.getUnit(object);
+    }
   
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
         return this.new View();
     }
-
     @Override
     public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent, HierarchyController.GameObjectTarget target) {
         return null;
     }
-
     @Override
     public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
         if (target == null)
@@ -128,8 +133,6 @@ public class Board implements HierarchyController.UserAcceptable {
 
         }
     };
-
-
     public static class Target extends HierarchyController.GameObjectTarget{
         public Target() {
             super();
