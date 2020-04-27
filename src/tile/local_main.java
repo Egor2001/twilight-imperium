@@ -26,10 +26,6 @@ public class local_main {
         controller.add(race.addShip("Carrier"), board.tiles_.get(1).space_);
         controller.add(race.addShip("Destroyer"), board.tiles_.get(1).space_);
 
-        System.out.println(board.tiles_.size());
-        for (int i = 0; i < 4; ++i)
-            board.tiles_.get(i).space_.My_neighbours();
-
         System.out.println(board.getView(null));
     }
 }
