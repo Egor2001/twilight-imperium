@@ -1,4 +1,4 @@
-package base.controller.phase;
+package base.controller.phase.strategy;
 
 import base.controller.PlayerCommand;
 

@@ -3,7 +3,7 @@ package tile;
 import base.controller.GameController;
 import base.controller.HierarchyController;
 
-import base.controller.phase.PlayerActionMove;
+import base.controller.phase.action.PlayerActionMove;
 import base.model.Player;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class local_main {
         ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
         list.add(HierarchyController.parseTarget("Tile.0.Space"));
 
-        gm.getGameState().handleCommand(players.get(0), new PlayerActionMove(tr, list));
+        new PlayerActionMove(tr, list).execute(gm.getGameState(), players.get(0));
         System.out.println(board.getView(null));
     }
 }

@@ -1,18 +1,18 @@
 package base.controller;
 
-import base.controller.phase.PhaseController;
+import base.controller.phase.action.ActionPhaseController;
+import base.controller.phase.status.StatusPhaseController;
+import base.controller.phase.strategy.StrategyPhaseController;
 import base.model.Player;
 import base.model.GameState;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Stack;
+import java.util.ArrayList;
 
-public class GameController {
+public class GameController extends CommandController {
 
     private static GameController instance;
-
-    private CommandRequestable userInterface;
     private GameState gameState;
 
     public static GameController getInstance() {
@@ -24,7 +24,7 @@ public class GameController {
     }
 
     private GameController(InputStream inputStream, PrintStream printStream) {
-        this.userInterface = new UserInterface(inputStream, printStream);
+        super(new UserInterface(inputStream, printStream));
         this.gameState = new GameState();
     }
 
@@ -36,18 +36,20 @@ public class GameController {
         return gameState;
     }
 
-    public boolean start() {
+    @Override
+    public void start() {
         int playersCnt = gameState.getPlayers().size();
-
         for (int playerIdx = 0; playerIdx != playersCnt; ++playerIdx) {
             gameState.getPlayers().set(playerIdx, requestPlayer(playerIdx));
         }
 
-        Stack<PhaseController> controllerStack = new Stack<>();
-        controllerStack.push(new PhaseController(userInterface, gameState));
-        controllerStack.pop().start();
+        ArrayList<CommandController> controllers = new ArrayList<>();
+        controllers.add(new StrategyPhaseController(userInterface, gameState));
+        controllers.add(new ActionPhaseController(userInterface, gameState));
+        controllers.add(new StatusPhaseController(userInterface, gameState));
 
-        return true;
+        for (CommandController controller : controllers)
+            controller.start();
     }
 
     private Player requestPlayer(int idx) {

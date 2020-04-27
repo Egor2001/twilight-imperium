@@ -1,6 +1,7 @@
-package base.controller.phase;
+package base.controller.phase.status;
 
 import base.controller.CommandRequestable;
+import base.controller.CommandResponse;
 import base.model.GameState;
 import base.model.Player;
 
@@ -23,8 +24,8 @@ public class PlayerStatusCompleteMission implements PlayerStatusCommand {
     }
 
     @Override
-    public boolean execute(GameState gameState, Player player) {
+    public CommandResponse execute(GameState gameState, Player player) {
         System.out.println("processing STATUS command: COMPLETE-MISSION");
-        return true;
+        return CommandResponse.ACCEPTED;
     }
 }

@@ -1,6 +1,7 @@
-package base.controller.phase;
+package base.controller.phase.action;
 
 import ArmyUnits.Unit;
+import base.controller.CommandResponse;
 import base.controller.HierarchyController;
 import base.controller.CommandRequestable;
 import base.model.GameState;
@@ -32,7 +33,7 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
     }
 
     @Override
-    public boolean execute(GameState gameState, Player player) {
+    public CommandResponse execute(GameState gameState, Player player) {
         System.out.println("processing ACTION command: ADD_SHIP");
 
         try {
@@ -43,9 +44,9 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
         }
         catch (Exception exception) {
             System.out.println(exception.getMessage());
-            return false;
+            return CommandResponse.DECLINED;
         }
 
-        return true;
+        return CommandResponse.ACCEPTED;
     }
 }

@@ -9,12 +9,12 @@ public abstract class CommandController {
     protected HashMap<String, PlayerCommand> commandHashMap;
     protected CommandRequestable userInterface;
 
-    protected CommandController(CommandRequestable userInterface) {
+    public CommandController(CommandRequestable userInterface) {
         this.commandHashMap = new HashMap<>();
         this.userInterface = userInterface;
     }
 
-    protected abstract void start();
+    public abstract void start();
 
     protected void putCommand(String name, PlayerCommand command) {
         commandHashMap.put(name, command);

@@ -1,4 +1,4 @@
-package base.controller.phase;
+package base.controller.phase.status;
 
 import base.controller.PlayerCommand;
 

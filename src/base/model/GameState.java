@@ -45,9 +45,4 @@ public class GameState implements Updatable {
             player.update();
         }
     }
-
-    public boolean handleCommand(Player player, PlayerCommand command) {
-        assert (command != null) : "command is null";
-        return command.execute(this, player);
-    }
 }

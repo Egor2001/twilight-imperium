@@ -48,11 +48,12 @@ public class UserInterface implements CommandRequestable {
     @Override
     public HierarchyController.GameObjectTarget requestTarget(String purpose) {
         printStream.println("Input " + purpose + " target");
-        String input = inputScanner.next();
+        String input = "";
 
         HierarchyController.GameObjectTarget target = null;
         while (target == null) {
             try {
+                input = inputScanner.next();
                 target = HierarchyController.parseTarget(input);
             } catch (IllegalArgumentException exception) {
                 printStream.println("Error: \"" + input + "\" is not a valid target");
