@@ -3,6 +3,7 @@ import ArmyUnits.Ships.Ship;
 import ArmyUnits.Unit;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TileArmyController {
     public TileArmyController()  {

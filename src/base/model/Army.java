@@ -4,8 +4,8 @@ import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.GroundForce.GroundForce;
+import ArmyUnits.Unit;
 import base.Updatable;
-import base.controller.HierarchyController;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class Army implements Updatable, UserAcceptable {
         }
     }
 
-    public static class View implements Viewable {
+    public class View implements Viewable {
         ArrayList<Viewable> shipsView;
         ArrayList<Viewable> groundForcesView;
         ArrayList<Viewable> pdsView;
@@ -69,19 +69,34 @@ public class Army implements Updatable, UserAcceptable {
 
         @Override
         public void display(Writer writer) throws IOException {
-            writer.write("List army (" + this.toString() + ") units:\n");
-
-            Print(writer, shipsView);
-            Print(writer, groundForcesView);
-            Print(writer, pdsView);
-            Print(writer, spaceDocksView);
+            writer.write(toString());
         }
 
-        private void Print(Writer writer, ArrayList<Viewable> unitView) throws IOException {
+        public String toString(String start) {
+            String[] className = this.getClass().getName().split("\\.");
+            StringBuilder result = new StringBuilder(
+                    start + "List army (" + className[className.length - 2] + "." + className[className.length - 1] + ") have" +
+                    (shipsView.size() + groundForcesView.size() + pdsView.size() + spaceDocksView.size()) + "units:\n");
+
+            result.append(print(shipsView, start));
+            result.append(print(groundForcesView, start));
+            result.append(print(pdsView, start));
+            result.append(print(spaceDocksView, start));
+            result.deleteCharAt(result.length() - 1);
+
+            return result.toString();
+        }
+        public String toString() {
+            return toString("");
+        }
+
+        private String print(ArrayList<Viewable> unitView, String start) {
+            StringBuilder result = new StringBuilder();
             for (int i = 0; i < unitView.size(); ++i) {
-                unitView.get(i).display(writer);
-                writer.write("." + i + "\n");
+                result.append(unitView.get(i).toString(start + "    ")).append(".").append(i).append("\n");
             }
+
+            return result.toString();
         }
     }
 
@@ -107,7 +122,6 @@ public class Army implements Updatable, UserAcceptable {
 
         return new View(shipsView, groundForcesView, pdsView, spaceDocksView);
     }
-
     @Override
     public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
@@ -167,6 +181,19 @@ public class Army implements Updatable, UserAcceptable {
         groundForcesList = new ArrayList<>();
         pdsList = new ArrayList<>();
         spaceDocksList = new ArrayList<>();
+    }
+    public int getIndexUnit(Unit unit) {
+        if (unit instanceof Ship) {
+            return shipsList.indexOf(unit);
+        } else if (unit instanceof GroundForce) {
+            return groundForcesList.indexOf(unit);
+        } else if (unit instanceof PDS) {
+            return pdsList.indexOf(unit);
+        } else if (unit instanceof SpaceDock) {
+            return spaceDocksList.indexOf(unit);
+        } else {
+            return -1;
+        }
     }
 
     @Override

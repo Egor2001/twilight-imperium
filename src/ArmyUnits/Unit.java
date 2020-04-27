@@ -1,13 +1,37 @@
 package ArmyUnits;
 
+import Races.Race;
 import base.Updatable;
 import base.controller.HierarchyController.*;
+import base.model.Army;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
-    class View implements Viewable {
+public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable {
+    private Race race;
+    private Army army;
+
+    public Unit(Race race) {
+        this.race = race;
+        this.army = null;
+    }
+
+    public void setArmy(Army army) {
+        this.army = army;
+    }
+    public Army getArmy() {
+        return army;
+    }
+
+    public int getIndex() {
+        return army.getIndexUnit(this);
+    }
+    public Race getRace() {
+        return race;
+    }
+
+    public class View implements Viewable {
         Unit unit;
         View(Unit unit) {
             this.unit = unit;
@@ -15,17 +39,31 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
 
         @Override
         public void display(Writer writer) throws IOException {
+            writer.write(toString());
+        }
+
+        public String toString(String start) {
             String[] className = this.unit.getClass().getName().split("\\.");
-            writer.write("My name is " + className[className.length - 2] + "." + className[className.length - 1]);
+            String[] classNameRace = this.unit.getRace().getClass().getName().split("\\.");
+
+            String result = start + className[className.length - 1] + " (" + classNameRace[classNameRace.length - 1] + ")";
+            if (army != null) {
+                result += " #" + getIndex();
+            }
+
+            return result;
+        }
+        public String toString() {
+            return toString("");
         }
     }
 
     @Override
-    default Viewable getView(UserAcceptable parent) {
+    public Viewable getView(UserAcceptable parent) {
         return new View(this);
     }
     @Override
-    default Viewable getView(UserAcceptable parent, GameObjectTarget target) {
+    public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
             return new View(this);
         }
@@ -34,7 +72,7 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
     }
 
     @Override
-    default Object getObject(GameObjectTarget target) {
+    public Object getObject(GameObjectTarget target) {
         if (target == null) {
             return this;
         }
@@ -42,7 +80,7 @@ public interface Unit extends Updatable, LoaderFromJSON, UserAcceptable {
         return null;
     }
 
-    void printInfo(Writer writer) throws IOException;
+    public abstract void printInfo(Writer writer) throws IOException;
 
-    boolean canFightInSpace();
+    public abstract boolean canFightInSpace();
 }

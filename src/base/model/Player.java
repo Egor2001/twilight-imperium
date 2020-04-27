@@ -1,62 +1,66 @@
 package base.model;
 
-import ArmyUnits.FactoryUnit;
 import ArmyUnits.GroundForce.GroundForce;
 import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
 import ArmyUnits.Unit;
+import Races.*;
 import base.Updatable;
 import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.reflect.InvocationTargetException;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
-    private FactoryUnit raceFactory;
+    private Race race;
 
-    public Player(String name, String race) {
+    public Player(String name, String race) throws IllegalArgumentException {
         this.name = name;
         this.army = new Army();
-        this.raceFactory = new FactoryUnit(race);
+        try {
+            this.race = (Race) Class.forName("Races." + race).getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Race invalid: " + race);
+        }
     }
+
     public Unit addUnit(String name) {
         switch (name) {
             case "PDS":
-                PDS pds = raceFactory.createPDS();
+                PDS pds = race.addPDS();
                 army.addPDS(pds);
+                pds.setArmy(army);
                 return pds;
             case "SpaceDock":
-                SpaceDock spaceDock = raceFactory.createSpaceDock();
+                SpaceDock spaceDock = race.addSpaceDock();
                 army.addSpaceDock(spaceDock);
+                spaceDock.setArmy(army);
                 return spaceDock;
             case "Infantry":
-                GroundForce groundForce = raceFactory.createInfantry();
+                GroundForce groundForce = race.addInfantry();
                 army.addGroundForce(groundForce);
+                groundForce.setArmy(army);
                 return groundForce;
             default:
-                try {
-                    java.lang.reflect.Method method = raceFactory.getClass().getMethod("create" + name);
-                    Ship ship = (Ship) method.invoke(raceFactory);
-                    army.addShip(ship);
-                    return ship;
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-                return null;
+                Ship ship = race.addShip(name);
+                army.addShip(ship);
+                ship.setArmy(army);
+                return ship;
         }
     }
 
     public final String getName() {
         return name;
     }
-
     public final Army getArmy() {
         return army;
+    }
+    public final Race getRace() {
+        return race;
     }
 
     public static class Target extends GameObjectTarget {
@@ -77,26 +81,35 @@ public class Player implements Updatable, UserAcceptable {
         }
     }
 
-    public static class View implements Viewable {
-        Viewable armyView;
-        String name;
+    public class View implements Viewable {
+        Player player;
 
-        View(Viewable armyView, String name) {
-            this.armyView = armyView;
+        View(Player player) {
+            this.player = player;
         }
 
         @Override
         public void display(Writer writer) throws IOException {
-            writer.write("My name is " + name + " and I have army:\n");
-            if (armyView != null) {
-                armyView.display(writer);
-            }
+            writer.write(toString());
+        }
+
+        @Override
+        public String toString(String start) {
+            String result = start + "My name is " + name + "\n";
+
+            result += player.getRace().getView(player).toString(start + "    ") + "\n";
+            result += player.getArmy().getView(player).toString(start + "    ");
+
+            return result;
+        }
+        public String toString() {
+            return toString("");
         }
     }
 
     @Override
     public Viewable getView(UserAcceptable parent) {
-        return new View(army.getView(this), name);
+        return new View(this);
     }
 
     @Override

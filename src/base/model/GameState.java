@@ -16,9 +16,9 @@ public class GameState implements Updatable {
     private TileArmyController tileArmyController;
 
     public GameState() {
-        this.board = new Board(true);
         this.players = new ArrayList<Player>(6);
         this.tileArmyController = new TileArmyController();
+        this.board = new Board(this.tileArmyController);
 
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
             players.add(null);
@@ -28,6 +28,7 @@ public class GameState implements Updatable {
     public Board getBoard() {
         return board;
     }
+    public TileArmyController getController() { return tileArmyController; }
 
     public ArrayList<Player> getPlayers() {
         return players;

@@ -25,9 +25,6 @@ public class HierarchyController {
     static {
         targetMap = new HashMap<>();
 
-        targetMap.put("parent", base.Main.Parent.Target.class);
-        targetMap.put("child", base.Main.Child.Target.class);
-
         targetMap.put("Board", Board.Target.class);
         targetMap.put("Tile", Tile.Target.class);
         targetMap.put("TileObject", TileObject.Target.class);
@@ -89,6 +86,9 @@ public class HierarchyController {
 
     public interface Viewable {
         void display(Writer writer) throws IOException;
+
+        String toString();
+        String toString(String s);
     }
 
     public interface UserAcceptable {

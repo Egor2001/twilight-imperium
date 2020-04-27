@@ -1,5 +1,9 @@
 package ArmyUnits.Ships;
 
-public class Fighter extends Ship {
+import Races.Race;
 
+public class Fighter extends Ship {
+    public Fighter(Race race) {
+        super(race);
+    }
 }
