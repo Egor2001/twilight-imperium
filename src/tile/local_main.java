@@ -33,9 +33,9 @@ public class local_main {
 
         System.out.println(board.getView(null));
 
-        HierarchyController.GameObjectTarget tr = HierarchyController.parseTarget("Army.Ship.1");
+        HierarchyController.GameObjectTarget tr = HierarchyController.parseTarget("Army.Ship.0");
         ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
-        list.add(HierarchyController.parseTarget("Tile.0.Space"));
+        list.add(HierarchyController.parseTarget("Tile.1.Space"));
 
         gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
         System.out.println(board.getView(null));
