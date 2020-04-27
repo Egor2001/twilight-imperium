@@ -1,6 +1,5 @@
 package base.model;
 
-import ArmyUnits.FactoryUnit;
 import ArmyUnits.GroundForce.GroundForce;
 import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
@@ -12,7 +11,6 @@ import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.reflect.InvocationTargetException;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
