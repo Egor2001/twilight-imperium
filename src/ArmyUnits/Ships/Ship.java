@@ -136,22 +136,22 @@ public abstract class Ship extends Unit {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        moveValue = (int) object.get("moveValue");
-        capacityValue = (int) object.get("capacityValue");
-        combatValue = (int) object.get("combatValue");
-        combatNumDices = (int) object.get("combatNumDices");
-        cost = (int) object.get("cost");
-        costNumUnits = (int) object.get("costNumUnits");
+        moveValue = object.getInt("moveValue");
+        capacityValue = object.getInt("capacityValue");
+        combatValue = object.getInt("combatValue");
+        combatNumDices = object.getInt("combatNumDices");
+        cost = object.getInt("cost");
+        costNumUnits = object.getInt("costNumUnits");
 
-        canSustainDamaged = (boolean) object.get("canSustainDamaged");
-        damaged = (boolean) object.get("damaged");
+        canSustainDamaged = object.getBoolean("canSustainDamaged");
+        damaged = object.getBoolean("damaged");
 
-        spaceCannonDiceValue = (int) object.get("spaceCannonDiceValue");
-        spaceCannonNumDices = (int) object.get("spaceCannonNumDices");
-        bombardmentDiceValue = (int) object.get("bombardmentDiceValue");
-        bombardmentNumDices = (int) object.get("bombardmentNumDices");
-        antiFighterBarrageDiceValue = (int) object.get("antiFighterBarrageDiceValue");
-        antiFighterBarrageNumDices = (int) object.get("antiFighterBarrageNumDices");
+        spaceCannonDiceValue = object.getInt("spaceCannonDiceValue");
+        spaceCannonNumDices = object.getInt("spaceCannonNumDices");
+        bombardmentDiceValue = object.getInt("bombardmentDiceValue");
+        bombardmentNumDices = object.getInt("bombardmentNumDices");
+        antiFighterBarrageDiceValue = object.getInt("antiFighterBarrageDiceValue");
+        antiFighterBarrageNumDices = object.getInt("antiFighterBarrageNumDices");
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {

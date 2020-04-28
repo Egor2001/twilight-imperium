@@ -11,6 +11,8 @@ import base.controller.HierarchyController.*;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Map;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
@@ -24,6 +26,7 @@ public class Player implements Updatable, UserAcceptable {
         try {
             this.race = (Race) Class.forName("Races." + race).getConstructor().newInstance();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new IllegalArgumentException("Race invalid: " + race);
         }
     }
@@ -31,26 +34,38 @@ public class Player implements Updatable, UserAcceptable {
     public Unit addUnit(String name) {
         switch (name) {
             case "PDS":
-                PDS pds = race.addPDS();
+                PDS pds = race.createPDS();
                 army.addPDS(pds);
                 pds.setArmy(army);
                 return pds;
             case "SpaceDock":
-                SpaceDock spaceDock = race.addSpaceDock();
+                SpaceDock spaceDock = race.createSpaceDock();
                 army.addSpaceDock(spaceDock);
                 spaceDock.setArmy(army);
                 return spaceDock;
             case "Infantry":
-                GroundForce groundForce = race.addInfantry();
+                GroundForce groundForce = race.createInfantry();
                 army.addGroundForce(groundForce);
                 groundForce.setArmy(army);
                 return groundForce;
             default:
-                Ship ship = race.addShip(name);
+                Ship ship = race.createShip(name);
                 army.addShip(ship);
                 ship.setArmy(army);
                 return ship;
         }
+    }
+    public ArrayList<Unit> addStartingFleet() {
+        Map<String, Integer> startingFleet = race.getStartingFleet();
+        ArrayList<Unit> listUnit = new ArrayList<>();
+
+        for (String key: startingFleet.keySet()) {
+            for (int i = 0; i < startingFleet.get(key); ++i) {
+                listUnit.add(addUnit(key));
+            }
+        }
+
+        return listUnit;
     }
 
     public final String getName() {
