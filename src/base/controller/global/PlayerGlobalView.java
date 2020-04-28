@@ -29,7 +29,7 @@ public class PlayerGlobalView implements PlayerCommand {
     public CommandResponse execute(GameState gameState, Player player) {
         try {
             HierarchyController.UserAcceptable gameObject =
-                    (HierarchyController.UserAcceptable) gameState.getBoard().getObject(target);
+                    (HierarchyController.UserAcceptable) gameState.getObject(target);
 
             HierarchyController.Viewable view = gameObject.getView(null);
             System.out.println(view.toString());
