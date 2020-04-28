@@ -63,4 +63,9 @@ public class UserInterface implements CommandRequestable {
 
         return target;
     }
+
+    @Override
+    public void reportError(String error) {
+        printStream.println("Error: " + error);
+    }
 }

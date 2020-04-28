@@ -1,5 +1,6 @@
 package base.controller;
 
+import base.controller.global.GlobalCommandController;
 import base.controller.phase.action.ActionPhaseController;
 import base.controller.phase.status.StatusPhaseController;
 import base.controller.phase.strategy.StrategyPhaseController;
@@ -26,6 +27,7 @@ public class GameController extends CommandController {
     private GameController(InputStream inputStream, PrintStream printStream) {
         super(new UserInterface(inputStream, printStream));
         this.gameState = new GameState();
+        this.globalCommandController = new GlobalCommandController(this.userInterface, this.gameState);
     }
 
     public CommandRequestable getUserInterface() {
@@ -44,9 +46,9 @@ public class GameController extends CommandController {
         }
 
         ArrayList<CommandController> controllers = new ArrayList<>();
-        controllers.add(new StrategyPhaseController(userInterface, gameState));
-        controllers.add(new ActionPhaseController(userInterface, gameState));
-        controllers.add(new StatusPhaseController(userInterface, gameState));
+        controllers.add(new StrategyPhaseController(userInterface, gameState, globalCommandController));
+        controllers.add(new ActionPhaseController(userInterface, gameState, globalCommandController));
+        controllers.add(new StatusPhaseController(userInterface, gameState, globalCommandController));
 
         for (CommandController controller : controllers)
             controller.start();

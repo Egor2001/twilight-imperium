@@ -3,6 +3,7 @@ package base.controller.phase.status;
 import base.controller.CommandController;
 import base.controller.CommandRequestable;
 import base.controller.CommandResponse;
+import base.controller.global.GlobalCommandController;
 import base.model.GameState;
 import base.model.Player;
 
@@ -12,8 +13,9 @@ public class StatusPhaseController extends CommandController {
 
     private GameState gameState;
 
-    public StatusPhaseController(CommandRequestable userInterface, GameState gameState) {
-        super(userInterface);
+    public StatusPhaseController(CommandRequestable userInterface, GameState gameState,
+                                 GlobalCommandController globalCommandController) {
+        super(userInterface, globalCommandController);
         this.gameState = gameState;
 
         super.putCommand("complete-mission", new PlayerStatusCompleteMission());
