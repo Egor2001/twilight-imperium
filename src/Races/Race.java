@@ -12,12 +12,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Race implements UserAcceptable {
     private FactoryUnit factoryUnit;
     private HashMap<String, Integer> startingFleet;
+    private ArrayList<String> homeSystem;
 
     public Race (String name) {
         factoryUnit = new FactoryUnit(name);
@@ -30,6 +32,11 @@ public abstract class Race implements UserAcceptable {
             JSONObject JSONStartingFleet = object.getJSONObject("StartingFleet");
             for (String key: JSONStartingFleet.keySet()) {
                 startingFleet.put(key, JSONStartingFleet.getInt(key));
+            }
+
+            JSONArray JSONHomeSystem = object.getJSONArray("TileInfo");
+            for (Object item: JSONHomeSystem) {
+                homeSystem.add((String) item);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,5 +106,8 @@ public abstract class Race implements UserAcceptable {
 
     public Map<String, Integer> getStartingFleet() {
         return startingFleet;
+    }
+    public ArrayList<String> getHomeSystem() {
+        return homeSystem;
     }
 }
