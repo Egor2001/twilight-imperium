@@ -10,5 +10,11 @@
         "Infantry": 4,
         "PDS": 1,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Nestphar"
+    ],
+    "StartingTechnology": {
+        "MagenDefenseGrid": "R"
     }
 }

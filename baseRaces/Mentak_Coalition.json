@@ -10,5 +10,12 @@
         "Infantry": 4,
         "PDS": 1,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Moll_Primus"
+    ],
+    "StartingTechnology": {
+        "SarweenTools": "0",
+        "PlasmaScoring": "0"
     }
 }

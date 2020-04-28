@@ -10,5 +10,12 @@
         "Infantry": 4,
         "PDS": 0,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Creuss",
+        "Delta_Wormhole"
+    ],
+    "StartingTechnology": {
+        "GravityDrive": "B"
     }
 }

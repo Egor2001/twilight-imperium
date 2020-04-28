@@ -10,5 +10,13 @@
         "Infantry": 3,
         "PDS": 0,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Arc_Prime",
+        "Wren_Terra"
+    ],
+    "StartingTechnology": {
+        "AntimassDeflectors": "0",
+        "PlasmaScoring": "0"
     }
 }

@@ -10,5 +10,12 @@
         "Infantry": 5,
         "PDS": 1,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Retillion",
+        "Shalloq"
+    ],
+    "StartingTechnology": {
+        "NeuralMotivator": "0"
     }
 }

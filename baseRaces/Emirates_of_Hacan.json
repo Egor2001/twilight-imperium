@@ -10,5 +10,14 @@
         "Infantry": 4,
         "PDS": 0,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Hercant",
+        "Arretze",
+        "Kamdorn"
+    ],
+    "StartingTechnology": {
+        "AntimassDeflectors": "0",
+        "SarweenTools": "0"
     }
 }

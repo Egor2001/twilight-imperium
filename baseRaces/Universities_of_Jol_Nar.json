@@ -10,5 +10,15 @@
         "Infantry": 2,
         "PDS": 2,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Jol",
+        "Nar"
+    ],
+    "StartingTechnology": {
+        "NeuralMotivator": "0",
+        "AntimassDeflector": "0",
+        "SarweenTools": "0",
+        "PlasmaScoring": "0"
     }
 }

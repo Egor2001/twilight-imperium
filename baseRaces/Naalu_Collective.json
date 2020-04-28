@@ -10,5 +10,13 @@
         "Infantry": 4,
         "PDS": 1,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Druaa",
+        "Maaluuk"
+    ],
+    "StartingTechnology": {
+        "SarweenTools": "0",
+        "NeuralMotivator": "0"
     }
 }

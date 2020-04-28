@@ -10,5 +10,11 @@
         "Infantry": 2,
         "PDS": 1,
         "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Winnu"
+    ],
+    "StartingTechnology": {
+        "Chooseany1technologythathasno": "prerequisites"
     }
 }
