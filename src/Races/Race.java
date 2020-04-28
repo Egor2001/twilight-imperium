@@ -24,6 +24,7 @@ public abstract class Race implements UserAcceptable {
     public Race (String name) {
         factoryUnit = new FactoryUnit(name);
         startingFleet = new HashMap<>();
+        homeSystem = new ArrayList<>();
 
         try (FileReader reader = new FileReader("baseRaces/" + name + ".json")) {
             JSONTokener token = new JSONTokener(reader);
