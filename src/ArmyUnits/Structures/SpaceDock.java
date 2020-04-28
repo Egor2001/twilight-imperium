@@ -29,9 +29,9 @@ public class SpaceDock extends Structure {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        blockaded = (boolean) object.get("blockaded");
-        productValue = (int) object.get("productValue");
-        canFightSpace = (boolean) object.get("canFightSpace");
+        blockaded = object.getBoolean("blockaded");
+        productValue = object.getInt("productValue");
+        canFightSpace = object.getBoolean("canFightSpace");
     }
 
     @Override

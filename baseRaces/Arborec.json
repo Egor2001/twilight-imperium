@@ -1,0 +1,14 @@
+{
+    "StartingFleet": {
+        "Carrier": 1,
+        "Cruiser": 1,
+        "Destroyer": 0,
+        "Dreadnought": 0,
+        "Fighter": 2,
+        "Flagship": 0,
+        "WarSun": 0,
+        "Infantry": 4,
+        "PDS": 1,
+        "SpaceDock": 1
+    }
+}

@@ -32,12 +32,12 @@ public abstract class GroundForce extends Unit {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        combatValue = (int) object.get("combatValue");
-        combatNumDices = (int) object.get("combatNumDices");
-        cost = (int) object.get("cost");
-        costNumUnits = (int) object.get("costNumUnits");
+        combatValue = object.getInt("combatValue");
+        combatNumDices = object.getInt("combatNumDices");
+        cost = object.getInt("cost");
+        costNumUnits = object.getInt("costNumUnits");
 
-        canFightSpace = (boolean) object.get("canFlightSpace");
+        canFightSpace = object.getBoolean("canFlightSpace");
     }
 
     @Override

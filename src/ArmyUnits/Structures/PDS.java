@@ -33,9 +33,9 @@ public class PDS extends Structure {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        spaceCannonDiceValue = (int) object.get("spaceCannonDiceValue");
-        spaceCannonNumDices = (int) object.get("spaceCannonNumDices");
-        planetaryShield = (boolean) object.get("planetaryShield");
+        spaceCannonDiceValue = object.getInt("spaceCannonDiceValue");
+        spaceCannonNumDices = object.getInt("spaceCannonNumDices");
+        planetaryShield = object.getBoolean("planetaryShield");
     }
 
     @Override

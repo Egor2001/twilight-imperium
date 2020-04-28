@@ -1,23 +1,39 @@
 package Races;
 
 import ArmyUnits.FactoryUnit;
-import ArmyUnits.GroundForce.GroundForce;
 import ArmyUnits.GroundForce.Infantry;
 import ArmyUnits.Ships.Ship;
 import ArmyUnits.Structures.PDS;
 import ArmyUnits.Structures.SpaceDock;
-import ArmyUnits.Unit;
 import base.controller.HierarchyController.*;
+import org.json.*;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Race implements UserAcceptable {
     private FactoryUnit factoryUnit;
+    private HashMap<String, Integer> startingFleet;
 
     public Race (String name) {
         factoryUnit = new FactoryUnit(name);
+        startingFleet = new HashMap<>();
+
+        try (FileReader reader = new FileReader("baseRaces/" + name + ".json")) {
+            JSONTokener token = new JSONTokener(reader);
+            JSONObject object = new JSONObject(token);
+
+            JSONObject JSONStartingFleet = object.getJSONObject("StartingFleet");
+            for (String key: JSONStartingFleet.keySet()) {
+                startingFleet.put(key, JSONStartingFleet.getInt(key));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public class View implements Viewable {
@@ -62,7 +78,7 @@ public abstract class Race implements UserAcceptable {
         return null;
     }
 
-    public Ship addShip(String name) {
+    public Ship createShip(String name) {
         try {
             Object[] args = new Object[] {this};
             return (Ship) factoryUnit.getClass().getMethod("create" + name, Race.class).invoke(factoryUnit, args);
@@ -71,14 +87,17 @@ public abstract class Race implements UserAcceptable {
             throw new IllegalArgumentException("Ship invalid: create" + name);
         }
     }
-
-    public PDS addPDS() {
+    public PDS createPDS() {
         return factoryUnit.createPDS(this);
     }
-    public SpaceDock addSpaceDock() {
+    public SpaceDock createSpaceDock() {
         return factoryUnit.createSpaceDock(this);
     }
-    public Infantry addInfantry() {
+    public Infantry createInfantry() {
         return factoryUnit.createInfantry(this);
+    }
+
+    public Map<String, Integer> getStartingFleet() {
+        return startingFleet;
     }
 }
