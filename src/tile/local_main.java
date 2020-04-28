@@ -8,17 +8,10 @@ import Races.Race;
 import base.controller.GameController;
 import base.controller.HierarchyController;
 
-import base.controller.PhaseController;
-import base.model.GameState;
+import base.controller.phase.action.PlayerActionMove;
 import base.model.Player;
-import tile.Tile;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.security.spec.ECField;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class local_main {
     public static void main(String[] args) throws Exception {
@@ -38,7 +31,7 @@ public class local_main {
         ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
         list.add(HierarchyController.parseTarget("Tile.1.Space"));
 
-        gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
+        new PlayerActionMove(tr, list).execute(gm.getGameState(), players.get(0));
         System.out.println(board.getView(null));
 
         HierarchyController.GameObjectTarget tr2 = HierarchyController.parseTarget("Army.Ship.2");

@@ -1,7 +1,7 @@
 package base.model;
 
 import base.*;
-import base.controller.PhaseController;
+import base.controller.PlayerCommand;
 import tile.Board;
 import tile.TileArmyController;
 
@@ -19,6 +19,9 @@ public class GameState implements Updatable {
         this.players = new ArrayList<Player>(6);
         this.tileArmyController = new TileArmyController();
         this.board = new Board(this.tileArmyController);
+        for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
+            players.add(null);
+        }
     }
 
     public Board getBoard() {
@@ -40,25 +43,5 @@ public class GameState implements Updatable {
         for (Player player : players) {
             player.update();
         }
-    }
-
-    public Boolean handleStrategyCommand(Player player, PhaseController.PlayerStrategyCommand command) {
-        return handleCommand(player, command);
-    }
-
-    public Boolean handleActionCommand(Player player, PhaseController.PlayerActionCommand command) {
-        return handleCommand(player, command);
-    }
-
-    public Boolean handleStatusCommand(Player player, PhaseController.PlayerStatusCommand command) {
-        return handleCommand(player, command);
-    }
-
-    protected Boolean handleCommand(Player player, PhaseController.PlayerCommand command) {
-        assert (command != null) : "command is null";
-
-        command.procCommand(this, player);
-
-        return true;
     }
 }

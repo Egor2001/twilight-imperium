@@ -1,29 +1,36 @@
 package base.controller;
 
+import base.controller.global.GlobalCommandController;
+import base.controller.phase.action.ActionPhaseController;
+import base.controller.phase.status.StatusPhaseController;
+import base.controller.phase.strategy.StrategyPhaseController;
 import base.model.Player;
 import base.model.GameState;
 
-public class GameController {
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
+public class GameController extends CommandController {
 
     private static GameController instance;
-
-    private UserInterface userInterface;
     private GameState gameState;
 
     public static GameController getInstance() {
         if (instance == null) {
-            instance = new GameController();
+            instance = new GameController(System.in, System.out);
         }
 
         return instance;
     }
 
-    private GameController() {
-        this.userInterface = new UserInterface();
+    private GameController(InputStream inputStream, PrintStream printStream) {
+        super(new UserInterface(inputStream, printStream));
         this.gameState = new GameState();
+        this.globalCommandController = new GlobalCommandController(this.userInterface, this.gameState);
     }
 
-    public UserInterface getUserInterface() {
+    public CommandRequestable getUserInterface() {
         return userInterface;
     }
 
@@ -31,73 +38,36 @@ public class GameController {
         return gameState;
     }
 
-    public Boolean gameInit() {
-        Integer playersCnt = gameState.getPlayers().size();
+    @Override
+    public void start() {
+        int playersCnt = gameState.getPlayers().size();
+        for (int playerIdx = 0; playerIdx != playersCnt; ++playerIdx) {
+            gameState.getPlayers().set(playerIdx, requestPlayer(playerIdx));
+        }
 
-        for (Integer playerIdx = 0; !playerIdx.equals(playersCnt); ++playerIdx) {
-            Player newPlayer = userInterface.requestNewPlayer();
+        ArrayList<CommandController> controllers = new ArrayList<>();
+        controllers.add(new StrategyPhaseController(userInterface, gameState, globalCommandController));
+        controllers.add(new ActionPhaseController(userInterface, gameState, globalCommandController));
+        controllers.add(new StatusPhaseController(userInterface, gameState, globalCommandController));
 
-            if (newPlayer != null) {
-                gameState.getPlayers().set(playerIdx, newPlayer);
+        for (CommandController controller : controllers)
+            controller.start();
+    }
+
+    private Player requestPlayer(int idx) {
+        Player player = null;
+
+        String name = userInterface.requestName("player" + idx);
+        String race = userInterface.requestName("race");
+        while (player == null) {
+            try {
+                player = new Player(name, race);
+            } catch (IllegalArgumentException exception) {
+                race = userInterface.requestName("correct race");
+                player = null;
             }
         }
 
-        return true;
-    }
-
-    public Boolean gameLoop() {
-        for (Player player : gameState.getPlayers()) {
-            strategyPhase(player);
-        }
-
-        for (Player player : gameState.getPlayers()) {
-            actionPhase(player);
-        }
-
-        for (Player player : gameState.getPlayers()) {
-            statusPhase(player);
-        }
-
-        return true;
-    }
-
-    protected Boolean strategyPhase(Player player) {
-        PhaseController.PlayerStrategyCommand command =
-                userInterface.requestStrategy(player);
-
-        if (command == null) {
-            return false;
-        }
-
-        gameState.handleStrategyCommand(player, command);
-
-        return true;
-    }
-
-    protected Boolean actionPhase(Player player) {
-        PhaseController.PlayerActionCommand command =
-                userInterface.requestAction(player);
-
-        if (command == null) {
-            return false;
-        }
-
-        //command.procCommand();
-        gameState.handleActionCommand(player, command);
-
-        return true;
-    }
-
-    protected Boolean statusPhase(Player player) {
-        PhaseController.PlayerStatusCommand command =
-                userInterface.requestStatus(player);
-
-        if (command == null) {
-            return false;
-        }
-
-        gameState.handleStatusCommand(player, command);
-
-        return true;
+        return player;
     }
 }

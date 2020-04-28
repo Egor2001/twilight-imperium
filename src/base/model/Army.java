@@ -45,21 +45,12 @@ public class Army implements Updatable, UserAcceptable {
     }
 
     public static class Target extends GameObjectTarget {
-        Target() {
+        public Target() {
             super();
         }
 
-        public Target(Ship.Target shipTarget) {
-            super(shipTarget);
-        }
-        Target(GroundForce.Target groundForceTarget) {
-            super(groundForceTarget);
-        }
-        Target(PDS.Target pdsTarget) {
-            super(pdsTarget);
-        }
-        Target(SpaceDock.Target spaceDockTarget) {
-            super(spaceDockTarget);
+        public Target(GameObjectTarget next) {
+            super(next);
         }
     }
 
