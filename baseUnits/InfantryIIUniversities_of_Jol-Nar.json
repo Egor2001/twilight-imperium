@@ -1,4 +1,5 @@
 {
     "combatValue": 7,
-    "cost": 1
+    "cost": 1,
+    "canFightSpace": false
 }

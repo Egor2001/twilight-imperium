@@ -29,9 +29,9 @@ public class SpaceDock extends Structure {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        blockaded = (boolean) object.get("blockaded");
-        productValue = (int) object.get("productValue");
-        canFightSpace = (boolean) object.get("canFightSpace");
+        blockaded = object.getBoolean("blockaded");
+        productValue = object.getInt("productValue");
+        canFightSpace = object.getBoolean("canFightSpace");
     }
 
     @Override
@@ -64,11 +64,13 @@ public class SpaceDock extends Structure {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Product value: " + productValue + "\n");
+    public String getInfo(String start) {
+        String result = start + "Product value: " + productValue;
 
         if (blockaded) {
-            writer.write("Blockaded\n");
+            result += ", but blockaded";
         }
+
+        return result;
     }
 }

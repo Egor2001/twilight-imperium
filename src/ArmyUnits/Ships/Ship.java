@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.io.Writer;
 
 public abstract class Ship extends Unit {
-    private int moveValue = 0;
-    private int capacityValue = 0;
+    private int moveValue;
+    private int capacityValue;
     private int combatValue;
+    private int combatNumDices = 1;
     private int cost;
+    private int costNumUnits = 1;
 
     private boolean canSustainDamaged = false;
     private boolean damaged = false;
@@ -33,9 +35,15 @@ public abstract class Ship extends Unit {
     public int getCost() {
         return cost;
     }
+    public int getCostNumUnits() {
+        return costNumUnits;
+    }
 
     public boolean canHit(int diceValue) {
         return diceValue >= combatValue;
+    }
+    public int getCombatNumDices() {
+        return combatNumDices;
     }
 
     public boolean isDamaged() {
@@ -99,8 +107,14 @@ public abstract class Ship extends Unit {
     public void setCombatValue(int newCombatValue) {
         combatValue = newCombatValue;
     }
+    public void setCombatNumDices(int newCombatNumDices) {
+        combatNumDices = newCombatNumDices;
+    }
     public void setCost(int newCost) {
         cost = newCost;
+    }
+    public void setCostNumUnits(int newCostNumUnits) {
+        costNumUnits = newCostNumUnits;
     }
 
     public void setCanSustainDamaged(boolean canDamaged) {
@@ -122,20 +136,22 @@ public abstract class Ship extends Unit {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        moveValue = (int) object.get("moveValue");
-        capacityValue = (int) object.get("capacityValue");
-        combatValue = (int) object.get("combatValue");
-        cost = (int) object.get("cost");
+        moveValue = object.getInt("moveValue");
+        capacityValue = object.getInt("capacityValue");
+        combatValue = object.getInt("combatValue");
+        combatNumDices = object.getInt("combatNumDices");
+        cost = object.getInt("cost");
+        costNumUnits = object.getInt("costNumUnits");
 
-        canSustainDamaged = (boolean) object.get("canSustainDamaged");
-        damaged = (boolean) object.get("damaged");
+        canSustainDamaged = object.getBoolean("canSustainDamaged");
+        damaged = object.getBoolean("damaged");
 
-        spaceCannonDiceValue = (int) object.get("spaceCannonDiceValue");
-        spaceCannonNumDices = (int) object.get("spaceCannonNumDices");
-        bombardmentDiceValue = (int) object.get("bombardmentDiceValue");
-        bombardmentNumDices = (int) object.get("bombardmentNumDices");
-        antiFighterBarrageDiceValue = (int) object.get("antiFighterBarrageDiceValue");
-        antiFighterBarrageNumDices = (int) object.get("antiFighterBarrageNumDices");
+        spaceCannonDiceValue = object.getInt("spaceCannonDiceValue");
+        spaceCannonNumDices = object.getInt("spaceCannonNumDices");
+        bombardmentDiceValue = object.getInt("bombardmentDiceValue");
+        bombardmentNumDices = object.getInt("bombardmentNumDices");
+        antiFighterBarrageDiceValue = object.getInt("antiFighterBarrageDiceValue");
+        antiFighterBarrageNumDices = object.getInt("antiFighterBarrageNumDices");
     }
 
     public static class Target extends HierarchyController.GameObjectTarget {
@@ -148,28 +164,48 @@ public abstract class Ship extends Unit {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Cost: " + cost + "\n");
-        writer.write("Combat: " + combatValue + "\n");
-        writer.write("Move: " + moveValue + "\n");
+    public String getInfo(String start) {
+        StringBuilder result = new StringBuilder(start + "Cost: " + cost);
+        if (costNumUnits > 1) {
+            result.append(" (x").append(costNumUnits).append(")");
+        }
+        result.append("\n");
+
+        result.append(start).append("Combat: ").append(combatValue);
+        if (combatNumDices > 1) {
+            result.append(" (x").append(combatNumDices).append(")");
+        }
+        result.append("\n");
+
+        result.append(start).append("Move: ").append(moveValue).append("\n");
+
         if (capacityValue > 0) {
-            writer.write("Capacity: " + capacityValue + "\n");
+            result.append(start).append("Capacity: ").append(capacityValue).append("\n");
         }
+
         if (canSustainDamaged) {
-            writer.write("It can sustain damage and now it is");
+            result.append(start).append("It can sustain damage and now it is");
             if (!damaged) {
-                writer.write("n't");
+                result.append("n't");
             }
-            writer.write(" damaged\n");
+            result.append(" damaged\n");
         }
+
         if (bombardmentNumDices > 0) {
-            writer.write("Bombardment: " + bombardmentNumDices + "(x" + bombardmentNumDices + ")\n");
+            result.append(start).append("Bombardment: ").append(bombardmentNumDices).append("(x").append(bombardmentNumDices).append(")\n");
         }
+
         if (spaceCannonNumDices > 0) {
-            writer.write("Space Cannon: " + spaceCannonDiceValue + "(x" + spaceCannonNumDices + ")\n");
+            result.append(start).append("Space Cannon: ").append(spaceCannonDiceValue).append("(x").append(spaceCannonNumDices).append(")\n");
         }
+
         if (antiFighterBarrageNumDices > 0) {
-            writer.write("Anti-fighter barrage: " + antiFighterBarrageDiceValue + "(x" + antiFighterBarrageNumDices + ")\n");
+            result.append(start).append("Anti-fighter barrage: ").append(antiFighterBarrageDiceValue).
+                    append("(x").append(antiFighterBarrageNumDices).append(")\n");
         }
+
+        result.deleteCharAt(result.length() - 1);
+
+        return result.toString();
     }
 }

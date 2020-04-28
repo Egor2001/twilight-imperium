@@ -1,4 +1,5 @@
 {
     "blockaded": false,
-    "productValue": 0
+    "productValue": 0,
+    "canFightSpace": false
 }

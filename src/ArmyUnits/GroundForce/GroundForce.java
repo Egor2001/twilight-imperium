@@ -11,7 +11,9 @@ import java.io.Writer;
 
 public abstract class GroundForce extends Unit {
     private int combatValue;
+    private int combatNumDices = 1;
     private int cost;
+    private int costNumUnits = 1;
     private boolean canFightSpace;
 
     public int getCost() {
@@ -30,9 +32,12 @@ public abstract class GroundForce extends Unit {
 
     @Override
     public void setAllFromJSON(JSONObject object) {
-        combatValue = (int) object.get("combatValue");
-        cost = (int) object.get("cost");
-        canFightSpace = (boolean) object.get("canFlightSpace");
+        combatValue = object.getInt("combatValue");
+        combatNumDices = object.getInt("combatNumDices");
+        cost = object.getInt("cost");
+        costNumUnits = object.getInt("costNumUnits");
+
+        canFightSpace = object.getBoolean("canFlightSpace");
     }
 
     @Override
@@ -65,8 +70,20 @@ public abstract class GroundForce extends Unit {
     }
 
     @Override
-    public void printInfo(Writer writer) throws IOException {
-        writer.write("Cost: " + cost + "\n");
-        writer.write("Combat: " + combatValue + "\n");
+    public String getInfo(String start) {
+        String result = "";
+
+        result += start + "Cost: " + cost;
+        if (costNumUnits > 1) {
+            result += " (x" + costNumUnits + ")";
+        }
+        result += "\n";
+
+        result += start + "Combat: " + combatValue;
+        if (combatNumDices > 1) {
+            result += " (x" + combatNumDices + ")";
+        }
+
+        return result;
     }
 }

@@ -1,4 +1,7 @@
 {
+    "cost": 1,
+    "costNumUnits": 2,
     "combatValue": 8,
-    "cost": 1
+    "combatNumDices": 1,
+    "canFightSpace": false
 }
