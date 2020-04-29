@@ -3,7 +3,6 @@ package Tests;
 import ArmyUnits.Unit;
 import base.controller.GameController;
 import base.controller.HierarchyController;
-import base.controller.PhaseController;
 import base.model.Player;
 import junit.framework.TestCase;
 import tile.Board;
@@ -38,7 +37,7 @@ public class MoveTest extends TestCase {
             ArrayList<HierarchyController.GameObjectTarget> list = new ArrayList<>();
             list.add(HierarchyController.parseTarget("Tile.1.Space"));
 
-            gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
+            //gm.getGameState().handleActionCommand(players.get(0), new PhaseController.PlayerActionMove(tr, list));
             //System.out.println(board.getView(null));
 
             HierarchyController.GameObjectTarget tr2 = HierarchyController.parseTarget("Army.Ship.2");
