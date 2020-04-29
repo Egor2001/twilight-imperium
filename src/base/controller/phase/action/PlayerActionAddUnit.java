@@ -1,17 +1,17 @@
 package base.controller.phase.action;
 
-import ArmyUnits.Unit;
+import base.user.GameObjectTarget;
+import player.units.Unit;
 import base.controller.CommandResponse;
-import base.controller.HierarchyController;
-import base.controller.CommandRequestable;
+import base.user.CommandRequestable;
 import base.model.GameState;
-import base.model.Player;
-import tile.TileObject;
+import player.Player;
+import board.TileObject;
 
 public class PlayerActionAddUnit implements PlayerActionCommand {
 
     public String unitName = null;
-    public HierarchyController.GameObjectTarget tileObjectTarget = null;
+    public GameObjectTarget tileObjectTarget = null;
 
     public PlayerActionAddUnit() {
         this.unitName = null;
@@ -19,7 +19,7 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
     }
 
     public PlayerActionAddUnit(String unitName,
-                               HierarchyController.GameObjectTarget tileObjectTarget) {
+                               GameObjectTarget tileObjectTarget) {
         this.unitName = unitName;
         this.tileObjectTarget = tileObjectTarget;
     }
@@ -40,7 +40,7 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
             TileObject tileObject = (TileObject) gameState.getBoard().getObject(tileObjectTarget);
             Unit unit = player.addUnit(unitName);
 
-            gameState.getTileArmyController().add(unit, tileObject);
+            gameState.getTileArmyManager().add(unit, tileObject);
         }
         catch (Exception exception) {
             System.out.println(exception.getMessage());

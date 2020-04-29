@@ -1,21 +1,21 @@
 package base.controller.global;
 
-import base.controller.CommandRequestable;
+import base.user.*;
 import base.controller.CommandResponse;
-import base.controller.HierarchyController;
 import base.controller.PlayerCommand;
 import base.model.GameState;
-import base.model.Player;
+import base.view.Viewable;
+import player.Player;
 
 public class PlayerGlobalView implements PlayerCommand {
 
-    private HierarchyController.GameObjectTarget target;
+    private GameObjectTarget target;
 
     public PlayerGlobalView() {
         this.target = null;
     }
 
-    public PlayerGlobalView(HierarchyController.GameObjectTarget target) {
+    public PlayerGlobalView(GameObjectTarget target) {
         this.target = target;
     }
 
@@ -28,10 +28,10 @@ public class PlayerGlobalView implements PlayerCommand {
     @Override
     public CommandResponse execute(GameState gameState, Player player) {
         try {
-            HierarchyController.UserAcceptable gameObject =
-                    (HierarchyController.UserAcceptable) gameState.getObject(target);
+            UserAcceptable gameObject =
+                    (UserAcceptable) gameState.getObject(target);
 
-            HierarchyController.Viewable view = gameObject.getView(null);
+            Viewable view = gameObject.getView(null);
             System.out.println(view.toString());
         }
         catch (IllegalArgumentException exception) {

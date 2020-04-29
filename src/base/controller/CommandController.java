@@ -1,7 +1,8 @@
 package base.controller;
 
 import base.controller.global.GlobalCommandController;
-import base.model.Player;
+import base.user.CommandRequestable;
+import player.Player;
 
 import java.util.HashMap;
 

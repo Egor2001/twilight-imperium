@@ -1,0 +1,5 @@
+package board;
+
+class ResourceStore {
+
+}

@@ -1,27 +1,28 @@
 package base.model;
 
-import base.*;
-import base.controller.HierarchyController;
-import base.controller.PlayerCommand;
-import tile.Board;
-import tile.TileArmyController;
+import base.user.GameObjectTarget;
+import base.user.UserAcceptable;
+import base.view.Viewable;
+import player.Player;
+import board.Board;
+import board.TileArmyManager;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class GameState implements HierarchyController.UserAcceptable, Updatable {
+public class GameState implements UserAcceptable, Updatable {
 
     public final Integer PLAYERS_CNT = 2;
 
     private Board board;
     private ArrayList<Player> players;
-    private TileArmyController tileArmyController;
+    private TileArmyManager tileArmyManager;
 
     public GameState() {
         this.players = new ArrayList<Player>(6);
-        this.tileArmyController = new TileArmyController();
-        this.board = new Board(this.tileArmyController);
+        this.tileArmyManager = new TileArmyManager();
+        this.board = new Board(this.tileArmyManager);
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
             players.add(null);
         }
@@ -30,14 +31,14 @@ public class GameState implements HierarchyController.UserAcceptable, Updatable 
     public Board getBoard() {
         return board;
     }
-    public TileArmyController getController() { return tileArmyController; }
+    public TileArmyManager getController() { return tileArmyManager; }
 
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public TileArmyController getTileArmyController() {
-        return tileArmyController;
+    public TileArmyManager getTileArmyManager() {
+        return tileArmyManager;
     }
 
     @Override
@@ -48,7 +49,7 @@ public class GameState implements HierarchyController.UserAcceptable, Updatable 
         }
     }
 
-    public class View implements HierarchyController.Viewable {
+    public class View implements Viewable {
 
         public View() {}
 
@@ -77,18 +78,18 @@ public class GameState implements HierarchyController.UserAcceptable, Updatable 
     }
 
     @Override
-    public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent) {
+    public Viewable getView(UserAcceptable parent) {
         return this.new View();
     }
 
     @Override
-    public HierarchyController.Viewable getView(HierarchyController.UserAcceptable parent,
-                                                HierarchyController.GameObjectTarget target) {
+    public Viewable getView(UserAcceptable parent,
+                            GameObjectTarget target) {
         return getView(parent);
     }
 
     @Override
-    public Object getObject(HierarchyController.GameObjectTarget target) throws Exception {
+    public Object getObject(GameObjectTarget target) throws Exception {
         if (target != null) {
             if (target instanceof Player.Target) {
                 return players.get(target.getIndex()).getObject(target.getNext());
