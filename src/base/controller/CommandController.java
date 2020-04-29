@@ -38,7 +38,7 @@ public abstract class CommandController {
             if (globalCommandController != null && name.equals(GLOBAL_COMMAND_NAME)) {
                 globalCommandController.setPlayer(player);
                 globalCommandController.start();
-                name = userInterface.requestName(player.getName() + "'s " + context + " command");
+                continue;
             }
 
             command = commandHashMap.get(name);
