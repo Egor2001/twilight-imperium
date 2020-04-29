@@ -1,7 +1,8 @@
 package base.controller;
 
 import base.model.GameState;
-import base.model.Player;
+import base.user.CommandRequestable;
+import player.Player;
 
 public interface PlayerCommand {
     boolean inputCommand(CommandRequestable userInterface);

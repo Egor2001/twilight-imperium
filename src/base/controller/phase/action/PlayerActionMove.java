@@ -1,28 +1,28 @@
 package base.controller.phase.action;
 
-import ArmyUnits.Ships.Ship;
+import base.user.GameObjectTarget;
+import player.units.Ships.Ship;
 import base.controller.CommandResponse;
-import base.controller.HierarchyController;
-import base.controller.CommandRequestable;
+import base.user.CommandRequestable;
 import base.model.GameState;
-import base.model.Player;
-import tile.Board;
-import tile.TileObject;
+import player.Player;
+import board.Board;
+import board.TileObject;
 
 import java.util.ArrayList;
 
 public class PlayerActionMove implements PlayerActionCommand {
 
-    public HierarchyController.GameObjectTarget shipTarget = null;
-    public ArrayList<HierarchyController.GameObjectTarget> spaceTargetList = null;
+    public GameObjectTarget shipTarget = null;
+    public ArrayList<GameObjectTarget> spaceTargetList = null;
 
     public PlayerActionMove() {
         this.shipTarget = null;
         this.spaceTargetList = new ArrayList<>();
     }
 
-    public PlayerActionMove(HierarchyController.GameObjectTarget shipTarget,
-                            ArrayList<HierarchyController.GameObjectTarget> spaceTargetList) {
+    public PlayerActionMove(GameObjectTarget shipTarget,
+                            ArrayList<GameObjectTarget> spaceTargetList) {
         this.shipTarget = shipTarget;
         this.spaceTargetList = spaceTargetList;
     }
@@ -32,7 +32,7 @@ public class PlayerActionMove implements PlayerActionCommand {
         shipTarget = userInterface.requestTarget("ship");
         int pathLength = userInterface.requestNumber("path length");
         while (pathLength-- > 0) {
-            HierarchyController.GameObjectTarget nextTarget = userInterface.requestTarget("next");
+            GameObjectTarget nextTarget = userInterface.requestTarget("next");
             spaceTargetList.add(nextTarget);
         }
 
@@ -48,11 +48,11 @@ public class PlayerActionMove implements PlayerActionCommand {
             ArrayList<TileObject> tileObjectList = new ArrayList<>();
 
             Board board = gameState.getBoard();
-            for (HierarchyController.GameObjectTarget tileObjectTarget : spaceTargetList) {
+            for (GameObjectTarget tileObjectTarget : spaceTargetList) {
                 tileObjectList.add((TileObject) board.getObject(tileObjectTarget));
             }
 
-            gameState.getTileArmyController().move(ship, tileObjectList);
+            gameState.getTileArmyManager().move(ship, tileObjectList);
         }
         catch (Exception exception) {
             System.out.print("ERROR OCCURED: ");

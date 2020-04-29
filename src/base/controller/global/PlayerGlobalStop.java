@@ -1,10 +1,10 @@
 package base.controller.global;
 
-import base.controller.CommandRequestable;
+import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.controller.PlayerCommand;
 import base.model.GameState;
-import base.model.Player;
+import player.Player;
 
 public class PlayerGlobalStop implements PlayerCommand {
     @Override

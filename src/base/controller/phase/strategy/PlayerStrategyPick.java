@@ -1,9 +1,9 @@
 package base.controller.phase.strategy;
 
-import base.controller.CommandRequestable;
+import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.model.GameState;
-import base.model.Player;
+import player.Player;
 
 public class PlayerStrategyPick implements PlayerStrategyCommand {
 

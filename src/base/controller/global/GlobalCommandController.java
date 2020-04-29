@@ -1,11 +1,11 @@
 package base.controller.global;
 
 import base.controller.CommandController;
-import base.controller.CommandRequestable;
+import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.controller.PlayerCommand;
 import base.model.GameState;
-import base.model.Player;
+import player.Player;
 
 public class GlobalCommandController extends CommandController {
 
