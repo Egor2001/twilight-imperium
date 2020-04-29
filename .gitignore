@@ -3,6 +3,7 @@
 out/
 PythonGenerateUnitsJSON/.idea/
 venv/
+Graphics/
 
 # Compiled class file
 *.class
