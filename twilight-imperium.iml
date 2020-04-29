@@ -24,5 +24,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Python 3.7 (twilight-imperium) interpreter library" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

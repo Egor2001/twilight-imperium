@@ -1,40 +1,44 @@
 package base.model;
 
-import base.*;
-import base.controller.PhaseController;
-import tile.Board;
-import tile.TileArmyController;
+import base.user.GameObjectTarget;
+import base.user.UserAcceptable;
+import base.view.Viewable;
+import player.Player;
+import board.Board;
+import board.TileArmyManager;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
-public class GameState implements Updatable {
+public class GameState implements UserAcceptable, Updatable {
 
     public final Integer PLAYERS_CNT = 2;
 
     private Board board;
     private ArrayList<Player> players;
-    private TileArmyController tileArmyController;
+    private TileArmyManager tileArmyManager;
 
     public GameState() {
-        this.board = new Board();
         this.players = new ArrayList<Player>(6);
-        this.tileArmyController = new TileArmyController();
-
+        this.tileArmyManager = new TileArmyManager();
+        this.board = new Board(this.tileArmyManager);
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
-            players.add(new Player("", "Race1"));
+            players.add(null);
         }
     }
 
     public Board getBoard() {
         return board;
     }
+    public TileArmyManager getController() { return tileArmyManager; }
 
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public TileArmyController getTileArmyController() {
-        return tileArmyController;
+    public TileArmyManager getTileArmyManager() {
+        return tileArmyManager;
     }
 
     @Override
@@ -45,23 +49,59 @@ public class GameState implements Updatable {
         }
     }
 
-    public Boolean handleStrategyCommand(Player player, PhaseController.PlayerStrategyCommand command) {
-        return handleCommand(player, command);
+    public class View implements Viewable {
+
+        public View() {}
+
+        @Override
+        public void display(Writer writer) throws IOException {
+            writer.write(toString(""));
+        }
+
+        @Override
+        public String toString(String s) {
+            StringBuilder resultBuilder = new StringBuilder();
+            for (Player player : getPlayers()) {
+                resultBuilder.append(player.getView(null).toString("\t"));
+                resultBuilder.append("\n");
+            }
+
+            resultBuilder.append(getBoard().getView(null).toString("\t"));
+
+            return resultBuilder.toString();
+        }
+
+        @Override
+        public String toString() {
+            return toString("");
+        }
     }
 
-    public Boolean handleActionCommand(Player player, PhaseController.PlayerActionCommand command) {
-        return handleCommand(player, command);
+    @Override
+    public Viewable getView(UserAcceptable parent) {
+        return this.new View();
     }
 
-    public Boolean handleStatusCommand(Player player, PhaseController.PlayerStatusCommand command) {
-        return handleCommand(player, command);
+    @Override
+    public Viewable getView(UserAcceptable parent,
+                            GameObjectTarget target) {
+        return getView(parent);
     }
 
-    protected Boolean handleCommand(Player player, PhaseController.PlayerCommand command) {
-        assert (command != null) : "command is null";
+    @Override
+    public Object getObject(GameObjectTarget target) throws Exception {
+        if (target != null) {
+            if (target instanceof Player.Target) {
+                return players.get(target.getIndex()).getObject(target.getNext());
+            }
+            else if (target instanceof Board.Target) {
+                return board.getObject(target.getNext());
+            }
+            else {
+                throw new IllegalArgumentException("target has invalid type");
+            }
+        }
 
-        command.procCommand(this, player);
-
-        return true;
+        return this;
     }
 }

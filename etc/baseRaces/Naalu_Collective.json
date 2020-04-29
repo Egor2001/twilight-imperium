@@ -1,0 +1,22 @@
+{
+    "StartingFleet": {
+        "Carrier": 1,
+        "Cruiser": 1,
+        "Destroyer": 1,
+        "Dreadnought": 0,
+        "Fighter": 3,
+        "Flagship": 0,
+        "WarSun": 0,
+        "Infantry": 4,
+        "PDS": 1,
+        "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Druaa",
+        "Maaluuk"
+    ],
+    "StartingTechnology": {
+        "SarweenTools": "0",
+        "NeuralMotivator": "0"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "StartingFleet": {
+        "Carrier": 1,
+        "Cruiser": 0,
+        "Destroyer": 0,
+        "Dreadnought": 1,
+        "Fighter": 3,
+        "Flagship": 0,
+        "WarSun": 0,
+        "Infantry": 5,
+        "PDS": 1,
+        "SpaceDock": 1
+    },
+    "TileInfo": [
+        "[0.0.0]"
+    ],
+    "StartingTechnology": {
+        "NeuralMotivator": "0",
+        "PlasmaScoring": "0"
+    }
+}
