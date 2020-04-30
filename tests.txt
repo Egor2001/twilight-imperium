@@ -1,14 +1,27 @@
-Pupa
+Boba
 Winnu
-Lupa
+Biba
 Arborec
 pick 1
 pick 2
-add-unit Carrier Tile.0.Space
-add-unit Carrier Tile.3.Space
-complete-mission 1
-complete-mission 2
-pick 1
-pick 2
-move Army.Ship.0 1 Tile.1.Space
-move Army.Ship.0 2 Tile.2.Space Tile.1.Space
+add-unit Fighter Tile.0.Space
+add-unit Fighter Tile.4.Space
+add-unit WarSun Tile.0.Space
+add-unit Carrier Tile.4.Space
+add-unit Flagship Tile.0.Space
+add-unit Fighter Tile.4.Space
+move Tile.1.Space
+game
+view Board
+quit
+add-unit-to-move 1 Army.Ship.1
+add-internal Army.Ship.1 1 Army.Ship.0
+add-way 1 Army.Ship.1 1 Tile.1.Space
+end-move
+game
+view Board
+quit
+move Tile.3.Space
+add-unit-to-move 1 Army.Ship.0
+add-way 1 Army.Ship.0 1 Tile.3.Space
+end-move

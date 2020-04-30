@@ -1,19 +1,23 @@
 package base.controller.phase.status;
 
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.model.GameState;
 import player.Player;
 
-public class PlayerStatusCompleteMission implements PlayerStatusCommand {
+public class PlayerStatusCompleteMission extends PlayerStatusCommand {
 
     public int missionIdx = 0;
 
-    public PlayerStatusCompleteMission() {
+    public PlayerStatusCompleteMission(AbstractController controller) {
+        super(controller);
         this.missionIdx = 0;
     }
 
-    public PlayerStatusCompleteMission(int missionIdx) {
+    public PlayerStatusCompleteMission(AbstractController controller, int missionIdx) {
+        this(controller);
         this.missionIdx = missionIdx;
     }
 
@@ -24,7 +28,7 @@ public class PlayerStatusCompleteMission implements PlayerStatusCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
         System.out.println("processing STATUS command: COMPLETE-MISSION");
         return CommandResponse.ACCEPTED;
     }

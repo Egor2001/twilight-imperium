@@ -1,5 +1,6 @@
 package base.controller.phase.action;
 
+import base.controller.AbstractCommand;
 import base.user.GameObjectTarget;
 import player.units.Unit;
 import base.controller.CommandResponse;
@@ -8,18 +9,20 @@ import base.model.GameState;
 import player.Player;
 import board.TileObject;
 
-public class PlayerActionAddUnit implements PlayerActionCommand {
+public class PlayerActionAddUnit extends PlayerActionCommand {
 
     public String unitName = null;
     public GameObjectTarget tileObjectTarget = null;
 
-    public PlayerActionAddUnit() {
+    public PlayerActionAddUnit(ActionPhaseController controller) {
+        super(controller);
         this.unitName = null;
         this.tileObjectTarget = null;
     }
 
-    public PlayerActionAddUnit(String unitName,
-                               GameObjectTarget tileObjectTarget) {
+    public PlayerActionAddUnit(ActionPhaseController controller,
+                               String unitName, GameObjectTarget tileObjectTarget) {
+        this(controller);
         this.unitName = unitName;
         this.tileObjectTarget = tileObjectTarget;
     }
@@ -33,8 +36,9 @@ public class PlayerActionAddUnit implements PlayerActionCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
         System.out.println("processing ACTION command: ADD_SHIP");
+        GameState gameState = ((ActionPhaseController) getController()).getGameState();
 
         try {
             TileObject tileObject = (TileObject) gameState.getBoard().getObject(tileObjectTarget);

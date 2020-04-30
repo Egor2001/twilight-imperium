@@ -1,9 +1,10 @@
 package base;
 
+import base.controller.fight.SpaceCombatController;
+
 public class Main {
 
     public static void main(String[] args) {
-        //Player player = new Player("a", "Winnu");
         GameController gameController = GameController.getInstance();
         gameController.start();
     }

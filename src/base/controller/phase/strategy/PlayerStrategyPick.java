@@ -1,19 +1,23 @@
 package base.controller.phase.strategy;
 
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.model.GameState;
 import player.Player;
 
-public class PlayerStrategyPick implements PlayerStrategyCommand {
+public class PlayerStrategyPick extends PlayerStrategyCommand {
 
     public int strategyIdx = 0;
 
-    public PlayerStrategyPick() {
+    public PlayerStrategyPick(AbstractController controller) {
+        super(controller);
         this.strategyIdx = 0;
     }
 
-    public PlayerStrategyPick(int strategyIdx) {
+    public PlayerStrategyPick(AbstractController controller, int strategyIdx) {
+        this(controller);
         this.strategyIdx = strategyIdx;
     }
 
@@ -24,7 +28,7 @@ public class PlayerStrategyPick implements PlayerStrategyCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
         System.out.println("processing STRATEGY command: PICK");
         return CommandResponse.ACCEPTED;
     }

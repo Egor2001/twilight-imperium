@@ -1,21 +1,24 @@
 package base.controller.global;
 
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.user.*;
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.model.GameState;
 import base.view.Viewable;
 import player.Player;
 
-public class PlayerGlobalView implements PlayerCommand {
+public class PlayerGlobalView extends AbstractCommand {
 
     private GameObjectTarget target;
 
-    public PlayerGlobalView() {
+    public PlayerGlobalView(AbstractController controller) {
+        super(controller);
         this.target = null;
     }
 
-    public PlayerGlobalView(GameObjectTarget target) {
+    public PlayerGlobalView(AbstractController controller, GameObjectTarget target) {
+        this(controller);
         this.target = target;
     }
 
@@ -26,7 +29,9 @@ public class PlayerGlobalView implements PlayerCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
+        GameState gameState = ((GlobalCommandController) getController()).getGameState();
+
         try {
             UserAcceptable gameObject =
                     (UserAcceptable) gameState.getObject(target);

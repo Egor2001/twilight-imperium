@@ -1,6 +1,6 @@
 package base.controller.phase.status;
 
-import base.controller.CommandController;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
@@ -9,7 +9,7 @@ import player.Player;
 
 import java.util.ArrayList;
 
-public class StatusPhaseController extends CommandController {
+public class StatusPhaseController extends AbstractController {
 
     private GameState gameState;
 
@@ -18,23 +18,30 @@ public class StatusPhaseController extends CommandController {
         super(userInterface, globalCommandController);
         this.gameState = gameState;
 
-        super.putCommand("complete-mission", new PlayerStatusCompleteMission());
+        super.putCommand("complete-mission", new PlayerStatusCompleteMission(this));
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         ArrayList<Player> players = gameState.getPlayers();
         CommandResponse response = CommandResponse.DECLINED;
 
         PlayerStatusCommand playerStatus = null;
         for (int idx = 0; idx != players.size(); ++idx) {
             playerStatus = (PlayerStatusCommand) requestCommand(players.get(idx), "status");
-            response = playerStatus.execute(gameState, players.get(idx));
+            response = playerStatus.execute(players.get(idx));
 
             while (response == CommandResponse.DECLINED) {
                 playerStatus = (PlayerStatusCommand) requestCommand(players.get(idx), "correct status");
-                response = playerStatus.execute(gameState, players.get(idx));
+                response = playerStatus.execute(players.get(idx));
             }
         }
+
+        return true;
+    }
+
+    @Override
+    public GameState getGameState() {
+        return gameState;
     }
 }

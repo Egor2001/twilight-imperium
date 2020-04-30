@@ -1,14 +1,11 @@
-package base.controller.global;
+package base.controller.phase.action;
 
-import base.controller.AbstractCommand;
-import base.controller.AbstractController;
-import base.user.CommandRequestable;
 import base.controller.CommandResponse;
+import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerGlobalStop extends AbstractCommand {
-
-    public PlayerGlobalStop(AbstractController controller) {
+public class PlayerActionPass extends PlayerActionCommand {
+    public PlayerActionPass(ActionPhaseController controller) {
         super(controller);
     }
 
@@ -19,6 +16,7 @@ public class PlayerGlobalStop extends AbstractCommand {
 
     @Override
     public CommandResponse execute(Player player) {
+        System.out.println("processing ACTION command: END");
         return CommandResponse.END_EVENT;
     }
 }

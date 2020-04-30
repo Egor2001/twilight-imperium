@@ -1,6 +1,10 @@
 package base.controller.phase.status;
 
-import base.controller.PlayerCommand;
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 
-public interface PlayerStatusCommand extends PlayerCommand {
+public abstract class PlayerStatusCommand extends AbstractCommand {
+    public PlayerStatusCommand(AbstractController controller) {
+        super(controller);
+    }
 }
