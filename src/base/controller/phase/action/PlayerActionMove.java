@@ -3,10 +3,19 @@ package base.controller.phase.action;
 import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
+import base.controller.fight.SpaceCombatController;
 import base.controller.tactic.MoveController;
+import base.controller.tactic.MoveState;
 import base.user.CommandRequestable;
 import base.model.GameState;
+import board.TileArmyManager;
+import board.TileObject;
 import player.Player;
+import player.Race;
+import player.units.Ships.Ship;
+import player.units.Unit;
+
+import java.util.ArrayList;
 
 public class PlayerActionMove extends PlayerActionCommand {
 
@@ -27,6 +36,17 @@ public class PlayerActionMove extends PlayerActionCommand {
                                                            controller.getGlobalCommandController(), player);
 
         boolean result = moveController.start();
+        if (!result) {
+            return CommandResponse.DECLINED;
+        }
+
+        MoveState moveState = moveController.getMoveState();
+        TileObject activeTile = moveState.getActiveTile();
+        SpaceCombatController combatController =
+                new SpaceCombatController(controller.getUserInterface(), controller.getGameState(),
+                                          controller.getGlobalCommandController(), activeTile, player);
+
+        result = combatController.start();
         if (!result) {
             return CommandResponse.DECLINED;
         }

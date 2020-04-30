@@ -10,12 +10,14 @@ import player.Player;
 public class MoveController extends AbstractController {
     private GameState gameState;
     private Player player;
+    private MoveState moveState;
 
     public MoveController(CommandRequestable userInterface, GameState gameState,
                           GlobalCommandController globalCommandController, Player player) {
         super(userInterface, globalCommandController);
         this.gameState = gameState;
         this.player = player;
+        this.moveState = null;
 
         super.putCommand("add-unit-to-move", new PlayerTacticAddUnitToMoveCommand(this));
         super.putCommand("add-internal", new PlayerTacticAddInternalCommand(this));
@@ -28,7 +30,7 @@ public class MoveController extends AbstractController {
 
     @Override
     public boolean start() {
-        MoveState moveState = new MoveState();
+        moveState = new MoveState();
         CommandResponse response = CommandResponse.DECLINED;
         boolean error = false;
 
@@ -51,6 +53,10 @@ public class MoveController extends AbstractController {
         }
 
         return !error;
+    }
+
+    public MoveState getMoveState() {
+        return moveState;
     }
 
     @Override

@@ -99,6 +99,9 @@ public class MoveState {
         }
     }
 
+    public TileObject getActiveTile() {
+        return activeTile;
+    }
     public ArrayList<Unit> getUnitList() {
         return unitList;
     }

@@ -70,6 +70,10 @@ public class Board implements UserAcceptable {
     public int size_;
     public TileArmyManager ta_controller;
 
+    public TileArmyManager getTileArmyManager() {
+        return ta_controller;
+    }
+
     void print() {
 
     }

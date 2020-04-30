@@ -6,7 +6,7 @@ import base.model.GameState;
 import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerCombatRetreat extends AbstractCommand {
+public class PlayerCombatRetreat extends PlayerCombatCommand {
 
     public PlayerCombatRetreat(SpaceCombatController controller) {
         super(controller);
