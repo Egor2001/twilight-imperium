@@ -1,6 +1,6 @@
 package base.controller.phase.action;
 
-import base.controller.CommandController;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
@@ -9,7 +9,7 @@ import player.Player;
 
 import java.util.ArrayList;
 
-public class ActionPhaseController extends CommandController {
+public class ActionPhaseController extends AbstractController {
 
     private GameState gameState;
 
@@ -18,8 +18,8 @@ public class ActionPhaseController extends CommandController {
         super(userInterface, globalCommandController);
         this.gameState = gameState;
 
-        super.putCommand("add-unit", new PlayerActionAddUnit());
-        super.putCommand("move", new PlayerActionMove());
+        super.putCommand("add-unit", new PlayerActionAddUnit(this));
+        super.putCommand("move", new PlayerActionMove(this));
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ActionPhaseController extends CommandController {
             for (int idx = 0; idx != players.size(); ++idx) {
                 if (!isPassed[idx]) {
                     playerAction = (PlayerActionCommand) requestCommand(players.get(idx), "action");
-                    response = playerAction.execute(gameState, players.get(idx));
+                    response = playerAction.execute(players.get(idx));
 
                     if (response == CommandResponse.DECLINED) {
                         isPassed[idx] = true;
@@ -43,5 +43,10 @@ public class ActionPhaseController extends CommandController {
                 }
             }
         }
+    }
+
+    @Override
+    public GameState getGameState() {
+        return gameState;
     }
 }

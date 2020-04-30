@@ -1,22 +1,23 @@
 package base.controller.tactic;
 
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
 import board.TileObject;
 import player.Player;
 
-public class PlayerTacticSetActiveTileCommand implements PlayerTacticCommand {
+public class PlayerTacticSetActiveTileCommand extends PlayerTacticCommand {
     private GameObjectTarget tileObjectTarget;
     private MoveState moveState;
 
-    PlayerTacticSetActiveTileCommand() {
+    PlayerTacticSetActiveTileCommand(MoveController controller) {
+        super(controller);
         moveState = null;
         tileObjectTarget = null;
     }
-    PlayerTacticSetActiveTileCommand(MoveState moveState) {
+    PlayerTacticSetActiveTileCommand(MoveController controller, MoveState moveState) {
+        this(controller);
         this.moveState = moveState;
         tileObjectTarget = null;
     }
@@ -34,7 +35,8 @@ public class PlayerTacticSetActiveTileCommand implements PlayerTacticCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
+        GameState gameState = ((MoveController) getController()).getGameState();
         System.out.println("processing TACTIC command: SET_ACTIVE_TILE");
 
         try {

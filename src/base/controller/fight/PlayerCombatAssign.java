@@ -1,20 +1,20 @@
 package base.controller.fight;
 
+import base.controller.AbstractCommand;
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import player.Player;
 
 import java.util.ArrayList;
 
-public class PlayerCombatAssign implements PlayerCommand {
+public class PlayerCombatAssign extends AbstractCommand {
 
-    private SpaceCombatController controller;
     private ArrayList<Integer> hitIdxList;
     private Integer hitValue;
 
     public PlayerCombatAssign(SpaceCombatController controller) {
+        super(controller);
         this.controller = controller;
         this.hitIdxList = new ArrayList<>();
         this.hitValue = null;
@@ -34,8 +34,8 @@ public class PlayerCombatAssign implements PlayerCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
-        controller.assignHits(player, hitIdxList);
+    public CommandResponse execute(Player player) {
+        ((SpaceCombatController) getController()).assignHits(player, hitIdxList);
         return CommandResponse.ACCEPTED;
     }
 }

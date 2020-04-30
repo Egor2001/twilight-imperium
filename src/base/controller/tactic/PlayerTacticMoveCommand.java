@@ -11,10 +11,11 @@ import player.units.Unit;
 
 import java.util.ArrayList;
 
-public class PlayerTacticMoveCommand implements PlayerTacticCommand {
+public class PlayerTacticMoveCommand extends PlayerTacticCommand {
     private MoveState moveState;
 
-    PlayerTacticMoveCommand() {
+    PlayerTacticMoveCommand(MoveController controller) {
+        super(controller);
         moveState = null;
     }
 
@@ -29,7 +30,8 @@ public class PlayerTacticMoveCommand implements PlayerTacticCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
+        GameState gameState = ((MoveController) getController()).getGameState();
         System.out.println("processing TACTIC command: END_MOVE");
 
         boolean error = false;

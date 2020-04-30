@@ -1,13 +1,13 @@
 package base.controller.global;
 
-import base.controller.CommandController;
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.model.GameState;
 import player.Player;
 
-public class GlobalCommandController extends CommandController {
+public class GlobalCommandController extends AbstractController {
 
     private GameState gameState;
     private Player player;
@@ -17,8 +17,8 @@ public class GlobalCommandController extends CommandController {
         this.gameState = gameState;
         this.player = null;
 
-        super.putCommand("view", new PlayerGlobalView());
-        super.putCommand("quit", new PlayerGlobalStop());
+        super.putCommand("view", new PlayerGlobalView(this));
+        super.putCommand("quit", new PlayerGlobalStop(this));
     }
 
     public void setPlayer(Player player) {
@@ -28,17 +28,22 @@ public class GlobalCommandController extends CommandController {
     @Override
     public void start() {
         CommandResponse response = CommandResponse.DECLINED;
-        PlayerCommand command = null;
+        AbstractCommand command = null;
         while (response != CommandResponse.END_EVENT) {
             response = CommandResponse.DECLINED;
             while (response == CommandResponse.DECLINED) {
                 command = requestCommand(player, "global");
-                response = command.execute(gameState, player);
+                response = command.execute(player);
 
                 if (response == CommandResponse.DECLINED) {
                     userInterface.reportError("can't execute command");
                 }
             }
         }
+    }
+
+    @Override
+    public GameState getGameState() {
+        return gameState;
     }
 }

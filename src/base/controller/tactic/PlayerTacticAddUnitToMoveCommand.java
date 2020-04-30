@@ -9,11 +9,12 @@ import player.units.Unit;
 
 import java.util.ArrayList;
 
-public class PlayerTacticAddUnitToMoveCommand implements PlayerTacticCommand {
+public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
     private MoveState moveState;
     private ArrayList<GameObjectTarget> unitTargets;
 
-    PlayerTacticAddUnitToMoveCommand() {
+    PlayerTacticAddUnitToMoveCommand(MoveController controller) {
+        super(controller);
         moveState = null;
         unitTargets = new ArrayList<>();
     }
@@ -34,7 +35,7 @@ public class PlayerTacticAddUnitToMoveCommand implements PlayerTacticCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
         System.out.println("processing TACTIC command: ADD_UNIT");
 
         boolean error = false;

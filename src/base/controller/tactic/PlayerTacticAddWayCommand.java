@@ -11,12 +11,13 @@ import player.units.Unit;
 
 import java.util.ArrayList;
 
-public class PlayerTacticAddWayCommand implements PlayerTacticCommand {
+public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
     private MoveState moveState;
     private ArrayList<GameObjectTarget> waysTarget;
     private ArrayList<GameObjectTarget> unitsTarget;
 
-    PlayerTacticAddWayCommand() {
+    PlayerTacticAddWayCommand(MoveController controller) {
+        super(controller);
         moveState = null;
         waysTarget = new ArrayList<>();
         unitsTarget = new ArrayList<>();
@@ -43,7 +44,9 @@ public class PlayerTacticAddWayCommand implements PlayerTacticCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
+        GameState gameState = ((MoveController) getController()).getGameState();
+
         System.out.println("processing TACTIC command: ADD_WAY");
 
         boolean error = false;

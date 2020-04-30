@@ -1,20 +1,17 @@
 package base.controller.phase.action;
 
-import base.controller.tactic.MoveController;
-import base.user.GameObjectTarget;
-import player.units.Ships.Ship;
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import base.model.GameState;
 import player.Player;
-import board.Board;
-import board.TileObject;
 
-import java.util.ArrayList;
+public class PlayerActionMove extends PlayerActionCommand {
 
-public class PlayerActionMove implements PlayerActionCommand {
-
-    public PlayerActionMove() {}
+    public PlayerActionMove(AbstractController controller) {
+        super(controller);
+    }
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
@@ -24,7 +21,7 @@ public class PlayerActionMove implements PlayerActionCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
+    public CommandResponse execute(Player player) {
         System.out.println("processing ACTION command: MOVE");
 
         //MoveController moveController = new MoveController();

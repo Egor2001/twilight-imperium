@@ -1,17 +1,15 @@
 package base.controller.fight;
 
+import base.controller.AbstractCommand;
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerCombatRetreat implements PlayerCommand {
-
-    private SpaceCombatController controller;
+public class PlayerCombatRetreat extends AbstractCommand {
 
     public PlayerCombatRetreat(SpaceCombatController controller) {
-        this.controller = controller;
+        super(controller);
     }
 
     @Override
@@ -20,8 +18,8 @@ public class PlayerCombatRetreat implements PlayerCommand {
     }
 
     @Override
-    public CommandResponse execute(GameState gameState, Player player) {
-        boolean canRetreat = controller.announceRetreat(player);
+    public CommandResponse execute(Player player) {
+        boolean canRetreat = ((SpaceCombatController) getController()).announceRetreat(player);
         return (canRetreat ? CommandResponse.END_EVENT : CommandResponse.DECLINED);
     }
 }

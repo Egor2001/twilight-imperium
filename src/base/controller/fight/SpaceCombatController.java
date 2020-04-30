@@ -1,8 +1,8 @@
 package base.controller.fight;
 
-import base.controller.CommandController;
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.controller.CommandResponse;
-import base.controller.PlayerCommand;
 import base.controller.global.GlobalCommandController;
 import base.model.Dice;
 import base.user.CommandRequestable;
@@ -15,7 +15,7 @@ import board.TileArmyManager;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class SpaceCombatController extends CommandController {
+public class SpaceCombatController extends AbstractController {
 
     private Player retreatPlayer;
 
@@ -125,7 +125,7 @@ public class SpaceCombatController extends CommandController {
 
     @Override
     public void start() {
-        PlayerCommand command = null;
+        AbstractCommand command = null;
         CommandResponse response = null;
 
         int defenderHit = makeCombatRolls(defender) + antiFighterBarrage();;
@@ -136,14 +136,14 @@ public class SpaceCombatController extends CommandController {
             command = requestCommand(defender, "combat");
             response = CommandResponse.DECLINED;
             while (response != CommandResponse.ACCEPTED) {
-                response = command.execute(null, defender);
+                response = command.execute(defender);
             }
 
             hitValue = defenderHit;
             command = requestCommand(invader, "combat");
             response = CommandResponse.DECLINED;
             while (response != CommandResponse.ACCEPTED) {
-                response = command.execute(null, invader);
+                response = command.execute(invader);
             }
 
             if (retreatPlayer == null) {

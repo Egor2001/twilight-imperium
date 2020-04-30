@@ -1,6 +1,6 @@
 package base;
 
-import base.controller.CommandController;
+import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.global.GlobalCommandController;
 import base.controller.phase.action.ActionPhaseController;
@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-public class GameController extends CommandController {
+public class GameController extends AbstractController {
 
     private static GameController instance;
     private GameState gameState;
@@ -48,12 +48,12 @@ public class GameController extends CommandController {
             gameState.getPlayers().set(playerIdx, requestPlayer(playerIdx));
         }
 
-        ArrayList<CommandController> controllers = new ArrayList<>();
+        ArrayList<AbstractController> controllers = new ArrayList<>();
         controllers.add(new StrategyPhaseController(userInterface, gameState, globalCommandController));
         controllers.add(new ActionPhaseController(userInterface, gameState, globalCommandController));
         controllers.add(new StatusPhaseController(userInterface, gameState, globalCommandController));
 
-        for (CommandController controller : controllers)
+        for (AbstractController controller : controllers)
             controller.start();
     }
 
