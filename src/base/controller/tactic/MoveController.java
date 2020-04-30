@@ -1,6 +1,7 @@
 package base.controller.tactic;
 
 import base.controller.CommandController;
+import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
 import base.controller.phase.action.PlayerActionAddUnit;
 import base.controller.phase.action.PlayerActionCommand;
@@ -31,10 +32,17 @@ public class MoveController extends CommandController {
 
         for (Player player: players) {
             MoveState moveState = new MoveState();
+            CommandResponse response = CommandResponse.DECLINED;
 
-            PlayerTacticCommand command = new PlayerTacticSetActiveTileCommand(moveState);
-            command.inputCommand(userInterface);
-            command.execute(gameState, player);
+            PlayerTacticCommand playerTacticCommand = new PlayerTacticSetActiveTileCommand(moveState);
+            playerTacticCommand.inputCommand(userInterface);
+            playerTacticCommand.execute(gameState, player);
+
+            while(response != CommandResponse.END_EVENT) {
+                playerTacticCommand = (PlayerTacticCommand) requestCommand(player, "move");
+                playerTacticCommand.setMoveState(moveState);
+                response = playerTacticCommand.execute(gameState, player);
+            }
         }
     }
 }

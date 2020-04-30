@@ -16,8 +16,6 @@ public class PlayerTacticMoveCommand implements PlayerTacticCommand {
 
     PlayerTacticMoveCommand() {
         moveState = null;
-        waysTarget = new ArrayList<>();
-        unitsTarget = new ArrayList<>();
     }
 
     @Override
