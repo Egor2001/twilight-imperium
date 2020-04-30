@@ -3,6 +3,7 @@
 out/
 gen/PythonGenerateUnits/.idea/
 venv/
+Graphics/
 
 # Compiled class file
 *.class
