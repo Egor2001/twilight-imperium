@@ -30,7 +30,7 @@ public class PlayerTacticMoveCommand implements PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(GameState gameState, Player player) {
-        System.out.println("processing TACTIC command: MOVE");
+        System.out.println("processing TACTIC command: END_MOVE");
 
         boolean error = false;
         ArrayList<Unit> units = moveState.getUnitList();
