@@ -26,7 +26,7 @@ public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        int numUnits = userInterface.requestNumber("number units to move");
+        int numUnits = userInterface.requestNumber("units to move");
         for (int i = 0; i < numUnits; ++i) {
             unitTargets.add(userInterface.requestTarget("unit object"));
         }

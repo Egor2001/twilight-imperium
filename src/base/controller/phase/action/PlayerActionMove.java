@@ -3,6 +3,7 @@ package base.controller.phase.action;
 import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
+import base.controller.tactic.MoveController;
 import base.user.CommandRequestable;
 import base.model.GameState;
 import player.Player;
@@ -15,8 +16,6 @@ public class PlayerActionMove extends PlayerActionCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-
-
         return true;
     }
 
@@ -24,7 +23,13 @@ public class PlayerActionMove extends PlayerActionCommand {
     public CommandResponse execute(Player player) {
         System.out.println("processing ACTION command: MOVE");
 
-        //MoveController moveController = new MoveController();
+        MoveController moveController = new MoveController(controller.getUserInterface(), controller.getGameState(),
+                                                           controller.getGlobalCommandController(), player);
+
+        boolean result = moveController.start();
+        if (!result) {
+            return CommandResponse.DECLINED;
+        }
 
         return CommandResponse.ACCEPTED;
     }

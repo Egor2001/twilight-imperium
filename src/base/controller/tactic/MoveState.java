@@ -18,6 +18,24 @@ public class MoveState {
         ways = new ArrayList<>();
     }
 
+    public void clear() {
+        activeTile = null;
+        unitList.clear();
+        internalUnits.clear();
+        ways.clear();
+    }
+
+    public void delUnit(Unit unit) {
+        int index = unitList.indexOf(unit);
+        if (index > -1) {
+            unitList.remove(index);
+            internalUnits.remove(index);
+            ways.remove(index);
+        } else {
+            throw new IllegalArgumentException("This unit for del not in list");
+        }
+    }
+
     public void setActiveTile(TileObject activeTile) {
         if (this.activeTile != null) {
             throw new IllegalArgumentException("Active tile already choose");
@@ -63,7 +81,6 @@ public class MoveState {
     }
 
     public void addUnit(ArrayList<Unit> moveUnits) {
-        unitList.addAll(moveUnits);
         ArrayList<Unit> badUnits = new ArrayList<>();
 
         for (Unit unit: moveUnits) {
@@ -72,6 +89,7 @@ public class MoveState {
                 continue;
             }
 
+            unitList.add(unit);
             ways.add(null);
             internalUnits.add(null);
         }
@@ -84,11 +102,9 @@ public class MoveState {
     public ArrayList<Unit> getUnitList() {
         return unitList;
     }
-
     public ArrayList<Unit> getInternalUnits(Unit unit) {
         return internalUnits.get(unitList.indexOf(unit));
     }
-
     public ArrayList<TileObject> getWay(Unit unit) {
         return ways.get(unitList.indexOf(unit));
     }

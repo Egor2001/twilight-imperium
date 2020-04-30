@@ -20,10 +20,11 @@ public class ActionPhaseController extends AbstractController {
 
         super.putCommand("add-unit", new PlayerActionAddUnit(this));
         super.putCommand("move", new PlayerActionMove(this));
+        super.putCommand("pass", new PlayerActionPass(this));
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         ArrayList<Player> players = gameState.getPlayers();
         CommandResponse response = CommandResponse.DECLINED;
 
@@ -37,12 +38,17 @@ public class ActionPhaseController extends AbstractController {
                     response = playerAction.execute(players.get(idx));
 
                     if (response == CommandResponse.DECLINED) {
+                        --idx;
+                    }
+                    if (response == CommandResponse.END_EVENT) {
                         isPassed[idx] = true;
                         ++numPassed;
                     }
                 }
             }
         }
+
+        return true;
     }
 
     @Override

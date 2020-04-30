@@ -26,15 +26,13 @@ public abstract class AbstractController {
         this.globalCommandController = globalCommandController;
     }
 
-    public abstract void start();
+    public abstract boolean start();
 
     protected void putCommand(String name, AbstractCommand command) {
         commandHashMap.put(name, command);
     }
 
-    protected GameState getGameState() {
-        return null;
-    }
+    public abstract GameState getGameState();
 
     protected AbstractCommand requestCommand(Player player, String context) {
         AbstractCommand command = null;
@@ -55,5 +53,13 @@ public abstract class AbstractController {
         command.inputCommand(userInterface);
 
         return command;
+    }
+
+    public CommandRequestable getUserInterface() {
+        return userInterface;
+    }
+
+    public GlobalCommandController getGlobalCommandController() {
+        return globalCommandController;
     }
 }

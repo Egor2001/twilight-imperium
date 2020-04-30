@@ -11,10 +11,10 @@ import player.units.Unit;
 
 import java.util.ArrayList;
 
-public class PlayerTacticMoveCommand extends PlayerTacticCommand {
+public class PlayerTacticEndMoveCommand extends PlayerTacticCommand {
     private MoveState moveState;
 
-    PlayerTacticMoveCommand(MoveController controller) {
+    public PlayerTacticEndMoveCommand(MoveController controller) {
         super(controller);
         moveState = null;
     }

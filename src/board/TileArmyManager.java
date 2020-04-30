@@ -68,7 +68,7 @@ public class TileArmyManager {
         add(ship, way.get(sizeWay - 1));
         for (Unit unit: units) {
             remove(unit);
-            add(unit, way.get(sizeWay));
+            add(unit, way.get(sizeWay - 1));
         }
     }
 

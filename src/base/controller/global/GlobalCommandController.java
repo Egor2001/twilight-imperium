@@ -26,7 +26,7 @@ public class GlobalCommandController extends AbstractController {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         CommandResponse response = CommandResponse.DECLINED;
         AbstractCommand command = null;
         while (response != CommandResponse.END_EVENT) {
@@ -40,6 +40,8 @@ public class GlobalCommandController extends AbstractController {
                 }
             }
         }
+
+        return true;
     }
 
     @Override

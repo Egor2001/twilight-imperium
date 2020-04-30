@@ -1,6 +1,7 @@
 package base;
 
 import base.controller.AbstractController;
+import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import base.controller.global.GlobalCommandController;
 import base.controller.phase.action.ActionPhaseController;
@@ -42,7 +43,7 @@ public class GameController extends AbstractController {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         int playersCnt = gameState.getPlayers().size();
         for (int playerIdx = 0; playerIdx != playersCnt; ++playerIdx) {
             gameState.getPlayers().set(playerIdx, requestPlayer(playerIdx));
@@ -55,6 +56,8 @@ public class GameController extends AbstractController {
 
         for (AbstractController controller : controllers)
             controller.start();
+
+        return true;
     }
 
     private Player requestPlayer(int idx) {
