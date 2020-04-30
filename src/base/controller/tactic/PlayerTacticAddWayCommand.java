@@ -30,14 +30,14 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        int numUnits = userInterface.requestNumber("number units to move");
+        int numUnits = userInterface.requestNumber("units to move");
         for (int i = 0; i < numUnits; ++i) {
             unitsTarget.add(userInterface.requestTarget("unit object"));
         }
 
-        int numTiles = userInterface.requestNumber("number tiles in way");
+        int numTiles = userInterface.requestNumber("tiles in way");
         for (int i = 0; i < numUnits; ++i) {
-            unitsTarget.add(userInterface.requestTarget("tile object"));
+            waysTarget.add(userInterface.requestTarget("tile object"));
         }
 
         return true;
@@ -59,6 +59,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
+                //exception.printStackTrace();
                 error = true;
             }
         }
@@ -69,6 +70,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
+                //exception.printStackTrace();
                 error = true;
             }
         }
@@ -77,6 +79,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             moveState.addWay(units, tileObjects);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
+            //exception.printStackTrace();
             error = true;
         }
 

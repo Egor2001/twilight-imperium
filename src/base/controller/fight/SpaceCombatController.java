@@ -5,6 +5,7 @@ import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
 import base.model.Dice;
+import base.model.GameState;
 import base.user.CommandRequestable;
 import board.TileObject;
 import player.Player;
@@ -124,7 +125,7 @@ public class SpaceCombatController extends AbstractController {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         AbstractCommand command = null;
         CommandResponse response = null;
 
@@ -151,5 +152,12 @@ public class SpaceCombatController extends AbstractController {
                 invaderHit = makeCombatRolls(invader);
             }
         }
+
+        return true;
+    }
+
+    @Override
+    public GameState getGameState() {
+        return null;
     }
 }

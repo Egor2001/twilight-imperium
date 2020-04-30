@@ -22,7 +22,7 @@ public class StatusPhaseController extends AbstractController {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         ArrayList<Player> players = gameState.getPlayers();
         CommandResponse response = CommandResponse.DECLINED;
 
@@ -36,6 +36,8 @@ public class StatusPhaseController extends AbstractController {
                 response = playerStatus.execute(players.get(idx));
             }
         }
+
+        return true;
     }
 
     @Override
