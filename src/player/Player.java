@@ -17,6 +17,12 @@ import java.util.Map;
 
 //TODO: to implement IUpdatable
 public class Player implements Updatable, UserAcceptable {
+    private static RacePlayerManager racePlayerManager = new RacePlayerManager();
+
+    public static RacePlayerManager getRacePlayerManager() {
+        return Player.racePlayerManager;
+    }
+
     private String name;
     private Army army;
     private Race race;
@@ -30,9 +36,11 @@ public class Player implements Updatable, UserAcceptable {
             e.printStackTrace();
             throw new IllegalArgumentException("Race invalid: " + race);
         }
+
+        Player.racePlayerManager.addPlayer(this);
     }
 
-    public Unit addUnit(String name) {
+    public Unit addUnit(String name) throws IllegalArgumentException {
         switch (name) {
             case "PDS":
                 PDS pds = race.createPDS();

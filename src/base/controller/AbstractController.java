@@ -26,13 +26,14 @@ public abstract class AbstractController {
         this.globalCommandController = globalCommandController;
     }
 
-    public abstract boolean start();
+    public abstract CommandResponse start();
 
     protected void putCommand(String name, AbstractCommand command) {
         commandHashMap.put(name, command);
     }
 
     public abstract GameState getGameState();
+    public abstract AbstractCommand getExitCommand();
 
     protected AbstractCommand requestCommand(Player player, String context) {
         AbstractCommand command = null;
@@ -41,7 +42,10 @@ public abstract class AbstractController {
             name = userInterface.requestName(player.getName() + "'s " + context + " command");
             if (globalCommandController != null && name.equals(GLOBAL_COMMAND_NAME)) {
                 globalCommandController.setPlayer(player);
-                globalCommandController.start();
+                CommandResponse response = globalCommandController.start();
+                if (response == CommandResponse.END_GAME) {
+                    return getExitCommand();
+                }
                 continue;
             }
 

@@ -1,11 +1,14 @@
-package base.controller.tactic;
+package base.controller.global;
 
+import base.controller.AbstractCommand;
+import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerTacticBreakCommand extends PlayerTacticCommand {
-    public PlayerTacticBreakCommand(MoveController controller) {
+public class PlayerGlobalExit extends AbstractCommand {
+
+    public PlayerGlobalExit(GlobalCommandController controller) {
         super(controller);
     }
 
@@ -16,6 +19,6 @@ public class PlayerTacticBreakCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        return CommandResponse.BREAK;
+        return CommandResponse.END_GAME;
     }
 }

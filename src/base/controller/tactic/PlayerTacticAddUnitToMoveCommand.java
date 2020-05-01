@@ -10,18 +10,11 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
-    private MoveState moveState;
     private ArrayList<GameObjectTarget> unitTargets;
 
     PlayerTacticAddUnitToMoveCommand(MoveController controller) {
         super(controller);
-        moveState = null;
         unitTargets = new ArrayList<>();
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -52,7 +45,7 @@ public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
         }
 
         try {
-            moveState.addUnit(units);
+            ((MoveController) controller).getMoveState().addUnit(units);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
             error = true;

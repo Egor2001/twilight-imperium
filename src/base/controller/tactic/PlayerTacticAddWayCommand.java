@@ -12,20 +12,13 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
-    private MoveState moveState;
     private ArrayList<GameObjectTarget> waysTarget;
     private ArrayList<GameObjectTarget> unitsTarget;
 
     PlayerTacticAddWayCommand(MoveController controller) {
         super(controller);
-        moveState = null;
         waysTarget = new ArrayList<>();
         unitsTarget = new ArrayList<>();
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -76,7 +69,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
         }
 
         try {
-            moveState.addWay(units, tileObjects);
+            ((MoveController) controller).getMoveState().addWay(units, tileObjects);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
             //exception.printStackTrace();

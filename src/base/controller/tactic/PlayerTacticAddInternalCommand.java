@@ -10,20 +10,13 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
-    private MoveState moveState;
     private GameObjectTarget unitTarget;
     private ArrayList<GameObjectTarget> unitsInternalTarget;
 
     PlayerTacticAddInternalCommand(MoveController controller) {
         super(controller);
-        moveState = null;
         unitTarget = null;
         unitsInternalTarget = new ArrayList<>();
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -57,7 +50,7 @@ public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
         }
 
         try {
-            moveState.addUnitsInsideUnit(unit, unitsInternal);
+            ((MoveController) controller).getMoveState().addUnitsInsideUnit(unit, unitsInternal);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
             error = true;

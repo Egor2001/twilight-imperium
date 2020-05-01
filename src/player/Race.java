@@ -87,13 +87,11 @@ public abstract class Race implements UserAcceptable {
         return null;
     }
 
-    public Ship createShip(String name) {
+    public Ship createShip(String name) throws IllegalArgumentException {
         try {
-            Object[] args = new Object[] {this};
-            return (Ship) factoryUnit.getClass().getMethod("create" + name, Race.class).invoke(factoryUnit, args);
+            return (Ship) factoryUnit.getClass().getMethod("create" + name, Race.class).invoke(factoryUnit, this);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            throw new IllegalArgumentException("Ship invalid: create" + name);
+            throw new IllegalArgumentException("Ship invalid: " + name);
         }
     }
     public PDS createPDS() {

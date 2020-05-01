@@ -12,16 +12,8 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerTacticEndMoveCommand extends PlayerTacticCommand {
-    private MoveState moveState;
-
     public PlayerTacticEndMoveCommand(MoveController controller) {
         super(controller);
-        moveState = null;
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -35,11 +27,13 @@ public class PlayerTacticEndMoveCommand extends PlayerTacticCommand {
         System.out.println("processing TACTIC command: END_MOVE");
 
         boolean error = false;
-        ArrayList<Unit> units = moveState.getUnitList();
+        ArrayList<Unit> units = ((MoveController) controller).getMoveState().getUnitList();
 
         for (Unit unit: units) {
             try {
-                gameState.getTileArmyManager().move((Ship) unit, moveState.getInternalUnits(unit), moveState.getWay(unit));
+                gameState.getTileArmyManager().move((Ship) unit,
+                        ((MoveController) controller).getMoveState().getInternalUnits(unit),
+                        ((MoveController) controller).getMoveState().getWay(unit));
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
                 error = true;
