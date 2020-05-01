@@ -1,8 +1,13 @@
 package base.controller.tactic;
 
+import base.user.GameObjectTarget;
+import base.user.UserAcceptable;
+import base.view.Viewable;
 import board.TileObject;
 import player.units.Unit;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class MoveState {
@@ -110,5 +115,43 @@ public class MoveState {
     }
     public ArrayList<TileObject> getWay(Unit unit) {
         return ways.get(unitList.indexOf(unit));
+    }
+
+    public String toString(String start) {
+        StringBuilder result = new StringBuilder(start + "Move State now:\n");
+        result.append(start).append("Active Tile:\n");
+        result.append(activeTile.GetTile().getView(null).toString(start + "  ")).append("\n");
+
+        if (unitList.size() > 0) {
+            result.append(start).append("Move units:\n");
+            for(Unit unit: unitList) {
+                result.append(getUnitInfo(unit, start + "  "));
+            }
+        }
+
+        return result.toString();
+    }
+    public String toString() {
+        return toString("");
+    }
+
+    public String getUnitInfo(Unit unit, String start) {
+        StringBuilder result = new StringBuilder(unit.getView(null).toString(start) + ":\n");
+
+        ArrayList<Unit> internalUnit = getInternalUnits(unit);
+        if (internalUnit.size() > 0) {
+            result.append("  ").append(start).append("Internal units:\n");
+            for (Unit unitInternal: internalUnit) {
+                result.append(unitInternal.getView(null).toString(start + "    ")).append("\n");
+            }
+        }
+
+        ArrayList<TileObject> way = getWay(unit);
+        result.append("  ").append(start).append("Way's tiles:\n");
+        for (TileObject tile: way) {
+            result.append(start).append("in the future\n");
+        }
+
+        return result.toString();
     }
 }

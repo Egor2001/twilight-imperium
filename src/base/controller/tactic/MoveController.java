@@ -19,13 +19,14 @@ public class MoveController extends AbstractController {
         this.player = player;
         this.moveState = null;
 
-        super.putCommand("add-unit-to-move", new PlayerTacticAddUnitToMoveCommand(this));
+        super.putCommand("add-unit", new PlayerTacticAddUnitToMoveCommand(this));
+        super.putCommand("del-unit", new PlayerTacticDelUnitCommand(this));
         super.putCommand("add-internal", new PlayerTacticAddInternalCommand(this));
         super.putCommand("add-way", new PlayerTacticAddWayCommand(this));
         super.putCommand("break", new PlayerTacticBreakCommand(this));
         super.putCommand("clear", new PlayerTacticClearCommand(this));
-        super.putCommand("del-unit", new PlayerTacticDelUnitCommand(this));
         super.putCommand("end-move", new PlayerTacticEndMoveCommand(this));
+        super.putCommand("view-all-moves", new PlayerTacticViewMovesCommand(this));
     }
 
     @Override
@@ -40,7 +41,6 @@ public class MoveController extends AbstractController {
 
         while(response != CommandResponse.END_EVENT) {
             playerTacticCommand = (PlayerTacticCommand) requestCommand(player, "move");
-            playerTacticCommand.setMoveState(moveState);
 
             response = playerTacticCommand.execute(player);
             if (response == CommandResponse.DECLINED) {

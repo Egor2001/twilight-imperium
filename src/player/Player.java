@@ -40,7 +40,7 @@ public class Player implements Updatable, UserAcceptable {
         Player.racePlayerManager.addPlayer(this);
     }
 
-    public Unit addUnit(String name) {
+    public Unit addUnit(String name) throws IllegalArgumentException {
         switch (name) {
             case "PDS":
                 PDS pds = race.createPDS();

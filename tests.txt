@@ -14,9 +14,10 @@ move Tile.1.Space
 game
 view Board
 quit
-add-unit-to-move 1 Army.Ship.1
+add-unit 1 Army.Ship.1
 add-internal Army.Ship.1 1 Army.Ship.0
 add-way 1 Army.Ship.1 1 Tile.1.Space
+view-all-moves
 end-move
 game
 view Board

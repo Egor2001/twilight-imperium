@@ -4,8 +4,10 @@ import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerTacticBreakCommand extends PlayerTacticCommand {
-    public PlayerTacticBreakCommand(MoveController controller) {
+import java.util.ArrayList;
+
+public class PlayerTacticViewMovesCommand extends PlayerTacticCommand{
+    PlayerTacticViewMovesCommand(MoveController controller) {
         super(controller);
     }
 
@@ -16,6 +18,7 @@ public class PlayerTacticBreakCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        return CommandResponse.BREAK;
+        System.out.println(((MoveController) controller).getMoveState().toString());
+        return CommandResponse.ACCEPTED;
     }
 }

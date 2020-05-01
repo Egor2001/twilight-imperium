@@ -9,18 +9,11 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerTacticDelUnitCommand extends PlayerTacticCommand {
-    private MoveState moveState;
     private GameObjectTarget unitTarget;
 
     PlayerTacticDelUnitCommand(MoveController controller) {
         super(controller);
-        moveState = null;
         unitTarget = null;
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -36,7 +29,7 @@ public class PlayerTacticDelUnitCommand extends PlayerTacticCommand {
 
         try {
             Unit unit = (Unit) player.getObject(unitTarget);
-            moveState.delUnit(unit);
+            ((MoveController) controller).getMoveState().delUnit(unit);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
             return CommandResponse.DECLINED;
