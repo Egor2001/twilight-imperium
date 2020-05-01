@@ -24,7 +24,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: UploadArtifacts
-          uses: actions/upload-artifact@v1
-          with:
-            name: Distributive
-            path: ./target/twilight-imperium-1.0-SNAPSHOT.jar
+        uses: actions/upload-artifact@v1
+        with:
+          name: Distributive
+          path: ./target/twilight-imperium-1.0-SNAPSHOT.jar
