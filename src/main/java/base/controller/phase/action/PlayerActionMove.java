@@ -22,8 +22,6 @@ public class PlayerActionMove extends PlayerActionCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing ACTION command: MOVE");
-
         MoveController moveController = new MoveController(controller.getUserInterface(), controller.getGameState(),
                                                            controller.getGlobalCommandController(), player);
 
