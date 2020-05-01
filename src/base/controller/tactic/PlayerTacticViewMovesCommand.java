@@ -18,6 +18,7 @@ public class PlayerTacticViewMovesCommand extends PlayerTacticCommand{
 
     @Override
     public CommandResponse execute(Player player) {
+        System.out.println("processing TACTIC command: VIEW_ALL_UNIT");
         System.out.println(((MoveController) controller).getMoveState().toString());
         return CommandResponse.ACCEPTED;
     }
