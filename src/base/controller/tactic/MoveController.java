@@ -4,7 +4,6 @@ import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
-import base.controller.global.PlayerGlobalExit;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import player.Player;
@@ -72,10 +71,6 @@ public class MoveController extends AbstractController {
     @Override
     public AbstractCommand getExitCommand() {
         return new PlayerTacticCommand(this) {
-            @Override
-            public void setMoveState(MoveState moveState) {
-            }
-
             @Override
             public boolean inputCommand(CommandRequestable userInterface) {
                 return false;
