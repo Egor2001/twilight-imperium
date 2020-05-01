@@ -31,7 +31,6 @@ public class GameState implements UserAcceptable, Updatable {
     public Board getBoard() {
         return board;
     }
-    public TileArmyManager getController() { return tileArmyManager; }
 
     public ArrayList<Player> getPlayers() {
         return players;

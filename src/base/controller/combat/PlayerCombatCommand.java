@@ -1,4 +1,4 @@
-package base.controller.fight;
+package base.controller.combat;
 
 import base.controller.AbstractCommand;
 
