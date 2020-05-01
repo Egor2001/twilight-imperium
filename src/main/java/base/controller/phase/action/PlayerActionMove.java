@@ -2,7 +2,7 @@ package base.controller.phase.action;
 
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
-import base.controller.fight.SpaceCombatController;
+import base.controller.combat.SpaceCombatController;
 import base.controller.tactic.MoveController;
 import base.controller.tactic.MoveState;
 import base.user.CommandRequestable;

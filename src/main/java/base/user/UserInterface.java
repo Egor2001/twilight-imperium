@@ -1,5 +1,7 @@
 package base.user;
 
+import base.view.Viewable;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -67,5 +69,10 @@ public class UserInterface implements CommandRequestable {
     @Override
     public void reportError(String error) {
         printStream.println("Error: " + error);
+    }
+
+    @Override
+    public void displayView(Viewable view) {
+        printStream.println(view.toString());
     }
 }

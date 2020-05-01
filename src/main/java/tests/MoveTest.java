@@ -13,9 +13,12 @@ import board.Board;
 import board.TileArmyManager;
 
 import java.io.*;
+<<<<<<< HEAD
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+=======
+>>>>>>> develop
 import java.util.ArrayList;
 
 public class MoveTest extends Assert {
@@ -32,6 +35,7 @@ public class MoveTest extends Assert {
     @Test
     public void testMove () {
         try {
+<<<<<<< HEAD
             DoTestFromFile("test1");
         }
         catch (Exception e)
@@ -43,6 +47,9 @@ public class MoveTest extends Assert {
     public void otherMove () {
         try {
             DoTestFromFile("test2");
+=======
+            DoTestFromFile();
+>>>>>>> develop
         }
         catch (Exception e)
         {
@@ -55,6 +62,7 @@ public class MoveTest extends Assert {
 
     }
 
+<<<<<<< HEAD
     private void DoTestFromFile(String test_name) throws FileNotFoundException {
         try {
             File input_file = new File("test/" + test_name + "/commands.txt");
@@ -106,5 +114,16 @@ public class MoveTest extends Assert {
         {
             fail();
         }
+=======
+    private String DoTestFromFile() throws FileNotFoundException {
+        File input_file = new File("tests.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("out_texst.txt", true);
+
+
+        GameController gameController = GameController.getInstance( new FileInputStream(input_file), new PrintStream(fileOutputStream));
+        gameController.start();
+
+        return "";
+>>>>>>> develop
     }
 }
