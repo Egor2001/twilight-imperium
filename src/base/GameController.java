@@ -11,18 +11,29 @@ import base.user.UserInterface;
 import player.Player;
 import base.model.GameState;
 
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class GameController extends AbstractController {
 
     private static GameController instance;
+    //private static Object IOUtils;
     private GameState gameState;
 
     public static GameController getInstance() {
         if (instance == null) {
             instance = new GameController(System.in, System.out);
+        }
+
+        return instance;
+    }
+
+    public static GameController getInstance(InputStream inputStream, PrintStream printStream) {
+        //BufferedReader reader = new BufferedReader(new FileReader(input_file))
+        //new FileReader(input_file);
+
+        if (instance == null) {
+            instance = new GameController(inputStream, printStream);
         }
 
         return instance;
