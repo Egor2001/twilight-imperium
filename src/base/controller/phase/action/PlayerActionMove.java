@@ -35,9 +35,9 @@ public class PlayerActionMove extends PlayerActionCommand {
         MoveController moveController = new MoveController(controller.getUserInterface(), controller.getGameState(),
                                                            controller.getGlobalCommandController(), player);
 
-        boolean result = moveController.start();
-        if (!result) {
-            return CommandResponse.DECLINED;
+        CommandResponse result = moveController.start();
+        if (result != CommandResponse.ACCEPTED) {
+            return result;
         }
 
         MoveState moveState = moveController.getMoveState();
@@ -47,8 +47,8 @@ public class PlayerActionMove extends PlayerActionCommand {
                                           controller.getGlobalCommandController(), activeTile, player);
 
         result = combatController.start();
-        if (!result) {
-            return CommandResponse.DECLINED;
+        if (result != CommandResponse.ACCEPTED) {
+            return result;
         }
 
         return CommandResponse.ACCEPTED;

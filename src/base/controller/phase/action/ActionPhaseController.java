@@ -1,5 +1,6 @@
 package base.controller.phase.action;
 
+import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
@@ -24,7 +25,7 @@ public class ActionPhaseController extends AbstractController {
     }
 
     @Override
-    public boolean start() {
+    public CommandResponse start() {
         ArrayList<Player> players = gameState.getPlayers();
         CommandResponse response = CommandResponse.DECLINED;
 
@@ -40,19 +41,37 @@ public class ActionPhaseController extends AbstractController {
                     if (response == CommandResponse.DECLINED) {
                         --idx;
                     }
-                    if (response == CommandResponse.END_EVENT) {
+                    else if (response == CommandResponse.END_EVENT) {
                         isPassed[idx] = true;
                         ++numPassed;
+                    }
+                    else if (response == CommandResponse.END_GAME) {
+                        return response;
                     }
                 }
             }
         }
 
-        return true;
+        return CommandResponse.ACCEPTED;
     }
 
     @Override
     public GameState getGameState() {
         return gameState;
+    }
+
+    @Override
+    public AbstractCommand getExitCommand() {
+        return new PlayerActionCommand(this) {
+            @Override
+            public boolean inputCommand(CommandRequestable userInterface) {
+                return false;
+            }
+
+            @Override
+            public CommandResponse execute(Player player) {
+                return CommandResponse.END_GAME;
+            }
+        };
     }
 }

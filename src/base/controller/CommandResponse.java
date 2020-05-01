@@ -3,9 +3,9 @@ package base.controller;
 public enum CommandResponse {
     ACCEPTED("ACCEPTED"),
     DECLINED("DECLINED"),
-    NEW_EVENT("NEW-EVENT"),
     END_EVENT("END-EVENT"),
-    BREAK("BREAK");
+    BREAK("BREAK"),
+    END_GAME("END-GAME");
 
     final String status;
     CommandResponse(String status) {
