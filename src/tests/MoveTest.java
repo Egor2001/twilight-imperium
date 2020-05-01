@@ -65,7 +65,10 @@ public class MoveTest extends Assert {
             out1.write(""); // очищаем, перезаписав поверх пустую строку
             out1.close(); // закрываем
 
+
             FileOutputStream fileOutputStream = new FileOutputStream("out_text.txt", true);
+
+            GameController.Delete();
 
             GameController gameController = GameController.getInstance( new FileInputStream(input_file), new PrintStream(fileOutputStream));
             gameController.start();
