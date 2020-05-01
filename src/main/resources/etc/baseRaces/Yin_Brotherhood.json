@@ -1,0 +1,20 @@
+{
+    "StartingFleet": {
+        "Carrier": 2,
+        "Cruiser": 0,
+        "Destroyer": 1,
+        "Dreadnought": 0,
+        "Fighter": 4,
+        "Flagship": 0,
+        "WarSun": 0,
+        "Infantry": 4,
+        "PDS": 0,
+        "SpaceDock": 1
+    },
+    "TileInfo": [
+        "Darien"
+    ],
+    "StartingTechnology": {
+        "SarweenTools": "0"
+    }
+}

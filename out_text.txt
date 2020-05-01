@@ -14,22 +14,7 @@ Input Biba's action command name
 Input unit name
 Input tile object target
 Input Biba's action command name
-Input active tile object target
-Input Biba's move command name
-Input units to move number
-Input unit object target
-Input Biba's move command name
-Input unit for load target
-Input number units to internal number
-Input unit object to internal target
-Input Biba's move command name
-Input units to move number
-Input unit object target
-Input tiles in way number
-Input tile object target
-Input Biba's move command name
-Input Biba's move command name
-Input Biba's action command name
 Input Biba's global command name
 Input view target
-Input Biba's global command name
+Error: "Board" is not a valid target
+Error: "exit" is not a valid target
