@@ -27,6 +27,7 @@ public class MoveController extends AbstractController {
         super.putCommand("clear", new PlayerTacticClearCommand(this));
         super.putCommand("end-move", new PlayerTacticEndMoveCommand(this));
         super.putCommand("view-all-moves", new PlayerTacticViewMovesCommand(this));
+        super.putCommand("view-unit-move", new PlayerTacticViewUnitCommand(this));
     }
 
     @Override
