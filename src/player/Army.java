@@ -62,7 +62,7 @@ public class Army implements Updatable, UserAcceptable {
         ArrayList<Viewable> pdsView;
         ArrayList<Viewable> spaceDocksView;
         
-        View(ArrayList<Viewable> shipsView, ArrayList<Viewable> groundForcesView, ArrayList<Viewable> pdsView, ArrayList<Viewable> spaceDocksView) {
+        public View(ArrayList<Viewable> shipsView, ArrayList<Viewable> groundForcesView, ArrayList<Viewable> pdsView, ArrayList<Viewable> spaceDocksView) {
             this.shipsView = shipsView;
             this.groundForcesView = groundForcesView;
             this.pdsView = pdsView;

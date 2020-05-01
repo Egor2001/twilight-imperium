@@ -9,22 +9,14 @@ import player.Player;
 
 public class PlayerTacticSetActiveTileCommand extends PlayerTacticCommand {
     private GameObjectTarget tileObjectTarget;
-    private MoveState moveState;
 
     PlayerTacticSetActiveTileCommand(MoveController controller) {
         super(controller);
-        moveState = null;
         tileObjectTarget = null;
     }
     PlayerTacticSetActiveTileCommand(MoveController controller, MoveState moveState) {
         this(controller);
-        this.moveState = moveState;
         tileObjectTarget = null;
-    }
-
-    @Override
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
     }
 
     @Override
@@ -41,7 +33,7 @@ public class PlayerTacticSetActiveTileCommand extends PlayerTacticCommand {
 
         try {
             TileObject tileObject = (TileObject) gameState.getBoard().getObject(tileObjectTarget);
-            moveState.setActiveTile(tileObject);
+            ((MoveController) controller).getMoveState().setActiveTile(tileObject);
         }
         catch (Exception exception) {
             System.out.println(exception.getMessage());

@@ -20,8 +20,8 @@ public class SpaceCombatController extends AbstractController {
 
     private Player retreatPlayer;
 
-    private Player defender;
     private Player invader;
+    private Player defender;
 
     private ArrayList<Unit> defenderShips;
     private ArrayList<Unit> invaderShips;
@@ -29,28 +29,30 @@ public class SpaceCombatController extends AbstractController {
     boolean isActivePhase = true;
     int hitValue = 0;
 
-    public SpaceCombatController(CommandRequestable userInterface, GlobalCommandController globalCommandController,
-                                 Player defender, Player invader,
-                                 TileArmyManager tileArmyManager, TileObject space) {
+    public SpaceCombatController(CommandRequestable userInterface, GameState gameState,
+                                 GlobalCommandController globalCommandController, TileObject space, Player player) {
         super(userInterface, globalCommandController);
         super.putCommand("assign", new PlayerCombatAssign(this));
         super.putCommand("retreat", new PlayerCombatRetreat(this));
 
+        TileArmyManager tileArmyManager = gameState.getBoard().getTileArmyManager();
+
         this.retreatPlayer = null;
 
-        this.defender = defender;
-        this.invader = invader;
+        this.invader = player;
+        this.defender = null;
 
         this.defenderShips = new ArrayList<>();
         this.invaderShips = new ArrayList<>();
 
         ArrayList<Unit> spaceUnits = tileArmyManager.getUnit(space);
         for (Unit unit : spaceUnits) {
-            if (unit.getRace() == defender.getRace()) {
-                this.defenderShips.add(unit);
+            if (unit.getRace() == player.getRace()) {
+                this.invaderShips.add(unit);
             }
             else {
-                this.invaderShips.add(unit);
+                defender = Player.getRacePlayerManager().getPlayer(unit.getRace());
+                this.defenderShips.add(unit);
             }
         }
     }
@@ -129,6 +131,10 @@ public class SpaceCombatController extends AbstractController {
         AbstractCommand command = null;
         CommandResponse response = null;
 
+        if (defender == null) {
+            return true;
+        }
+
         int defenderHit = makeCombatRolls(defender) + antiFighterBarrage();;
         int invaderHit = makeCombatRolls(invader);
         while (retreatPlayer == null)
@@ -138,6 +144,9 @@ public class SpaceCombatController extends AbstractController {
             response = CommandResponse.DECLINED;
             while (response != CommandResponse.ACCEPTED) {
                 response = command.execute(defender);
+                if (response != CommandResponse.ACCEPTED) {
+                    command = requestCommand(defender, "correct combat");
+                }
             }
 
             hitValue = defenderHit;
@@ -145,6 +154,9 @@ public class SpaceCombatController extends AbstractController {
             response = CommandResponse.DECLINED;
             while (response != CommandResponse.ACCEPTED) {
                 response = command.execute(invader);
+                if (response != CommandResponse.ACCEPTED) {
+                    command = requestCommand(invader, "correct combat");
+                }
             }
 
             if (retreatPlayer == null) {
