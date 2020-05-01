@@ -1,0 +1,20 @@
+name: CI
+on:
+    push:
+    pull_request:
+
+jobs:
+    move_tests:
+        name: test move actions
+        runs-on: ubuntu-latest
+        steps:
+        - name: Install maven
+            run: |
+                sudo apt install maven
+                maven_path=$( whereis "maven" )
+                mav_ar=( $maven_path )
+
+            PATH=$PATH:/${mav_ar[1]}"/bin"
+        - name: Build
+            run: |
+                mvn compile
