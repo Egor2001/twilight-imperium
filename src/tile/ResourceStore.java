@@ -1,5 +1,0 @@
-package tile;
-
-class ResourceStore {
-
-}
