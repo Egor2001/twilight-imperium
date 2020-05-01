@@ -29,7 +29,6 @@ public class PlayerStatusCompleteMission extends PlayerStatusCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing STATUS command: COMPLETE-MISSION");
         return CommandResponse.ACCEPTED;
     }
 }

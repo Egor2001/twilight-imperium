@@ -29,7 +29,6 @@ public class PlayerStrategyPick extends PlayerStrategyCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing STRATEGY command: PICK");
         return CommandResponse.ACCEPTED;
     }
 }
