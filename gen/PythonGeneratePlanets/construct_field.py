@@ -5,5 +5,5 @@ field = dict()
 for i in range(37):
     field.update({"tile" + str(i): i + 1})
 
-with open('../../etc/BoardStructure/6players.json', "w") as file:
+with open('../../src/main/resources/etc/BoardStructure/6players.json', "w") as file:
     json.dump(field, file, indent=4)
