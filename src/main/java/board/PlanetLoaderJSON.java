@@ -11,7 +11,7 @@ public interface PlanetLoaderJSON {
         String[] className = getClass().getName().split("\\.");
         String filename = className[className.length - 1] + raceName + ".json";
 
-        try (FileReader reader = new FileReader("baseUnits/" + filename)) {
+        try (FileReader reader = new FileReader("etc/baseUnits/" + filename)) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
             setAllFromJSON(object);

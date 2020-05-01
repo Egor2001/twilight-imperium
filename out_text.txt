@@ -1,0 +1,20 @@
+Input player0 name
+Input race name
+Input player1 name
+Input race name
+Input Boba's strategy command name
+Input strategy index number
+Input Biba's strategy command name
+Input strategy index number
+Input Boba's action command name
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input Biba's global command name
+Input view target
+Error: "Board" is not a valid target
+Error: "exit" is not a valid target

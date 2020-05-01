@@ -28,6 +28,7 @@ public class Board implements UserAcceptable {
             }
 
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
 

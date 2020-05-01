@@ -100,4 +100,9 @@ public class GameController extends AbstractController {
 
         return player;
     }
+
+    public static void Delete ()
+    {
+        instance = null;
+    }
 }

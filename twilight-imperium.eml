@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_5" jdk="11" jdk_type="JavaSDK">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
+		<excludeFolder url="file://$MODULE_DIR$/PythonGenerateUnitsJSON/venv"/>
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+		<excludeFolder url="file://$MODULE_DIR$/venv"/>
+	</contentEntry>
+	<levels>
+		<level name="junit-4.12" value="project"/>
+		<level name="Maven: org.json:json:20160810" value="project"/>
+		<level name="Maven: junit:junit:4.8.2" value="project"/>
+	</levels>
+</component>

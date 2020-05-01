@@ -1,0 +1,49 @@
+Input player0 name
+Input race name
+Input player1 name
+Input race name
+Input Boba's strategy command name
+Input strategy index number
+Input Biba's strategy command name
+Input strategy index number
+Input Boba's action command name
+Input Biba's action command name
+Input Biba's global command name
+Input view target
+Error: "add-unit" is not a valid target
+Error: "Cruiser" is not a valid target
+Error: can't execute command
+Input Biba's global command name
+Error: unknown command: add-unit
+Input Biba's global command name
+Error: unknown command: Fighter
+Input Biba's global command name
+Error: "Tile.0.Space" is not a valid name
+Error: unknown command: move
+Input Biba's global command name
+Error: "Tile.1.Space" is not a valid name
+Error: unknown command: add-unit
+Input Biba's global command name
+Error: unknown command: 1
+Input Biba's global command name
+Error: "Army.Ship.0" is not a valid name
+Error: unknown command: add-internal
+Input Biba's global command name
+Error: "Army.Ship.0" is not a valid name
+Error: unknown command: 1
+Input Biba's global command name
+Error: "Army.Ship.1" is not a valid name
+Error: unknown command: add-way
+Input Biba's global command name
+Error: unknown command: 1
+Input Biba's global command name
+Error: "Army.Ship.0" is not a valid name
+Error: unknown command: 1
+Input Biba's global command name
+Error: "Tile.1.Space" is not a valid name
+Error: unknown command: end-move
+Input Biba's global command name
+Error: unknown command: game
+Input Biba's global command name
+Input view target
+Input Biba's global command name
