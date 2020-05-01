@@ -29,7 +29,7 @@ Input tiles in way number
 Input tile object target
 Input Biba's move command name
 Input Biba's move command name
-Input Biba's move command name
+Input Biba's action command name
 Input Biba's global command name
 Input view target
 Input Biba's global command name

@@ -63,8 +63,8 @@ base/controller/fight/PlayerCombatRetreat.class
 base/controller/phase/action/PlayerActionAddUnit.class
 player/Army.class
 player/units/Ships/Ship$Target.class
-base/controller/fight/SpaceCombatController$1.class
 base/controller/fight/PlayerCombatCommand.class
+base/controller/fight/SpaceCombatController$1.class
 player/units/LoaderFromJSON.class
 base/view/GameView$Composite.class
 player/Army$Target.class
@@ -105,13 +105,14 @@ base/controller/tactic/PlayerTacticChangeActiveTileCommand.class
 player/races/Ghosts_of_Creuss.class
 board/TileArmyManager.class
 base/controller/tactic/PlayerTacticSetActiveTileCommand.class
+tests/MoveTest.class
 player/FactoryUnit.class
 player/Race$View.class
 player/units/Ships/WarSun.class
 base/controller/fight/PlayerCombatAssign.class
 base/controller/phase/strategy/PlayerStrategyPick.class
-player/races/Federation_of_Sol.class
 player/Player$View.class
+player/races/Federation_of_Sol.class
 player/cards/AbstractCard.class
 base/view/GameView.class
 board/Tile$Target.class

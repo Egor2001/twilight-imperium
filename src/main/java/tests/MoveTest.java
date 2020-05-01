@@ -1,3 +1,5 @@
+package tests;
+
 import base.GameController;
 import base.user.GameObjectTarget;
 import base.user.HierarchyManager;
@@ -11,7 +13,6 @@ import board.Board;
 import board.TileArmyManager;
 
 import java.io.*;
-import java.lang.invoke.StringConcatFactory;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,7 +32,7 @@ public class MoveTest extends Assert {
     @Test
     public void testMove () {
         try {
-            //DoTestFromFile("test1");
+            DoTestFromFile("test1");
         }
         catch (Exception e)
         {
@@ -41,7 +42,7 @@ public class MoveTest extends Assert {
     @Test
     public void otherMove () {
         try {
-            //DoTestFromFile("test2");
+            DoTestFromFile("test2");
         }
         catch (Exception e)
         {
