@@ -15,12 +15,14 @@ public class MoveState {
     private ArrayList<Unit> unitList;
     private ArrayList<ArrayList<Unit>> internalUnits;
     private ArrayList<ArrayList<TileObject>> ways;
+    private MoveController moveController;
 
-    public MoveState() {
+    public MoveState(MoveController moveController) {
         activeTile = null;
         unitList = new ArrayList<>();
         internalUnits = new ArrayList<>();
         ways = new ArrayList<>();
+        this.moveController = moveController;
     }
 
     public void clear() {
@@ -42,8 +44,8 @@ public class MoveState {
     }
 
     public void setActiveTile(TileObject activeTile) {
-        if (this.activeTile != null) {
-            throw new IllegalArgumentException("Active tile already choose");
+        if (this.activeTile != null && unitList.size() > 0) {
+            throw new IllegalArgumentException("Active tile already choose and list units isn't empty");
         }
 
         this.activeTile = activeTile;
@@ -148,8 +150,10 @@ public class MoveState {
 
         ArrayList<TileObject> way = getWay(unit);
         result.append("  ").append(start).append("Way's tiles:\n");
+        result.append("    ").append(start).append("Tile: ").append(
+                moveController.getGameState().getTileArmyManager().getTileObject(unit).GetTile().getId());
         for (TileObject tile: way) {
-            result.append(start).append("in the future\n");
+            result.append(" -> Tile: ").append(tile.GetTile().getId());
         }
 
         return result.toString();

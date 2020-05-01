@@ -33,7 +33,6 @@ public class Player implements Updatable, UserAcceptable {
         try {
             this.race = (Race) Class.forName("player.races." + race).getConstructor().newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new IllegalArgumentException("Race invalid: " + race);
         }
 

@@ -30,6 +30,13 @@ public class TileArmyManager {
     }
 
     public void add(Unit unit, TileObject tileObject) {
+        if (unit instanceof Ship && tileObject instanceof Planet) {
+            throw new IllegalArgumentException("Ship must be in Space");
+        }
+        if (!(unit instanceof Ship) && tileObject instanceof Space) {
+            throw new IllegalArgumentException("Non ship must be on Planet");
+        }
+
         unitList.add(unit);
         tileObjectsList.add(tileObject);
     }
