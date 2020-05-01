@@ -1,4 +1,4 @@
-package base.controller.fight;
+package base.controller.combat;
 
 import base.controller.AbstractCommand;
 import base.controller.AbstractController;
@@ -11,7 +11,6 @@ import board.TileObject;
 import player.Player;
 import player.units.Ships.Ship;
 import player.units.Unit;
-import board.TileArmyManager;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -31,7 +30,7 @@ public class SpaceCombatController extends AbstractController {
         public CombatPhase next;
     }
 
-    private TileArmyManager tileArmyManager;
+    private GameState gameState;
 
     private CombatPhase combatPhase;
 
@@ -50,10 +49,12 @@ public class SpaceCombatController extends AbstractController {
     public SpaceCombatController(CommandRequestable userInterface, GameState gameState,
                                  GlobalCommandController globalCommandController, TileObject space, Player player) {
         super(userInterface, globalCommandController);
-        super.putCommand("assign", new PlayerCombatAssign(this));
+        super.putCommand("continue", new PlayerCombatContinue(this));
         super.putCommand("retreat", new PlayerCombatRetreat(this));
+        super.putCommand("make-rolls", new PlayerCombatMakeRolls(this));
+        super.putCommand("assign-hits", new PlayerCombatAssignHits(this));
 
-        this.tileArmyManager = gameState.getBoard().getTileArmyManager();
+        this.gameState = gameState;
 
         this.retreatPlayer = null;
         this.retreatTile = null;
@@ -64,9 +65,10 @@ public class SpaceCombatController extends AbstractController {
         this.defenderShips = new ArrayList<>();
         this.invaderShips = new ArrayList<>();
 
-        ArrayList<Unit> spaceUnits = this.tileArmyManager.getUnit(space);
+        ArrayList<Unit> spaceUnits = this.gameState.getTileArmyManager().getUnit(space);
         for (Unit unit : spaceUnits) {
             if (unit.getRace() == player.getRace()) {
+                System.out.println("RACE ADD BIBA BOBA AAAAAAAA");
                 this.invaderShips.add(unit);
             }
             else {
@@ -84,18 +86,15 @@ public class SpaceCombatController extends AbstractController {
         return retreatPlayer;
     }
 
-    public int barrage() {
-        int value = 0;
-        Dice dice = new Dice();
-        for (Unit unit : defenderShips) {
-            if (unit instanceof Ship && ((Ship) unit).hasAntiFighterBarrage()) {
-                if (dice.getValue() >= ((Ship) unit).getNumberOfDicesForAntiFighterBarrage()) {
-                    ++value;
-                }
-            }
+    public boolean announceRetreat(Player player, TileObject tileObject) {
+        if (this.retreatPlayer == null) {
+            return false;
         }
 
-        return value;
+        this.retreatPlayer = player;
+        this.retreatTile = tileObject;
+
+        return true;
     }
 
     public int makeRolls(Player player) {
@@ -114,15 +113,16 @@ public class SpaceCombatController extends AbstractController {
         return value;
     }
 
-    public void assignHits(Player player, ArrayList<Integer> hitIdxList) {
+    public int assignHits(Player player, ArrayList<Integer> hitIdxList) {
         if (player != defender && player != invader) {
             throw new IllegalArgumentException("player is no defender nor invader");
         }
 
+        int killedCnt = 0;
         ArrayList<Unit> ships = (player == defender ? defenderShips : invaderShips);
         for (int idx : hitIdxList) {
-            if (idx >= ships.size() || idx < 0 || ships.get(idx) == null){
-                throw new IllegalArgumentException("ship " + idx + " does not exist");
+            if (killedCnt == ships.size()){
+                return 0;
             }
             else if (ships.get(idx) instanceof Ship) {
                 Ship ship = (Ship) ships.get(idx);
@@ -131,16 +131,34 @@ public class SpaceCombatController extends AbstractController {
                 }
                 else {
                     ships.set(idx, null);
+                    ++killedCnt;
                 }
             }
             else {
                 ships.set(idx, null);
+                ++killedCnt;
             }
         }
         ships.removeIf(Objects::isNull);
+
+        return ships.size();
     }
 
-    public boolean retreat(Player player) {
+    private int barrage() {
+        int value = 0;
+        Dice dice = new Dice();
+        for (Unit unit : defenderShips) {
+            if (unit instanceof Ship && ((Ship) unit).hasAntiFighterBarrage()) {
+                if (dice.getValue() >= ((Ship) unit).getNumberOfDicesForAntiFighterBarrage()) {
+                    ++value;
+                }
+            }
+        }
+
+        return value;
+    }
+
+    private boolean retreat(Player player) {
         if (retreatPlayer == null) {
             return false;
         }
@@ -149,7 +167,7 @@ public class SpaceCombatController extends AbstractController {
         ArrayList<TileObject> way = new ArrayList<>();
         way.add(retreatTile);
         for (int idx = 0; idx != ships.size(); ++idx) {
-            tileArmyManager.move((Ship) ships.get(idx), way);
+            gameState.getTileArmyManager().move((Ship) ships.get(idx), way);
             ships.set(idx, null);
         }
 
@@ -160,16 +178,11 @@ public class SpaceCombatController extends AbstractController {
         AbstractCommand command = null;
         CommandResponse response = null;
 
-        command = requestCommand(defender, "combat");
-        response = command.execute(defender);
-        while (response != CommandResponse.ACCEPTED) {
-            if (response == CommandResponse.END_EVENT) {
-                command = requestCommand(defender, "combat");
-            }
-            else {
-                command = requestCommand(defender, "correct combat");
-            }
-            response = command.execute(defender);
+        command = requestCommand(player, "phase " + combatPhase.toString() + " combat");
+        response = command.execute(player);
+        while (response == CommandResponse.DECLINED) {
+            command = requestCommand(player, "phase " + combatPhase.toString() + " correct combat");
+            response = command.execute(player);
         }
 
         return response;
@@ -187,22 +200,39 @@ public class SpaceCombatController extends AbstractController {
         int defenderHit = makeRolls(defender) + barrage();;
         int invaderHit = makeRolls(invader);
         combatPhase = CombatPhase.COMBAT_BARRAGE;
-
+        combatPhase = combatPhase.next;
         boolean stop = false;
         while (!stop)
         {
+            hitValue = invaderHit;
             response = nextCommand(defender);
+            invaderHit = 0;
+            defenderHit += hitValue;
             if (response == CommandResponse.END_GAME) {
                 return response;
             }
+            else if (response == CommandResponse.END_EVENT) {
+                break;
+            }
 
+            hitValue = defenderHit;
             response = nextCommand(invader);
+            defenderHit = 0;
+            invaderHit += hitValue;
             if (response == CommandResponse.END_GAME) {
                 return response;
+            }
+            else if (response == CommandResponse.END_EVENT) {
+                break;
             }
 
             stop = retreat(retreatPlayer);
-            combatPhase = combatPhase.next;
+            if (combatPhase == CombatPhase.COMBAT_RETREAT && !stop) {
+                combatPhase = CombatPhase.COMBAT_MAKE_ROLLS;
+            }
+            else {
+                combatPhase = combatPhase.next;
+            }
         }
 
         return CommandResponse.ACCEPTED;
@@ -210,7 +240,7 @@ public class SpaceCombatController extends AbstractController {
 
     @Override
     public GameState getGameState() {
-        return null;
+        return gameState;
     }
 
     @Override

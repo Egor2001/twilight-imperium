@@ -37,7 +37,7 @@ public class PlayerGlobalView extends AbstractCommand {
                     (UserAcceptable) gameState.getObject(target);
 
             Viewable view = gameObject.getView(null);
-            System.out.println(view.toString());
+            getController().getUserInterface().displayView(view);
         }
         catch (IllegalArgumentException exception) {
             return CommandResponse.DECLINED;
