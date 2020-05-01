@@ -21,11 +21,12 @@ public class MoveController extends AbstractController {
         this.moveState = null;
 
         super.putCommand("add-unit", new PlayerTacticAddUnitToMoveCommand(this));
-        super.putCommand("del-unit", new PlayerTacticDelUnitCommand(this));
         super.putCommand("add-internal", new PlayerTacticAddInternalCommand(this));
         super.putCommand("add-way", new PlayerTacticAddWayCommand(this));
-        super.putCommand("break", new PlayerTacticBreakCommand(this));
+        super.putCommand("change-active-tile", new PlayerTacticChangeActiveTileCommand(this));
+        super.putCommand("del-unit", new PlayerTacticDelUnitCommand(this));
         super.putCommand("clear", new PlayerTacticClearCommand(this));
+        super.putCommand("break", new PlayerTacticBreakCommand(this));
         super.putCommand("end-move", new PlayerTacticEndMoveCommand(this));
         super.putCommand("view-all-moves", new PlayerTacticViewMovesCommand(this));
         super.putCommand("view-unit-move", new PlayerTacticViewUnitCommand(this));
@@ -33,7 +34,7 @@ public class MoveController extends AbstractController {
 
     @Override
     public CommandResponse start() {
-        moveState = new MoveState();
+        moveState = new MoveState(this);
         CommandResponse response = CommandResponse.DECLINED;
         boolean error = false;
 

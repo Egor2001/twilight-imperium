@@ -69,7 +69,6 @@ public class Tile implements UserAcceptable {
             JSONObject object = new JSONObject(token);
 
             int sz = (int)object.get("planets_num");
-            ArrayList<Integer> list = new ArrayList<Integer>();
 
             for (int i = 0; i < sz; i++) {
                 planets_.add(new Planet((String) object.get("planet" + i), this));
