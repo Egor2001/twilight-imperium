@@ -18,7 +18,7 @@ public class HierarchyManager {
     static {
         targetMap = new HashMap<>();
 
-        targetMap.put("etc/Board", Board.Target.class);
+        targetMap.put("Board", Board.Target.class);
         targetMap.put("Tile", Tile.Target.class);
         targetMap.put("TileObject", TileObject.Target.class);
         targetMap.put("Space", Space.Target.class);
