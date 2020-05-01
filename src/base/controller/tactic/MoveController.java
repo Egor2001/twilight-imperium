@@ -1,5 +1,6 @@
 package base.controller.tactic;
 
+import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
@@ -31,7 +32,7 @@ public class MoveController extends AbstractController {
     }
 
     @Override
-    public boolean start() {
+    public CommandResponse start() {
         moveState = new MoveState();
         CommandResponse response = CommandResponse.DECLINED;
         boolean error = false;
@@ -47,13 +48,16 @@ public class MoveController extends AbstractController {
             if (response == CommandResponse.DECLINED) {
                 error = true;
             }
-            if (response == CommandResponse.BREAK) {
+            else if (response == CommandResponse.BREAK) {
                 error = true;
                 break;
             }
+            else if (response == CommandResponse.END_GAME) {
+                return response;
+            }
         }
 
-        return !error;
+        return (error ? CommandResponse.DECLINED : CommandResponse.ACCEPTED);
     }
 
     public MoveState getMoveState() {
@@ -63,5 +67,20 @@ public class MoveController extends AbstractController {
     @Override
     public GameState getGameState() {
         return gameState;
+    }
+
+    @Override
+    public AbstractCommand getExitCommand() {
+        return new PlayerTacticCommand(this) {
+            @Override
+            public boolean inputCommand(CommandRequestable userInterface) {
+                return false;
+            }
+
+            @Override
+            public CommandResponse execute(Player player) {
+                return CommandResponse.END_GAME;
+            }
+        };
     }
 }

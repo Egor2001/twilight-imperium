@@ -82,6 +82,9 @@ public class Tile implements UserAcceptable {
     public ArrayList<Unit> GetObjectUnits(TileObject object) {
         return board_.GetObjectUnits(object);
     }
+    public int getId(){
+        return num_;
+    }
 
     @Override
     public Viewable getView(UserAcceptable parent) {

@@ -19,6 +19,7 @@ public class GlobalCommandController extends AbstractController {
 
         super.putCommand("view", new PlayerGlobalView(this));
         super.putCommand("quit", new PlayerGlobalStop(this));
+        super.putCommand("exit", new PlayerGlobalExit(this));
     }
 
     public void setPlayer(Player player) {
@@ -26,7 +27,7 @@ public class GlobalCommandController extends AbstractController {
     }
 
     @Override
-    public boolean start() {
+    public CommandResponse start() {
         CommandResponse response = CommandResponse.DECLINED;
         AbstractCommand command = null;
         while (response != CommandResponse.END_EVENT) {
@@ -38,14 +39,22 @@ public class GlobalCommandController extends AbstractController {
                 if (response == CommandResponse.DECLINED) {
                     userInterface.reportError("can't execute command");
                 }
+                else if (response == CommandResponse.END_GAME) {
+                    return response;
+                }
             }
         }
 
-        return true;
+        return CommandResponse.ACCEPTED;
     }
 
     @Override
     public GameState getGameState() {
         return gameState;
+    }
+
+    @Override
+    public AbstractCommand getExitCommand() {
+        return new PlayerGlobalExit(this);
     }
 }

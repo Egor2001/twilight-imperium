@@ -1,7 +1,9 @@
 package base;
 
+import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
+import base.controller.global.PlayerGlobalExit;
 import base.user.CommandRequestable;
 import base.controller.global.GlobalCommandController;
 import base.controller.phase.action.ActionPhaseController;
@@ -11,18 +13,29 @@ import base.user.UserInterface;
 import player.Player;
 import base.model.GameState;
 
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class GameController extends AbstractController {
 
     private static GameController instance;
+    //private static Object IOUtils;
     private GameState gameState;
 
     public static GameController getInstance() {
         if (instance == null) {
             instance = new GameController(System.in, System.out);
+        }
+
+        return instance;
+    }
+
+    public static GameController getInstance(InputStream inputStream, PrintStream printStream) {
+        //BufferedReader reader = new BufferedReader(new FileReader(input_file))
+        //new FileReader(input_file);
+
+        if (instance == null) {
+            instance = new GameController(inputStream, printStream);
         }
 
         return instance;
@@ -38,26 +51,37 @@ public class GameController extends AbstractController {
         return userInterface;
     }
 
+    @Override
     public GameState getGameState() {
         return gameState;
     }
 
     @Override
-    public boolean start() {
+    public AbstractCommand getExitCommand() {
+        return new PlayerGlobalExit(null);
+    }
+
+    @Override
+    public CommandResponse start() {
         int playersCnt = gameState.getPlayers().size();
         for (int playerIdx = 0; playerIdx != playersCnt; ++playerIdx) {
             gameState.getPlayers().set(playerIdx, requestPlayer(playerIdx));
         }
 
+        CommandResponse response = CommandResponse.ACCEPTED;
         ArrayList<AbstractController> controllers = new ArrayList<>();
         controllers.add(new StrategyPhaseController(userInterface, gameState, globalCommandController));
         controllers.add(new ActionPhaseController(userInterface, gameState, globalCommandController));
         controllers.add(new StatusPhaseController(userInterface, gameState, globalCommandController));
 
-        for (AbstractController controller : controllers)
-            controller.start();
+        for (AbstractController controller : controllers) {
+            response = controller.start();
+            if (response == CommandResponse.END_GAME) {
+                break;
+            }
+        }
 
-        return true;
+        return CommandResponse.ACCEPTED;
     }
 
     private Player requestPlayer(int idx) {
