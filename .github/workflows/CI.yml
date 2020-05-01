@@ -16,6 +16,6 @@ jobs:
 
                 PATH=$PATH:/${mav_ar[1]}"/bin"
         - name: Build
-            run: |
+          run: |
                 touch
                 mvn compile
