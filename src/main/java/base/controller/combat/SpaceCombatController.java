@@ -68,7 +68,6 @@ public class SpaceCombatController extends AbstractController {
         ArrayList<Unit> spaceUnits = this.gameState.getTileArmyManager().getUnit(space);
         for (Unit unit : spaceUnits) {
             if (unit.getRace() == player.getRace()) {
-                System.out.println("RACE ADD BIBA BOBA AAAAAAAA");
                 this.invaderShips.add(unit);
             }
             else {
@@ -130,11 +129,13 @@ public class SpaceCombatController extends AbstractController {
                     ship.takeDamaged();
                 }
                 else {
+                    getGameState().getTileArmyManager().remove(ships.get(idx));
                     ships.set(idx, null);
                     ++killedCnt;
                 }
             }
             else {
+                getGameState().getTileArmyManager().remove(ships.get(idx));
                 ships.set(idx, null);
                 ++killedCnt;
             }

@@ -16,7 +16,6 @@ public class PlayerActionPass extends PlayerActionCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing ACTION command: END");
         return CommandResponse.END_EVENT;
     }
 }
