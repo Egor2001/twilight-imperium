@@ -29,7 +29,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
         }
 
         int numTiles = userInterface.requestNumber("tiles in way");
-        for (int i = 0; i < numUnits; ++i) {
+        for (int i = 0; i < numTiles; ++i) {
             waysTarget.add(userInterface.requestTarget("tile object"));
         }
 
