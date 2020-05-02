@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="5418.989475108225" y="2070.0">base.controller.combat.PlayerCombatContinue</node>
+    <node x="3543.5625000000005" y="1167.5">player.units.Structures</node>
+    <node x="1499.0" y="2232.0">MoveTest</node>
+    <node x="926.0227623456799" y="296.5">board.TileObject</node>
+    <node x="5008.989475108225" y="2070.0">base.controller.tactic.PlayerTacticChangeActiveTileCommand</node>
+    <node x="1563.9894751082252" y="1740.0">base.controller.global.GlobalCommandController</node>
+    <node x="4286.989475108225" y="2070.0">base.controller.tactic.PlayerTacticDelUnitCommand</node>
+    <node x="1871.9578446502069" y="674.5">board.Space</node>
+    <node x="2054.989475108225" y="2070.0">base.controller.tactic.PlayerTacticBreakCommand</node>
+    <node x="5092.6875" y="1130.0">player.units.Unit.View</node>
+    <node x="0.0" y="1692.0">base.GameController</node>
+    <node x="340.0" y="2232.0">base.controller.tactic.MoveState</node>
+    <node x="4681.551975108225" y="1376.5">base.controller.AbstractCommand</node>
+    <node x="629.5" y="2070.0">base.controller.combat.SpaceCombatController.CombatPhase</node>
+    <node x="5990.989475108225" y="1789.0">base.controller.combat.PlayerCombatCommand</node>
+    <node x="400.0" y="1656.0">base.controller.combat.SpaceCombatController</node>
+    <node x="5293.6875" y="1130.0">player.Player.View</node>
+    <node x="2470.707844650207" y="698.5">player.Race.View</node>
+    <node x="6773.989475108225" y="1764.5">base.controller.global.PlayerGlobalStop</node>
+    <node x="1968.6234825102883" y="1154.5">player.Army.Target</node>
+    <node x="574.1234825102883" y="1118.0">board.Tile.Target</node>
+    <node x="0.0" y="578.0">board.Tile</node>
+    <node x="2846.0" y="2232.0">base.Main</node>
+    <node x="1221.9894751082252" y="2058.0">base.controller.tactic.PlayerTacticSetActiveTileCommand</node>
+    <node x="2791.989475108225" y="2070.0">base.controller.tactic.PlayerTacticAddUnitToMoveCommand</node>
+    <node x="4467.435982510288" y="25.0">base.view</node>
+    <node x="0.5" y="2232.0">base.user.CommandRequestable</node>
+    <node x="4078.6875000000005" y="1118.0">board.Space.View</node>
+    <node x="4647.989475108225" y="2070.0">base.controller.tactic.PlayerTacticClearCommand</node>
+    <node x="1369.9484825102884" y="674.5">base.user.GameObjectTarget</node>
+    <node x="2213.082844650207" y="224.0">player.Race</node>
+    <node x="3510.604166666667" y="321.0">player.units.LoaderFromJSON</node>
+    <node x="793.131327160495" y="674.5">board.Planet</node>
+    <node x="98.52368827160626" y="1142.5">board.Tile.View</node>
+    <node x="2415.989475108225" y="2070.0">base.controller.tactic.PlayerTacticViewMovesCommand</node>
+    <node x="2293.0" y="2232.0">board.PlanetLoaderJSON</node>
+    <node x="6621.989475108225" y="2070.0">base.controller.combat.PlayerCombatAssignHits</node>
+    <node x="3457.707844650207" y="614.0">player.units.Unit</node>
+    <node x="2671.707844650207" y="578.5">player.Army</node>
+    <node x="2281.1234825102883" y="1154.5">board.Board.Target</node>
+    <node x="3927.645344650207" y="614.0">player.Player</node>
+    <node x="7134.989475108225" y="1764.5">base.controller.global.PlayerGlobalExit</node>
+    <node x="745.0" y="2232.0">player.FactoryUnit</node>
+    <node x="2264.957844650207" y="736.0">player.races</node>
+    <node x="2713.4984825102883" y="0.0">base.user.UserAcceptable</node>
+    <node x="2606.989475108225" y="1790.0">base.controller.phase.action</node>
+    <node x="2513.1234825102883" y="1167.5">player.units.GroundForce</node>
+    <node x="828.1234825102883" y="1167.5">board.TileObject.Target</node>
+    <node x="367.12348251028834" y="1118.0">board.Planet.View</node>
+    <node x="2717.1234825102883" y="1167.5">player.units.Ships</node>
+    <node x="6150.989475108225" y="2058.0">base.controller.combat.PlayerCombatRetreat</node>
+    <node x="3753.1875000000005" y="1130.5">player.Player.Target</node>
+    <node x="4891.6875" y="1142.5">board.Board.View</node>
+    <node x="5781.989475108225" y="2070.0">base.controller.combat.PlayerCombatMakeRolls</node>
+    <node x="2064.0" y="2232.0">player.RacePlayerManager</node>
+    <node x="4285.6875" y="1118.0">player.Army.View</node>
+    <node x="2063.489475108225" y="1316.0">base.controller.AbstractController</node>
+    <node x="1083.8734825102883" y="1118.0">board.Planet.Target</node>
+    <node x="1675.9894751082252" y="2070.0">base.controller.tactic.PlayerTacticAddInternalCommand</node>
+    <node x="3563.989475108225" y="2070.0">base.controller.tactic.PlayerTacticViewUnitCommand</node>
+    <node x="3227.489475108225" y="1789.0">base.controller.tactic.PlayerTacticCommand</node>
+    <node x="3064.707844650207" y="638.0">board.Board</node>
+    <node x="1077.0" y="2232.0">board.TileArmyManager</node>
+    <node x="3198.989475108225" y="2070.0">base.controller.tactic.PlayerTacticEndMoveCommand</node>
+    <node x="2770.989475108225" y="1790.0">base.controller.phase.strategy</node>
+    <node x="3051.0" y="2232.0">player.Cards</node>
+    <node x="2950.989475108225" y="1790.0">base.controller.phase.status</node>
+    <node x="3925.989475108225" y="2070.0">base.controller.tactic.PlayerTacticAddWayCommand</node>
+    <node x="1427.8734825102883" y="1154.5">board.Space.Target</node>
+    <node x="3826.979166666667" y="334.0">base.model</node>
+    <node x="1760.0" y="2232.0">base.controller.CommandResponse</node>
+    <node x="0.0" y="2434.0">base.user.UserInterface</node>
+    <node x="2013.9894751082252" y="1740.0">base.controller.tactic.MoveController</node>
+    <node x="2520.0" y="2232.0">base.user.HierarchyManager</node>
+    <node x="6361.989475108225" y="1752.5">base.controller.global.PlayerGlobalView</node>
+    <node x="3190.0" y="2232.0">board.ResourceStore</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="base.controller.global.PlayerGlobalStop" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="6944.489475108225" y="1616.0" />
+      <point x="4958.614475108225" y="1616.0" />
+      <point x="106.5625" y="64.5" />
+    </edge>
+    <edge source="player.Army.View" target="player.Army">
+      <point x="-146.5" y="-76.5" />
+      <point x="4432.1875" y="998.0" />
+      <point x="2951.457844650207" y="998.0" />
+      <point x="93.25" y="184.5" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatRetreat" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-64.5" />
+      <point x="6376.489475108225" y="2038.0" />
+      <point x="6210.364475108225" y="2038.0" />
+      <point x="43.875" y="28.0" />
+    </edge>
+    <edge source="player.units.Unit" target="base.model">
+      <point x="124.33333333333348" y="-149.0" />
+      <point x="3768.5411779835404" y="558.0" />
+      <point x="3894.979166666667" y="558.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.model" target="base.user.UserAcceptable">
+      <point x="-34.0" y="-27.0" />
+      <point x="3860.979166666667" y="144.0" />
+      <point x="3016.5609825102883" y="144.0" />
+      <point x="116.5625" y="52.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-28.0" />
+      <point x="3371.489475108225" y="1636.0" />
+      <point x="4830.739475108225" y="1636.0" />
+      <point x="-21.3125" y="64.5" />
+    </edge>
+    <edge source="player.Race.View" target="player.Race">
+      <point x="-45.25" y="-64.5" />
+      <point x="2515.957844650207" y="558.0" />
+      <point x="2492.832844650207" y="558.0" />
+      <point x="93.25" y="137.0" />
+    </edge>
+    <edge source="player.units.Structures" target="player.units.Unit">
+      <point x="44.0" y="-27.0" />
+      <point x="3675.5625000000005" y="1098.0" />
+      <point x="3690.832844650207" y="1098.0" />
+      <point x="46.625" y="149.0" />
+    </edge>
+    <edge source="base.controller.global.GlobalCommandController" target="base.controller.AbstractController">
+      <point x="0.0" y="-77.0" />
+      <point x="1778.9894751082252" y="1636.0" />
+      <point x="2232.7751893939394" y="1636.0" />
+      <point x="-67.71428571428578" y="125.0" />
+    </edge>
+    <edge source="player.units.Structures" target="base.user.GameObjectTarget">
+      <point x="-44.0" y="-27.0" />
+      <point x="3587.5625000000005" y="1028.0" />
+      <point x="1631.7484825102886" y="1028.0" />
+      <point x="107.80000000000018" y="88.5" />
+    </edge>
+    <edge source="player.Army" target="base.model">
+      <point x="93.25" y="-184.5" />
+      <point x="2951.457844650207" y="548.0" />
+      <point x="3849.645833333334" y="548.0" />
+      <point x="-45.33333333333326" y="27.0" />
+    </edge>
+    <edge source="board.Planet.Target" target="board.Planet">
+      <point x="-58.5" y="-76.5" />
+      <point x="1142.3734825102883" y="1068.0" />
+      <point x="1072.881327160495" y="1068.0" />
+      <point x="93.25" y="88.5" />
+    </edge>
+    <edge source="board.Planet.Target" target="base.user.GameObjectTarget">
+      <point x="58.5" y="-76.5" />
+      <point x="1259.3734825102883" y="1098.0" />
+      <point x="1446.9484825102884" y="1098.0" />
+      <point x="-77.0" y="88.5" />
+    </edge>
+    <edge source="player.units.Ships" target="player.units.Unit">
+      <point x="34.0" y="-27.0" />
+      <point x="2819.1234825102883" y="1098.0" />
+      <point x="3597.582844650207" y="1098.0" />
+      <point x="-46.625" y="149.0" />
+    </edge>
+    <edge source="player.races" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2332.957844650207" y="558.0" />
+      <point x="2306.332844650207" y="558.0" />
+      <point x="-93.25" y="137.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddWayCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="4096.489475108225" y="2028.0" />
+      <point x="3423.853111471861" y="2028.0" />
+      <point x="52.36363636363603" y="28.0" />
+    </edge>
+    <edge source="player.units.GroundForce" target="player.units.Unit">
+      <point x="46.0" y="-27.0" />
+      <point x="2651.1234825102883" y="1088.0" />
+      <point x="3504.332844650207" y="1088.0" />
+      <point x="-139.875" y="149.0" />
+    </edge>
+    <edge source="board.Board.Target" target="board.Board">
+      <point x="53.0" y="-40.0" />
+      <point x="2440.1234825102883" y="1078.0" />
+      <point x="3157.957844650207" y="1078.0" />
+      <point x="-93.25" y="125.0" />
+    </edge>
+    <edge source="player.Player" target="base.user.UserAcceptable">
+      <point x="93.25" y="-149.0" />
+      <point x="4207.395344650207" y="134.0" />
+      <point x="3063.1859825102883" y="134.0" />
+      <point x="163.1875" y="52.0" />
+    </edge>
+    <edge source="player.units.GroundForce" target="base.user.GameObjectTarget">
+      <point x="-46.0" y="-27.0" />
+      <point x="2559.1234825102883" y="1048.0" />
+      <point x="1570.1484825102887" y="1048.0" />
+      <point x="46.20000000000027" y="88.5" />
+    </edge>
+    <edge source="base.controller.phase.action" target="base.controller.AbstractController">
+      <point x="-36.0" y="-27.0" />
+      <point x="2642.989475108225" y="1636.0" />
+      <point x="2368.203760822511" y="1636.0" />
+      <point x="67.71428571428578" y="125.0" />
+    </edge>
+    <edge source="board.Tile.Target" target="base.user.GameObjectTarget">
+      <point x="58.499999999999545" y="-76.5" />
+      <point x="749.6234825102879" y="1078.0" />
+      <point x="1385.3484825102885" y="1078.0" />
+      <point x="-138.5999999999999" y="88.5" />
+    </edge>
+    <edge source="player.Player.Target" target="base.user.GameObjectTarget">
+      <point x="-58.5" y="-64.0" />
+      <point x="3811.6875000000005" y="1018.0" />
+      <point x="1662.5484825102883" y="1018.0" />
+      <point x="138.5999999999999" y="88.5" />
+    </edge>
+    <edge source="player.units.Ships" target="base.user.GameObjectTarget">
+      <point x="-34.0" y="-27.0" />
+      <point x="2751.1234825102883" y="1038.0" />
+      <point x="1600.9484825102884" y="1038.0" />
+      <point x="77.0" y="88.5" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticEndMoveCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="base.controller.global.PlayerGlobalExit" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="7305.489475108225" y="1606.0" />
+      <point x="5001.239475108225" y="1606.0" />
+      <point x="149.1875" y="64.5" />
+    </edge>
+    <edge source="base.controller.tactic.MoveController" target="base.controller.AbstractController">
+      <point x="0.0" y="-77.0" />
+      <point x="0.0" y="125.0" />
+    </edge>
+    <edge source="base.controller.phase.action" target="base.controller.AbstractCommand">
+      <point x="36.0" y="-27.0" />
+      <point x="2714.989475108225" y="1606.0" />
+      <point x="4702.864475108225" y="1606.0" />
+      <point x="-149.1875" y="64.5" />
+    </edge>
+    <edge source="player.units.Unit.View" target="base.view">
+      <point x="45.25" y="-64.5" />
+      <point x="5228.4375" y="184.0" />
+      <point x="4574.102649176955" y="184.0" />
+      <point x="42.66666666666674" y="27.0" />
+    </edge>
+    <edge source="board.Tile.Target" target="board.Tile">
+      <point x="-58.500000000000455" y="-76.5" />
+      <point x="632.6234825102879" y="1058.0" />
+      <point x="279.75" y="1058.0" />
+      <point x="93.25" y="185.0" />
+    </edge>
+    <edge source="base.GameController" target="base.controller.AbstractController">
+      <point x="0.0" y="-125.0" />
+      <point x="190.0" y="1616.0" />
+      <point x="2097.346617965368" y="1616.0" />
+      <point x="-203.1428571428571" y="125.0" />
+    </edge>
+    <edge source="base.controller.combat.SpaceCombatController" target="base.controller.AbstractController">
+      <point x="0.0" y="-161.0" />
+      <point x="743.5" y="1626.0" />
+      <point x="2165.060903679654" y="1626.0" />
+      <point x="-135.42857142857133" y="125.0" />
+    </edge>
+    <edge source="player.Army.View" target="base.view">
+      <point x="146.5" y="-76.5" />
+      <point x="4725.1875" y="1098.0" />
+      <point x="4817.395344650207" y="1098.0" />
+      <point x="4817.395344650207" y="204.0" />
+      <point x="4545.65820473251" y="204.0" />
+      <point x="14.222222222222172" y="27.0" />
+    </edge>
+    <edge source="base.controller.global.PlayerGlobalView" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-64.5" />
+      <point x="6557.989475108225" y="1626.0" />
+      <point x="4915.989475108225" y="1626.0" />
+      <point x="63.9375" y="64.5" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddUnitToMoveCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="2985.489475108225" y="2038.0" />
+      <point x="3345.307656926407" y="2038.0" />
+      <point x="-26.181818181818016" y="28.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-28.0" />
+      <point x="6166.489475108225" y="1636.0" />
+      <point x="4873.364475108225" y="1636.0" />
+      <point x="21.3125" y="64.5" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticSetActiveTileCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-64.5" />
+      <point x="1438.9894751082252" y="1998.0" />
+      <point x="3240.580384199134" y="1998.0" />
+      <point x="-130.909090909091" y="28.0" />
+    </edge>
+    <edge source="board.Planet.View" target="board.Planet">
+      <point x="46.75" y="-76.5" />
+      <point x="507.37348251028834" y="1068.0" />
+      <point x="886.381327160495" y="1068.0" />
+      <point x="-93.25" y="88.5" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatContinue" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="5590.489475108225" y="2028.0" />
+      <point x="6034.864475108225" y="2028.0" />
+      <point x="-131.625" y="28.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddInternalCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="1855.4894751082252" y="2008.0" />
+      <point x="3266.762202380952" y="2008.0" />
+      <point x="-104.72727272727298" y="28.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticClearCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="4818.489475108225" y="2008.0" />
+      <point x="3476.216747835498" y="2008.0" />
+      <point x="104.72727272727298" y="28.0" />
+    </edge>
+    <edge source="board.Board" target="base.user.UserAcceptable">
+      <point x="0.0" y="-125.0" />
+      <point x="3251.207844650207" y="528.0" />
+      <point x="2917.832844650207" y="528.0" />
+      <point x="2917.832844650207" y="154.0" />
+      <point x="2923.3109825102883" y="154.0" />
+      <point x="23.3125" y="52.0" />
+    </edge>
+    <edge source="board.Space.Target" target="base.user.GameObjectTarget">
+      <point x="-53.0" y="-40.0" />
+      <point x="1480.8734825102883" y="1098.0" />
+      <point x="1477.7484825102886" y="1098.0" />
+      <point x="-46.19999999999982" y="88.5" />
+    </edge>
+    <edge source="board.Tile.View" target="base.view">
+      <point x="45.25" y="-52.0" />
+      <point x="234.27368827160626" y="1088.0" />
+      <point x="430.375" y="1088.0" />
+      <point x="430.375" y="164.0" />
+      <point x="4474.5470936214" y="164.0" />
+      <point x="-56.888888888888914" y="27.0" />
+    </edge>
+    <edge source="board.Planet.View" target="base.view">
+      <point x="-46.75" y="-76.5" />
+      <point x="413.87348251028834" y="1098.0" />
+      <point x="491.875" y="1098.0" />
+      <point x="491.875" y="174.0" />
+      <point x="4488.769315843621" y="174.0" />
+      <point x="-42.66666666666674" y="27.0" />
+    </edge>
+    <edge source="board.Space.Target" target="board.Space">
+      <point x="53.0" y="-40.0" />
+      <point x="1586.8734825102883" y="1098.0" />
+      <point x="1965.2078446502069" y="1098.0" />
+      <point x="-93.25" y="88.5" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticDelUnitCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="4457.489475108225" y="2018.0" />
+      <point x="3450.03492965368" y="2018.0" />
+      <point x="78.54545454545496" y="28.0" />
+    </edge>
+    <edge source="player.Player.View" target="player.Player">
+      <point x="-45.25" y="-64.5" />
+      <point x="5338.9375" y="968.0" />
+      <point x="4207.395344650207" y="968.0" />
+      <point x="93.25" y="149.0" />
+    </edge>
+    <edge source="board.TileObject.Target" target="base.user.GameObjectTarget">
+      <point x="24.0" y="-27.0" />
+      <point x="900.1234825102883" y="1088.0" />
+      <point x="1416.1484825102882" y="1088.0" />
+      <point x="-107.80000000000018" y="88.5" />
+    </edge>
+    <edge source="base.controller.phase.status" target="base.controller.AbstractController">
+      <point x="-36.0" y="-27.0" />
+      <point x="2986.989475108225" y="1586.0" />
+      <point x="2503.6323322510825" y="1586.0" />
+      <point x="203.1428571428571" y="125.0" />
+    </edge>
+    <edge source="board.TileObject.Target" target="board.TileObject">
+      <point x="-24.0" y="-27.0" />
+      <point x="852.1234825102883" y="1058.0" />
+      <point x="782.631327160495" y="1058.0" />
+      <point x="782.631327160495" y="558.0" />
+      <point x="972.6894290123464" y="558.0" />
+      <point x="-93.33333333333348" y="64.5" />
+    </edge>
+    <edge source="board.Space" target="board.TileObject">
+      <point x="0.0" y="-88.5" />
+      <point x="2058.457844650207" y="558.0" />
+      <point x="1159.3560956790134" y="558.0" />
+      <point x="93.33333333333348" y="64.5" />
+    </edge>
+    <edge source="board.Board.Target" target="base.user.GameObjectTarget">
+      <point x="-53.0" y="-40.0" />
+      <point x="2334.1234825102883" y="1058.0" />
+      <point x="1539.3484825102885" y="1058.0" />
+      <point x="15.400000000000091" y="88.5" />
+    </edge>
+    <edge source="board.Tile.View" target="board.Tile">
+      <point x="-45.25" y="-52.0" />
+      <point x="143.77368827160626" y="1098.0" />
+      <point x="93.25" y="1098.0" />
+      <point x="-93.25" y="185.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticViewUnitCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="3734.989475108225" y="2038.0" />
+      <point x="3397.671293290043" y="2038.0" />
+      <point x="26.181818181818016" y="28.0" />
+    </edge>
+    <edge source="player.Race" target="base.user.UserAcceptable">
+      <point x="0.0" y="-137.0" />
+      <point x="2399.582844650207" y="144.0" />
+      <point x="2830.0609825102883" y="144.0" />
+      <point x="-69.9375" y="52.0" />
+    </edge>
+    <edge source="base.controller.phase.strategy" target="base.controller.AbstractCommand">
+      <point x="40.0" y="-27.0" />
+      <point x="2890.989475108225" y="1616.0" />
+      <point x="4745.489475108225" y="1616.0" />
+      <point x="-106.5625" y="64.5" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticViewMovesCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="2593.989475108225" y="2028.0" />
+      <point x="3319.125838744589" y="2028.0" />
+      <point x="-52.36363636363603" y="28.0" />
+    </edge>
+    <edge source="board.Board.View" target="board.Board">
+      <point x="-45.25" y="-52.0" />
+      <point x="4936.9375" y="988.0" />
+      <point x="3344.457844650207" y="988.0" />
+      <point x="93.25" y="125.0" />
+    </edge>
+    <edge source="player.units.Unit.View" target="player.units.Unit">
+      <point x="-45.25" y="-64.5" />
+      <point x="5137.9375" y="978.0" />
+      <point x="3784.082844650207" y="978.0" />
+      <point x="139.875" y="149.0" />
+    </edge>
+    <edge source="player.Army" target="base.user.UserAcceptable">
+      <point x="-93.25" y="-184.5" />
+      <point x="2764.957844650207" y="528.0" />
+      <point x="2669.207844650207" y="528.0" />
+      <point x="2669.207844650207" y="154.0" />
+      <point x="2876.6859825102883" y="154.0" />
+      <point x="-23.3125" y="52.0" />
+    </edge>
+    <edge source="player.Player" target="base.model">
+      <point x="-93.25" y="-149.0" />
+      <point x="4020.895344650207" y="558.0" />
+      <point x="3940.3125000000005" y="558.0" />
+      <point x="45.33333333333326" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatAssignHits" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="6797.489475108225" y="2028.0" />
+      <point x="6298.114475108225" y="2028.0" />
+      <point x="131.625" y="28.0" />
+    </edge>
+    <edge source="base.user.UserInterface" target="base.user.CommandRequestable">
+      <point x="0.0" y="-88.5" />
+      <point x="0.0" y="76.0" />
+    </edge>
+    <edge source="base.controller.phase.strategy" target="base.controller.AbstractController">
+      <point x="-40.0" y="-27.0" />
+      <point x="2810.989475108225" y="1596.0" />
+      <point x="2435.9180465367967" y="1596.0" />
+      <point x="135.42857142857156" y="125.0" />
+    </edge>
+    <edge source="player.units.Unit" target="player.units.LoaderFromJSON">
+      <point x="0.0" y="-149.0" />
+      <point x="3644.207844650207" y="538.0" />
+      <point x="3601.604166666667" y="538.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticBreakCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="2225.489475108225" y="2018.0" />
+      <point x="3292.94402056277" y="2018.0" />
+      <point x="-78.54545454545496" y="28.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticChangeActiveTileCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="5203.989475108225" y="1998.0" />
+      <point x="3502.398566017316" y="1998.0" />
+      <point x="130.909090909091" y="28.0" />
+    </edge>
+    <edge source="board.TileObject" target="base.user.UserAcceptable">
+      <point x="0.0" y="-64.5" />
+      <point x="1066.02276234568" y="134.0" />
+      <point x="2783.4359825102883" y="134.0" />
+      <point x="-116.5625" y="52.0" />
+    </edge>
+    <edge source="board.Space.View" target="board.Space">
+      <point x="-46.75" y="-76.5" />
+      <point x="4125.4375" y="1008.0" />
+      <point x="2151.707844650207" y="1008.0" />
+      <point x="93.25" y="88.5" />
+    </edge>
+    <edge source="board.Planet" target="board.TileObject">
+      <point x="0.0" y="-88.5" />
+      <point x="979.631327160495" y="558.0" />
+      <point x="1066.02276234568" y="558.0" />
+      <point x="0.0" y="64.5" />
+    </edge>
+    <edge source="base.controller.phase.status" target="base.controller.AbstractCommand">
+      <point x="36.0" y="-27.0" />
+      <point x="3058.989475108225" y="1626.0" />
+      <point x="4788.114475108225" y="1626.0" />
+      <point x="-63.9375" y="64.5" />
+    </edge>
+    <edge source="player.Player.View" target="base.view">
+      <point x="45.25" y="-64.5" />
+      <point x="5429.4375" y="174.0" />
+      <point x="4588.324871399177" y="174.0" />
+      <point x="56.888888888888914" y="27.0" />
+    </edge>
+    <edge source="player.Player.Target" target="player.Player">
+      <point x="58.5" y="-64.0" />
+      <point x="3928.6875000000005" y="1098.0" />
+      <point x="4020.895344650207" y="1098.0" />
+      <point x="-93.25" y="149.0" />
+    </edge>
+    <edge source="player.units.Unit" target="base.user.UserAcceptable">
+      <point x="-124.33333333333326" y="-149.0" />
+      <point x="3519.874511316874" y="518.0" />
+      <point x="3063.5828446502073" y="518.0" />
+      <point x="3063.5828446502073" y="154.0" />
+      <point x="2969.9359825102883" y="154.0" />
+      <point x="69.9375" y="52.0" />
+    </edge>
+    <edge source="board.Space.View" target="base.view">
+      <point x="46.75" y="-76.5" />
+      <point x="4218.9375" y="1098.0" />
+      <point x="4311.145344650207" y="1098.0" />
+      <point x="4311.145344650207" y="204.0" />
+      <point x="4531.435982510288" y="204.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatMakeRolls" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-52.5" />
+      <point x="5956.489475108225" y="2038.0" />
+      <point x="6122.614475108225" y="2038.0" />
+      <point x="-43.875" y="28.0" />
+    </edge>
+    <edge source="player.Army.Target" target="base.user.GameObjectTarget">
+      <point x="-53.0" y="-40.0" />
+      <point x="2021.6234825102883" y="1088.0" />
+      <point x="1508.5484825102883" y="1088.0" />
+      <point x="-15.400000000000091" y="88.5" />
+    </edge>
+    <edge source="board.Tile" target="base.user.UserAcceptable">
+      <point x="0.0" y="-185.0" />
+      <point x="186.5" y="124.0" />
+      <point x="2736.8109825102883" y="124.0" />
+      <point x="-163.1875" y="52.0" />
+    </edge>
+    <edge source="base.controller.combat.SpaceCombatController.CombatPhase" target="base.controller.combat.SpaceCombatController">
+      <point x="0.0" y="-52.5" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="board.Board.View" target="base.view">
+      <point x="45.25" y="-52.0" />
+      <point x="5027.4375" y="194.0" />
+      <point x="4559.880426954733" y="194.0" />
+      <point x="28.444444444444343" y="27.0" />
+    </edge>
+    <edge source="player.Race.View" target="base.view">
+      <point x="45.25" y="-64.5" />
+      <point x="2606.457844650207" y="538.0" />
+      <point x="3074.5828446502073" y="538.0" />
+      <point x="3074.5828446502073" y="184.0" />
+      <point x="4502.991538065844" y="184.0" />
+      <point x="-28.444444444444343" y="27.0" />
+    </edge>
+    <edge source="player.Army.Target" target="player.Army">
+      <point x="53.0" y="-40.0" />
+      <point x="2127.6234825102883" y="1068.0" />
+      <point x="2764.957844650207" y="1068.0" />
+      <point x="-93.25" y="184.5" />
+    </edge>
+    <edge source="base.model" target="base.view">
+      <point x="34.0" y="-27.0" />
+      <point x="3928.979166666667" y="194.0" />
+      <point x="4517.213760288067" y="194.0" />
+      <point x="-14.222222222222172" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7049228508449669" x="7721.387950802585" y="404.40306441525956" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
