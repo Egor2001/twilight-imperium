@@ -1,0 +1,65 @@
+Input player0 name
+Input race name
+Input player1 name
+Input race name
+Input Boba's strategy command name
+Input strategy index number
+Input Biba's strategy command name
+Input strategy index number
+Input Boba's action command name
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input active tile object target
+Input Biba's move command name
+Input units to move number
+Input unit object target
+Input Biba's move command name
+Input unit for load target
+Input number units to internal number
+Input unit object to internal target
+Input Biba's move command name
+Input units to move number
+Input unit object target
+Input tiles in way number
+Input tile object target
+Input Biba's move command name
+Input Biba's move command name
+Input Biba's action command name
+Input Biba's global command name
+Input view target
+Board {
+    Tile: 0 {
+        planet{Saudor Industrial 2 2 -}
+        space{
+        }
+    }
+    Tile: 1 {
+        planet{Muaat Muaat 4 1 -}
+        space{
+            Carrier (Arborec) #0
+            Fighter (Arborec) #1
+        }
+    }
+    Tile: 2 {
+        planet{Quinarra Sardakk N'orr 3 1 -}
+        planet{Tren'lak Sardakk N'orr 1 0 -}
+        space{
+        }
+    }
+    Tile: 3 {
+        planet{[0.0.0] L1Z1X 5 0 -}
+        space{
+        }
+    }
+    Tile: 4 {
+        planet{Mecatol Rex None 1 6 -}
+        space{
+        }
+    }
+}
+Input Biba's global command name

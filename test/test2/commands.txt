@@ -1,0 +1,20 @@
+Boba
+Winnu
+Biba
+Arborec
+pick 1
+pick 2
+pass
+add-unit Carrier Tile.0.Space
+add-unit Fighter Tile.0.Space
+move
+Tile.1.Space
+add-unit 1 Army.Ship.0
+add-internal Army.Ship.0 1 Army.Ship.1
+add-way 1 Army.Ship.0 1 Tile.1.Space
+view-all-moves
+end-move
+game
+view
+Board
+exit

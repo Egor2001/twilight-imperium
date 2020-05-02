@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>player</OriginalElement>
+  <nodes>
+    <node x="0.0" y="719.0">player.races.Arborec</node>
+    <node x="54.0" y="818.0">player.Army</node>
+    <node x="1032.0" y="332.0">player.units.Structures.PDS</node>
+    <node x="2792.0" y="719.0">player.races.Clan_of_Saar</node>
+    <node x="295.0" y="818.0">player.Player</node>
+    <node x="711.0" y="818.0">player.FactoryUnit</node>
+    <node x="1306.0" y="208.0">player.units.GroundForce.GroundForce</node>
+    <node x="1380.0" y="332.0">player.units.GroundForce.Infantry</node>
+    <node x="1020.0" y="436.0">player.units.Structures.PDS.Target</node>
+    <node x="1124.0" y="332.0">player.units.Structures.SpaceDock</node>
+    <node x="1508.0" y="719.0">player.races.Barony_of_Letnev</node>
+    <node x="248.0" y="332.0">player.units.Ships.Dreadnought</node>
+    <node x="477.99999999999994" y="208.0">player.units.Ships.Ship</node>
+    <node x="124.0" y="719.0">player.races.Yssaril_Tribes</node>
+    <node x="403.99999999999994" y="332.0">player.units.Ships.Carrier</node>
+    <node x="528.0" y="332.0">player.units.Ships.Fighter</node>
+    <node x="1956.0" y="719.0">player.races.Embers_of_Muaat</node>
+    <node x="852.0000000000001" y="719.0">player.races.Ghosts_of_Creuss</node>
+    <node x="304.0" y="719.0">player.races.L1Z1X_Mindnet</node>
+    <node x="377.99999999999994" y="208.0">player.units.Unit.View</node>
+    <node x="241.0" y="922.0">player.Player.Target</node>
+    <node x="648.0000000000001" y="719.0">player.races.Emirates_of_Hacan</node>
+    <node x="2956.0" y="719.0">player.races.Federation_of_Sol</node>
+    <node x="1048.0" y="719.0">player.races.Winnu</node>
+    <node x="132.0" y="332.0">player.units.Ships.Ship.Target</node>
+    <node x="1156.0" y="719.0">player.races.Mentak_Coalition</node>
+    <node x="482.0" y="818.0">player.RacePlayerManager</node>
+    <node x="0.0" y="922.0">player.Army.View</node>
+    <node x="476.0" y="719.0">player.races.Xxcha_Kingdom</node>
+    <node x="1704.0" y="719.0">player.races.Universities_of_Jol_Nar</node>
+    <node x="792.0" y="332.0">player.units.Ships.Cruiser</node>
+    <node x="357.0" y="922.0">player.Player.View</node>
+    <node x="2528.0" y="719.0">player.Race.View</node>
+    <node x="100.0" y="922.0">player.Army.Target</node>
+    <node x="1352.0" y="719.0">player.races.Nekro_Virus</node>
+    <node x="652.0" y="332.0">player.units.Ships.Destroyer</node>
+    <node x="916.0" y="332.0">player.units.Ships.WarSun</node>
+    <node x="2628.0" y="719.0">player.races.Sardakk_Norr</node>
+    <node x="2144.0" y="719.0">player.races.Yin_Brotherhood</node>
+    <node x="0.0" y="332.0">player.units.Ships.Flagship</node>
+    <node x="1468.0" y="535.0">player.Race</node>
+    <node x="727.5" y="0.0">player.units.LoaderFromJSON</node>
+    <node x="1066.0" y="208.0">player.units.Structures.Structure</node>
+    <node x="2332.0" y="719.0">player.races.Naalu_Collective</node>
+    <node x="1136.0" y="436.0">player.units.Structures.SpaceDock.Target</node>
+    <node x="1264.0" y="332.0">player.units.GroundForce.GroundForce.Target</node>
+    <node x="767.5" y="104.0">player.units.Unit</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="player.races.Yssaril_Tribes" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="204.0" y="629.0" />
+      <point x="1474.666666666667" y="629.0" />
+      <point x="-33.33333333333326" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Flagship" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="56.0" y="282.0" />
+      <point x="482.99999999999994" y="282.0" />
+      <point x="-35.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Structures.PDS" target="player.units.Structures.Structure">
+      <point x="0.0" y="-27.0" />
+      <point x="1068.0" y="312.0" />
+      <point x="1096.0" y="312.0" />
+      <point x="-30.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Winnu" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="1092.0" y="679.0" />
+      <point x="1496.8888888888891" y="679.0" />
+      <point x="-11.111111111111086" y="27.0" />
+    </edge>
+    <edge source="player.units.Structures.PDS.Target" target="player.units.Structures.PDS">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Ship" target="player.units.Unit">
+      <point x="0.0" y="-27.0" />
+      <point x="518.0" y="188.0" />
+      <point x="797.5" y="188.0" />
+      <point x="-10.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Ghosts_of_Creuss" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="940.0000000000001" y="669.0" />
+      <point x="1492.4444444444443" y="669.0" />
+      <point x="-15.555555555555657" y="27.0" />
+    </edge>
+    <edge source="player.races.Federation_of_Sol" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="3048.0" y="609.0" />
+      <point x="1545.7777777777778" y="609.0" />
+      <point x="37.77777777777783" y="27.0" />
+    </edge>
+    <edge source="player.units.Unit" target="player.units.LoaderFromJSON">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Barony_of_Letnev" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="1596.0" y="689.0" />
+      <point x="1510.2222222222222" y="689.0" />
+      <point x="2.2222222222221717" y="27.0" />
+    </edge>
+    <edge source="player.units.Structures.Structure" target="player.units.Unit">
+      <point x="0.0" y="-27.0" />
+      <point x="1126.0" y="188.0" />
+      <point x="817.5" y="188.0" />
+      <point x="10.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Carrier" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="455.99999999999994" y="312.0" />
+      <point x="513.0" y="312.0" />
+      <point x="-5.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Cruiser" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="844.0" y="292.0" />
+      <point x="543.0" y="292.0" />
+      <point x="25.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Structures.SpaceDock" target="player.units.Structures.Structure">
+      <point x="0.0" y="-27.0" />
+      <point x="1184.0" y="312.0" />
+      <point x="1156.0" y="312.0" />
+      <point x="30.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Ship.Target" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="180.0" y="292.0" />
+      <point x="492.99999999999994" y="292.0" />
+      <point x="-25.0" y="27.0" />
+    </edge>
+    <edge source="player.Race.View" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2568.0" y="639.0" />
+      <point x="1532.4444444444443" y="639.0" />
+      <point x="24.444444444444343" y="27.0" />
+    </edge>
+    <edge source="player.races.Nekro_Virus" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="1420.0" y="699.0" />
+      <point x="1505.7777777777778" y="699.0" />
+      <point x="-2.2222222222221717" y="27.0" />
+    </edge>
+    <edge source="player.units.GroundForce.Infantry" target="player.units.GroundForce.GroundForce">
+      <point x="0.0" y="-27.0" />
+      <point x="1436.0" y="312.0" />
+      <point x="1408.0" y="312.0" />
+      <point x="34.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Emirates_of_Hacan" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="740.0000000000001" y="659.0" />
+      <point x="1488.0" y="659.0" />
+      <point x="-20.0" y="27.0" />
+    </edge>
+    <edge source="player.Army.View" target="player.Army">
+      <point x="0.0" y="-27.0" />
+      <point x="40.0" y="897.0" />
+      <point x="74.0" y="897.0" />
+      <point x="-20.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Clan_of_Saar" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2864.0" y="619.0" />
+      <point x="1541.3333333333335" y="619.0" />
+      <point x="33.33333333333326" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.WarSun" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="964.0" y="282.0" />
+      <point x="553.0" y="282.0" />
+      <point x="35.0" y="27.0" />
+    </edge>
+    <edge source="player.Player.Target" target="player.Player">
+      <point x="0.0" y="-27.0" />
+      <point x="289.0" y="897.0" />
+      <point x="319.0" y="897.0" />
+      <point x="-24.0" y="27.0" />
+    </edge>
+    <edge source="player.units.GroundForce.GroundForce.Target" target="player.units.GroundForce.GroundForce">
+      <point x="0.0" y="-27.0" />
+      <point x="1312.0" y="312.0" />
+      <point x="1340.0" y="312.0" />
+      <point x="-34.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Unit.View" target="player.units.Unit">
+      <point x="0.0" y="-27.0" />
+      <point x="417.99999999999994" y="178.0" />
+      <point x="777.5" y="178.0" />
+      <point x="-30.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Arborec" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="52.0" y="619.0" />
+      <point x="1470.2222222222222" y="619.0" />
+      <point x="-37.77777777777783" y="27.0" />
+    </edge>
+    <edge source="player.Army.Target" target="player.Army">
+      <point x="0.0" y="-27.0" />
+      <point x="148.0" y="897.0" />
+      <point x="114.0" y="897.0" />
+      <point x="20.0" y="27.0" />
+    </edge>
+    <edge source="player.Player.View" target="player.Player">
+      <point x="0.0" y="-27.0" />
+      <point x="397.0" y="897.0" />
+      <point x="367.0" y="897.0" />
+      <point x="24.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Universities_of_Jol_Nar" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="1820.0" y="679.0" />
+      <point x="1514.666666666667" y="679.0" />
+      <point x="6.6666666666667425" y="27.0" />
+    </edge>
+    <edge source="player.races.Sardakk_Norr" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2700.0" y="629.0" />
+      <point x="1536.8888888888891" y="629.0" />
+      <point x="28.888888888888914" y="27.0" />
+    </edge>
+    <edge source="player.races.Yin_Brotherhood" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2228.0" y="659.0" />
+      <point x="1523.5555555555557" y="659.0" />
+      <point x="15.555555555555657" y="27.0" />
+    </edge>
+    <edge source="player.units.GroundForce.GroundForce" target="player.units.Unit">
+      <point x="0.0" y="-27.0" />
+      <point x="1374.0" y="178.0" />
+      <point x="837.5" y="178.0" />
+      <point x="30.0" y="27.0" />
+    </edge>
+    <edge source="player.races.L1Z1X_Mindnet" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="380.0" y="639.0" />
+      <point x="1479.1111111111113" y="639.0" />
+      <point x="-28.888888888888914" y="27.0" />
+    </edge>
+    <edge source="player.races.Embers_of_Muaat" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2040.0" y="669.0" />
+      <point x="1519.1111111111113" y="669.0" />
+      <point x="11.111111111111086" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Dreadnought" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="316.0" y="302.0" />
+      <point x="502.99999999999994" y="302.0" />
+      <point x="-15.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Destroyer" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="712.0" y="302.0" />
+      <point x="533.0" y="302.0" />
+      <point x="15.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Naalu_Collective" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="2420.0" y="649.0" />
+      <point x="1528.0" y="649.0" />
+      <point x="20.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Xxcha_Kingdom" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="552.0" y="649.0" />
+      <point x="1483.5555555555557" y="649.0" />
+      <point x="-24.444444444444343" y="27.0" />
+    </edge>
+    <edge source="player.units.Ships.Fighter" target="player.units.Ships.Ship">
+      <point x="0.0" y="-27.0" />
+      <point x="580.0" y="312.0" />
+      <point x="523.0" y="312.0" />
+      <point x="5.0" y="27.0" />
+    </edge>
+    <edge source="player.units.Structures.SpaceDock.Target" target="player.units.Structures.SpaceDock">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="player.races.Mentak_Coalition" target="player.Race">
+      <point x="0.0" y="-27.0" />
+      <point x="1244.0" y="689.0" />
+      <point x="1501.3333333333335" y="689.0" />
+      <point x="-6.6666666666667425" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4829113924050633" x="1570.0" y="488.0" />
+  <SelectedNodes>
+    <node>player.races.Arborec</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
