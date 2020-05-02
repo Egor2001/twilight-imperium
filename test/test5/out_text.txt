@@ -14,10 +14,30 @@ Input Biba's action command name
 Input unit name
 Input tile object target
 Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
+Input unit name
+Input tile object target
+Input Biba's action command name
 Input active tile object target
 Input Biba's move command name
 Input units to move number
 Input unit object target
+Input Biba's move command name
+Input unit for load target
+Input number units to internal number
+Input unit object to internal target
+Input unit object to internal target
+Input unit object to internal target
+Input unit object to internal target
+Input unit object to internal target
 Input Biba's move command name
 Input units to move number
 Input unit object target
@@ -32,7 +52,12 @@ Board {
     Tile: 0 {
         planet{Saudor Industrial 2 2 -}
         space{
-            Fighter (Arborec) #0
+            Carrier (Arborec) #0
+            Fighter (Arborec) #1
+            Fighter (Arborec) #2
+            Fighter (Arborec) #3
+            Fighter (Arborec) #4
+            Fighter (Arborec) #5
         }
     }
     Tile: 1 {
@@ -54,7 +79,6 @@ Board {
     Tile: 4 {
         planet{Mecatol Rex None 1 6 -}
         space{
-            Fighter (Arborec) #1
         }
     }
 }

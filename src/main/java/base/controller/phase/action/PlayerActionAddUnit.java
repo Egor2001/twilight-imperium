@@ -37,7 +37,6 @@ public class PlayerActionAddUnit extends PlayerActionCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing ACTION command: ADD_SHIP");
         GameState gameState = ((ActionPhaseController) getController()).getGameState();
 
         try {
@@ -47,7 +46,7 @@ public class PlayerActionAddUnit extends PlayerActionCommand {
             gameState.getTileArmyManager().add(unit, tileObject);
         }
         catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            getController().getUserInterface().reportError(exception.getMessage());
             return CommandResponse.DECLINED;
         }
 

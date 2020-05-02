@@ -23,6 +23,7 @@ Input units to move number
 Input unit object target
 Input tiles in way number
 Input tile object target
+Input tile object target
 Input Biba's move command name
 Input Biba's move command name
 Input Biba's move command name
@@ -32,7 +33,7 @@ Board {
     Tile: 0 {
         planet{Saudor Industrial 2 2 -}
         space{
-            Fighter (Arborec) #0
+            Fighter (Arborec) #1
         }
     }
     Tile: 1 {
@@ -44,6 +45,7 @@ Board {
         planet{Quinarra Sardakk N'orr 3 1 -}
         planet{Tren'lak Sardakk N'orr 1 0 -}
         space{
+            Cruiser (Arborec) #0
         }
     }
     Tile: 3 {
@@ -54,7 +56,6 @@ Board {
     Tile: 4 {
         planet{Mecatol Rex None 1 6 -}
         space{
-            Fighter (Arborec) #1
         }
     }
 }
