@@ -3,6 +3,7 @@ package base.controller.tactic;
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import player.Player;
 import player.units.Unit;
 
@@ -21,10 +22,11 @@ public class PlayerTacticViewUnitCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing TACTIC command: VIEW_UNIT");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: VIEW_UNIT"));
         Unit unit = (Unit) player.getObject(unitTarget);
 
-        System.out.println(((MoveController) controller).getMoveState().getUnitInfo(unit, ""));
+        controller.getUserInterface().displayView(
+                new MessageString(((MoveController) controller).getMoveState().getUnitInfo(unit, "")));
         return CommandResponse.ACCEPTED;
     }
 }
