@@ -29,7 +29,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
         }
 
         int numTiles = userInterface.requestNumber("tiles in way");
-        for (int i = 0; i < numUnits; ++i) {
+        for (int i = 0; i < numTiles; ++i) {
             waysTarget.add(userInterface.requestTarget("tile object"));
         }
 
@@ -52,7 +52,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
-                //exception.printStackTrace();
+                exception.printStackTrace();
                 error = true;
             }
         }
@@ -63,7 +63,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
-                //exception.printStackTrace();
+                exception.printStackTrace();
                 error = true;
             }
         }
@@ -72,7 +72,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             ((MoveController) controller).getMoveState().addWay(units, tileObjects);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            //exception.printStackTrace();
+            exception.printStackTrace();
             error = true;
         }
 

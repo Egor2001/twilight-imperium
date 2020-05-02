@@ -16,4 +16,34 @@ Input tile object target
 Input Biba's action command name
 Input Biba's global command name
 Input view target
+Board {
+    Tile: 0 {
+        planet{Saudor Industrial 2 2 -}
+        space{
+            Fighter (Arborec) #0
+        }
+    }
+    Tile: 1 {
+        planet{Muaat Muaat 4 1 -}
+        space{
+        }
+    }
+    Tile: 2 {
+        planet{Quinarra Sardakk N'orr 3 1 -}
+        planet{Tren'lak Sardakk N'orr 1 0 -}
+        space{
+        }
+    }
+    Tile: 3 {
+        planet{[0.0.0] L1Z1X 5 0 -}
+        space{
+        }
+    }
+    Tile: 4 {
+        planet{Mecatol Rex None 1 6 -}
+        space{
+            Fighter (Arborec) #1
+        }
+    }
+}
 Input Biba's global command name
