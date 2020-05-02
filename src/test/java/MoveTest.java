@@ -31,7 +31,7 @@ public class MoveTest extends Assert {
     @Test
     public void testMove () {
         try {
-            //DoTestFromFile("test1");
+            DoTestFromFile("test1");
         }
         catch (Exception e)
         {
