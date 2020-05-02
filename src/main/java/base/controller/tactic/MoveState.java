@@ -141,7 +141,7 @@ public class MoveState {
         StringBuilder result = new StringBuilder(unit.getView(null).toString(start) + ":\n");
 
         ArrayList<Unit> internalUnit = getInternalUnits(unit);
-        if (internalUnit.size() > 0) {
+        if (internalUnit != null && internalUnit.size() > 0) {
             result.append("  ").append(start).append("Internal units:\n");
             for (Unit unitInternal: internalUnit) {
                 result.append(unitInternal.getView(null).toString(start + "    ")).append("\n");
