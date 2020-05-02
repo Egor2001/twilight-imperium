@@ -54,6 +54,17 @@ public class MoveTest extends Assert {
             fail();
         }
     }
+    @Test
+    public void CapacityLimit() {
+        try {
+            DoTestFromFile("test5");
+            CheckOutput("test5");
+        }
+        catch (Exception e)
+        {
+            fail();
+        }
+    }
 
     private void DoTestFromFile(String test_name) throws FileNotFoundException {
         try {
