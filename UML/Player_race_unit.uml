@@ -295,7 +295,9 @@
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="0.4829113924050633" x="1570.0" y="488.0" />
-  <SelectedNodes />
+  <SelectedNodes>
+    <node>player.races.Arborec</node>
+  </SelectedNodes>
   <Categories>
     <Category>Inner Classes</Category>
   </Categories>
