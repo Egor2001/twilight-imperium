@@ -161,13 +161,14 @@ public class SpaceCombatController extends AbstractController {
                     ship.takeDamaged();
                 }
                 else {
-                    ships.get(idx).getArmy().delShip((Ship) ships.get(idx));
+                    player.delUnit(ships.get(idx));
                     getGameState().getTileArmyManager().remove(ships.get(idx));
                     ships.set(idx, null);
                     ++killedCnt;
                 }
             }
             else {
+                player.delUnit(ships.get(idx));
                 getGameState().getTileArmyManager().remove(ships.get(idx));
                 ships.set(idx, null);
                 ++killedCnt;
