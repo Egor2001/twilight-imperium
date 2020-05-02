@@ -7,17 +7,16 @@ import player.units.Unit;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Board implements UserAcceptable {
     public Board(TileArmyManager controller) {
         ta_controller = controller;
-        ArrayList<Integer> tile_list = new ArrayList<Integer>();
+        ArrayList<Integer> tile_list = new ArrayList<>();
 
-        try (FileReader reader = new FileReader("etc/BoardStructure/6players.json")) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
+                "/etc/BoardStructure/6players.json")))) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 
@@ -40,7 +39,8 @@ public class Board implements UserAcceptable {
         }
 
         for (int k = 0; k < size_; ++k) {
-            try (FileReader reader = new FileReader("etc/Board/" + (k) + ".json")) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
+                    "/etc/Board/" + (k) + ".json")))) {
                 JSONTokener token = new JSONTokener(reader);
                 JSONObject object = new JSONObject(token);
 

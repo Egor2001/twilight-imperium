@@ -9,9 +9,7 @@ import player.units.Structures.PDS;
 import player.units.Structures.SpaceDock;
 import org.json.*;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +25,8 @@ public abstract class Race implements UserAcceptable {
         startingFleet = new HashMap<>();
         homeSystem = new ArrayList<>();
 
-        try (FileReader reader = new FileReader("etc/baseRaces/" + name + ".json")) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
+                "/etc/baseRaces/" + name + ".json")))) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 

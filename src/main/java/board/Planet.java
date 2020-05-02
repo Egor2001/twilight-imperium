@@ -6,14 +6,13 @@ import base.view.Viewable;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 
 public class Planet extends TileObject {
     public Planet(String planet_name, Tile my_tile) {
         super(my_tile);
-        try (FileReader reader = new FileReader("etc/basePlanets/" + planet_name + ".json")) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
+                "/etc/basePlanets/" + planet_name + ".json")))) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 

@@ -7,9 +7,7 @@ import player.units.Unit;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Tile implements UserAcceptable {
@@ -64,7 +62,8 @@ public class Tile implements UserAcceptable {
     private Board board_;
 
     public void LoadTile(int num)  {
-        try (FileReader reader = new FileReader("etc/baseTiles/tile" + (num) + ".json")) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(
+                "/etc/baseTiles/tile" + (num) + ".json")))) {
             JSONTokener token = new JSONTokener(reader);
             JSONObject object = new JSONObject(token);
 
