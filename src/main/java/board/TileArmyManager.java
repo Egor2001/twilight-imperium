@@ -53,7 +53,7 @@ public class TileArmyManager {
             throw new IllegalArgumentException("In move: way is too long\n");
         }
 
-        if (ship.getCapacityValue() < units.size()) {
+        if (units != null && ship.getCapacityValue() < units.size()) {
             throw new IllegalArgumentException("In move: ship can't carry all this units\n");
         }
 
@@ -77,6 +77,7 @@ public class TileArmyManager {
             remove(unit);
             add(unit, way.get(sizeWay - 1));
         }
+        way.remove(0);
     }
 
 

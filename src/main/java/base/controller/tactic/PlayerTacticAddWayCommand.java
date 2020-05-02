@@ -52,7 +52,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
-                //exception.printStackTrace();
+                exception.printStackTrace();
                 error = true;
             }
         }
@@ -63,7 +63,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             }
             catch (Exception exception) {
                 System.out.println(exception.getMessage());
-                //exception.printStackTrace();
+                exception.printStackTrace();
                 error = true;
             }
         }
@@ -72,7 +72,7 @@ public class PlayerTacticAddWayCommand extends PlayerTacticCommand {
             ((MoveController) controller).getMoveState().addWay(units, tileObjects);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            //exception.printStackTrace();
+            exception.printStackTrace();
             error = true;
         }
 
