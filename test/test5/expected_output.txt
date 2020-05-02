@@ -26,33 +26,50 @@ Input Biba's action command name
 Input unit name
 Input tile object target
 Input Biba's action command name
-Input active tile object target
+Input active tile target
+processing TACTIC command: SET_ACTIVE_TILE
 Input Biba's move command name
 Input units to move number
 Input unit object target
+processing TACTIC command: ADD_UNIT
 Input Biba's move command name
 Input unit for load target
-Input number units to internal number
-Input unit object to internal target
-Input unit object to internal target
-Input unit object to internal target
-Input unit object to internal target
-Input unit object to internal target
+Input units to internal number
+Input unit to internal target
+Input unit to internal target
+Input unit to internal target
+Input unit to internal target
+Input unit to internal target
+processing TACTIC command: ADD_INTERNAL_UNITS
+This ship can't carry all this units, try again
 Input Biba's move command name
 Input units to move number
 Input unit object target
 Input tiles in way number
-Input tile object target
+Input tile target
+processing TACTIC command: ADD_WAY
 Input Biba's move command name
+processing TACTIC command: VIEW_ALL_UNIT
+Move State now:
+Active Tile:
+  Tile: 1 {
+      planet{Muaat Muaat 4 1 -}
+      space{
+      }
+  }
+Move units:
+  Carrier (Arborec) #0:
+    Way's tiles:
+      Tile: 0 -> Tile: 1
 Input Biba's move command name
-Input Biba's move command name
+processing TACTIC command: END_MOVE
+Input Biba's action command name
 Input Biba's global command name
 Input view target
 Board {
     Tile: 0 {
         planet{Saudor Industrial 2 2 -}
         space{
-            Carrier (Arborec) #0
             Fighter (Arborec) #1
             Fighter (Arborec) #2
             Fighter (Arborec) #3
@@ -63,6 +80,7 @@ Board {
     Tile: 1 {
         planet{Muaat Muaat 4 1 -}
         space{
+            Carrier (Arborec) #0
         }
     }
     Tile: 2 {

@@ -3,6 +3,7 @@ package base.controller.tactic;
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import board.Tile;
 import board.TileObject;
 import player.Player;
@@ -17,7 +18,7 @@ public class PlayerTacticChangeActiveTileCommand extends PlayerTacticCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        System.out.println("processing TACTIC command: CHANGE_ACTIVE_TILE");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: CHANGE_ACTIVE_TILE"));
         tileObjectTarget = userInterface.requestTarget("new active tile");
         return true;
     }
@@ -29,7 +30,7 @@ public class PlayerTacticChangeActiveTileCommand extends PlayerTacticCommand {
         try {
             ((MoveController) controller).getMoveState().setActiveTile(tileObject);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
             return CommandResponse.DECLINED;
         }
 

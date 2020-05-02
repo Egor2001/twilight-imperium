@@ -4,6 +4,9 @@ import base.user.GameObjectTarget;
 import base.user.UserAcceptable;
 import base.view.Viewable;
 import board.TileObject;
+import player.units.GroundForce.Infantry;
+import player.units.Ships.Fighter;
+import player.units.Ships.Ship;
 import player.units.Unit;
 
 import java.io.IOException;
@@ -62,7 +65,7 @@ public class MoveState {
             int index = unitList.indexOf(unit);
 
             if (index > -1) {
-                if (ways.get(index) != null) {
+                if (ways.get(index).size() > 0) {
                     badUnits.add(unit);
                     continue;
                 }
@@ -70,7 +73,7 @@ public class MoveState {
             } else {
                 unitList.add(unit);
                 ways.add(way);
-                internalUnits.add(null);
+                internalUnits.add(new ArrayList<>());
             }
         }
 
@@ -84,7 +87,27 @@ public class MoveState {
         if (index == -1) {
             throw new IllegalArgumentException("This unit not in list");
         }
+
+        if (!(unit instanceof Ship)) {
+            throw new IllegalArgumentException("Only ships can carry units");
+        }
+
+        if(((Ship) unit).getCapacityValue() < insideUnits.size()) {
+            throw new IllegalArgumentException("This ship can't carry all this units, try again");
+        }
+
+        boolean errorInType = false;
+        for (int ind = 0; ind < insideUnits.size(); ++ind) {
+            if (!(insideUnits.get(ind) instanceof Fighter) && !(insideUnits.get(ind) instanceof Infantry)) {
+                insideUnits.remove(ind);
+                --ind;
+                errorInType = true;
+            }
+        }
         internalUnits.set(index, insideUnits);
+        if (errorInType) {
+            throw new IllegalArgumentException("You can add internal only Fighters or Infantry");
+        }
     }
 
     public void addUnit(ArrayList<Unit> moveUnits) {
@@ -97,8 +120,8 @@ public class MoveState {
             }
 
             unitList.add(unit);
-            ways.add(null);
-            internalUnits.add(null);
+            ways.add(new ArrayList<>());
+            internalUnits.add(new ArrayList<>());
         }
 
         if (!badUnits.isEmpty()) {
