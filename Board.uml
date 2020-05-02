@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>board</OriginalElement>
+  <nodes>
+    <node x="84.10106998264894" y="194.0">board.Tile</node>
+    <node x="7.5" y="0.0">board.Board</node>
+    <node x="230.5" y="1.0">board.Space</node>
+    <node x="66.44047619047618" y="422.0">board.TileArmyManager</node>
+    <node x="86.44047619047618" y="318.0">board.TileObject</node>
+    <node x="115.5" y="0.0">board.Planet</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="board.Space" target="board.TileObject">
+      <point x="12.571428571428584" y="27.0" />
+      <point x="288.07142857142856" y="154.0" />
+      <point x="209.29824561403507" y="154.0" />
+      <point x="209.29824561403507" y="288.0" />
+      <point x="190.44047619047618" y="288.0" />
+      <point x="40.0" y="-27.0" />
+    </edge>
+    <edge source="board.Planet" target="board.TileObject">
+      <point x="13.714285714285722" y="27.0" />
+      <point x="177.21428571428572" y="104.0" />
+      <point x="174.60106998264894" y="104.0" />
+      <point x="174.60106998264894" y="268.0" />
+      <point x="158.44047619047618" y="268.0" />
+      <point x="8.0" y="-27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="163.0" y="238.0" />
+  <SelectedNodes>
+    <node>board.Tile</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
