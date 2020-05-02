@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>base</OriginalElement>
+  <nodes>
+    <node x="4288.0" y="258.0">base.controller.combat.PlayerCombatContinue</node>
+    <node x="3720.0" y="258.0">base.controller.tactic.PlayerTacticChangeActiveTileCommand</node>
+    <node x="1140.0" y="471.0">base.controller.global.GlobalCommandController</node>
+    <node x="2900.0" y="258.0">base.controller.tactic.PlayerTacticDelUnitCommand</node>
+    <node x="636.0000000000002" y="258.0">base.controller.phase.strategy.PlayerStrategyPick</node>
+    <node x="5029.274294670847" y="124.0">base.controller.phase.status.PlayerStatusCommand</node>
+    <node x="1480.0000000000002" y="258.0">base.controller.tactic.PlayerTacticBreakCommand</node>
+    <node x="1392.0" y="471.0">base.GameController</node>
+    <node x="3227.0" y="357.0">base.controller.tactic.MoveState</node>
+    <node x="3353.5" y="0.0">base.controller.AbstractCommand</node>
+    <node x="40.0" y="575.0">base.controller.combat.SpaceCombatController.CombatPhase</node>
+    <node x="4418.089341692789" y="124.0">base.controller.combat.PlayerCombatCommand</node>
+    <node x="0.0" y="471.0">base.controller.combat.SpaceCombatController</node>
+    <node x="3453.5" y="124.0">base.controller.global.PlayerGlobalStop</node>
+    <node x="3392.0" y="357.0">base.Main</node>
+    <node x="428.0" y="258.0">base.controller.phase.action.PlayerActionPass</node>
+    <node x="848.0000000000002" y="258.0">base.controller.tactic.PlayerTacticSetActiveTileCommand</node>
+    <node x="1597.0" y="357.0">base.model.Updatable</node>
+    <node x="2032.0000000000002" y="258.0">base.controller.tactic.PlayerTacticAddUnitToMoveCommand</node>
+    <node x="888.0" y="471.0">base.controller.phase.strategy.StrategyPhaseController</node>
+    <node x="652.0" y="471.0">base.controller.phase.status.StatusPhaseController</node>
+    <node x="2335.0" y="357.0">base.user.CommandRequestable</node>
+    <node x="3460.0" y="258.0">base.controller.tactic.PlayerTacticClearCommand</node>
+    <node x="416.0" y="471.0">base.controller.phase.action.ActionPhaseController</node>
+    <node x="2572.0" y="357.0">base.user.GameObjectTarget</node>
+    <node x="1974.0" y="461.0">base.view.GameView.Composite</node>
+    <node x="1740.0000000000002" y="258.0">base.controller.tactic.PlayerTacticViewMovesCommand</node>
+    <node x="1677.0" y="461.0">base.model.GameState</node>
+    <node x="4516.0" y="258.0">base.controller.combat.PlayerCombatAssignHits</node>
+    <node x="208.0" y="124.0">base.controller.phase.action.PlayerActionCommand</node>
+    <node x="624.0000000000002" y="124.0">base.controller.phase.strategy.PlayerStrategyCommand</node>
+    <node x="4692.589341692789" y="124.0">base.controller.global.PlayerGlobalExit</node>
+    <node x="1737.0" y="357.0">base.user.UserAcceptable</node>
+    <node x="1817.0" y="461.0">base.view.Viewable</node>
+    <node x="4068.0" y="258.0">base.controller.combat.PlayerCombatRetreat</node>
+    <node x="0.0" y="258.0">base.controller.phase.action.PlayerActionAddUnit</node>
+    <node x="4760.0" y="258.0">base.controller.combat.PlayerCombatMakeRolls</node>
+    <node x="2062.0" y="357.0">base.view.GameView</node>
+    <node x="664.0" y="357.0">base.controller.AbstractController</node>
+    <node x="1172.0000000000002" y="258.0">base.controller.tactic.PlayerTacticAddInternalCommand</node>
+    <node x="3176.0" y="258.0">base.controller.tactic.PlayerTacticViewUnitCommand</node>
+    <node x="220.0" y="258.0">base.controller.phase.action.PlayerActionMove</node>
+    <node x="2380.0" y="124.0">base.controller.tactic.PlayerTacticCommand</node>
+    <node x="2624.0" y="258.0">base.controller.tactic.PlayerTacticEndMoveCommand</node>
+    <node x="2356.0" y="258.0">base.controller.tactic.PlayerTacticAddWayCommand</node>
+    <node x="1765.0" y="565.0">base.model.GameState.View</node>
+    <node x="3014.0" y="357.0">base.controller.CommandResponse</node>
+    <node x="2355.0" y="461.0">base.user.UserInterface</node>
+    <node x="236.0" y="471.0">base.controller.tactic.MoveController</node>
+    <node x="428.0" y="124.0">base.controller.global.PlayerGlobalView</node>
+    <node x="2793.0" y="357.0">base.user.HierarchyManager</node>
+    <node x="2114.0" y="461.0">base.view.GameView.CompositeCommand</node>
+    <node x="4997.274294670847" y="258.0">base.controller.phase.status.PlayerStatusCompleteMission</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="base.controller.phase.status.PlayerStatusCompleteMission" target="base.controller.phase.status.PlayerStatusCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="2480.0" y="104.0" />
+      <point x="3427.0" y="104.0" />
+      <point x="-10.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatContinue" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4392.0" y="238.0" />
+      <point x="4493.089341692789" y="238.0" />
+      <point x="-25.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatMakeRolls" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4868.0" y="228.0" />
+      <point x="4593.089341692789" y="228.0" />
+      <point x="75.0" y="27.0" />
+    </edge>
+    <edge source="base.user.UserInterface" target="base.user.CommandRequestable">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.action.PlayerActionMove" target="base.controller.phase.action.PlayerActionCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddInternalCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="1316.0000000000002" y="208.0" />
+      <point x="2407.272727272728" y="208.0" />
+      <point x="-72.72727272727252" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddWayCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.action.ActionPhaseController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="524.0" y="451.0" />
+      <point x="732.5714285714286" y="451.0" />
+      <point x="-27.428571428571445" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticClearCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="3580.0" y="208.0" />
+      <point x="2552.727272727273" y="208.0" />
+      <point x="72.72727272727298" y="27.0" />
+    </edge>
+    <edge source="base.model.GameState" target="base.user.UserAcceptable">
+      <point x="30.0" y="-27.0" />
+      <point x="1767.0" y="436.0" />
+      <point x="1817.0" y="436.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.global.PlayerGlobalStop" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="3541.5" y="104.0" />
+      <point x="3448.0" y="104.0" />
+      <point x="10.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.strategy.StrategyPhaseController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="1004.0" y="451.0" />
+      <point x="787.4285714285714" y="451.0" />
+      <point x="27.428571428571445" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticBreakCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="1600.0000000000002" y="218.0" />
+      <point x="2425.454545454546" y="218.0" />
+      <point x="-54.545454545454504" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticChangeActiveTileCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="3884.0" y="198.0" />
+      <point x="2570.909090909091" y="198.0" />
+      <point x="90.90909090909099" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.status.PlayerStatusCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="5129.274294670847" y="74.0" />
+      <point x="3511.0" y="74.0" />
+      <point x="73.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticViewMovesCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="1876.0000000000002" y="228.0" />
+      <point x="2443.636363636364" y="228.0" />
+      <point x="-36.36363636363649" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.action.PlayerActionAddUnit" target="base.controller.phase.action.PlayerActionCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="100.0" y="238.0" />
+      <point x="241.33333333333348" y="238.0" />
+      <point x="-66.66666666666669" y="27.0" />
+    </edge>
+    <edge source="base.GameController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="1472.0" y="431.0" />
+      <point x="842.2857142857142" y="431.0" />
+      <point x="82.28571428571422" y="27.0" />
+    </edge>
+    <edge source="base.model.GameState.View" target="base.view.Viewable">
+      <point x="20.0" y="-27.0" />
+      <point x="1825.0" y="540.0" />
+      <point x="1873.0" y="540.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.SpaceCombatController.CombatPhase" target="base.controller.combat.SpaceCombatController">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticAddUnitToMoveCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="2184.0" y="238.0" />
+      <point x="2461.818181818182" y="238.0" />
+      <point x="-18.181818181818016" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatRetreat" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4168.0" y="228.0" />
+      <point x="4443.089341692789" y="228.0" />
+      <point x="-75.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.global.PlayerGlobalView" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="516.0" y="84.0" />
+      <point x="3385.0" y="84.0" />
+      <point x="-52.5" y="27.0" />
+    </edge>
+    <edge source="base.model.GameState.View" target="base.model.GameState">
+      <point x="-20.0" y="-27.0" />
+      <point x="1785.0" y="540.0" />
+      <point x="1737.0" y="540.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.action.PlayerActionPass" target="base.controller.phase.action.PlayerActionCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="516.0" y="238.0" />
+      <point x="374.6666666666665" y="238.0" />
+      <point x="66.66666666666669" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.strategy.PlayerStrategyPick" target="base.controller.phase.strategy.PlayerStrategyCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticEndMoveCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="2752.0" y="238.0" />
+      <point x="2498.181818181818" y="238.0" />
+      <point x="18.181818181818016" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticDelUnitCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="3028.0" y="228.0" />
+      <point x="2516.363636363637" y="228.0" />
+      <point x="36.36363636363649" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.status.StatusPhaseController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.MoveController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="316.0" y="441.0" />
+      <point x="705.1428571428571" y="441.0" />
+      <point x="-54.85714285714289" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.SpaceCombatController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="108.0" y="431.0" />
+      <point x="677.7142857142858" y="431.0" />
+      <point x="-82.28571428571422" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4518.089341692789" y="94.0" />
+      <point x="3469.0" y="94.0" />
+      <point x="31.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticViewUnitCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="3308.0" y="218.0" />
+      <point x="2534.545454545455" y="218.0" />
+      <point x="54.545454545454504" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.strategy.PlayerStrategyCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="732.0000000000002" y="94.0" />
+      <point x="3406.0" y="94.0" />
+      <point x="-31.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.global.GlobalCommandController" target="base.controller.AbstractController">
+      <point x="0.0" y="-27.0" />
+      <point x="1256.0" y="441.0" />
+      <point x="814.8571428571429" y="441.0" />
+      <point x="54.85714285714289" y="27.0" />
+    </edge>
+    <edge source="base.controller.global.PlayerGlobalExit" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4780.589341692789" y="84.0" />
+      <point x="3490.0" y="84.0" />
+      <point x="52.5" y="27.0" />
+    </edge>
+    <edge source="base.view.GameView.CompositeCommand" target="base.view.GameView">
+      <point x="0.0" y="-27.0" />
+      <point x="2202.0" y="436.0" />
+      <point x="2146.0" y="436.0" />
+      <point x="28.0" y="27.0" />
+    </edge>
+    <edge source="base.model.GameState" target="base.model.Updatable">
+      <point x="-30.0" y="-27.0" />
+      <point x="1707.0" y="436.0" />
+      <point x="1657.0" y="436.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="base.view.GameView.Composite" target="base.view.GameView">
+      <point x="0.0" y="-27.0" />
+      <point x="2034.0" y="436.0" />
+      <point x="2090.0" y="436.0" />
+      <point x="-28.0" y="27.0" />
+    </edge>
+    <edge source="base.controller.phase.action.PlayerActionCommand" target="base.controller.AbstractCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="308.0" y="74.0" />
+      <point x="3364.0" y="74.0" />
+      <point x="-73.5" y="27.0" />
+    </edge>
+    <edge source="base.controller.tactic.PlayerTacticSetActiveTileCommand" target="base.controller.tactic.PlayerTacticCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="1000.0000000000002" y="198.0" />
+      <point x="2389.090909090909" y="198.0" />
+      <point x="-90.90909090909099" y="27.0" />
+    </edge>
+    <edge source="base.controller.combat.PlayerCombatAssignHits" target="base.controller.combat.PlayerCombatCommand">
+      <point x="0.0" y="-27.0" />
+      <point x="4628.0" y="238.0" />
+      <point x="4543.089341692789" y="238.0" />
+      <point x="25.0" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.39033485540334856" x="2618.0" y="314.4999999999999" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
