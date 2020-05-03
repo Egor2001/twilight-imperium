@@ -18,7 +18,7 @@ public class PlayerCombatAssignHits extends PlayerCombatCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        int hitValue = ((SpaceCombatController) controller).hitValue;
+        int hitValue = ((SpaceCombatController) controller).getAssignValue();
         for (int hitIdx = 0; hitIdx != hitValue; ++hitIdx) {
             hitIdxList.add(userInterface.requestNumber(hitIdx + "'s hit ship idx"));
         }

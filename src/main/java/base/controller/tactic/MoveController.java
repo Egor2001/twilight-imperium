@@ -39,10 +39,13 @@ public class MoveController extends AbstractController {
         boolean error = false;
 
         PlayerTacticCommand playerTacticCommand = new PlayerTacticSetActiveTileCommand(this, moveState);
-        playerTacticCommand.inputCommand(userInterface);
-        playerTacticCommand.execute(player);
 
-        while(response != CommandResponse.END_EVENT) {
+        while (response != CommandResponse.ACCEPTED) {
+            playerTacticCommand.inputCommand(userInterface);
+            response = playerTacticCommand.execute(player);
+        }
+
+        while (response != CommandResponse.END_EVENT) {
             playerTacticCommand = (PlayerTacticCommand) requestCommand(player, "move");
 
             response = playerTacticCommand.execute(player);

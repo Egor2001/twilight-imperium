@@ -101,17 +101,12 @@ public class Board implements UserAcceptable {
     }
     @Override
     public Object getObject(GameObjectTarget target) throws Exception {
-        if (target == null)
-        {
+        if (target == null) {
             return this;
-        }
-        else
-        {
-            if (target instanceof Tile.Target)
-            {
+        } else {
+            if (target instanceof Tile.Target) {
                 return tiles_.get(((Tile.Target) target).getIndex()).getObject(target.getNext());
-            } else
-            {
+            } else {
                 throw new Exception("Wrong target request");
             }
         }

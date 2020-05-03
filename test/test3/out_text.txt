@@ -14,21 +14,42 @@ Input Biba's action command name
 Input unit name
 Input tile object target
 Input Biba's action command name
-Input active tile object target
+Input active tile target
+processing TACTIC command: SET_ACTIVE_TILE
 Input Biba's move command name
 Input units to move number
 Input unit object target
+processing TACTIC command: ADD_UNIT
 Input Biba's move command name
 Input unit for load target
-Input number units to internal number
-Input unit object to internal target
+Input units to internal number
+Input unit to internal target
+processing TACTIC command: ADD_INTERNAL_UNITS
 Input Biba's move command name
 Input units to move number
 Input unit object target
 Input tiles in way number
-Input tile object target
+Input tile target
+processing TACTIC command: ADD_WAY
 Input Biba's move command name
+processing TACTIC command: VIEW_ALL_UNIT
+Move State now:
+Active Tile:
+  Tile: 2 {
+      planet{Quinarra Sardakk N'orr 3 1 -}
+      planet{Tren'lak Sardakk N'orr 1 0 -}
+      space{
+      }
+  }
+Move units:
+  Carrier (Arborec) #0:
+    Internal units:
+      Fighter (Arborec) #1
+    Way's tiles:
+      Tile: 0 -> Tile: 2
 Input Biba's move command name
+processing TACTIC command: END_MOVE
+In move: way is discontinuous
 Input Biba's move command name
 Input Biba's global command name
 Input view target

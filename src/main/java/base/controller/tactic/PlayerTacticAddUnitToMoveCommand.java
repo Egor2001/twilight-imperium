@@ -4,6 +4,7 @@ import base.controller.CommandResponse;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import player.Player;
 import player.units.Unit;
 
@@ -29,7 +30,7 @@ public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing TACTIC command: ADD_UNIT");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: ADD_UNIT"));
 
         boolean error = false;
         ArrayList<Unit> units = new ArrayList<>();
@@ -39,7 +40,7 @@ public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
                 units.add((Unit) player.getObject(unitTarget));
             }
             catch (Exception exception) {
-                System.out.println(exception.getMessage());
+                controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
                 error = true;
             }
         }
@@ -47,7 +48,7 @@ public class PlayerTacticAddUnitToMoveCommand extends PlayerTacticCommand {
         try {
             ((MoveController) controller).getMoveState().addUnit(units);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
             error = true;
         }
 

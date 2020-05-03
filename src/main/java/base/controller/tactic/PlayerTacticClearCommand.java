@@ -2,6 +2,7 @@ package base.controller.tactic;
 
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
+import base.view.MessageString;
 import player.Player;
 
 public class PlayerTacticClearCommand extends PlayerTacticCommand {
@@ -16,7 +17,7 @@ public class PlayerTacticClearCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing TACTIC command: CLEAR");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: CLEAR"));
         ((MoveController) controller).getMoveState().clear();
 
         return CommandResponse.ACCEPTED;

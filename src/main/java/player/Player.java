@@ -3,7 +3,9 @@ package player;
 import base.user.GameObjectTarget;
 import base.user.UserAcceptable;
 import base.view.Viewable;
+import board.Space;
 import player.units.GroundForce.GroundForce;
+import player.units.GroundForce.Infantry;
 import player.units.Ships.Ship;
 import player.units.Structures.PDS;
 import player.units.Structures.SpaceDock;
@@ -61,6 +63,17 @@ public class Player implements Updatable, UserAcceptable {
                 army.addShip(ship);
                 ship.setArmy(army);
                 return ship;
+        }
+    }
+    public void delUnit(Unit unit) {
+        if (unit instanceof Ship) {
+            army.delShip((Ship) unit);
+        } else if (unit instanceof SpaceDock) {
+            army.delSpaceDock((SpaceDock) unit);
+        } else if (unit instanceof GroundForce) {
+            army.delGroundForce((GroundForce) unit);
+        } else if (unit instanceof PDS) {
+            army.delPDS((PDS) unit);
         }
     }
     public ArrayList<Unit> addStartingFleet() {
