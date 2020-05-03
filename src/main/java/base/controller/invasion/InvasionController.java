@@ -33,8 +33,6 @@ public class InvasionController extends AbstractController {
         this.gameState = gameState;
     }
 
-
-
     @Override
     public CommandResponse start() {
         return null;

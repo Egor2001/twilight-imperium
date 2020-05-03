@@ -23,7 +23,7 @@ public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
     public boolean inputCommand(CommandRequestable userInterface) {
         unitTarget = userInterface.requestTarget("unit for load");
 
-        int numUnits = userInterface.requestNumber("number units to internal");
+        int numUnits = userInterface.requestNumber("units to internal");
         for (int i = 0; i < numUnits; ++i) {
             unitsInternalTarget.add(userInterface.requestTarget("unit object to internal"));
         }
