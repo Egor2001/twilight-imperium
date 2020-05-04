@@ -28,6 +28,7 @@ public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
     private Race race;
+    private Resources resources;
 
     public Player(String name, String race) throws IllegalArgumentException {
         this.name = name;
@@ -99,6 +100,10 @@ public class Player implements Updatable, UserAcceptable {
         return race;
     }
 
+    public Resources getResources() {
+        return resources;
+    }
+
     public static class Target extends GameObjectTarget {
         public Target() {
             super();
@@ -147,7 +152,6 @@ public class Player implements Updatable, UserAcceptable {
     public Viewable getView(UserAcceptable parent) {
         return new View(this);
     }
-
     @Override
     public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
