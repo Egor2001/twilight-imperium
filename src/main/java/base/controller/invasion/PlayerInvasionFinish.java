@@ -5,8 +5,8 @@ import base.controller.combat.SpaceCombatController;
 import base.user.CommandRequestable;
 import player.Player;
 
-public class PlayerInvasionEndBombarding extends PlayerInvasionCommand  {
-    public PlayerInvasionEndBombarding(InvasionController controller) {
+public class PlayerInvasionFinish extends PlayerInvasionCommand  {
+    public PlayerInvasionFinish(InvasionController controller) {
         super(controller);
     }
 
@@ -17,6 +17,8 @@ public class PlayerInvasionEndBombarding extends PlayerInvasionCommand  {
 
     @Override
     public CommandResponse execute(Player player) {
+
+
         return CommandResponse.END_EVENT;
     }
 }
