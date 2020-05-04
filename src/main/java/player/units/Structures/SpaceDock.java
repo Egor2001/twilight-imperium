@@ -28,6 +28,9 @@ public class SpaceDock extends Structure {
         blockaded = object.getBoolean("blockaded");
         productValue = object.getInt("productValue");
         canFightSpace = object.getBoolean("canFightSpace");
+
+        setCanSustainDamaged(false);
+        setDamaged(false);
     }
 
     @Override

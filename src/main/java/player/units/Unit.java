@@ -14,6 +14,9 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
     private Race race;
     private Army army;
 
+    private boolean canSustainDamaged = false;
+    private boolean damaged = false;
+
     public Unit(Race race) {
         this.race = race;
         this.army = null;
@@ -31,6 +34,22 @@ public abstract class Unit implements Updatable, LoaderFromJSON, UserAcceptable 
     }
     public Race getRace() {
         return race;
+    }
+
+    public boolean isDamaged() {
+        return damaged;
+    }
+    public boolean canSustainDamaged() {
+        return canSustainDamaged;
+    }
+    public void takeDamaged() {
+        damaged = true;
+    }
+    public void setDamaged(boolean dam) {
+        damaged = dam;
+    }
+    public void setCanSustainDamaged(boolean canDamaged) {
+        canSustainDamaged = canDamaged;
     }
 
     public class View implements Viewable {

@@ -9,9 +9,12 @@ import base.model.GameState;
 import base.user.CommandRequestable;
 import base.view.MessageString;
 import board.Planet;
+import board.Tile;
 import board.TileObject;
 import player.Player;
+import player.units.Ships.Ship;
 import player.units.Structures.PDS;
+import player.units.Structures.Structure;
 import player.units.Unit;
 
 import java.util.ArrayList;
@@ -29,12 +32,16 @@ public class GroundCombatController extends AbstractController {
     private ArrayList<PDS> pdsForSpaceCannon;
     private ArrayList<Integer> diceValues;
 
+    private Integer hitDefenderValue;
+    private Integer hitInvaderValue;
+
     protected GroundCombatController(CommandRequestable userInterface, GameState gameState,
                                      GlobalCommandController globalCommandController, TileObject planet, Player player) {
         super(userInterface, globalCommandController);
         //super.putCommand("space-cannon", new PlayerSpaceCannon(this));
 
         this.invader = player;
+        this.defender = null;
         this.planet = planet;
         this.gameState = gameState;
 
@@ -43,25 +50,73 @@ public class GroundCombatController extends AbstractController {
 
         ArrayList<Unit> planetUnits = this.gameState.getTileArmyManager().getUnit(planet);
         for (Unit unit: planetUnits) {
-            if (unit.getRace() == player.getRace()) {
+            if (unit.getRace() == player.getRace() && !(unit instanceof Structure)) {
                 this.invaderUnits.add(unit);
             }
             else {
                 defender = Player.getRacePlayerManager().getPlayer(unit.getRace());
-                this.defenderUnits.add(unit);
+                if (!(unit instanceof Structure)) {
+                    this.defenderUnits.add(unit);
+                }
             }
         }
 
         pdsForSpaceCannon = new ArrayList<>();
         diceValues = new ArrayList<>();
+        hitDefenderValue = 0;
+        hitInvaderValue = 0;
     }
 
     public ArrayList<PDS> getPdsForSpaceCannon() {
         return pdsForSpaceCannon;
     }
-
     public ArrayList<Integer> getDiceValues() {
         return diceValues;
+    }
+    public Integer getHitValue(Player player) {
+        return player == defender ? hitDefenderValue : hitInvaderValue;
+    }
+    public TileObject getPlanet() {
+        return planet;
+    }
+    public ArrayList<Unit> getUnits(Player player) {
+        return player == defender ? defenderUnits : invaderUnits;
+    }
+
+    private void assignHits(Player player) {
+        userInterface.displayView(new MessageString(player.getName() + " choose " + getHitValue(player) + " units for hit"));
+
+        CommandResponse response = CommandResponse.DECLINED;
+        AbstractCommand command = new PlayerAssignHits(this, player);
+        while (response == CommandResponse.DECLINED) {
+            command.inputCommand(userInterface);
+            response = command.execute(player);
+        }
+    }
+    private void rollDices(Player player, Integer hitValue, int numDices) {
+        AbstractCommand command = new PlayerRollDices(this);
+        CommandResponse response = CommandResponse.DECLINED;
+
+        while (diceValues.size() != numDices) {
+            command.inputCommand(userInterface);
+            response = command.execute(player);
+
+            if (response == CommandResponse.DECLINED) {
+                continue;
+            }
+            if (diceValues.size() != numDices) {
+                userInterface.displayView(new MessageString("Please roll more dices. Now you roll: " + diceValues.toString()));
+            }
+        }
+
+        hitValue = 0;
+        for (int i = 0; i < diceValues.size(); ++i) {
+            if (pdsForSpaceCannon.get(i).canHitFromSpaceCannon(diceValues.get(i))) {
+                ++hitValue;
+            }
+        }
+
+        userInterface.displayView(new MessageString(player.getName() + " damage " + hitValue + " units and roll: " + diceValues.toString()));
     }
 
     @Override
@@ -69,7 +124,7 @@ public class GroundCombatController extends AbstractController {
         AbstractCommand command = new PlayerSpaceCannon(this);
         CommandResponse response = CommandResponse.DECLINED;
 
-        if (defenderUnits.isEmpty()) {
+        if (defender == null) {
             return CommandResponse.ACCEPTED;
         }
 
@@ -85,23 +140,27 @@ public class GroundCombatController extends AbstractController {
         }
         userInterface.displayView(new MessageString("You successful add " + pdsForSpaceCannon.size() + " PDS"));
 
-        command = new PlayerRollDices(this);
+        rollDices(defender, hitInvaderValue, pdsForSpaceCannon.size());
+        assignHits(invader);
 
-        while (diceValues.size() != pdsForSpaceCannon.size()) {
-            command.inputCommand(userInterface);
-            response = command.execute(defender);
+        while (invaderUnits.size() != 0 && defenderUnits.size() != 0) {
+            userInterface.displayView(new MessageString(invader.getName() + " have " + invaderUnits.size() + " combat units"));
+            rollDices(invader, hitDefenderValue, invaderUnits.size());
 
-            if (response == CommandResponse.DECLINED) {
-                continue;
-            }
-            if (diceValues.size() != pdsForSpaceCannon.size()) {
-                userInterface.displayView(new MessageString("Please roll more dices. Now you roll: " + diceValues.toString()));
-            }
+            userInterface.displayView(new MessageString(defender.getName() + " have " + defenderUnits.size() + " combat units"));
+            rollDices(defender, hitInvaderValue, defenderUnits.size());
+
+            assignHits(defender);
+            assignHits(invader);
         }
 
+        if (invaderUnits.size() == 0) {
+            userInterface.displayView(new MessageString(defender.getName() + " win!"));
+        } else {
+            userInterface.displayView(new MessageString(invader.getName() + " win!"));
+        }
 
-
-        return null;
+        return CommandResponse.ACCEPTED;
     }
 
     @Override

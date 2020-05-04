@@ -21,6 +21,8 @@ public class PlayerSpaceCannon extends PlayerGroundCombatCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
+        pdsTargets.clear();
+
         int numPDS = userInterface.requestNumber("PDS to space cannon");
         for (int i = 0; i < numPDS; ++i) {
             pdsTargets.add(userInterface.requestTarget("PDS to space cannon"));
