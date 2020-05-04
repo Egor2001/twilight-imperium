@@ -7,6 +7,7 @@ import base.controller.global.GlobalCommandController;
 import base.controller.invasion.*;
 import base.model.GameState;
 import base.user.CommandRequestable;
+import base.view.MessageString;
 import board.Planet;
 import board.TileObject;
 import player.Player;
@@ -26,6 +27,7 @@ public class GroundCombatController extends AbstractController {
     private ArrayList<Unit> invaderUnits;
 
     private ArrayList<PDS> pdsForSpaceCannon;
+    private ArrayList<Integer> diceValues;
 
     protected GroundCombatController(CommandRequestable userInterface, GameState gameState,
                                      GlobalCommandController globalCommandController, TileObject planet, Player player) {
@@ -51,27 +53,60 @@ public class GroundCombatController extends AbstractController {
         }
 
         pdsForSpaceCannon = new ArrayList<>();
+        diceValues = new ArrayList<>();
     }
 
     public ArrayList<PDS> getPdsForSpaceCannon() {
         return pdsForSpaceCannon;
     }
 
+    public ArrayList<Integer> getDiceValues() {
+        return diceValues;
+    }
+
     @Override
     public CommandResponse start() {
-        AbstractCommand command = null;
-        CommandResponse response = null;
+        AbstractCommand command = new PlayerSpaceCannon(this);
+        CommandResponse response = CommandResponse.DECLINED;
 
-        for () {
-
+        if (defenderUnits.isEmpty()) {
+            return CommandResponse.ACCEPTED;
         }
+
+        while (response == CommandResponse.DECLINED) {
+            command.inputCommand(userInterface);
+            response = command.execute(defender);
+            if (response == CommandResponse.DECLINED) {
+                userInterface.displayView(new MessageString("Please input ONLY PDS, try again. Now added:"));
+                for (PDS pds: pdsForSpaceCannon) {
+                    userInterface.displayView(pds.getView(null));
+                }
+            }
+        }
+        userInterface.displayView(new MessageString("You successful add " + pdsForSpaceCannon.size() + " PDS"));
+
+        command = new PlayerRollDices(this);
+
+        while (diceValues.size() != pdsForSpaceCannon.size()) {
+            command.inputCommand(userInterface);
+            response = command.execute(defender);
+
+            if (response == CommandResponse.DECLINED) {
+                continue;
+            }
+            if (diceValues.size() != pdsForSpaceCannon.size()) {
+                userInterface.displayView(new MessageString("Please roll more dices. Now you roll: " + diceValues.toString()));
+            }
+        }
+
+
 
         return null;
     }
 
     @Override
     public GameState getGameState() {
-        return null;
+        return gameState;
     }
 
     @Override

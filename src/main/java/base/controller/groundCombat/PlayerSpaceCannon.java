@@ -4,6 +4,7 @@ import base.controller.CommandResponse;
 import base.controller.tactic.MoveController;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import player.Player;
 import player.units.Structures.PDS;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class PlayerSpaceCannon extends PlayerGroundCombatCommand {
     private ArrayList<GameObjectTarget> pdsTargets;
 
-    PlayerSpaceCannon(GroundCombatController controller) {
+    public PlayerSpaceCannon(GroundCombatController controller) {
         super(controller);
         pdsTargets = new ArrayList<>();
     }
@@ -30,14 +31,20 @@ public class PlayerSpaceCannon extends PlayerGroundCombatCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing GROUND COMBAT command: SPACE CANNON");
+        controller.getUserInterface().displayView(new MessageString("processing GROUND COMBAT command: SPACE CANNON"));
 
         ArrayList<PDS> pds = ((GroundCombatController) controller).getPdsForSpaceCannon();
         boolean error = false;
         for (GameObjectTarget pdsTarget: pdsTargets) {
             try {
-                pds.add((PDS) player.getObject(pdsTarget));
+                PDS addPDS = (PDS) player.getObject(pdsTarget);
+                if (!pds.contains(addPDS)) {
+                    pds.add(addPDS);
+                } else {
+                    controller.getUserInterface().displayView(new MessageString("This pds is already use"));
+                }
             } catch (Exception exception) {
+                controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
                 error = true;
             }
         }
