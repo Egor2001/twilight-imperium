@@ -86,6 +86,7 @@ public class ConstructionStrategy extends AbstractStrategy {
 
             AbstractStrategyCommand command = (AbstractStrategyCommand) requestCommand(player, "construction");
 
+            response = CommandResponse.DECLINED;
             while (response != CommandResponse.ACCEPTED) {
                 response = command.execute(player);
 
@@ -93,7 +94,7 @@ public class ConstructionStrategy extends AbstractStrategy {
                     return response;
                 }
                 else if (response == CommandResponse.END_EVENT) {
-                    return CommandResponse.DECLINED;
+                    break;
                 }
                 else if (response != CommandResponse.ACCEPTED) {
                     command = (AbstractStrategyCommand) requestCommand(player, "correct construction");

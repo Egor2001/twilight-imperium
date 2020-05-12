@@ -24,16 +24,6 @@ public class PlayerActionStrategy extends PlayerActionCommand {
             return CommandResponse.DECLINED;
         }
 
-        CommandResponse response = strategy.ownerAction();
-        if (response != CommandResponse.ACCEPTED) {
-            return response;
-        }
-
-        response = strategy.start();
-        if (response != CommandResponse.ACCEPTED) {
-            return response;
-        }
-
-        return CommandResponse.ACCEPTED;
+        return strategy.start();
     }
 }

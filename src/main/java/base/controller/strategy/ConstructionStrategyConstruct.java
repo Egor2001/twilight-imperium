@@ -29,9 +29,11 @@ public class ConstructionStrategyConstruct extends AbstractStrategyCommand {
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
         planetTarget = userInterface.requestTarget("planet");
-        int unitCount = userInterface.requestNumber("unit count");
+        int unitCount = userInterface.requestNumber("units");
+
+        unitNames.clear();
         for (int idx = 0; idx != unitCount; ++idx) {
-            String unitName = userInterface.requestName("unit name");
+            String unitName = userInterface.requestName("unit");
             unitNames.add(unitName);
         }
 
