@@ -35,7 +35,7 @@ public class PlayerInvasionBombard extends PlayerInvasionCommand  {
 
         for (int i = 0; i < sz; ++i) {
             Object unit = userInterface.requestTarget("Insert unit");
-            if (unit instanceof GroundForce.Target) {
+            if (unit instanceof Ship.Target) {
                 targets.add((Ship.Target)unit);
             }
             else {
