@@ -32,6 +32,9 @@ public class PDS extends Structure {
         spaceCannonDiceValue = object.getInt("spaceCannonDiceValue");
         spaceCannonNumDices = object.getInt("spaceCannonNumDices");
         planetaryShield = object.getBoolean("planetaryShield");
+
+        setCanSustainDamaged(false);
+        setDamaged(false);
     }
 
     @Override

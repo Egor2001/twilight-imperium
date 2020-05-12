@@ -1,10 +1,8 @@
 package base.controller.phase.strategy;
 
-import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
-import base.model.GameState;
 import player.Player;
 
 public class PlayerStrategyPick extends PlayerStrategyCommand {

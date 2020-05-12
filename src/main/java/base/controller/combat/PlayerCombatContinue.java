@@ -18,8 +18,9 @@ public class PlayerCombatContinue extends PlayerCombatCommand {
     @Override
     public CommandResponse execute(Player player) {
         SpaceCombatController.CombatPhase phase = ((SpaceCombatController) getController()).getCombatPhase();
-        if (phase != SpaceCombatController.CombatPhase.COMBAT_RETREAT) {
-            getController().getUserInterface().reportError("can't announce continue in " + phase.toString() + " phase");
+        if (phase != SpaceCombatController.CombatPhase.COMBAT_RETREAT &&
+                phase != SpaceCombatController.CombatPhase.COMBAT_BARRAGE) {
+            getController().getUserInterface().reportError("can't continue in " + phase.toString() + " phase");
             return CommandResponse.DECLINED;
         }
 

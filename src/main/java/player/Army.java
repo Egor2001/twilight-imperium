@@ -95,7 +95,7 @@ public class Army implements Updatable, UserAcceptable {
         private String print(ArrayList<Viewable> unitView, String start) {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < unitView.size(); ++i) {
-                result.append(unitView.get(i).toString(start + "    ")).append(".").append(i).append("\n");
+                result.append(unitView.get(i).toString(start + "    ")).append("\n");
             }
 
             return result.toString();

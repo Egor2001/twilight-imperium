@@ -4,6 +4,7 @@ import base.controller.CommandResponse;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import player.Player;
 import player.units.Unit;
 
@@ -23,9 +24,9 @@ public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
     public boolean inputCommand(CommandRequestable userInterface) {
         unitTarget = userInterface.requestTarget("unit for load");
 
-        int numUnits = userInterface.requestNumber("number units to internal");
+        int numUnits = userInterface.requestNumber("units to internal");
         for (int i = 0; i < numUnits; ++i) {
-            unitsInternalTarget.add(userInterface.requestTarget("unit object to internal"));
+            unitsInternalTarget.add(userInterface.requestTarget("unit to internal"));
         }
 
         return true;
@@ -33,7 +34,7 @@ public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing TACTIC command: ADD_INTERNAL_UNITS");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: ADD_INTERNAL_UNITS"));
 
         boolean error = false;
         ArrayList<Unit> unitsInternal = new ArrayList<>();
@@ -52,7 +53,7 @@ public class PlayerTacticAddInternalCommand extends PlayerTacticCommand {
         try {
             ((MoveController) controller).getMoveState().addUnitsInsideUnit(unit, unitsInternal);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
             error = true;
         }
 

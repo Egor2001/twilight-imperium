@@ -8,9 +8,9 @@ pass
 add-unit Fighter Tile.0.Space
 add-unit Fighter Tile.4.Space
 move
-Tile.3.Space
+Tile.3
 add-unit 1 Army.Ship.1
-add-way 1 Army.Ship.1 1 Tile.3.Space
+add-way 1 Army.Ship.1 1 Tile.3
 view-all-moves
 end-move
 game
