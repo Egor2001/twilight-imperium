@@ -4,15 +4,13 @@ import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
 
-import base.controller.combat.SpaceCombatController;
 import base.controller.global.GlobalCommandController;
+import base.controller.groundCombat.PlayerSpaceCannon;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import board.Tile;
-import board.TileObject;
 import player.Player;
 
-import java.util.ArrayList;
 
 public class InvasionController extends AbstractController {
     public enum CombatPhase {
@@ -31,6 +29,7 @@ public class InvasionController extends AbstractController {
     private Player invader;
     private Tile tile;
     private GameState gameState;
+    private CombatPhase combatPhase;
 
     private BombardmentManager bombardmentManager;
 
@@ -42,11 +41,12 @@ public class InvasionController extends AbstractController {
                                  GlobalCommandController globalCommandController, Tile tile, Player player) {
         super(userInterface, globalCommandController);
         super.putCommand("bombard", new PlayerInvasionBombard(this));
-        super.putCommand("end-bombarding", new PlayerInvasionEndBombarding(this));
+
+        super.putCommand("make-rolls", new PlayerInvasionMakeRoll(this));
+        super.putCommand("assign-hits", new PlayerInvasionAssignHits(this));
+
         super.putCommand("land-troops", new PlayerInvasionLandTroops(this));
         super.putCommand("finish", new PlayerInvasionFinish(this));
-        super.putCommand("assign-hits", new PlayerInvasionAssignHits(this));
-        super.putCommand("make-rolls", new PlayerInvasionMakeRoll(this));
 
         this.invader = player;
         this.tile = tile;
@@ -62,7 +62,8 @@ public class InvasionController extends AbstractController {
 
     @Override
     public CommandResponse start() {
-        CommandResponse response;
+        AbstractCommand command = new PlayerInvasionBombard(this);
+        CommandResponse response = CommandResponse.DECLINED;
 
 
         return CommandResponse.ACCEPTED;
