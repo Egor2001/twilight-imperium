@@ -30,7 +30,7 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
         ArrayList<Integer> hitValue = new ArrayList<Integer>();
 
         for (Planet planet: planets) {
-            hitValue.add((InvasionController)controller.getHitOnPlanet(planet));
+            hitValue.add(((InvasionController)controller).GetBombardmentManager().getHitOnPlanet(planet));
         }
 
         ArrayList<ArrayList<Unit>> planet_units = new ArrayList<ArrayList<Unit>>();
