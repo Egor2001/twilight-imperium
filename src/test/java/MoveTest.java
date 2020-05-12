@@ -60,8 +60,7 @@ public class MoveTest extends Assert {
             DoTestFromFile("test5");
             CheckOutput("test5");
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             fail();
         }
     }
