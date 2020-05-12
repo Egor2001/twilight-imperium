@@ -1,5 +1,6 @@
 package base.model;
 
+import base.controller.phase.strategy.PlayerStrategyManager;
 import base.user.GameObjectTarget;
 import base.user.UserAcceptable;
 import base.view.Viewable;
@@ -18,10 +19,12 @@ public class GameState implements UserAcceptable, Updatable {
     private Board board;
     private ArrayList<Player> players;
     private TileArmyManager tileArmyManager;
+    private PlayerStrategyManager playerStrategyManager;
 
     public GameState() {
         this.players = new ArrayList<Player>(6);
         this.tileArmyManager = new TileArmyManager();
+        this.playerStrategyManager = new PlayerStrategyManager(this.players);
         this.board = new Board(this.tileArmyManager);
         for (Integer i = 0; i.compareTo(PLAYERS_CNT) != 0; ++i) {
             players.add(null);
@@ -38,6 +41,10 @@ public class GameState implements UserAcceptable, Updatable {
 
     public TileArmyManager getTileArmyManager() {
         return tileArmyManager;
+    }
+
+    public PlayerStrategyManager getPlayerStrategyManager() {
+        return playerStrategyManager;
     }
 
     @Override

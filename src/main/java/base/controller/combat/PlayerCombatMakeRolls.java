@@ -2,8 +2,12 @@ package base.controller.combat;
 
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
+import base.view.Viewable;
 import board.Space;
 import player.Player;
+
+import java.io.IOException;
+import java.io.Writer;
 
 public class PlayerCombatMakeRolls extends PlayerCombatCommand {
 
@@ -24,7 +28,8 @@ public class PlayerCombatMakeRolls extends PlayerCombatCommand {
             return CommandResponse.DECLINED;
         }
 
-        ((SpaceCombatController) getController()).makeRolls(player);
+        int result = ((SpaceCombatController) getController()).makeRolls(player);
+
         return CommandResponse.ACCEPTED;
     }
 }

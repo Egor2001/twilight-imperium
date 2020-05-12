@@ -35,6 +35,9 @@ public abstract class GroundForce extends Unit {
         costNumUnits = object.getInt("costNumUnits");
 
         canFightSpace = object.getBoolean("canFlightSpace");
+
+        setCanSustainDamaged(false);
+        setDamaged(false);
     }
 
     @Override

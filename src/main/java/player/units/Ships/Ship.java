@@ -13,9 +13,6 @@ public abstract class Ship extends Unit {
     private int cost;
     private int costNumUnits = 1;
 
-    private boolean canSustainDamaged = false;
-    private boolean damaged = false;
-
     private int spaceCannonDiceValue = 10;
     private int spaceCannonNumDices = 0;
     private int bombardmentDiceValue = 10;
@@ -41,16 +38,6 @@ public abstract class Ship extends Unit {
     }
     public int getCombatNumDices() {
         return combatNumDices;
-    }
-
-    public boolean isDamaged() {
-        return damaged;
-    }
-    public boolean canSustainDamaged() {
-        return canSustainDamaged;
-    }
-    public void takeDamaged() {
-        damaged = true;
     }
 
     public int getNumberOfDicesForSpaceCannon() {
@@ -114,10 +101,6 @@ public abstract class Ship extends Unit {
         costNumUnits = newCostNumUnits;
     }
 
-    public void setCanSustainDamaged(boolean canDamaged) {
-        canSustainDamaged = canDamaged;
-    }
-
     public void setSpaceCannon(int diceValue, int numDices) {
         spaceCannonDiceValue = diceValue;
         spaceCannonNumDices = numDices;
@@ -140,8 +123,8 @@ public abstract class Ship extends Unit {
         cost = object.getInt("cost");
         costNumUnits = object.getInt("costNumUnits");
 
-        canSustainDamaged = object.getBoolean("canSustainDamaged");
-        damaged = object.getBoolean("damaged");
+        setCanSustainDamaged(object.getBoolean("canSustainDamaged"));
+        setDamaged(object.getBoolean("damaged"));
 
         spaceCannonDiceValue = object.getInt("spaceCannonDiceValue");
         spaceCannonNumDices = object.getInt("spaceCannonNumDices");
@@ -180,9 +163,9 @@ public abstract class Ship extends Unit {
             result.append(start).append("Capacity: ").append(capacityValue).append("\n");
         }
 
-        if (canSustainDamaged) {
+        if (canSustainDamaged()) {
             result.append(start).append("It can sustain damage and now it is");
-            if (!damaged) {
+            if (!isDamaged()) {
                 result.append("n't");
             }
             result.append(" damaged\n");

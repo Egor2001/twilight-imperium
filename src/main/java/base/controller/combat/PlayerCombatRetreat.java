@@ -24,7 +24,7 @@ public class PlayerCombatRetreat extends PlayerCombatCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        GameObjectTarget retreatTileTarget = userInterface.requestTarget("retreat tile");
+        retreatTileTarget = userInterface.requestTarget("retreat tile");
         return true;
     }
 
@@ -39,7 +39,7 @@ public class PlayerCombatRetreat extends PlayerCombatCommand {
         TileObject retreatTile = null;
         try {
             GameState gameState = getController().getGameState();
-            retreatTile = (TileObject) gameState.getBoard().getObject(retreatTileTarget);
+            retreatTile = (TileObject) (gameState.getBoard().getObject(retreatTileTarget));
         }
         catch (Exception exception) {
             getController().getUserInterface().reportError("invalid target: " + exception.getMessage());

@@ -14,17 +14,34 @@ Input Biba's action command name
 Input unit name
 Input tile object target
 Input Biba's action command name
-Input active tile object target
+Input active tile target
+processing TACTIC command: SET_ACTIVE_TILE
 Input Biba's move command name
 Input units to move number
 Input unit object target
+processing TACTIC command: ADD_UNIT
 Input Biba's move command name
 Input units to move number
 Input unit object target
 Input tiles in way number
-Input tile object target
+Input tile target
+processing TACTIC command: ADD_WAY
 Input Biba's move command name
+processing TACTIC command: VIEW_ALL_UNIT
+Move State now:
+Active Tile:
+  Tile: 3 {
+      planet{[0.0.0] L1Z1X 5 0 -}
+      space{
+      }
+  }
+Move units:
+  Fighter (Arborec) #1:
+    Way's tiles:
+      Tile: 4 -> Tile: 3
 Input Biba's move command name
+processing TACTIC command: END_MOVE
+In move: way is too long
 Input Biba's move command name
 Input Biba's global command name
 Input view target

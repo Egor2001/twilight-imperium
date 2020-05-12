@@ -3,6 +3,7 @@ package base.controller.tactic;
 import base.controller.CommandResponse;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
+import base.view.MessageString;
 import player.Player;
 import player.units.Unit;
 
@@ -25,13 +26,13 @@ public class PlayerTacticDelUnitCommand extends PlayerTacticCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        System.out.println("processing TACTIC command: DEL_UNIT");
+        controller.getUserInterface().displayView(new MessageString("processing TACTIC command: DEL_UNIT"));
 
         try {
             Unit unit = (Unit) player.getObject(unitTarget);
             ((MoveController) controller).getMoveState().delUnit(unit);
         } catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            controller.getUserInterface().displayView(new MessageString(exception.getMessage()));
             return CommandResponse.DECLINED;
         }
 

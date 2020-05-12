@@ -19,6 +19,8 @@ public class ActionPhaseController extends AbstractController {
         super(userInterface, globalCommandController);
         this.gameState = gameState;
 
+        super.putCommand("strategy", new PlayerActionStrategy(this));
+        super.putCommand("add-dock", new PlayerActionAddSpaceDock(this));
         super.putCommand("add-unit", new PlayerActionAddUnit(this));
         super.putCommand("move", new PlayerActionMove(this));
         super.putCommand("pass", new PlayerActionPass(this));

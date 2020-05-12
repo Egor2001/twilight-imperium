@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Writer;
 
 public interface Viewable {
-    void display(Writer writer) throws IOException;
+    default void display(Writer writer) throws IOException {
+        writer.write(toString());
+    }
 
     String toString();
     String toString(String s);

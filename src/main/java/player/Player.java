@@ -3,7 +3,9 @@ package player;
 import base.user.GameObjectTarget;
 import base.user.UserAcceptable;
 import base.view.Viewable;
+import board.Space;
 import player.units.GroundForce.GroundForce;
+import player.units.GroundForce.Infantry;
 import player.units.Ships.Ship;
 import player.units.Structures.PDS;
 import player.units.Structures.SpaceDock;
@@ -26,6 +28,7 @@ public class Player implements Updatable, UserAcceptable {
     private String name;
     private Army army;
     private Race race;
+    private Resources resources;
 
     public Player(String name, String race) throws IllegalArgumentException {
         this.name = name;
@@ -63,6 +66,17 @@ public class Player implements Updatable, UserAcceptable {
                 return ship;
         }
     }
+    public void delUnit(Unit unit) {
+        if (unit instanceof Ship) {
+            army.delShip((Ship) unit);
+        } else if (unit instanceof SpaceDock) {
+            army.delSpaceDock((SpaceDock) unit);
+        } else if (unit instanceof GroundForce) {
+            army.delGroundForce((GroundForce) unit);
+        } else if (unit instanceof PDS) {
+            army.delPDS((PDS) unit);
+        }
+    }
     public ArrayList<Unit> addStartingFleet() {
         Map<String, Integer> startingFleet = race.getStartingFleet();
         ArrayList<Unit> listUnit = new ArrayList<>();
@@ -84,6 +98,10 @@ public class Player implements Updatable, UserAcceptable {
     }
     public final Race getRace() {
         return race;
+    }
+
+    public Resources getResources() {
+        return resources;
     }
 
     public static class Target extends GameObjectTarget {
@@ -134,7 +152,6 @@ public class Player implements Updatable, UserAcceptable {
     public Viewable getView(UserAcceptable parent) {
         return new View(this);
     }
-
     @Override
     public Viewable getView(UserAcceptable parent, GameObjectTarget target) {
         if (target == null) {
