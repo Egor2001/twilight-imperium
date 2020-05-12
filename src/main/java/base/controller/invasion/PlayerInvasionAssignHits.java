@@ -14,7 +14,8 @@ import player.units.Unit;
 import java.util.ArrayList;
 
 public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
-    private ArrayList<GameObjectTarget> hitUnitsTarget;
+    private ArrayList<ArrayList<GameObjectTarget>> hitUnitsTarget;
+    private ArrayList<Planet> planets;
 
     public PlayerInvasionAssignHits(InvasionController controller) {
         super(controller);
@@ -24,46 +25,40 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        ArrayList<ArrayList<GroundForce.Target>> hittingUnits = new ArrayList<ArrayList<GroundForce.Target>>();
+        planets.clear();
+        hitUnitsTarget.clear();
 
-        ArrayList<Planet> planets = new ArrayList<Planet>();//(InvasionController)controller.GetPlanetsList();
+        planets = ((InvasionController)controller).GetBombardmentManager().getPlanetsList();
         ArrayList<Integer> hitValue = new ArrayList<Integer>();
 
         for (Planet planet: planets) {
             hitValue.add(((InvasionController)controller).GetBombardmentManager().getHitOnPlanet(planet));
         }
 
-        ArrayList<ArrayList<Unit>> planet_units = new ArrayList<ArrayList<Unit>>();
 
-        for (Planet planet: planets) {
-            planet_units.add(controller.getGameState().getTileArmyManager().getUnit(planet));
-        }
 
         boolean go_out = true;
 
-        while (true) {
+        do {
             go_out = true;
 
             for (int i = 0; i < planets.size(); ++i) {
-                hittingUnits.add(new ArrayList<GroundForce.Target>());
+                hitUnitsTarget.add(new ArrayList<GameObjectTarget>());
                 userInterface.displayView(new MessageString("Choose " + hitValue.get(i) + " units for hit"));
 
                 for (int j = 0; j < hitValue.get(i); ++j) {
-                    hittingUnits.get(i).add((GroundForce.Target) userInterface.requestTarget("unit for hit"));
+                    hitUnitsTarget.get(i).add((GroundForce.Target) userInterface.requestTarget("unit for hit"));
                 }
             }
 
             for (int i = 0; i < planets.size(); ++i) {
-                if (hittingUnits.get(i).size() != hitValue.get(i)) {
+                if (hitUnitsTarget.get(i).size() != hitValue.get(i)) {
                     userInterface.displayView(new MessageString("Fuck, you've miscalculated! Try again and be careful."));
                     go_out = false;
                 }
             }
 
-            if (go_out) {
-                break;
-            }
-        }
+        } while (!go_out);
 
         return true;
     }
@@ -71,12 +66,33 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
     @Override
     public CommandResponse execute(Player player) {
         controller.getUserInterface().displayView(new MessageString("processing INVASION command: ASSIGN HITS"));
-        Unit unit = null;
-        boolean error = false;
+        Unit unit;
 
-        while(true) {
+        for (int i = 0; i < hitUnitsTarget.size(); ++i) {
+            for (GameObjectTarget target : hitUnitsTarget.get(i)) {
+                unit = (Unit) player.getObject(target);
+
+                Planet pl = (Planet) controller.getGameState().getTileArmyManager().getTileObject(unit);
+
+                if (pl != planets.get(i)) {
+                    return CommandResponse.DECLINED;
+                }
+            }
+        }
+
+        for (ArrayList<GameObjectTarget> list_target: hitUnitsTarget) {
+            for (GameObjectTarget target: list_target) {
+                unit = (Unit) player.getObject(target);
+                if (unit.canSustainDamaged() && !unit.isDamaged()) {
+                    unit.takeDamaged();
+                } else {
+                    player.delUnit(unit);
+                    controller.getGameState().getTileArmyManager().remove(unit);
+                }
+            }
 
         }
+
         return CommandResponse.ACCEPTED;
     }
 }
