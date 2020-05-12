@@ -28,4 +28,8 @@ public class BombardmentManager {
             }
         }
     }
+
+    public ArrayList<Unit> getUnitsList() {
+        return units;
+    }
 }
