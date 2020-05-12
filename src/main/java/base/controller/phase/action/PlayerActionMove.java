@@ -37,10 +37,6 @@ public class PlayerActionMove extends PlayerActionCommand {
                                           controller.getGlobalCommandController(), activeTile, player);
 
         result = combatController.start();
-        if (result != CommandResponse.ACCEPTED) {
-            return result;
-        }
-
-        return CommandResponse.ACCEPTED;
+        return result;
     }
 }

@@ -35,8 +35,6 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
             hitValue.add(((InvasionController)controller).GetBombardmentManager().getHitOnPlanet(planet));
         }
 
-
-
         boolean go_out = true;
 
         do {
@@ -66,6 +64,12 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
     @Override
     public CommandResponse execute(Player player) {
         controller.getUserInterface().displayView(new MessageString("processing INVASION command: ASSIGN HITS"));
+        InvasionController.CombatPhase phase = ((InvasionController) controller).getCombatPhase();
+        if (phase != InvasionController.CombatPhase.ASSIGN_HITS) {
+            getController().getUserInterface().reportError("can't assign hits in " + phase.toString() + " phase");
+            return CommandResponse.DECLINED;
+        }
+
         Unit unit;
 
         for (int i = 0; i < hitUnitsTarget.size(); ++i) {

@@ -23,6 +23,12 @@ public class PlayerInvasionMakeRoll extends PlayerInvasionCommand {
 
     @Override
     public CommandResponse execute(Player player) {
+        InvasionController.CombatPhase phase = ((InvasionController) controller).getCombatPhase();
+        if (phase != InvasionController.CombatPhase.BOMBARDMENT) {
+            getController().getUserInterface().reportError("can't make roll in " + phase.toString() + " phase");
+            return CommandResponse.DECLINED;
+        }
+
         controller.getUserInterface().displayView(new MessageString("processing INVASION command: MAKE ROLLS"));
         Dice dice = new Dice();
         ArrayList<Unit> units = ((InvasionController) controller).GetBombardmentManager().getUnitsList();
@@ -50,6 +56,6 @@ public class PlayerInvasionMakeRoll extends PlayerInvasionCommand {
 
         controller.getUserInterface().displayView(new MessageString("You roll: " + diceValues.toString()));
 
-        return CommandResponse.ACCEPTED;
+        return CommandResponse.END_EVENT;
     }
 }

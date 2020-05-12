@@ -59,4 +59,16 @@ public class BombardmentManager {
         int index = units.indexOf(unit);
         numHits.set(index, hits);
     }
+
+    public ArrayList<Unit> getUnitsOnPlanet(Planet planet) {
+        ArrayList<Unit> result = new ArrayList<>();
+
+        for (int i = 0; i < units.size(); ++i) {
+            if (planets.get(i) == planet) {
+                result.add(units.get(i));
+            }
+        }
+
+        return result;
+    }
 }

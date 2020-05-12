@@ -52,7 +52,13 @@ public class PlayerInvasionLandTroops extends PlayerInvasionCommand {
 
     @Override
     public CommandResponse execute(Player player) {
-        ArrayList<Unit> units = new ArrayList<Unit>();
+        InvasionController.CombatPhase phase = ((InvasionController) controller).getCombatPhase();
+        if (phase != InvasionController.CombatPhase.LANDING) {
+            getController().getUserInterface().reportError("can't land troops in " + phase.toString() + " phase");
+            return CommandResponse.DECLINED;
+        }
+
+        ArrayList<Unit> units = new ArrayList<>();
         Planet planet = null;
 
         for (GroundForce.Target target: targets) {
