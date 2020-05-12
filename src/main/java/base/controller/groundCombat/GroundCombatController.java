@@ -35,8 +35,8 @@ public class GroundCombatController extends AbstractController {
     private Integer hitDefenderValue;
     private Integer hitInvaderValue;
 
-    protected GroundCombatController(CommandRequestable userInterface, GameState gameState,
-                                     GlobalCommandController globalCommandController, TileObject planet, Player player) {
+    public GroundCombatController(CommandRequestable userInterface, GameState gameState,
+                                  GlobalCommandController globalCommandController, TileObject planet, Player player) {
         super(userInterface, globalCommandController);
         //super.putCommand("space-cannon", new PlayerSpaceCannon(this));
 

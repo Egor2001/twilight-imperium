@@ -28,7 +28,7 @@ public class PlayerInvasionBombard extends PlayerInvasionCommand  {
 
 
     @Override
-    public boolean inputCommand(CommandRequestable userInterface) { //What should I return?
+    public boolean inputCommand(CommandRequestable userInterface) {
         targets.clear();
 
         int sz = userInterface.requestNumber("Insert number of units");
@@ -53,12 +53,18 @@ public class PlayerInvasionBombard extends PlayerInvasionCommand  {
 
         }
 
-        return false;
+        return true;
     }
 
     @Override
     public CommandResponse execute(Player player) {
-        ArrayList<Unit> units = new ArrayList<Unit>();
+        InvasionController.CombatPhase phase = ((InvasionController) controller).getCombatPhase();
+        if (phase != InvasionController.CombatPhase.BOMBARDMENT) {
+            getController().getUserInterface().reportError("can't bombard in " + phase.toString() + " phase");
+            return CommandResponse.DECLINED;
+        }
+
+        ArrayList<Unit> units = new ArrayList<>();
         Planet planet = null;
 
         for (Ship.Target target: targets) {

@@ -4,6 +4,7 @@ import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
 import base.controller.global.GlobalCommandController;
+import base.controller.invasion.InvasionController;
 import base.model.Dice;
 import base.model.GameState;
 import base.user.CommandRequestable;
@@ -266,7 +267,10 @@ public class SpaceCombatController extends AbstractController {
             stop = retreat(retreatPlayer);
         }
 
-        return CommandResponse.ACCEPTED;
+        InvasionController invasionController =
+                new InvasionController(userInterface, gameState, globalCommandController, retreatTile.GetTile(), invader);
+
+        return invasionController.start();
     }
 
     @Override
