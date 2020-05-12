@@ -37,18 +37,18 @@ public class PlayerInvasionMakeRoll extends PlayerInvasionCommand {
             diceValues.add(dice.getValue());
         }
 
-        Integer numHits = ((InvasionController) controller).getNumHits();
         int indexDice = 0;
         for (Unit unit: units) {
+            int numHits = 0;
             for (int i = 0; i < ((Ship) unit).getNumberOfDicesForBombardment(); ++i, ++indexDice) {
                 if (((Ship) unit).canHitFromBombardment(diceValues.get(indexDice))) {
                     ++numHits;
                 }
             }
+            ((InvasionController) controller).GetBombardmentManager().setHitFromUnit(unit, numHits);
         }
 
-        controller.getUserInterface().displayView(new MessageString("You roll: " + diceValues.toString() +
-                " and damaged " + numHits + " hits"));
+        controller.getUserInterface().displayView(new MessageString("You roll: " + diceValues.toString()));
 
         return CommandResponse.ACCEPTED;
     }

@@ -33,11 +33,6 @@ public class InvasionController extends AbstractController {
 
     private BombardmentManager bombardmentManager;
 
-    private Integer numHits;
-    public Integer getNumHits() {
-        return numHits;
-    }
-
     public BombardmentManager GetBombardmentManager () {
         return bombardmentManager;
     }
