@@ -35,9 +35,15 @@ public class BombardmentManager {
     public ArrayList<Unit> getUnitsList() {
         return units;
     }
-    /*public ArrayList<Planet> getPlanetsList() {
-        return planets;
-    }*/
+    public ArrayList<Planet> getPlanetsList() {
+        ArrayList<Planet> planetList = new ArrayList<>();
+        for (Planet planet: planets) {
+            if (!planetList.contains(planet)) {
+                planetList.add(planet);
+            }
+        }
+        return planetList;
+    }
     public Integer getHitOnPlanet(Planet planet) {
         Integer sumHits = 0;
 
