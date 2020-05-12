@@ -6,7 +6,9 @@ import base.controller.groundCombat.GroundCombatController;
 import base.user.CommandRequestable;
 import base.user.GameObjectTarget;
 import base.view.MessageString;
+import board.Planet;
 import player.Player;
+import player.units.GroundForce.GroundForce;
 import player.units.Unit;
 
 import java.util.ArrayList;
@@ -22,13 +24,45 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        hitUnitsTarget.clear();
+        ArrayList<ArrayList<GroundForce.Target>> hittingUnits = new ArrayList<ArrayList<GroundForce.Target>>();
 
-        Integer hitValue = ((InvasionController) controller).getNumHits();
+        ArrayList<Planet> planets = new ArrayList<Planet>();//(InvasionController)controller.GetPlanetsList();
+        ArrayList<Integer> hitValue = new ArrayList<Integer>();
 
-        userInterface.displayView(new MessageString("Choose " + hitValue + " units for hit"));
-        for (int hitIdx = 0; hitIdx != hitValue; ++hitIdx) {
-            hitUnitsTarget.add(userInterface.requestTarget("unit for hit"));
+        for (Planet planet: planets) {
+            hitValue.add((InvasionController)controller.getHitOnPlanet(planet));
+        }
+
+        ArrayList<ArrayList<Unit>> planet_units = new ArrayList<ArrayList<Unit>>();
+
+        for (Planet planet: planets) {
+            planet_units.add(controller.getGameState().getTileArmyManager().getUnit(planet));
+        }
+
+        boolean go_out = true;
+
+        while (true) {
+            go_out = true;
+
+            for (int i = 0; i < planets.size(); ++i) {
+                hittingUnits.add(new ArrayList<GroundForce.Target>());
+                userInterface.displayView(new MessageString("Choose " + hitValue.get(i) + " units for hit"));
+
+                for (int j = 0; j < hitValue.get(i); ++j) {
+                    hittingUnits.get(i).add((GroundForce.Target) userInterface.requestTarget("unit for hit"));
+                }
+            }
+
+            for (int i = 0; i < planets.size(); ++i) {
+                if (hittingUnits.get(i).size() != hitValue.get(i)) {
+                    userInterface.displayView(new MessageString("Fuck, you've miscalculated! Try again and be careful."));
+                    go_out = false;
+                }
+            }
+
+            if (go_out) {
+                break;
+            }
         }
 
         return true;
@@ -40,45 +74,8 @@ public class PlayerInvasionAssignHits extends PlayerInvasionCommand  {
         Unit unit = null;
         boolean error = false;
 
-        Integer hitValue = ((InvasionController) controller).getNumHits();
-        ArrayList<Unit> units = ((InvasionController) controller).getUnits(player);
+        while(true) {
 
-        if (hitValue > hitUnitsTarget.size()) {
-            controller.getUserInterface().displayView(new MessageString("You enter units more then number hits = " + hitValue));
-            return CommandResponse.DECLINED;
-        }
-
-        for (GameObjectTarget unitTarget: hitUnitsTarget) {
-            try {
-                unit = (Unit) player.getObject(unitTarget);
-            } catch (Exception exception) {
-                controller.getUserInterface().displayView(new MessageString("Input invalid target: not found"));
-                continue;
-            }
-
-            if (unit.getRace() == player.getRace() && ((GroundCombatController) controller).getPlanet() ==
-                    controller.getGameState().getTileArmyManager().getTileObject(unit))  {
-                --hitValue;
-                if (unit.canSustainDamaged() && !unit.isDamaged()) {
-                    unit.takeDamaged();
-                } else {
-                    player.delUnit(unit);
-                    controller.getGameState().getTileArmyManager().remove(unit);
-                    units.remove(unit);
-                }
-            } else {
-                controller.getUserInterface().displayView(new MessageString("You can hit only self units, but " +
-                        unit.getView(null).toString() + " isn't yours"));
-                error = true;
-            }
-        }
-
-        if (error) {
-            return CommandResponse.DECLINED;
-        }
-        if (hitValue > 0) {
-            controller.getUserInterface().displayView(new MessageString("Enter " + hitValue + " more units"));
-            return CommandResponse.DECLINED;
         }
         return CommandResponse.ACCEPTED;
     }
