@@ -1,8 +1,10 @@
 package base.controller.phase.strategy;
 
 import base.controller.AbstractController;
+import base.controller.strategy.AbstractStrategy;
 import base.user.CommandRequestable;
 import base.controller.CommandResponse;
+import base.view.Viewable;
 import player.Player;
 
 public class PlayerStrategyPick extends PlayerStrategyCommand {
@@ -21,12 +23,25 @@ public class PlayerStrategyPick extends PlayerStrategyCommand {
 
     @Override
     public boolean inputCommand(CommandRequestable userInterface) {
-        strategyIdx = userInterface.requestNumber("strategy index");
+        Viewable strategiesView = ((StrategyPhaseController) getController()).getStrategiesView();
+        //userInterface.displayView(strategiesView);
+        strategyIdx = userInterface.requestNumber("strategy index") - 1;
         return true;
     }
 
     @Override
     public CommandResponse execute(Player player) {
+        StrategyPhaseController controller = ((StrategyPhaseController) getController());
+
+        try {
+            AbstractStrategy strategy = controller.getStrategy(player, strategyIdx);
+            controller.getGameState().getPlayerStrategyManager().pickNew(player, strategy);
+        }
+        catch (IllegalArgumentException exception) {
+            getController().getUserInterface().reportError(exception.getMessage());
+            return CommandResponse.DECLINED;
+        }
+
         return CommandResponse.ACCEPTED;
     }
 }

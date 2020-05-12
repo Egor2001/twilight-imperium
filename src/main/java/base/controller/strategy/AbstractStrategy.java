@@ -3,6 +3,7 @@ package base.controller.strategy;
 import base.controller.AbstractCommand;
 import base.controller.AbstractController;
 import base.controller.CommandResponse;
+import base.controller.phase.strategy.StrategyPhaseController;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import player.Player;
@@ -13,11 +14,11 @@ public abstract class AbstractStrategy extends AbstractController {
     private Player owner;
     private int priority;
 
-    protected AbstractStrategy(CommandRequestable userInterface, GameState gameState,
+    protected AbstractStrategy(StrategyPhaseController strategyPhaseController,
                                Player owner, int priority) {
-        super(userInterface);
+        super(strategyPhaseController.getUserInterface(), strategyPhaseController.getGlobalCommandController());
         super.putCommand("pass", new StrategyPass(this));
-        this.gameState = gameState;
+        this.gameState = strategyPhaseController.getGameState();
         this.owner = owner;
         this.priority = priority;
     }

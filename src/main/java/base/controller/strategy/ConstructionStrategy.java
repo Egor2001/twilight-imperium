@@ -2,6 +2,7 @@ package base.controller.strategy;
 
 import base.controller.AbstractCommand;
 import base.controller.CommandResponse;
+import base.controller.phase.strategy.StrategyPhaseController;
 import base.model.GameState;
 import base.user.CommandRequestable;
 import board.Planet;
@@ -17,20 +18,20 @@ public class ConstructionStrategy extends AbstractStrategy {
 
     private TileArmyManager tileArmyManager;
 
-    public ConstructionStrategy(CommandRequestable userInterface, GameState gameState,
+    public ConstructionStrategy(StrategyPhaseController strategyPhaseController,
                                 Player owner, int priority) {
-        super(userInterface, gameState, owner, priority);
+        super(strategyPhaseController, owner, priority);
         super.putCommand("construct", new ConstructionStrategyConstruct(this));
-        this.tileArmyManager = gameState.getTileArmyManager();
+        this.tileArmyManager = getGameState().getTileArmyManager();
     }
 
     public boolean construct(Player player, Planet planet, ArrayList<String> unitNames) {
         Space space = planet.GetTile().GetSpace();
 
-        int productValue = 0;
+        int productValue = 1;
         boolean canConstruct = false;
         for (Unit unit : planet.GetObjectUnits()) {
-            if (unit instanceof SpaceDock && ((SpaceDock) unit).getRace() == player.getRace()) {
+            if (unit instanceof SpaceDock && unit.getRace() == player.getRace()) {
                 canConstruct = true;
                 productValue += ((SpaceDock) unit).getValue();
             }
@@ -65,9 +66,8 @@ public class ConstructionStrategy extends AbstractStrategy {
     public CommandResponse ownerAction() {
         ConstructionStrategyConstruct command = new ConstructionStrategyConstruct(this);
         command.inputCommand(getUserInterface());
-        command.execute(getOwner());
 
-        return CommandResponse.ACCEPTED;
+        return command.execute(getOwner());
     }
 
     @Override
